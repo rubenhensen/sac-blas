@@ -1,0 +1,15 @@
+use StdIO: all;
+use Array: all;
+
+int main() {
+    a = reshape([3,4,5], iota(60));
+    b = takedrop([2], a);
+    print(b);
+    return 0;
+}
+
+int[*], int[*] takedrop(int[.] shp, int[*] a) {
+    x = take(shp, a);
+    y = drop(shp, a);
+    return (x, y);
+}

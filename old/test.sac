@@ -1,0 +1,46 @@
+// Cannot seem to get matmul to work on n dimensional arrays.
+
+use StdIO: all;
+use Array: all;
+
+
+int main()
+{
+    // print(reshape([3,0,5],[])[[]]);
+    //print(reshape([3,1,5],[])[[]]);
+    //print(mat[reshape([2,0],[])]);
+    // print(min(reshape([3,1,15],iota(45)),42));
+    // print(a[1]);
+    // print([1]++[0]);
+    // int{4} a;
+    // int{21} a;
+    // int{2} b;
+    // int{42} res;
+    // a = "test";
+    // b = "hello";
+    // res = a ++ b ;
+    // a = [[1,2,3],[4,5,6]];
+
+    // print (mysel([1], a));
+    // print(res);
+    // a = with {
+    //     ([0,0] <= iv < [3,3]) :  iv[0]*3+iv[1];
+    // } : genarray([3,3], 0);
+    // b = with {
+    //     (shape(a)*0 <= iv < [2,2]) :  a[iv];
+    // } : genarray([2,2], 0);
+    if (all(genarray([3,3], 1) == genarray([3,3], 1))) {
+        print("test");
+    }
+    // return b[[2]];
+
+    return 0;
+}
+
+int[.] mysel (int[.] iv, int[.,.] a) {
+    return { jv -> a[iv++jv] | [0] <= jv < [3] };
+}
+
+bool isPos (int a) {
+    return a >= 0;
+}

@@ -1,0 +1,44 @@
+/**********************************************************************
+ *
+ * SAC bug report: bug4.sacbugreport
+ *
+ **********************************************************************
+ *
+ * Automatically generated on Mon Feb 12 04:57:34 PM CET 2024
+ *
+ * using sac2c 1.3.3-MijasCosta-1145-gdde1e
+ * built 2024-02-04T08:00:04.
+ * by user  on host runner-qipqeg7c-project-39-concurrent-2.
+ *
+ * The compiler was called by
+ *  sac2c -check tc bug4.sac
+ *
+ * The compiler crashed in
+ *  phase: popt (Preparing for code optimization)
+ *  sub phase: cuq (Checking uniqueness)
+ *
+ * What follows is the contents of bug4.sac.
+ *
+ **********************************************************************/
+
+use StdIO: all;
+use Array: all;
+
+int main() {
+    print(myTake1 ([0], reshape ([10,5], iota(50))));
+    return 0;
+}
+
+int[shp] myTake1 (int[n] shp, int[d1:shp1] data) | n <= d1 && (all(shp == []) || all(shp < shp1)) && all (shp >= 0)
+{
+    return {iv -> data[iv] | iv < shp};
+}
+
+
+
+/**********************************************************************
+ *
+ * End of bug report
+ *
+ **********************************************************************/
+

@@ -1,0 +1,17 @@
+module SacBlasLevel1;
+
+export all;
+
+use Array: all;
+
+/*
+ * dscal
+ */
+inline
+double[.] dscal( double alpha, double[.] x ) {
+
+        x = alpha*x;
+
+  return (x);
+}
+

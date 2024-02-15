@@ -1,0 +1,291 @@
+use Array : all except{min, +};
+// use Array : all except{min};
+use StdIO : all;
+
+int min(int a, int b)
+{
+    // > or use _min_SxS_
+    return a < b ? a : b;
+}
+
+int + (int a, int b)
+{
+    // > better use _add_SxS_
+    // return a Array:: + b;
+    return _add_SxS_(a,b);
+}
+
+int[.] + (int[.] a, int[.] b)
+{
+    as = shape(a)[0];
+    bs = shape(b)[0];
+    m = min(as, bs);
+    shp = with
+    {
+        ([0] <= iv < [m]) : a[iv] + b[iv];
+    } : genarray([m], 0);
+
+    return shp;
+}
+
+int[*] + (int a, int[*] b)
+{
+    // return a Array:: + b;
+    return {iv -> +(a, b[iv])};
+}
+
+// > How would we define this without using Array::+ ?
+int[*] + (int[*] a, int b)
+{
+    // return a Array:: + b;
+    // return _add_VxS_(a,b);
+    return {iv -> +(a[iv], b)};
+}
+
+// Flattens instead of extends smaller array.
+// int[*] + (int[*] a, int[*] b)
+// {
+//     if (dim(a) > dim(b))
+//     {
+//         ans = flatten(a) + b;
+//     }
+//     else if ((dim(a) < dim(b)))
+//     {
+//         ans = a + flatten(b);
+//     }
+//     else
+//     {
+//         shpA = shape(a);
+//         shpB = shape(b);
+//         minShp = min(shpA, shpB);
+//         ans = with
+//         {
+//             (minShp * 0 <= iv < minShp) : a[iv] + b[iv];
+//         } : genarray(minShp, 0);
+//     }
+
+//     return ans;
+// }
+
+int[*], int[*] extend(int[*] a, int[*] b)
+{
+    if (dim(a) < dim(b))
+    {
+        tmp = b;
+        b = a;
+        a = tmp;
+    }
+    t1 = prod(shape(a));
+    t2 = prod(shape(b));
+    sz = t1 / t2;
+    if (t1 == 0)
+    {
+        d = reshape(shape(a), []);
+    }
+    else
+    {
+        c = with
+        {
+            (.<= iv <=.) : b[iv / sz];
+        } : genarray([t1], 0);
+        d = reshape(shape(a), c);
+    }
+    return (a, d);
+}
+
+int[*] + (int[*] a, int[*] b)
+{
+    // > interesting solution
+    // > we could also define it like so:
+    // minShp = min(shape(a), shape(b));
+    // return with
+    // {
+    //     (minShp * 0 <= iv < minShp) : a[iv] + b[iv];
+    // } : genarray(minShp, ?);
+    // > where ? is an array of some shape (hint: look at the examples)
+
+    // if (dim(a) != dim(b))
+    // {
+    //     a, b = extend(a, b);
+    // }
+    // print("AB");
+    // print(a);
+    // print(b);
+
+    // shpA = shape(a);
+    // shpB = shape(b);
+    // minShp = min(shpA, shpB);
+    // ans = with
+    // {
+    //     (minShp * 0 <= iv < minShp) : a[iv] + b[iv];
+    // } : genarray(minShp, 0);
+
+    // return ans;
+    // o = min(shape(a),shaning type ipe(b));
+    // i = drop( shape(o), shape(a))  ++ drop(shape(o), shape(b));
+    // def = genarray(i,0);
+    // return {iv -> +(a[iv], b[iv]);
+    //         iv -> def | iv < 0 };
+    return {iv -> +(a[iv], b[iv])}; // crashes with shp[3,0,5] []
+}
+
+// > the generic min already handles this case
+int[.] min(int[.] a, int[.] b)
+{
+    as = shape(a)[0];
+    bs = shape(b)[0];
+    m = min(as, bs);
+    shp = with
+    {
+        ([0] <= iv < [m]) : min(a[iv], b[iv]);
+    } : genarray([m], 0);
+
+    return shp;
+}
+
+// Assuming same dimensionality
+int[*] min(int[*] a, int[*] b)
+{
+    // > if we just use a tensor-comprehension here 
+    // > the shape will automatically get calculated for us: 
+    // > { iv -> min(a[iv], b[iv]) }
+    shpA = shape(a);
+    shpB = shape(b);
+    minShp = min(shpA, shpB);
+    shp = with
+    {
+        (minShp * 0 <= iv < minShp) : min(a[iv], b[iv]);
+    } : genarray(minShp, 0);
+
+    return shp;
+}
+
+int[*] flatten(int[*] a)
+{
+    if (dim(a) < 2)
+    {
+        ans = a;
+    }
+    else
+    {
+        shp = shape(a);
+        xs = drop([2], shp);
+        newD = shp[0] * shp[1];
+        // ++ does not respect order? newD++xs and xs++newD both result in the same vector;
+        newShp = newD++ xs;
+        ans = reshape(newShp, a);
+    }
+
+    return ans;
+}
+
+int main()
+{
+    // ### min test cases ###
+    // print( min([ 2, 2, 2, 2, 2 ], [ 0, 4, -1 ]) );
+    // print( min ([], [1,2,3,4]) );
+    // a = reshape ([10,10], iota(100));
+    // print(a);
+    // b = genarray ([3,12], 12);
+    // print(b);
+    // print( min (a,b) );
+    // print( min (a, reshape ([0,10], [])) );
+
+    // a = (reshape([10,5,3,2], iota(300)) - 10) *2;
+    // print(a);
+    // b = reshape([5,10,8,4], iota(1600)) / 3;
+    // print(b);
+    // print( min(a, b) );
+
+    // ### + test cases ###
+    print( 2 + 3 );
+    print( 2+[1,2,3] );
+    print( 2+[] );
+    print( [1,2]+[1,2,3] );
+    print( [ 1, 2 ] + [ [ 1, 2, 3 ], [ 4, 5, 6 ] ] );
+    print([ [ 1, 2 ], [ 3, 4 ] ] + [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]);
+    print([ [ 1, 2 ], [ 3, 4 ] ] + reshape([ 5, 0, 3 ], []));
+
+    // ### flatten test cases ###
+    // print( flatten( [[1,2,3],[4,5,6]] ));
+    // print(flatten(reshape([ 2, 3, 4, 5 ], iota(prod([ 2, 3, 4, 5 ])))));
+    // print( flatten( [1,2,3] ));
+
+    // ### seq scan test cases ###
+    // v = iota(20);
+    // vs, s = scan(v);
+    // print(v);
+    // print(vs);
+    // print(s);
+
+    // vs, s = pscan(v);
+    // print(v);
+    // print(vs);
+    // print(s);
+
+    // vs, s = mscan (reshape([4,5], v));
+    // print(v);
+    // print(reshape([4,5], v));
+    // print(vs);
+    // print(s);
+    return 0;
+}
+
+// This could be done in place.
+int[.], int scan(int[.] v)
+{
+    a = reshape([0], []);
+    sum = 0;
+
+    // > prod works here because shape(v) is a singleton
+    // > but it would be more clear to do take([1], shape(v))
+    // > also can we define this more efficiently by not
+    // > using (++) at each iteration?
+    for (i = 0; i < prod(shape(v)); ++i)
+    {
+        a = a ++ [sum];
+        sum = sum + v[i];
+    }
+    return (a, sum);
+}
+
+// > good
+int[.], int pscan(int[.] v)
+{
+    a = { iv -> sum(take(iv, v)) | iv < shape(v)};
+    sm = sum(v);
+    return (a, sm);
+}
+
+int[.,.], int mscan(int[.,.] v)
+{
+    // > why not:
+    // > declare one with-loop that ranges on 
+    // >  ( [0] <= i < [shape(v)[0]])
+    // > and returns two arrays (the result of scan(v[i]))
+    // > then do scan on the second argument and then +
+    a = with { 
+        // > a lot of recomputations happen here
+        // > for each i,j we do scan(v[i])
+        ( 0*shape(v) <= [i,j] < shape(v))  {
+            a, sm = scan(v[i]);
+        } : a[j];
+    } : genarray(shape(v), zero(v));
+
+    sms = with { 
+        ( [0] <= i < [shape(v)[0]])  {
+            a, sm = scan(v[i]);
+        } : sm;
+    } : genarray([shape(v)[0]], 0);
+
+    dvs, fsm = scan(sms);
+    
+    b = a + dvs;
+
+    return (b, fsm);
+}
+
+int, int divmod(int x, int y)
+{
+    return (x / y, x % y);
+}

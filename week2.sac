@@ -1,0 +1,84 @@
+use StdIO: all;
+use Array: all except {+};
+
+int main() {
+    print( commonPrefix ([1], [1,2,3,4]) );
+    // print( commonPrefix (3,[3,4]) ); // should error
+    print( commonPrefix ([2,4], []) );
+    print( commonPrefix ([2,4],[2]) );
+    print( commonPrefix ([2,4],[3]) );
+
+    print( commonPostfix ([2,4,8], [4,8]) );
+    print( commonPostfix ([2,4,7], [2,4]) );
+
+    print( carretplus([2,1], [[3,7,1], [1,2,3]]) );
+    print( carretplus([[3,7,1], [1,2,3]], [2,1]) );
+    // print( carretplus([3,2,1], [[3,7,1], [1,2,3]]) ); // Should error
+    print( carretplus(1, [[3,7,1], [1,2,3]]) );
+
+    print( pluscarret([3,2,1], [[3,7,1], [1,2,3]]) );
+    print( pluscarret(1, [[3,7,1], [1,2,3]]) );
+
+
+    return 0;
+}
+
+int +(int a, int b) {
+    return _add_SxS_(a,b);
+}
+
+int[d:shp] +(int[d:shp] a, int[d:shp] b) {
+    return {iv -> _add_SxS_(a[iv],b[iv])};
+}
+
+bool commonPrefix(int[n] a, int[m] b) 
+{
+    if (n > m) {
+        res = all(a == b);
+    } else {
+        res = all(b == a);
+    }
+    return res;
+}
+
+bool commonPostfix(int[n] a, int[m] b) 
+{   
+    ra = reverse(a);
+    rb = reverse(b);
+    if (n > m) {
+        res = all(ra == rb);
+    } else {
+        res = all(rb == ra);
+    }
+    return res;
+}
+
+int[d:shp] carretplus(int[l:lshp] a, int[r:rshp] b) | commonPrefix(lshp, rshp)
+{   
+    diff = abs(l-r);
+
+    if (l < r) {
+        a = genarrayI(take([-diff],rshp), a);
+    } else {
+        b = genarrayI(take([-diff],lshp), b);
+    }
+    return a+b;
+}
+
+int[v:vshp, d:shp] genarrayI(int[d] shp, int[v:vshp] data) | all(shp >=0)
+{
+    return {iv -> genarray(shp, data[iv]) | iv < vshp};
+}
+
+
+int[d:shp] pluscarret(int[l:lshp] a, int[r:rshp] b) | commonPostfix(lshp, rshp)
+{   
+    diff = abs(l-r);
+
+    if (l < r) {
+        a = genarray(take([diff],rshp), a);
+    } else {
+        b = genarray(take([diff],lshp), b);
+    }
+    return a+b;
+}

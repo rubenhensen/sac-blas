@@ -282,12 +282,12 @@ float snrm2(int n, float[k] x, int incx) | n > 0, incx > 0
 /*
  * scnrm2
  */
-// inline
-// float scnrm2(int n, complex[.] x, int incx) | n > 0, incx > 0
-// {
-//   x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
-//   return sqrtf(tof(sum(normSq(x_prime))));
-// }
+inline
+float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
+{
+  x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
+  return sqrtf(tof(sum(normSq(x_prime))));
+}
 
 
 /*

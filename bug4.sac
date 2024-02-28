@@ -1,3 +1,4 @@
+
 use StdIO: all;
 use Array: all;
 
@@ -6,8 +7,7 @@ int main() {
     return 0;
 }
 
-int[shp] myTake1 (int[n] shp, int[d1:shp1] data) | n <= d1 && (all(shp == []) || all(shp < shp1)) && all (shp >= 0)
+int[shp] myTake1 (int[n] shp, int[n:shpo,m:shpi] data) |  all(shp < shpo) && all (shp >= 0)
 {
     return {iv -> data[iv] | iv < shp};
 }
-

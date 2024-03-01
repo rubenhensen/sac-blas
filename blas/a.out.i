@@ -6,22 +6,22 @@
 # 0 "<command-line>" 2
 # 1 "/home/rubenhensen/sac/blas/a.out.c"
 # 278 "/home/rubenhensen/sac/blas/a.out.c"
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 1
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 1
 
 
 
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rc_impl_gen.h" 1
-# 5 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std_gen.h" 1
-# 6 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 14 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h"
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/nested_h/nested_gen.h" 1
-# 15 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/nested_h/nested.h" 1
-# 16 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 30 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h"
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/distmem_h/distmem.h" 1
-# 26 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/distmem_h/distmem.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rc_impl_gen.h" 1
+# 5 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std_gen.h" 1
+# 6 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 14 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/nested_h/nested_gen.h" 1
+# 15 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/nested_h/nested.h" 1
+# 16 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 30 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/distmem_h/distmem.h" 1
+# 26 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/distmem_h/distmem.h"
 # 1 "/usr/include/stdlib.h" 1 3 4
 # 26 "/usr/include/stdlib.h" 3 4
 # 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
@@ -1469,7 +1469,7 @@ __attribute__ ((__nothrow__ , __leaf__)) wcstombs (char *__restrict __dst, const
 
 
 
-# 27 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/distmem_h/distmem.h" 2
+# 27 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/distmem_h/distmem.h" 2
 # 1 "/usr/include/inttypes.h" 1 3 4
 # 27 "/usr/include/inttypes.h" 3 4
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h" 1 3 4
@@ -1582,15 +1582,15 @@ extern uintmax_t wcstoumax (const __gwchar_t *__restrict __nptr,
      __attribute__ ((__nothrow__ , __leaf__));
 
 
-# 28 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/distmem_h/distmem.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/bool.h" 1
-# 35 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/bool.h"
+# 28 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/distmem_h/distmem.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/bool.h" 1
+# 35 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/bool.h"
 
-# 35 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/bool.h"
+# 35 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/bool.h"
 typedef int bool;
-# 29 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/distmem_h/distmem.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rt_misc.h" 1
-# 30 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/distmem_h/distmem.h" 2
+# 29 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/distmem_h/distmem.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rt_misc.h" 1
+# 30 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/distmem_h/distmem.h" 2
 
 
 
@@ -1600,53 +1600,53 @@ extern size_t SAC_DISTMEM_rank;
 
 
 extern int SAC_DISTMEM_trace_profile_rank;
-# 55 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/distmem_h/distmem.h"
+# 55 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/distmem_h/distmem.h"
 void SAC_DISTMEM_Abort (int exit_code);
-# 31 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
+# 31 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
 
 
 
 
 
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/audwl.h" 1
-# 37 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/bool.h" 1
-# 38 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/errors.h" 1
-# 39 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/icm.h" 1
-# 40 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/idx.h" 1
-# 41 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/prf.h" 1
-# 42 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rc_impl.h" 1
-# 10 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rc_impl.h"
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rc_methods.h" 1
-# 11 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rc_impl.h" 2
-# 43 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rc_methods.h" 1
-# 44 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rc_stubs.h" 1
-# 45 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rcm_local_async_norc_ptr.h" 1
-# 46 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rcm_local_pasync.h" 1
-# 47 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rcm_local_pasync_norc_desc.h" 1
-# 48 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rt_commandline.h" 1
-# 16 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rt_commandline.h"
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/commandline.h" 1
-# 20 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/commandline.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/audwl.h" 1
+# 37 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/bool.h" 1
+# 38 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/errors.h" 1
+# 39 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/icm.h" 1
+# 40 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/idx.h" 1
+# 41 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/prf.h" 1
+# 42 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rc_impl.h" 1
+# 10 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rc_impl.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rc_methods.h" 1
+# 11 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rc_impl.h" 2
+# 43 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rc_methods.h" 1
+# 44 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rc_stubs.h" 1
+# 45 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rcm_local_async_norc_ptr.h" 1
+# 46 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rcm_local_pasync.h" 1
+# 47 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rcm_local_pasync_norc_desc.h" 1
+# 48 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rt_commandline.h" 1
+# 16 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rt_commandline.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/commandline.h" 1
+# 20 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/commandline.h"
 extern char **SAC_commandline_argv;
 extern int SAC_commandline_argc;
-# 17 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rt_commandline.h" 2
-# 49 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/rt_misc.h" 1
-# 50 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h" 1
-# 20 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h"
+# 17 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rt_commandline.h" 2
+# 49 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/rt_misc.h" 1
+# 50 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h" 1
+# 20 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h"
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h" 1 3 4
 # 34 "/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h" 3 4
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h" 1 3 4
@@ -1688,21 +1688,21 @@ extern int SAC_commandline_argc;
 # 204 "/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h" 2 3 4
 # 8 "/usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h" 2 3 4
 # 35 "/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h" 2 3 4
-# 21 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h" 2
+# 21 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h" 2
 
 
 
 
 
 
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/icm.h" 1
-# 28 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/cuda_transfer_methods.h" 1
-# 29 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/extras_h/runtimecheck.h" 1
-# 30 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h" 1
-# 15 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/icm.h" 1
+# 28 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/cuda_transfer_methods.h" 1
+# 29 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/extras_h/runtimecheck.h" 1
+# 30 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h" 1
+# 15 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h"
 # 1 "/usr/include/assert.h" 1 3 4
 # 66 "/usr/include/assert.h" 3 4
 
@@ -1727,31 +1727,31 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 
 
-# 16 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h" 2
+# 16 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h" 2
 
 
 
 
 
 
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/mt_h/rt_mt.h" 1
-# 128 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/mt_h/rt_mt.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/mt_h/rt_mt.h" 1
+# 128 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/mt_h/rt_mt.h"
 
-# 128 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/mt_h/rt_mt.h"
+# 128 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/mt_h/rt_mt.h"
 extern unsigned int SAC_MT_globally_single;
 
 
 extern unsigned int SAC_RTSPEC_controller_threads;
-# 23 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/cuda_transfer_methods.h" 1
-# 24 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h" 2
-# 33 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h"
+# 23 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/cuda_transfer_methods.h" 1
+# 24 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h" 2
+# 33 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h"
 typedef unsigned long int SAC_HM_size_byte_t;
 typedef long int SAC_HM_size_unit_t;
-# 59 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h"
+# 59 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h"
 extern void *malloc (size_t size);
 extern void free (void *addr);
-# 97 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h"
+# 97 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h"
 typedef union header_t {
     struct header_data1_t {
         SAC_HM_size_unit_t size;
@@ -1773,7 +1773,7 @@ typedef union header_t {
                 + 1)
                * sizeof (double)];
 } SAC_HM_header_t;
-# 148 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h"
+# 148 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h"
 typedef struct arena_t {
     int num;
     SAC_HM_header_t freelist[3];
@@ -1805,13 +1805,13 @@ typedef struct arena_t {
     unsigned long int cnt_coalascing;
     unsigned long int cnt_coalascing_wilderness;
 } SAC_HM_arena_t;
-# 300 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h"
+# 300 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h"
 typedef enum {
     SAC_HM_single_threaded,
     SAC_HM_multi_threaded,
     SAC_HM_any_threaded
 } SAC_HM_thread_status_t;
-# 313 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h"
+# 313 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h"
 
 
 
@@ -1867,12 +1867,12 @@ extern void *SAC_HM_PlaceArray (void *alloc, void *base, long int offset,
 
 extern unsigned int SAC_HM_CurrentThreadId (void);
 extern int SAC_HM_DiscoversThreads (void);
-# 31 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/extras_h/rt_trace.h" 1
-# 32 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/extras_h/rt_profile.h" 1
-# 41 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/extras_h/rt_profile.h"
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_cuda.h" 1
+# 31 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/extras_h/rt_trace.h" 1
+# 32 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/extras_h/rt_profile.h" 1
+# 41 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/extras_h/rt_profile.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_cuda.h" 1
 
 
 
@@ -1880,8 +1880,8 @@ extern int SAC_HM_DiscoversThreads (void);
 
 
 
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile.h" 1
-# 16 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile.h" 1
+# 16 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile.h"
 # 1 "/usr/include/x86_64-linux-gnu/sys/time.h" 1 3 4
 # 34 "/usr/include/x86_64-linux-gnu/sys/time.h" 3 4
 
@@ -1966,7 +1966,7 @@ extern int lutimes (const char *__file, const struct timeval __tvp[2])
 extern int futimes (int __fd, const struct timeval __tvp[2]) __attribute__ ((__nothrow__ , __leaf__));
 # 258 "/usr/include/x86_64-linux-gnu/sys/time.h" 3 4
 
-# 17 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile.h" 2
+# 17 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile.h" 2
 
 
 
@@ -2239,10 +2239,10 @@ extern int setpriority (__priority_which_t __which, id_t __who, int __prio)
      __attribute__ ((__nothrow__ , __leaf__));
 
 
-# 22 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile.h" 2
-# 31 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile.h"
+# 22 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile.h" 2
+# 31 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile.h"
 
-# 31 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile.h"
+# 31 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile.h"
 typedef struct timeval SAC_PF_TIMER;
 
 typedef enum {
@@ -2276,28 +2276,28 @@ typedef struct profile_record {
     struct profile_record *parent;
     int *cycle_tag;
 } SAC_PROFILE_RECORD;
-# 9 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_cuda.h" 2
+# 9 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_cuda.h" 2
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
 # 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
 
 # 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
 typedef long int ptrdiff_t;
-# 11 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_cuda.h" 2
-# 54 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_cuda.h"
+# 11 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_cuda.h" 2
+# 54 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_cuda.h"
 
-# 54 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_cuda.h"
+# 54 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_cuda.h"
 extern void SAC_PF_MEM_CUDA_PrintStats (void);
 extern void SAC_PF_MEM_CUDA_AllocMemcnt (size_t size);
 extern void SAC_PF_MEM_CUDA_FreeMemcnt (size_t size);
 extern void SAC_PF_MEM_CUDA_AllocDescnt (size_t size);
 extern void SAC_PF_MEM_CUDA_FreeDescnt (size_t size);
 extern void SAC_PF_MEM_CUDA_AddToMax (size_t size);
-# 42 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/extras_h/rt_profile.h" 2
-# 33 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/extras_h/rt_cachesim.h" 1
-# 34 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h" 2
-# 110 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h"
+# 42 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/extras_h/rt_profile.h" 2
+# 33 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/extras_h/rt_cachesim.h" 1
+# 34 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h" 2
+# 110 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h"
 typedef void *SAC_hidden;
 
 
@@ -2311,13 +2311,13 @@ typedef intptr_t SAC_referencecount_t;
 
 
 typedef intptr_t *SAC_array_descriptor_parent_t;
-# 137 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h"
+# 137 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h"
 typedef intptr_t *SAC_array_descriptor_t;
-# 51 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/tuple.h" 1
-# 52 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/types.h" 1
-# 33 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/types.h"
+# 51 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/tuple.h" 1
+# 52 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/types.h" 1
+# 33 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/types.h"
 typedef struct {
     float a, b, c, d;
 } __attribute__ ((packed)) floatvec;
@@ -2358,54 +2358,53 @@ typedef unsigned int uint;
 
 
 typedef unsigned long ulong;
-# 53 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/wl.h" 1
-# 54 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
+# 53 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/wl.h" 1
+# 54 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
 
 
 
 
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/extras_h/rt_profile.h" 1
-# 59 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-
-
-
-
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/extras_h/runtimecheck.h" 1
-# 64 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-
-
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/hwloc_h/cpubind.h" 1
-# 42 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/hwloc_h/cpubind.h"
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/hwloc/cpubind.h" 1
-
-
-
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/config.h" 1
-# 5 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/hwloc/cpubind.h" 2
-# 43 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/hwloc_h/cpubind.h" 2
-# 67 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 94 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h"
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/phm_h/phm.h" 1
-# 95 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-
-
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/rtspec_h/rtspec.h" 1
-# 98 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/extras_h/rt_profile.h" 1
+# 59 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
 
 
 
 
 
 
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/commandline.h" 1
-# 105 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/message.h" 1
-# 20 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/message.h"
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/runtime/essentials_h/std.h" 1
-# 21 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/message.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/fun-attrs.h" 1
-# 22 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/message.h" 2
+
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/hwloc_h/cpubind.h" 1
+# 42 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/hwloc_h/cpubind.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/hwloc/cpubind.h" 1
+
+
+
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/config.h" 1
+# 5 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/hwloc/cpubind.h" 2
+# 43 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/hwloc_h/cpubind.h" 2
+# 67 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 94 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/phm_h/phm.h" 1
+# 95 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+
+
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/rtspec_h/rtspec.h" 1
+# 98 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+
+
+
+
+
+
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/commandline.h" 1
+# 105 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/message.h" 1
+# 20 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/message.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/essentials_h/std.h" 1
+# 21 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/message.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/fun-attrs.h" 1
+# 22 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/message.h" 2
 
 extern void (*SAC_MessageExtensionCallback) (void);
 
@@ -2417,23 +2416,23 @@ extern void SAC_RuntimeError_Mult (int cnt, ...) __attribute__ ((noreturn));
 
 extern const char *SAC_PrintShape (SAC_array_descriptor_t desc);
 extern void SAC_Print (const char *format, ...);
-# 106 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/misc.h" 1
-# 24 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/misc.h"
+# 106 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/misc.h" 1
+# 24 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/misc.h"
 extern void SAC_String2Array (unsigned char *array, const char *string);
-# 107 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/trace.h" 1
-# 27 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/essentials/trace.h"
+# 107 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/trace.h" 1
+# 27 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/essentials/trace.h"
 extern void SAC_TR_Print (const char *format, ...);
 
 extern void SAC_TR_IncArrayMemcnt (int size);
 extern void SAC_TR_DecArrayMemcnt (int size);
 extern void SAC_TR_IncHiddenMemcnt (int size);
 extern void SAC_TR_DecHiddenMemcnt (int size);
-# 108 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile.h" 1
-# 109 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_memory.h" 1
+# 108 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile.h" 1
+# 109 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_memory.h" 1
 
 
 
@@ -2441,8 +2440,8 @@ extern void SAC_TR_DecHiddenMemcnt (int size);
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 8 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_memory.h" 2
-# 16 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_memory.h"
+# 8 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_memory.h" 2
+# 16 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_memory.h"
 typedef struct memory_record {
     unsigned long alloc_mem_count;
     unsigned long free_mem_count;
@@ -2468,9 +2467,9 @@ extern void SAC_PF_MEM_AllocDescnt (size_t size);
 extern void SAC_PF_MEM_FreeDescnt (size_t size);
 extern void SAC_PF_MEM_ReuseMemcnt (void);
 extern void SAC_PF_MEM_AddToMax (size_t size);
-# 110 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_ops.h" 1
-# 23 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_ops.h"
+# 110 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_ops.h" 1
+# 23 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_ops.h"
 enum pf_ops {
   P_SAC_ND_PRF_ADD,
   P_SAC_ND_PRF_SUB,
@@ -2490,7 +2489,7 @@ enum pf_ops {
   P_SAC_ND_PRF_OR,
   P_undef
 } ;
-# 56 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_ops.h"
+# 56 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_ops.h"
 enum pf_types {
   T_int,
   T_float,
@@ -2516,9 +2515,9 @@ extern void SAC_PF_OPS_PrintFunStats (const char *func_name, unsigned num_ap,
 extern void SAC_PF_OPS_PrintOpsStats (unsigned long *p_ops);
 extern bool SAC_PF_OPS_IsRecordZero (SAC_PF_OPS_RECORD record);
 extern void SAC_PF_OPS_IncPrf (enum pf_types s, enum pf_ops o);
-# 111 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_print.h" 1
-# 19 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_print.h"
+# 111 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_print.h" 1
+# 19 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_print.h"
 extern void SAC_PF_PrintHeader (const char *title);
 extern void SAC_PF_PrintHeaderNode (const char *title, size_t rank);
 extern void SAC_PF_PrintSubHeader (const char *title, size_t lineno);
@@ -2528,32 +2527,32 @@ extern void SAC_PF_PrintCount (const char *title, const char *space, unsigned lo
 extern void SAC_PF_PrintSize (const char *title, const char *space, unsigned long size, const char *unit);
 extern void SAC_PF_PrintTimePercentage (const char *title, const char *space,
                                               const SAC_PF_TIMER *time1, const SAC_PF_TIMER *time2);
-# 112 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/profile/profile_cuda.h" 1
-# 113 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/hwloc/cpubind.h" 1
-# 114 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/hwloc/cudabind.h" 1
+# 112 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/profile/profile_cuda.h" 1
+# 113 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/hwloc/cpubind.h" 1
+# 114 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/hwloc/cudabind.h" 1
 
 
 
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
-# 5 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/hwloc/cudabind.h" 2
+# 5 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/hwloc/cudabind.h" 2
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h" 1 3 4
-# 6 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/hwloc/cudabind.h" 2
-# 18 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/hwloc/cudabind.h"
+# 6 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/hwloc/cudabind.h" 2
+# 18 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/hwloc/cudabind.h"
 extern 
-# 18 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/hwloc/cudabind.h" 3 4
+# 18 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/hwloc/cudabind.h" 3 4
       _Bool 
-# 18 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/hwloc/cudabind.h"
+# 18 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/hwloc/cudabind.h"
            SAC_CUDA_HWLOC_init (int cuda_ordinal, char *str, size_t str_size);
-# 115 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
+# 115 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
 
 
 
 
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/mt/mt_beehive.h" 1
-# 184 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/mt/mt_beehive.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/mt/mt_beehive.h" 1
+# 184 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/mt/mt_beehive.h"
 extern volatile unsigned int SAC_MT_cnt_hives;
 extern volatile unsigned int SAC_MT_cnt_worker_bees;
 extern volatile unsigned int SAC_MT_cnt_queen_bees;
@@ -2561,9 +2560,9 @@ extern void *SAC_MT_singleton_queen;
 
 extern int SAC_MT_propagate_lock;
 extern int SAC_MT_output_lock;
-# 120 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
-# 132 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h"
-# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/libsac/rtspec/empty.h" 1
+# 120 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
+# 132 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h"
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/libsac/rtspec/empty.h" 1
 
 
 
@@ -2572,7 +2571,7 @@ extern int SAC_MT_output_lock;
 
 
 extern unsigned int SAC_RTSPEC_controller_threads;
-# 133 "/usr/local/include/sac2c/1.3.3-MijasCosta-1145-gdde1e/release/sac.h" 2
+# 133 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
 # 279 "/home/rubenhensen/sac/blas/a.out.c" 2
 # 311 "/home/rubenhensen/sac/blas/a.out.c"
 typedef SAC_hidden SACt_sacprelude_p__SACarg;
@@ -2722,7 +2721,19 @@ extern
 
 
 
-void ARRAYIO__PrintDoubleArray (SAC_hidden SACl_stream, int SACl_d, int * SACl_s, double * SACl_a);
+float SACsrotg (float * SAC_arg_1__p, float * SAC_arg_2__p, float * SAC_arg_3__p, float SACl_a, float SACl_b, float SACl_c, float SACl_s);
+
+extern
+
+
+
+void SACprintf_TF (SAC_hidden SACl_FORMAT, ...);
+
+extern
+
+
+
+void to_string (SAC_hidden * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, unsigned char * SACl_A, SAC_array_descriptor_t SACl_A__desc, int SACl_LENGTH);
 
 
 
@@ -2747,9 +2758,9 @@ extern
 
 
 void SACwf_sacprelude_p__isPartitionIntersectNull__i_S__i_S__i_S__i_S (
-# 374 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 386 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 374 "/home/rubenhensen/sac/blas/a.out.c"
+# 386 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idxmin, SAC_array_descriptor_t SACl_idxmin__desc, int * SACl_idxmax, SAC_array_descriptor_t SACl_idxmax__desc, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -2763,9 +2774,9 @@ extern
 
 
 void SACwf_sacprelude_p__adjustLacFunParams__bl_S__i_S__i_S (int * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, 
-# 386 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 398 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 386 "/home/rubenhensen/sac/blas/a.out.c"
+# 398 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_p, SAC_array_descriptor_t SACl_p__desc, int * SACl_i, SAC_array_descriptor_t SACl_i__desc, int * SACl_iv, SAC_array_descriptor_t SACl_iv__desc);
 
 extern
@@ -2785,9 +2796,9 @@ extern
 
 
 void SACwf_sacprelude_p__adjustLacFunParamsReshape__bl_S__i_S__i_S__i_S (int * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, 
-# 404 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 416 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 404 "/home/rubenhensen/sac/blas/a.out.c"
+# 416 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_p, SAC_array_descriptor_t SACl_p__desc, int * SACl_i, SAC_array_descriptor_t SACl_i__desc, int * SACl_iv, SAC_array_descriptor_t SACl_iv__desc, int * SACl_shp, SAC_array_descriptor_t SACl_shp__desc);
 
 extern
@@ -2795,9 +2806,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__i_S__i_S (
-# 410 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 422 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 410 "/home/rubenhensen/sac/blas/a.out.c"
+# 422 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, int * SACl_A, SAC_array_descriptor_t SACl_A__desc, int * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2805,9 +2816,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__f_S__f_S (
-# 416 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 428 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 416 "/home/rubenhensen/sac/blas/a.out.c"
+# 428 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, float * SACl_A, SAC_array_descriptor_t SACl_A__desc, float * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2815,9 +2826,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__d_S__d_S (
-# 422 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 434 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 422 "/home/rubenhensen/sac/blas/a.out.c"
+# 434 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, double * SACl_A, SAC_array_descriptor_t SACl_A__desc, double * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2825,17 +2836,17 @@ extern
 
 
 void SACwf_sacprelude_p__eq__bl_S__bl_S (
-# 428 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 440 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 428 "/home/rubenhensen/sac/blas/a.out.c"
+# 440 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 428 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 440 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 428 "/home/rubenhensen/sac/blas/a.out.c"
+# 440 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_A, SAC_array_descriptor_t SACl_A__desc, 
-# 428 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 440 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 428 "/home/rubenhensen/sac/blas/a.out.c"
+# 440 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2843,9 +2854,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__c_S__c_S (
-# 434 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 446 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 434 "/home/rubenhensen/sac/blas/a.out.c"
+# 446 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, unsigned char * SACl_A, SAC_array_descriptor_t SACl_A__desc, unsigned char * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2853,9 +2864,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__b_S__b_S (
-# 440 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 452 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 440 "/home/rubenhensen/sac/blas/a.out.c"
+# 452 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, byte * SACl_A, SAC_array_descriptor_t SACl_A__desc, byte * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2863,9 +2874,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__s_S__s_S (
-# 446 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 458 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 446 "/home/rubenhensen/sac/blas/a.out.c"
+# 458 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, short * SACl_A, SAC_array_descriptor_t SACl_A__desc, short * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2873,9 +2884,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__l_S__l_S (
-# 452 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 464 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 452 "/home/rubenhensen/sac/blas/a.out.c"
+# 464 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, long * SACl_A, SAC_array_descriptor_t SACl_A__desc, long * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2883,9 +2894,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__ll_S__ll_S (
-# 458 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 470 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 458 "/home/rubenhensen/sac/blas/a.out.c"
+# 470 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, longlong * SACl_A, SAC_array_descriptor_t SACl_A__desc, longlong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2893,9 +2904,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__ub_S__ub_S (
-# 464 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 476 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 464 "/home/rubenhensen/sac/blas/a.out.c"
+# 476 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ubyte * SACl_A, SAC_array_descriptor_t SACl_A__desc, ubyte * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2903,9 +2914,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__us_S__us_S (
-# 470 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 482 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 470 "/home/rubenhensen/sac/blas/a.out.c"
+# 482 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ushort * SACl_A, SAC_array_descriptor_t SACl_A__desc, ushort * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2913,9 +2924,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__ui_S__ui_S (
-# 476 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 488 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 476 "/home/rubenhensen/sac/blas/a.out.c"
+# 488 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, uint * SACl_A, SAC_array_descriptor_t SACl_A__desc, uint * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2923,9 +2934,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__ul_S__ul_S (
-# 482 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 494 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 482 "/home/rubenhensen/sac/blas/a.out.c"
+# 494 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ulong * SACl_A, SAC_array_descriptor_t SACl_A__desc, ulong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2933,9 +2944,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__ull_S__ull_S (
-# 488 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 500 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 488 "/home/rubenhensen/sac/blas/a.out.c"
+# 500 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ulonglong * SACl_A, SAC_array_descriptor_t SACl_A__desc, ulonglong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2949,9 +2960,9 @@ extern
 
 
 void SACwf_sacprelude_p__isPartitionIntersect1Part__i_S__i_S__i_S__i_S (
-# 500 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 512 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 500 "/home/rubenhensen/sac/blas/a.out.c"
+# 512 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idxmin, SAC_array_descriptor_t SACl_idxmin__desc, int * SACl_idxmax, SAC_array_descriptor_t SACl_idxmax__desc, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -2983,13 +2994,13 @@ extern
 
 
 void SACwf_sacprelude_p__zero__bl_S (
-# 530 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 542 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 530 "/home/rubenhensen/sac/blas/a.out.c"
+# 542 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 530 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 542 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 530 "/home/rubenhensen/sac/blas/a.out.c"
+# 542 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_A, SAC_array_descriptor_t SACl_A__desc);
 
 extern
@@ -3087,13 +3098,13 @@ extern
 
 
 void SACwf_sacprelude_p__sel__i_S__bl_S (
-# 626 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 638 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 626 "/home/rubenhensen/sac/blas/a.out.c"
+# 638 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idx, SAC_array_descriptor_t SACl_idx__desc, 
-# 626 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 638 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 626 "/home/rubenhensen/sac/blas/a.out.c"
+# 638 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_array, SAC_array_descriptor_t SACl_array__desc);
 
 extern
@@ -3190,7 +3201,7 @@ extern
 
 
 
-void SACf_ArrayIO__print__d_P (double * SACl_arr, SAC_array_descriptor_t SACl_arr__desc);
+void SACf_ScalarIO__print__f (float SACl_n);
 
 extern
 
@@ -3257,13 +3268,13 @@ extern
 
 
 void SACf_sacprelude_p__sel__i_X__bl_S (
-# 788 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 800 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 788 "/home/rubenhensen/sac/blas/a.out.c"
+# 800 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idx, SAC_array_descriptor_t SACl_idx__desc, 
-# 788 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 800 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 788 "/home/rubenhensen/sac/blas/a.out.c"
+# 800 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_array, SAC_array_descriptor_t SACl_array__desc);
 
 extern
@@ -3397,13 +3408,13 @@ extern
 
 
 void SACf_sacprelude_p__zero__bl_P (
-# 920 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 932 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 920 "/home/rubenhensen/sac/blas/a.out.c"
+# 932 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 920 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 932 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 920 "/home/rubenhensen/sac/blas/a.out.c"
+# 932 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_A, SAC_array_descriptor_t SACl_A__desc);
 
 extern
@@ -3411,13 +3422,13 @@ extern
 
 
 void SACf_sacprelude_p__zero__bl_S (
-# 926 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 938 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 926 "/home/rubenhensen/sac/blas/a.out.c"
+# 938 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 926 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 938 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 926 "/home/rubenhensen/sac/blas/a.out.c"
+# 938 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_A, SAC_array_descriptor_t SACl_A__desc);
 
 extern
@@ -3473,9 +3484,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__ull_S__ull_S (
-# 980 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 992 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 980 "/home/rubenhensen/sac/blas/a.out.c"
+# 992 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ulonglong * SACl_A, SAC_array_descriptor_t SACl_A__desc, ulonglong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3483,9 +3494,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__ul_S__ul_S (
-# 986 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 998 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 986 "/home/rubenhensen/sac/blas/a.out.c"
+# 998 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ulong * SACl_A, SAC_array_descriptor_t SACl_A__desc, ulong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3493,9 +3504,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__ui_S__ui_S (
-# 992 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1004 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 992 "/home/rubenhensen/sac/blas/a.out.c"
+# 1004 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, uint * SACl_A, SAC_array_descriptor_t SACl_A__desc, uint * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3503,9 +3514,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__us_S__us_S (
-# 998 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1010 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 998 "/home/rubenhensen/sac/blas/a.out.c"
+# 1010 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ushort * SACl_A, SAC_array_descriptor_t SACl_A__desc, ushort * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3513,9 +3524,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__ub_S__ub_S (
-# 1004 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1016 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1004 "/home/rubenhensen/sac/blas/a.out.c"
+# 1016 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ubyte * SACl_A, SAC_array_descriptor_t SACl_A__desc, ubyte * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3523,9 +3534,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__ll_S__ll_S (
-# 1010 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1022 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1010 "/home/rubenhensen/sac/blas/a.out.c"
+# 1022 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, longlong * SACl_A, SAC_array_descriptor_t SACl_A__desc, longlong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3533,9 +3544,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__l_S__l_S (
-# 1016 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1028 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1016 "/home/rubenhensen/sac/blas/a.out.c"
+# 1028 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, long * SACl_A, SAC_array_descriptor_t SACl_A__desc, long * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3543,9 +3554,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__s_S__s_S (
-# 1022 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1034 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1022 "/home/rubenhensen/sac/blas/a.out.c"
+# 1034 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, short * SACl_A, SAC_array_descriptor_t SACl_A__desc, short * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3553,9 +3564,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__b_S__b_S (
-# 1028 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1040 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1028 "/home/rubenhensen/sac/blas/a.out.c"
+# 1040 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, byte * SACl_A, SAC_array_descriptor_t SACl_A__desc, byte * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3563,9 +3574,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__c_S__c_S (
-# 1034 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1046 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1034 "/home/rubenhensen/sac/blas/a.out.c"
+# 1046 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, unsigned char * SACl_A, SAC_array_descriptor_t SACl_A__desc, unsigned char * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3573,17 +3584,17 @@ extern
 
 
 void SACf_sacprelude_p__eq__bl_S__bl_S (
-# 1040 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1052 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1040 "/home/rubenhensen/sac/blas/a.out.c"
+# 1052 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 1040 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1052 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1040 "/home/rubenhensen/sac/blas/a.out.c"
+# 1052 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_A, SAC_array_descriptor_t SACl_A__desc, 
-# 1040 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1052 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1040 "/home/rubenhensen/sac/blas/a.out.c"
+# 1052 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3591,9 +3602,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__d_S__d_S (
-# 1046 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1058 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1046 "/home/rubenhensen/sac/blas/a.out.c"
+# 1058 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, double * SACl_A, SAC_array_descriptor_t SACl_A__desc, double * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3601,9 +3612,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__f_S__f_S (
-# 1052 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1064 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1052 "/home/rubenhensen/sac/blas/a.out.c"
+# 1064 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, float * SACl_A, SAC_array_descriptor_t SACl_A__desc, float * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3611,9 +3622,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__i_S__i_S (
-# 1058 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1070 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1058 "/home/rubenhensen/sac/blas/a.out.c"
+# 1070 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, int * SACl_A, SAC_array_descriptor_t SACl_A__desc, int * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3621,9 +3632,9 @@ extern
 
 
 void SACf_sacprelude_p__adjustLacFunParams__bl_S__i_S__i_X (int * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, 
-# 1064 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1076 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1064 "/home/rubenhensen/sac/blas/a.out.c"
+# 1076 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_p, SAC_array_descriptor_t SACl_p__desc, int * SACl_i, SAC_array_descriptor_t SACl_i__desc, int * SACl_iv, SAC_array_descriptor_t SACl_iv__desc);
 
 extern
@@ -3631,9 +3642,9 @@ extern
 
 
 void SACf_sacprelude_p__adjustLacFunParamsReshape__bl_S__i_S__i_X__i_X (int * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, 
-# 1070 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1082 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1070 "/home/rubenhensen/sac/blas/a.out.c"
+# 1082 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_p, SAC_array_descriptor_t SACl_p__desc, int * SACl_i, SAC_array_descriptor_t SACl_i__desc, int * SACl_iv, SAC_array_descriptor_t SACl_iv__desc, int * SACl_shp, SAC_array_descriptor_t SACl_shp__desc);
 
 extern
@@ -3641,9 +3652,9 @@ extern
 
 
 void SACf_sacprelude_p__isPartitionIntersectNull__i_X__i_X__i_X__i_X (
-# 1076 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1088 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1076 "/home/rubenhensen/sac/blas/a.out.c"
+# 1088 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idxmin, SAC_array_descriptor_t SACl_idxmin__desc, int * SACl_idxmax, SAC_array_descriptor_t SACl_idxmax__desc, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -3651,9 +3662,9 @@ extern
 
 
 void SACf_sacprelude_p__isPartitionIntersectNull__i__i__i_X__i_X (
-# 1082 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1094 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1082 "/home/rubenhensen/sac/blas/a.out.c"
+# 1094 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int SACl_idxmin, int SACl_idxmax, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -3673,9 +3684,9 @@ extern
 
 
 void SACf_sacprelude_p__isPartitionIntersect1Part__i_X__i_X__i_X__i_X (
-# 1100 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1112 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1100 "/home/rubenhensen/sac/blas/a.out.c"
+# 1112 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idxmin, SAC_array_descriptor_t SACl_idxmin__desc, int * SACl_idxmax, SAC_array_descriptor_t SACl_idxmax__desc, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -3683,9 +3694,9 @@ extern
 
 
 void SACf_sacprelude_p__isPartitionIntersect1Part__i__i__i_X__i_X (
-# 1106 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1118 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1106 "/home/rubenhensen/sac/blas/a.out.c"
+# 1118 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int SACl_idxmin, int SACl_idxmax, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -3740,12 +3751,6 @@ extern
 
 
 
-void SACof__MAIN_CLStdIO__print__d_X (double * SACl_arr, SAC_array_descriptor_t SACl_arr__desc);
-
-extern
-
-
-
 void SACf_sacprelude_p___ST__i__i (int * SAC_arg_1__p, int SACl_a, int SACl_b);
 
 extern
@@ -3753,19 +3758,19 @@ extern
 
 
 void SACf_sacprelude_p__and__bl__bl (
-# 1172 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1178 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1172 "/home/rubenhensen/sac/blas/a.out.c"
+# 1178 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 1172 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1178 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1172 "/home/rubenhensen/sac/blas/a.out.c"
+# 1178 "/home/rubenhensen/sac/blas/a.out.c"
 SACl_a, 
-# 1172 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1178 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1172 "/home/rubenhensen/sac/blas/a.out.c"
+# 1178 "/home/rubenhensen/sac/blas/a.out.c"
 SACl_b);
-# 1183 "/home/rubenhensen/sac/blas/a.out.c"
+# 1189 "/home/rubenhensen/sac/blas/a.out.c"
 extern SAC_hidden SACo_World__TheWorld;
 extern SAC_array_descriptor_t SACo_World__TheWorld__desc;
 
@@ -3783,7 +3788,7 @@ extern SAC_array_descriptor_t SACo_Terminal__TheTerminal__desc;
 extern SAC_hidden SACo_TermFile__stdout;
 extern SAC_array_descriptor_t SACo_TermFile__stdout__desc;
 
-# 1216 "/home/rubenhensen/sac/blas/a.out.c"
+# 1222 "/home/rubenhensen/sac/blas/a.out.c"
 void SACwf__MAIN__main (int * SAC_arg_1__p) {
 {
   static const SAC_HM_thread_status_t SAC_HM_thread_status = SAC_HM_single_threaded;
@@ -3793,7 +3798,7 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    int SACp_cwc_47;
+    int SACp_cwc_20;
    
    
 
@@ -3802,7 +3807,7 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    SACf__MAIN__main (&SACp_cwc_47);
+    SACf__MAIN__main (&SACp_cwc_20);
 
 
 
@@ -3812,7 +3817,7 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    { *SAC_arg_1__p = SACp_cwc_47; }
+    { *SAC_arg_1__p = SACp_cwc_20; }
     return;
    
   }
@@ -3821,794 +3826,42 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 }
 }
-# 1262 "/home/rubenhensen/sac/blas/a.out.c"
+# 1268 "/home/rubenhensen/sac/blas/a.out.c"
 void SACf__MAIN__main (int * SAC_arg_1__p) {
 {
   static const SAC_HM_thread_status_t SAC_HM_thread_status = SAC_HM_single_threaded;
  
 
   {
+    const int SACp_emal_2702__isaa_225__rso_10_TheWorld = 0;
+    const float SACp_emal_2701__flat_5 = 0.0f;
 
 
 
-    double * _tcp_10128_SACp_emal_9290__pinl_2380__icc_1539;
-    SAC_array_descriptor_t _tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__desc = 
-# 1272 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1272 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    int _tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__shp0;
-    int _tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__sz;
-    const int _tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__dim = 1;
-
-
-
-
-    double * _tcp_10127_SACp_emal_9281__pinl_2431__icc_1506;
-    SAC_array_descriptor_t _tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__desc = 
-# 1281 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1281 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    int _tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__shp0;
-    int _tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__sz;
-    const int _tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__dim = 1;
-
-
-
-
-    double * _tcp_10126_SACp_emal_9267__pinl_3217__icc_1567;
-    SAC_array_descriptor_t _tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__desc = 
-# 1290 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1290 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    int _tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__shp0;
-    int _tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__sz;
-    const int _tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__dim = 1;
-
-
-
-
-    double * _tcp_10125_SACp_emal_9274__pinl_3213__icc_1560;
-    SAC_array_descriptor_t _tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__desc = 
-# 1299 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1299 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    int _tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__shp0;
-    int _tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__sz;
-    const int _tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__dim = 1;
-
-
-
-
-    double * _tcp_10124_SACp_emal_9237__pinl_3663__icc_1567;
-    SAC_array_descriptor_t _tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__desc = 
-# 1308 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1308 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    int _tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__shp0;
-    int _tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__sz;
-    const int _tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__dim = 1;
-
-
-
-
-    double * _tcp_10123_SACp_emal_9252__pinl_3659__icc_1560;
-    SAC_array_descriptor_t _tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__desc = 
-# 1317 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1317 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    int _tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__shp0;
-    int _tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__sz;
-    const int _tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__dim = 1;
-
-    const int SACp_emal_9302__isaa_5553__rso_18_TheWorld = 0;
-    const int SACp_emal_9301__flat_3 = 10;
-
-
-
-    int * SACp_emal_9299__pinl_2337__icc_221;
-    SAC_array_descriptor_t SACp_emal_9299__pinl_2337__icc_221__desc = 
-# 1328 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1328 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9299__pinl_2337__icc_221__shp0 = 10;
-    const int SACp_emal_9299__pinl_2337__icc_221__sz = 10;
-    const int SACp_emal_9299__pinl_2337__icc_221__dim = 1;
-
-    const double SACp_emal_9298__pinl_2385__flat_5744 = 0.0;
-
-
-
-    
-# 1337 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1337 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9296__uprf_5098;
-   
-   
-
-
-
-
-    
-# 1344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1344 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9295__uprf_5092;
-   
-   
-
-
-
-
-    int * SACp_emal_9294__pinl_2412__idc_1551;
-    SAC_array_descriptor_t SACp_emal_9294__pinl_2412__idc_1551__desc = 
-# 1352 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1352 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9294__pinl_2412__idc_1551__shp0 = 1;
-    const int SACp_emal_9294__pinl_2412__idc_1551__sz = 1;
-    const int SACp_emal_9294__pinl_2412__idc_1551__dim = 1;
-
-
-
-
-    int SACp_emal_9293__ivesli_9056;
-   
-   
-
-
-
-
-    int SACp_emal_9292__pinl_2376__icc_1533;
-   
-   
-
-
-
-
-    double SACp_emal_9291__pinl_2388__flat_5748;
-   
-   
-
-
-
-
-    double * SACp_emal_9290__pinl_2380__icc_1539;
-    SAC_array_descriptor_t SACp_emal_9290__pinl_2380__icc_1539__desc = 
-# 1382 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1382 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9290__pinl_2380__icc_1539__shp0 = 10;
-    const int SACp_emal_9290__pinl_2380__icc_1539__sz = 10;
-    const int SACp_emal_9290__pinl_2380__icc_1539__dim = 1;
-
-    const double SACp_emal_9289__pinl_2437__flat_3020 = 2.0;
-
-
-
-    
-# 1391 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1391 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9287__uprf_5083;
-   
-   
-
-
-
-
-    
-# 1398 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1398 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9286__uprf_5077;
-   
-   
-
-
-
-
-    int * SACp_emal_9285__pinl_2464__idc_1518;
-    SAC_array_descriptor_t SACp_emal_9285__pinl_2464__idc_1518__desc = 
-# 1406 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1406 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9285__pinl_2464__idc_1518__shp0 = 1;
-    const int SACp_emal_9285__pinl_2464__idc_1518__sz = 1;
-    const int SACp_emal_9285__pinl_2464__idc_1518__dim = 1;
-
-
-
-
-    int SACp_emal_9284__ivesli_9055;
-   
-   
-
-
-
-
-    double SACp_emal_9283__pinl_2427__icc_1500;
-   
-   
-
-
-
-
-    double SACp_emal_9282__pinl_2440__flat_3025;
-   
-   
-
-
-
-
-    double * SACp_emal_9281__pinl_2431__icc_1506;
-    SAC_array_descriptor_t SACp_emal_9281__pinl_2431__icc_1506__desc = 
-# 1436 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1436 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9281__pinl_2431__icc_1506__shp0 = 10;
-    const int SACp_emal_9281__pinl_2431__icc_1506__sz = 10;
-    const int SACp_emal_9281__pinl_2431__icc_1506__dim = 1;
-
-
-
-
-    
-# 1444 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1444 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9279__uprf_5038;
-   
-   
-
-
-
-
-    
-# 1451 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1451 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9278__uprf_5032;
-   
-   
-
-
-
-
-    int * SACp_emal_9277__pinl_3388__idc_1721;
-    SAC_array_descriptor_t SACp_emal_9277__pinl_3388__idc_1721__desc = 
-# 1459 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1459 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9277__pinl_3388__idc_1721__shp0 = 1;
-    const int SACp_emal_9277__pinl_3388__idc_1721__sz = 1;
-    const int SACp_emal_9277__pinl_3388__idc_1721__dim = 1;
-
-
-
-
-    int SACp_emal_9276__ivesli_9054;
-   
-   
-
-
-
-
-    double SACp_emal_9275__pinl_3345__icc_1700;
-   
-   
-
-
-
-
-    double * SACp_emal_9274__pinl_3213__icc_1560;
-    SAC_array_descriptor_t SACp_emal_9274__pinl_3213__icc_1560__desc = 
-# 1482 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1482 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9274__pinl_3213__icc_1560__shp0 = 10;
-    const int SACp_emal_9274__pinl_3213__icc_1560__sz = 10;
-    const int SACp_emal_9274__pinl_3213__icc_1560__dim = 1;
-
-
-
-
-    
-# 1490 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1490 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9272__uprf_4993;
-   
-   
-
-
-
-
-    
-# 1497 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1497 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9271__uprf_4987;
-   
-   
-
-
-
-
-    int * SACp_emal_9270__pinl_3529__idc_1721;
-    SAC_array_descriptor_t SACp_emal_9270__pinl_3529__idc_1721__desc = 
-# 1505 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1505 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9270__pinl_3529__idc_1721__shp0 = 1;
-    const int SACp_emal_9270__pinl_3529__idc_1721__sz = 1;
-    const int SACp_emal_9270__pinl_3529__idc_1721__dim = 1;
-
-
-
-
-    int SACp_emal_9269__ivesli_9053;
-   
-   
-
-
-
-
-    double SACp_emal_9268__pinl_3486__icc_1700;
-   
-   
-
-
-
-
-    double * SACp_emal_9267__pinl_3217__icc_1567;
-    SAC_array_descriptor_t SACp_emal_9267__pinl_3217__icc_1567__desc = 
-# 1528 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1528 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9267__pinl_3217__icc_1567__shp0 = 10;
-    const int SACp_emal_9267__pinl_3217__icc_1567__sz = 10;
-    const int SACp_emal_9267__pinl_3217__icc_1567__dim = 1;
-
-
-
-
-    
-# 1536 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1536 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9265__uprf_5489;
-   
-   
-
-
-
-
-    
-# 1543 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1543 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9264__uprf_5483;
-   
-   
-
-
-
-
-    int * SACp_emal_9263__pinl_4657__idc_842;
-    SAC_array_descriptor_t SACp_emal_9263__pinl_4657__idc_842__desc = 
-# 1551 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1551 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9263__pinl_4657__idc_842__shp0 = 1;
-    const int SACp_emal_9263__pinl_4657__idc_842__sz = 1;
-    const int SACp_emal_9263__pinl_4657__idc_842__dim = 1;
-
-
-
-
-    int SACp_emal_9262__ivesli_9052;
-   
-   
-
-
-
-
-    double SACp_emal_9261__pinl_4615__icc_821;
-   
-   
-
-
-
-
-    int SACp_emal_9259__pinl_3899__flat_1858;
-   
-   
-
-
-
-
-    
-# 1580 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1580 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9257__uprf_4948;
-   
-   
-
-
-
-
-    
-# 1587 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1587 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9256__uprf_4942;
-   
-   
-
-
-
-
-    int * SACp_emal_9255__pinl_3834__idc_1721;
-    SAC_array_descriptor_t SACp_emal_9255__pinl_3834__idc_1721__desc = 
-# 1595 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1595 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9255__pinl_3834__idc_1721__shp0 = 1;
-    const int SACp_emal_9255__pinl_3834__idc_1721__sz = 1;
-    const int SACp_emal_9255__pinl_3834__idc_1721__dim = 1;
-
-
-
-
-    int SACp_emal_9254__ivesli_9051;
-   
-   
-
-
-
-
-    double SACp_emal_9253__pinl_3791__icc_1700;
-   
-   
-
-
-
-
-    double * SACp_emal_9252__pinl_3659__icc_1560;
-    SAC_array_descriptor_t SACp_emal_9252__pinl_3659__icc_1560__desc = 
-# 1618 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1618 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9252__pinl_3659__icc_1560__shp0 = 10;
-    const int SACp_emal_9252__pinl_3659__icc_1560__sz = 10;
-    const int SACp_emal_9252__pinl_3659__icc_1560__dim = 1;
-
-
-
-
-    
-# 1626 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1626 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9250__uprf_5474;
-   
-   
-
-
-
-
-    
-# 1633 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1633 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9249__uprf_5468;
-   
-   
-
-
-
-
-    int * SACp_emal_9248__pinl_4841__idc_842;
-    SAC_array_descriptor_t SACp_emal_9248__pinl_4841__idc_842__desc = 
-# 1641 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1641 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9248__pinl_4841__idc_842__shp0 = 1;
-    const int SACp_emal_9248__pinl_4841__idc_842__sz = 1;
-    const int SACp_emal_9248__pinl_4841__idc_842__dim = 1;
-
-
-
-
-    int SACp_emal_9247__ivesli_9050;
-   
-   
-
-
-
-
-    double SACp_emal_9246__pinl_4799__icc_821;
-   
-   
-
-
-
-
-    int SACp_emal_9244__pinl_4040__flat_1858;
-   
-   
-
-
-
-
-    
-# 1670 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1670 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9242__uprf_4903;
-   
-   
-
-
-
-
-    
-# 1677 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   _Bool 
-# 1677 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_9241__uprf_4897;
-   
-   
-
-
-
-
-    int * SACp_emal_9240__pinl_3975__idc_1721;
-    SAC_array_descriptor_t SACp_emal_9240__pinl_3975__idc_1721__desc = 
-# 1685 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1685 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9240__pinl_3975__idc_1721__shp0 = 1;
-    const int SACp_emal_9240__pinl_3975__idc_1721__sz = 1;
-    const int SACp_emal_9240__pinl_3975__idc_1721__dim = 1;
-
-
-
-
-    int SACp_emal_9239__ivesli_9049;
-   
-   
-
-
-
-
-    double SACp_emal_9238__pinl_3932__icc_1700;
-   
+    float SACl_s;
    
-
-
-
-
-    double * SACp_emal_9237__pinl_3663__icc_1567;
-    SAC_array_descriptor_t SACp_emal_9237__pinl_3663__icc_1567__desc = 
-# 1708 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1708 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_emal_9237__pinl_3663__icc_1567__shp0 = 10;
-    const int SACp_emal_9237__pinl_3663__icc_1567__sz = 10;
-    const int SACp_emal_9237__pinl_3663__icc_1567__dim = 1;
-
-
-
-
-    int SACp_wlidx_9034__pinl_3663__icc_1567;
-   
-   
-
-
-
-
-    int SACp_wlidx_9033__pinl_3659__icc_1560;
-   
-   
-
-
-
-
-    int SACp_wlidx_9032__pinl_3217__icc_1567;
-   
-   
-
-
-
-
-    int SACp_wlidx_9031__pinl_3213__icc_1560;
-   
-   
-
-
-
-
-    int SACp_wlidx_9030__pinl_2431__icc_1506;
-   
-   
-
-
-
-
-    int SACp_wlidx_9029__pinl_2380__icc_1539;
-   
-   
-
-
-
-
-    int SACp_wlidx_9028__pinl_2337__icc_221;
-   
-   
-
-
-
-
-    int SACp_pinl_2344_i;
-   
-   
-
-
-
-
-    int * SACp_pinl_2343__flat_560;
-    SAC_array_descriptor_t SACp_pinl_2343__flat_560__desc = 
-# 1773 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1773 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_pinl_2343__flat_560__shp0 = 1;
-    const int SACp_pinl_2343__flat_560__sz = 1;
-    const int SACp_pinl_2343__flat_560__dim = 1;
-
-
-
-
-    int SACp_pinl_2390__eat_25;
-   
-   
-
-
-
-
-    int * SACp_pinl_2386_iv;
-    SAC_array_descriptor_t SACp_pinl_2386_iv__desc = 
-# 1789 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1789 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_pinl_2386_iv__shp0 = 1;
-    const int SACp_pinl_2386_iv__sz = 1;
-    const int SACp_pinl_2386_iv__dim = 1;
-
-
-
-
-    int SACp_pinl_2442__eat_24;
-   
-   
-
-
-
-
-    int * SACp_pinl_2438_iv;
-    SAC_array_descriptor_t SACp_pinl_2438_iv__desc = 
-# 1805 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1805 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_pinl_2438_iv__shp0 = 1;
-    const int SACp_pinl_2438_iv__sz = 1;
-    const int SACp_pinl_2438_iv__dim = 1;
-
-
-
-
-    int SACp_pinl_3237__eat_1580;
-   
    
 
 
 
 
-    int SACp_pinl_3236__eat_1579;
+    float SACl_c;
    
    
-
-
-
 
-    int * SACp_pinl_3235_i__SSA0_1;
-    SAC_array_descriptor_t SACp_pinl_3235_i__SSA0_1__desc = 
-# 1828 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1828 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_pinl_3235_i__SSA0_1__shp0 = 1;
-    const int SACp_pinl_3235_i__SSA0_1__sz = 1;
-    const int SACp_pinl_3235_i__SSA0_1__dim = 1;
 
 
 
-
-    int * SACp_pinl_3223_i;
-    SAC_array_descriptor_t SACp_pinl_3223_i__desc = 
-# 1837 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1837 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_pinl_3223_i__shp0 = 1;
-    const int SACp_pinl_3223_i__sz = 1;
-    const int SACp_pinl_3223_i__dim = 1;
-
-
-
-
-    int SACp_pinl_3683__eat_1580;
+    float SACl_b;
    
    
 
 
 
 
-    int SACp_pinl_3682__eat_1579;
+    float SACl_a;
    
    
-
-
-
-
-    int * SACp_pinl_3681_i__SSA0_1;
-    SAC_array_descriptor_t SACp_pinl_3681_i__SSA0_1__desc = 
-# 1860 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1860 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_pinl_3681_i__SSA0_1__shp0 = 1;
-    const int SACp_pinl_3681_i__SSA0_1__sz = 1;
-    const int SACp_pinl_3681_i__SSA0_1__dim = 1;
-
-
-
-
-    int * SACp_pinl_3669_i;
-    SAC_array_descriptor_t SACp_pinl_3669_i__desc = 
-# 1869 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 1869 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    const int SACp_pinl_3669_i__shp0 = 1;
-    const int SACp_pinl_3669_i__sz = 1;
-    const int SACp_pinl_3669_i__dim = 1;
 
 
    
@@ -4617,1305 +3870,64 @@ void SACf__MAIN__main (int * SAC_arg_1__p) {
 
     SACf__MAIN_CL_INIT__init ();
 
-    { { if (!((1 == SACp_emal_9299__pinl_2337__icc_221__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9299__pinl_2337__icc_221")); }; { { if ((((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + ((6 + (SACp_emal_9299__pinl_2337__icc_221__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + ((6 + (SACp_emal_9299__pinl_2337__icc_221__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + ((6 + (SACp_emal_9299__pinl_2337__icc_221__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9299__pinl_2337__icc_221 = (int *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9299__pinl_2337__icc_221 = (int *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + ((6 + (SACp_emal_9299__pinl_2337__icc_221__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9299__pinl_2337__icc_221 = (int *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9299__pinl_2337__icc_221 = (int *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + ((6 + (SACp_emal_9299__pinl_2337__icc_221__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + ((6 + (SACp_emal_9299__pinl_2337__icc_221__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + ((6 + (SACp_emal_9299__pinl_2337__icc_221__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + ((6 + (SACp_emal_9299__pinl_2337__icc_221__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + ((6 + (SACp_emal_9299__pinl_2337__icc_221__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9299__pinl_2337__icc_221 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9299__pinl_2337__icc_221 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9299__pinl_2337__icc_221 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9299__pinl_2337__icc_221 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9299__pinl_2337__icc_221__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221), ((6 + (SACp_emal_9299__pinl_2337__icc_221__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9299__pinl_2337__icc_221__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9299__pinl_2337__icc_221__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9299__pinl_2337__icc_221__desc) & (-1 ^ (3))))[1]) = 0; }
 
 
 
-    if (!((SACp_emal_9299__pinl_2337__icc_221__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 237, 3, "Assignment with incompatible types found"); };
-    if (!((SACp_emal_9299__pinl_2337__icc_221__shp0 == 10))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 237, 3, "Assignment with incompatible types found"); };
+    SACl_a = SACsrotg( &SACl_b, &SACl_c, &SACl_s, SACp_emal_2701__flat_5, SACp_emal_2701__flat_5, SACp_emal_2701__flat_5, SACp_emal_2701__flat_5);
+
     ;
 
-    }
-    { ; ;
 
 
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 237, 3, "Assignment with incompatible types found"); };
     ;
 
-    }
-   
-
-
-
-    {
-      int SAC_schedule_start0;
-      int SAC_schedule_stop0;
-
-
-
-
-      int SAC_SACp_emal_9299__pinl_2337__icc_221_shpfac0;
-
-
-
-
-      {
-        int SAC_i;
-        SAC_SACp_emal_9299__pinl_2337__icc_221_shpfac0 = 1;
-      }
-
-
-
-
-      SAC_schedule_start0 = 0;
-      SAC_schedule_stop0 = 10;
-
-
-
-
-      SACp_wlidx_9028__pinl_2337__icc_221
-        = SAC_schedule_start0 * SAC_SACp_emal_9299__pinl_2337__icc_221_shpfac0;
-
-      { int SAC_stop_SACp_pinl_2344_i = 10; for (SACp_pinl_2344_i = 0; SACp_pinl_2344_i < 10;) {
-     
-
-
-
-      if (!((0 == (SACp_emal_9299__pinl_2337__icc_221__dim - SACp_pinl_2343__flat_560__sz)))) { SAC_RuntimeWarningLoc ("ArrayBasics.sac", 1, 1, "WL expression with illegal dimension found!"); };
-      if (!((1 == SAC_SACp_emal_9299__pinl_2337__icc_221_shpfac0))) { SAC_RuntimeWarningLoc ("ArrayBasics.sac", 1, 1, "WL expression with illegal size found!"); };
-      { SACp_emal_9299__pinl_2337__icc_221[SACp_wlidx_9028__pinl_2337__icc_221] = SACp_pinl_2344_i; };
-
-      SACp_wlidx_9028__pinl_2337__icc_221 = SACp_wlidx_9028__pinl_2337__icc_221 + 1;
-      SACp_pinl_2344_i = SACp_pinl_2344_i + 1;
-      } }
-# 1951 "/home/rubenhensen/sac/blas/a.out.c"
-    }
-
-   
-    _comp_10129_SAC_label:;
-    { ; ; }
-    { ; ; }
-    { { if (!((1 == SACp_emal_9290__pinl_2380__icc_1539__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9290__pinl_2380__icc_1539")); }; { { if ((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + ((6 + (SACp_emal_9290__pinl_2380__icc_1539__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + ((6 + (SACp_emal_9290__pinl_2380__icc_1539__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + ((6 + (SACp_emal_9290__pinl_2380__icc_1539__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9290__pinl_2380__icc_1539 = (double *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9290__pinl_2380__icc_1539 = (double *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + ((6 + (SACp_emal_9290__pinl_2380__icc_1539__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9290__pinl_2380__icc_1539 = (double *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9290__pinl_2380__icc_1539 = (double *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + ((6 + (SACp_emal_9290__pinl_2380__icc_1539__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + ((6 + (SACp_emal_9290__pinl_2380__icc_1539__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + ((6 + (SACp_emal_9290__pinl_2380__icc_1539__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + ((6 + (SACp_emal_9290__pinl_2380__icc_1539__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + ((6 + (SACp_emal_9290__pinl_2380__icc_1539__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9290__pinl_2380__icc_1539 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9290__pinl_2380__icc_1539 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9290__pinl_2380__icc_1539 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9290__pinl_2380__icc_1539 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9290__pinl_2380__icc_1539__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539), ((6 + (SACp_emal_9290__pinl_2380__icc_1539__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[0]) = 2; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-    if (!((SACp_emal_9290__pinl_2380__icc_1539__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4704, "Assignment with incompatible types found"); };
-    if (!((SACp_emal_9290__pinl_2380__icc_1539__shp0 == 10))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4704, "Assignment with incompatible types found"); };
+    ;
     ;
 
-    }
-    { ; ;
 
 
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4704, "Assignment with incompatible types found"); };
     ;
 
-    }
-    { ; ;
-
-
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4704, "Assignment with incompatible types found"); };
+    ;
     ;
 
-    }
-   
 
 
-
-    {
-      int SAC_schedule_start0;
-      int SAC_schedule_stop0;
-
-
-
-
-      int SAC_SACp_emal_9290__pinl_2380__icc_1539_shpfac0;
-
-
-
-
-      {
-        int SAC_i;
-        SAC_SACp_emal_9290__pinl_2380__icc_1539_shpfac0 = 1;
-      }
-
-
-
-
-      SAC_schedule_start0 = 0;
-      SAC_schedule_stop0 = 10;
-
-
-
-
-      SACp_wlidx_9029__pinl_2380__icc_1539
-        = SAC_schedule_start0 * SAC_SACp_emal_9290__pinl_2380__icc_1539_shpfac0;
-
-      { int SAC_stop_SACp_pinl_2390__eat_25 = 10; for (SACp_pinl_2390__eat_25 = 0; SACp_pinl_2390__eat_25 < 10;) {
-     
-      { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9299__pinl_2337__icc_221__desc) & (-1 ^ (3))))[0]) += 1; }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_2390__eat_25 >= 0) { { SACp_emal_9296__uprf_5098 = SACp_pinl_2390__eat_25; }; SACp_emal_9296__uprf_5098 = 1; } else { SACp_emal_9296__uprf_5098 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "Non-negativity constraint violated " "for scalar " "SACp_pinl_2390__eat_25"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_2390__eat_25 < SACp_emal_9301__flat_3) { SACp_emal_9295__uprf_5092 = 1; } else { SACp_emal_9295__uprf_5092 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "Scalar constraint `" "SACp_pinl_2390__eat_25" " (" "%d" ") < " "SACp_emal_9301__flat_3" " (" "%d" ")" "' violated", SACp_pinl_2390__eat_25, SACp_emal_9301__flat_3); }
-      { { if (!((1 == SACp_emal_9294__pinl_2412__idc_1551__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9294__pinl_2412__idc_1551")); }; { { if ((((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551)) + ((6 + (SACp_emal_9294__pinl_2412__idc_1551__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551)) + ((6 + (SACp_emal_9294__pinl_2412__idc_1551__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551)) + ((6 + (SACp_emal_9294__pinl_2412__idc_1551__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9294__pinl_2412__idc_1551 = (int *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9294__pinl_2412__idc_1551 = (int *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551)) + ((6 + (SACp_emal_9294__pinl_2412__idc_1551__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9294__pinl_2412__idc_1551 = (int *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9294__pinl_2412__idc_1551 = (int *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551)) + ((6 + (SACp_emal_9294__pinl_2412__idc_1551__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551)) + ((6 + (SACp_emal_9294__pinl_2412__idc_1551__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551)) + ((6 + (SACp_emal_9294__pinl_2412__idc_1551__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551)) + ((6 + (SACp_emal_9294__pinl_2412__idc_1551__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551)) + ((6 + (SACp_emal_9294__pinl_2412__idc_1551__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9294__pinl_2412__idc_1551 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9294__pinl_2412__idc_1551 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9294__pinl_2412__idc_1551 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9294__pinl_2412__idc_1551 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9294__pinl_2412__idc_1551__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551, SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551), ((6 + (SACp_emal_9294__pinl_2412__idc_1551__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9294__pinl_2412__idc_1551__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9294__pinl_2412__idc_1551__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9294__pinl_2412__idc_1551__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-      if (!((SACp_emal_9294__pinl_2412__idc_1551__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4724, "Assignment with incompatible types found"); };
-      if (!((SACp_emal_9294__pinl_2412__idc_1551__shp0 == 1))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4724, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      { SACp_emal_9294__pinl_2412__idc_1551[0] = SACp_pinl_2390__eat_25; }
-
-      if (!SACp_emal_9295__uprf_5092) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9296__uprf_5098) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      SACp_emal_9293__ivesli_9056 = ( SACp_emal_9294__pinl_2412__idc_1551[0]);
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9294__pinl_2412__idc_1551__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551, ((((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551) - 1)->data1.arena)); } else { if (SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551, ((((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551, ((((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551) - 1)->data1.arena)); } } else { if (((((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551, ((((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551) - 1)->data1.arena)); } else { if (((((SACp_emal_9294__pinl_2412__idc_1551__sz * sizeof (*SACp_emal_9294__pinl_2412__idc_1551))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551, ((((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9294__pinl_2412__idc_1551); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9294__pinl_2412__idc_1551__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-     
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "1st argument of _idx_sel_ is not a scalar!"); };
-      { SACp_emal_9292__pinl_2376__icc_1533 = ( SACp_emal_9299__pinl_2337__icc_221[SACp_emal_9293__ivesli_9056]); }
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9299__pinl_2337__icc_221__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, ((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)); } else { if (SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, ((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, ((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)); } } else { if (((((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, ((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)); } else { if (((((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, ((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9299__pinl_2337__icc_221__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ; }
-      if (!SACp_emal_9295__uprf_5092) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9296__uprf_5098) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4745, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ; }
-      { ; ; }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 220, 4736, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      ; { SACp_emal_9291__pinl_2388__flat_5748 = (double)(SACp_emal_9292__pinl_2376__icc_1533); };
-      ;
-
-
-
-      if (!((0 == (SACp_emal_9290__pinl_2380__icc_1539__dim - SACp_pinl_2386_iv__sz)))) { SAC_RuntimeWarningLoc ("ArrayArith.sac", 1, 1, "WL expression with illegal dimension found!"); };
-      if (!((1 == SAC_SACp_emal_9290__pinl_2380__icc_1539_shpfac0))) { SAC_RuntimeWarningLoc ("ArrayArith.sac", 1, 1, "WL expression with illegal size found!"); };
-      { SACp_emal_9290__pinl_2380__icc_1539[SACp_wlidx_9029__pinl_2380__icc_1539] = SACp_emal_9291__pinl_2388__flat_5748; };
-
-      { ; ; }
-      SACp_wlidx_9029__pinl_2380__icc_1539 = SACp_wlidx_9029__pinl_2380__icc_1539 + 1;
-      SACp_pinl_2390__eat_25 = SACp_pinl_2390__eat_25 + 1;
-      } }
-# 2116 "/home/rubenhensen/sac/blas/a.out.c"
-    }
-
-   
-    _comp_10130_SAC_label:;
-    { ; ; }
-    { ; ; }
-    { { { if (((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, ((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)); } else { if (SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, ((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, ((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)); } } else { if (((((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, ((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)); } else { if (((((SACp_emal_9299__pinl_2337__icc_221__sz * sizeof (*SACp_emal_9299__pinl_2337__icc_221))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, ((((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9299__pinl_2337__icc_221); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9299__pinl_2337__icc_221__desc) & (-1 ^ (3))))); } } }
-    { ; ; }
-    { { if (!((1 == SACp_emal_9281__pinl_2431__icc_1506__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9281__pinl_2431__icc_1506")); }; { { if ((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + ((6 + (SACp_emal_9281__pinl_2431__icc_1506__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + ((6 + (SACp_emal_9281__pinl_2431__icc_1506__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + ((6 + (SACp_emal_9281__pinl_2431__icc_1506__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9281__pinl_2431__icc_1506 = (double *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9281__pinl_2431__icc_1506 = (double *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + ((6 + (SACp_emal_9281__pinl_2431__icc_1506__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9281__pinl_2431__icc_1506 = (double *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9281__pinl_2431__icc_1506 = (double *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + ((6 + (SACp_emal_9281__pinl_2431__icc_1506__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + ((6 + (SACp_emal_9281__pinl_2431__icc_1506__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + ((6 + (SACp_emal_9281__pinl_2431__icc_1506__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + ((6 + (SACp_emal_9281__pinl_2431__icc_1506__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + ((6 + (SACp_emal_9281__pinl_2431__icc_1506__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9281__pinl_2431__icc_1506 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9281__pinl_2431__icc_1506 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9281__pinl_2431__icc_1506 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9281__pinl_2431__icc_1506 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9281__pinl_2431__icc_1506__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506), ((6 + (SACp_emal_9281__pinl_2431__icc_1506__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[0]) = 2; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-    if (!((SACp_emal_9281__pinl_2431__icc_1506__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42723, "Assignment with incompatible types found"); };
-    if (!((SACp_emal_9281__pinl_2431__icc_1506__shp0 == 10))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42723, "Assignment with incompatible types found"); };
     ;
 
-    }
-    { ; ;
-
-
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42723, "Assignment with incompatible types found"); };
+    ;
     ;
 
-    }
-    { ; ;
 
 
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42723, "Assignment with incompatible types found"); };
     ;
 
-    }
-   
-
-
-
-    {
-      int SAC_schedule_start0;
-      int SAC_schedule_stop0;
-
-
-
-
-      int SAC_SACp_emal_9281__pinl_2431__icc_1506_shpfac0;
-
-
-
-
-      {
-        int SAC_i;
-        SAC_SACp_emal_9281__pinl_2431__icc_1506_shpfac0 = 1;
-      }
-
-
-
-
-      SAC_schedule_start0 = 0;
-      SAC_schedule_stop0 = 10;
-
-
-
-
-      SACp_wlidx_9030__pinl_2431__icc_1506
-        = SAC_schedule_start0 * SAC_SACp_emal_9281__pinl_2431__icc_1506_shpfac0;
-
-      { int SAC_stop_SACp_pinl_2442__eat_24 = 10; for (SACp_pinl_2442__eat_24 = 0; SACp_pinl_2442__eat_24 < 10;) {
-     
-      { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[0]) += 1; }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_2442__eat_24 >= 0) { { SACp_emal_9287__uprf_5083 = SACp_pinl_2442__eat_24; }; SACp_emal_9287__uprf_5083 = 1; } else { SACp_emal_9287__uprf_5083 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "Non-negativity constraint violated " "for scalar " "SACp_pinl_2442__eat_24"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_2442__eat_24 < SACp_emal_9301__flat_3) { SACp_emal_9286__uprf_5077 = 1; } else { SACp_emal_9286__uprf_5077 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "Scalar constraint `" "SACp_pinl_2442__eat_24" " (" "%d" ") < " "SACp_emal_9301__flat_3" " (" "%d" ")" "' violated", SACp_pinl_2442__eat_24, SACp_emal_9301__flat_3); }
-      { { if (!((1 == SACp_emal_9285__pinl_2464__idc_1518__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9285__pinl_2464__idc_1518")); }; { { if ((((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518)) + ((6 + (SACp_emal_9285__pinl_2464__idc_1518__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518)) + ((6 + (SACp_emal_9285__pinl_2464__idc_1518__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518)) + ((6 + (SACp_emal_9285__pinl_2464__idc_1518__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9285__pinl_2464__idc_1518 = (int *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9285__pinl_2464__idc_1518 = (int *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518)) + ((6 + (SACp_emal_9285__pinl_2464__idc_1518__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9285__pinl_2464__idc_1518 = (int *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9285__pinl_2464__idc_1518 = (int *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518)) + ((6 + (SACp_emal_9285__pinl_2464__idc_1518__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518)) + ((6 + (SACp_emal_9285__pinl_2464__idc_1518__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518)) + ((6 + (SACp_emal_9285__pinl_2464__idc_1518__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518)) + ((6 + (SACp_emal_9285__pinl_2464__idc_1518__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518)) + ((6 + (SACp_emal_9285__pinl_2464__idc_1518__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9285__pinl_2464__idc_1518 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9285__pinl_2464__idc_1518 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9285__pinl_2464__idc_1518 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9285__pinl_2464__idc_1518 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9285__pinl_2464__idc_1518__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518, SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518), ((6 + (SACp_emal_9285__pinl_2464__idc_1518__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9285__pinl_2464__idc_1518__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9285__pinl_2464__idc_1518__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9285__pinl_2464__idc_1518__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-      if (!((SACp_emal_9285__pinl_2464__idc_1518__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42743, "Assignment with incompatible types found"); };
-      if (!((SACp_emal_9285__pinl_2464__idc_1518__shp0 == 1))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42743, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      { SACp_emal_9285__pinl_2464__idc_1518[0] = SACp_pinl_2442__eat_24; }
-
-      if (!SACp_emal_9286__uprf_5077) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9287__uprf_5083) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      SACp_emal_9284__ivesli_9055 = ( SACp_emal_9285__pinl_2464__idc_1518[0]);
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9285__pinl_2464__idc_1518__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518, ((((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518) - 1)->data1.arena)); } else { if (SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518, ((((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518, ((((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518) - 1)->data1.arena)); } } else { if (((((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518, ((((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518) - 1)->data1.arena)); } else { if (((((SACp_emal_9285__pinl_2464__idc_1518__sz * sizeof (*SACp_emal_9285__pinl_2464__idc_1518))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518, ((((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9285__pinl_2464__idc_1518); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9285__pinl_2464__idc_1518__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-     
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "1st argument of _idx_sel_ is not a scalar!"); };
-      { SACp_emal_9283__pinl_2427__icc_1500 = ( SACp_emal_9290__pinl_2380__icc_1539[SACp_emal_9284__ivesli_9055]); }
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { if (SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } } else { if (((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { if (((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ; }
-      if (!SACp_emal_9286__uprf_5077) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9287__uprf_5083) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42767, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ; }
-      { ; ; }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 42755, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      ; ; { SACp_emal_9282__pinl_2440__flat_3025 = (10.0) + (SACp_emal_9283__pinl_2427__icc_1500); };
-      ;
-
-
-
-      if (!((0 == (SACp_emal_9281__pinl_2431__icc_1506__dim - SACp_pinl_2438_iv__sz)))) { SAC_RuntimeWarningLoc ("ArrayArith.sac", 1, 1, "WL expression with illegal dimension found!"); };
-      if (!((1 == SAC_SACp_emal_9281__pinl_2431__icc_1506_shpfac0))) { SAC_RuntimeWarningLoc ("ArrayArith.sac", 1, 1, "WL expression with illegal size found!"); };
-      { SACp_emal_9281__pinl_2431__icc_1506[SACp_wlidx_9030__pinl_2431__icc_1506] = SACp_emal_9282__pinl_2440__flat_3025; };
-
-      { ; ; }
-      SACp_wlidx_9030__pinl_2431__icc_1506 = SACp_wlidx_9030__pinl_2431__icc_1506 + 1;
-      SACp_pinl_2442__eat_24 = SACp_pinl_2442__eat_24 + 1;
-      } }
-# 2283 "/home/rubenhensen/sac/blas/a.out.c"
-    }
-
-   
-    _comp_10131_SAC_label:;
-    { ; ; }
-    { ; ; }
-    { ; ; }
-
-
-
-    if (!((_tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__dim == (1)))) { SAC_RuntimeWarningLoc ("./blas.sac", 8, 5, "Assignment with incompatible types found"); };
-    _tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__desc = SACp_emal_9290__pinl_2380__icc_1539__desc;
-    _tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__shp0 = SACp_emal_9290__pinl_2380__icc_1539__shp0;
-    _tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__sz = SACp_emal_9290__pinl_2380__icc_1539__sz;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[(6 + (0))]) = SACp_emal_9290__pinl_2380__icc_1539__shp0;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[4]) = SACp_emal_9290__pinl_2380__icc_1539__sz;
-    { _tcp_10128_SACp_emal_9290__pinl_2380__icc_1539 = SACp_emal_9290__pinl_2380__icc_1539; }
-
-
-
-
-    SACof__MAIN_CLStdIO__print__d_X (_tcp_10128_SACp_emal_9290__pinl_2380__icc_1539, _tcp_10128_SACp_emal_9290__pinl_2380__icc_1539__desc);
-
-
-
-
-    if (!((_tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__dim == (1)))) { SAC_RuntimeWarningLoc ("./blas.sac", 9, 5, "Assignment with incompatible types found"); };
-    _tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__desc = SACp_emal_9281__pinl_2431__icc_1506__desc;
-    _tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__shp0 = SACp_emal_9281__pinl_2431__icc_1506__shp0;
-    _tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__sz = SACp_emal_9281__pinl_2431__icc_1506__sz;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[(6 + (0))]) = SACp_emal_9281__pinl_2431__icc_1506__shp0;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[4]) = SACp_emal_9281__pinl_2431__icc_1506__sz;
-    { _tcp_10127_SACp_emal_9281__pinl_2431__icc_1506 = SACp_emal_9281__pinl_2431__icc_1506; }
-
-
-
-
-    SACof__MAIN_CLStdIO__print__d_X (_tcp_10127_SACp_emal_9281__pinl_2431__icc_1506, _tcp_10127_SACp_emal_9281__pinl_2431__icc_1506__desc);
-
-    { { if (!((1 == SACp_emal_9274__pinl_3213__icc_1560__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9274__pinl_3213__icc_1560")); }; { { if ((((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560)) + ((6 + (SACp_emal_9274__pinl_3213__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560)) + ((6 + (SACp_emal_9274__pinl_3213__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560)) + ((6 + (SACp_emal_9274__pinl_3213__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9274__pinl_3213__icc_1560 = (double *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9274__pinl_3213__icc_1560 = (double *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560)) + ((6 + (SACp_emal_9274__pinl_3213__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9274__pinl_3213__icc_1560 = (double *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9274__pinl_3213__icc_1560 = (double *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560)) + ((6 + (SACp_emal_9274__pinl_3213__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560)) + ((6 + (SACp_emal_9274__pinl_3213__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560)) + ((6 + (SACp_emal_9274__pinl_3213__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560)) + ((6 + (SACp_emal_9274__pinl_3213__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560)) + ((6 + (SACp_emal_9274__pinl_3213__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9274__pinl_3213__icc_1560 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9274__pinl_3213__icc_1560 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9274__pinl_3213__icc_1560 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9274__pinl_3213__icc_1560 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9274__pinl_3213__icc_1560__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560, SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560), ((6 + (SACp_emal_9274__pinl_3213__icc_1560__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9274__pinl_3213__icc_1560__desc) & (-1 ^ (3))))[0]) = 2; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9274__pinl_3213__icc_1560__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9274__pinl_3213__icc_1560__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-    if (!((SACp_emal_9274__pinl_3213__icc_1560__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "Assignment with incompatible types found"); };
-    if (!((SACp_emal_9274__pinl_3213__icc_1560__shp0 == 10))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "Assignment with incompatible types found"); };
+    ;
     ;
 
-    }
-    { ; ;
 
 
+    SACf_ScalarIO__print__f (SACl_a);
 
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "Assignment with incompatible types found"); };
-    ;
 
-    }
-    { ; ;
 
 
+    SACf_ScalarIO__print__f (SACl_b);
 
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "Assignment with incompatible types found"); };
-    ;
 
-    }
-   
 
 
+    SACf_ScalarIO__print__f (SACl_c);
 
-    {
-      int SAC_schedule_start0;
-      int SAC_schedule_stop0;
 
 
 
+    SACf_ScalarIO__print__f (SACl_s);
 
-      int SAC_SACp_emal_9274__pinl_3213__icc_1560_shpfac0;
 
 
 
-
-      {
-        int SAC_i;
-        SAC_SACp_emal_9274__pinl_3213__icc_1560_shpfac0 = 1;
-      }
-
-
-
-
-      SAC_schedule_start0 = 0;
-      SAC_schedule_stop0 = 10;
-
-
-
-
-      SACp_wlidx_9031__pinl_3213__icc_1560
-        = SAC_schedule_start0 * SAC_SACp_emal_9274__pinl_3213__icc_1560_shpfac0;
-
-      { int SAC_stop_SACp_pinl_3236__eat_1579 = 10; for (SACp_pinl_3236__eat_1579 = 0; SACp_pinl_3236__eat_1579 < 10;) {
-     
-      { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[0]) += 1; }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_3236__eat_1579 >= 0) { { SACp_emal_9279__uprf_5038 = SACp_pinl_3236__eat_1579; }; SACp_emal_9279__uprf_5038 = 1; } else { SACp_emal_9279__uprf_5038 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Non-negativity constraint violated " "for scalar " "SACp_pinl_3236__eat_1579"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_3236__eat_1579 < SACp_emal_9301__flat_3) { SACp_emal_9278__uprf_5032 = 1; } else { SACp_emal_9278__uprf_5032 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Scalar constraint `" "SACp_pinl_3236__eat_1579" " (" "%d" ") < " "SACp_emal_9301__flat_3" " (" "%d" ")" "' violated", SACp_pinl_3236__eat_1579, SACp_emal_9301__flat_3); }
-      { { if (!((1 == SACp_emal_9277__pinl_3388__idc_1721__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9277__pinl_3388__idc_1721")); }; { { if ((((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721)) + ((6 + (SACp_emal_9277__pinl_3388__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721)) + ((6 + (SACp_emal_9277__pinl_3388__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721)) + ((6 + (SACp_emal_9277__pinl_3388__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9277__pinl_3388__idc_1721 = (int *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9277__pinl_3388__idc_1721 = (int *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721)) + ((6 + (SACp_emal_9277__pinl_3388__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9277__pinl_3388__idc_1721 = (int *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9277__pinl_3388__idc_1721 = (int *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721)) + ((6 + (SACp_emal_9277__pinl_3388__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721)) + ((6 + (SACp_emal_9277__pinl_3388__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721)) + ((6 + (SACp_emal_9277__pinl_3388__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721)) + ((6 + (SACp_emal_9277__pinl_3388__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721)) + ((6 + (SACp_emal_9277__pinl_3388__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9277__pinl_3388__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9277__pinl_3388__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9277__pinl_3388__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9277__pinl_3388__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9277__pinl_3388__idc_1721__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721, SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721), ((6 + (SACp_emal_9277__pinl_3388__idc_1721__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9277__pinl_3388__idc_1721__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9277__pinl_3388__idc_1721__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9277__pinl_3388__idc_1721__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-      if (!((SACp_emal_9277__pinl_3388__idc_1721__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3112, "Assignment with incompatible types found"); };
-      if (!((SACp_emal_9277__pinl_3388__idc_1721__shp0 == 1))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3112, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      { SACp_emal_9277__pinl_3388__idc_1721[0] = SACp_pinl_3236__eat_1579; }
-
-      if (!SACp_emal_9278__uprf_5032) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9279__uprf_5038) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      SACp_emal_9276__ivesli_9054 = ( SACp_emal_9277__pinl_3388__idc_1721[0]);
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9277__pinl_3388__idc_1721__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721) - 1)->data1.arena)); } else { if (SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721) - 1)->data1.arena)); } } else { if (((((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721) - 1)->data1.arena)); } else { if (((((SACp_emal_9277__pinl_3388__idc_1721__sz * sizeof (*SACp_emal_9277__pinl_3388__idc_1721))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9277__pinl_3388__idc_1721); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9277__pinl_3388__idc_1721__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-     
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "1st argument of _idx_sel_ is not a scalar!"); };
-      { SACp_emal_9275__pinl_3345__icc_1700 = ( SACp_emal_9290__pinl_2380__icc_1539[SACp_emal_9276__ivesli_9054]); }
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { if (SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } } else { if (((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { if (((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ; }
-      if (!SACp_emal_9278__uprf_5032) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9279__uprf_5038) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ; }
-      { ; ; }
-
-
-
-      if (!((0 == (SACp_emal_9274__pinl_3213__icc_1560__dim - SACp_pinl_3223_i__sz)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "WL expression with illegal dimension found!"); };
-      if (!((1 == SAC_SACp_emal_9274__pinl_3213__icc_1560_shpfac0))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "WL expression with illegal size found!"); };
-      { SACp_emal_9274__pinl_3213__icc_1560[SACp_wlidx_9031__pinl_3213__icc_1560] = SACp_emal_9275__pinl_3345__icc_1700; };
-
-      ;
-      SACp_wlidx_9031__pinl_3213__icc_1560 = SACp_wlidx_9031__pinl_3213__icc_1560 + 1;
-      SACp_pinl_3236__eat_1579 = SACp_pinl_3236__eat_1579 + 1;
-      } }
-# 2471 "/home/rubenhensen/sac/blas/a.out.c"
-    }
-
-   
-    _comp_10132_SAC_label:;
-    { ; ; }
-    { ; ; }
-    { { if (!((1 == SACp_emal_9267__pinl_3217__icc_1567__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9267__pinl_3217__icc_1567")); }; { { if ((((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567)) + ((6 + (SACp_emal_9267__pinl_3217__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567)) + ((6 + (SACp_emal_9267__pinl_3217__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567)) + ((6 + (SACp_emal_9267__pinl_3217__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9267__pinl_3217__icc_1567 = (double *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9267__pinl_3217__icc_1567 = (double *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567)) + ((6 + (SACp_emal_9267__pinl_3217__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9267__pinl_3217__icc_1567 = (double *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9267__pinl_3217__icc_1567 = (double *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567)) + ((6 + (SACp_emal_9267__pinl_3217__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567)) + ((6 + (SACp_emal_9267__pinl_3217__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567)) + ((6 + (SACp_emal_9267__pinl_3217__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567)) + ((6 + (SACp_emal_9267__pinl_3217__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567)) + ((6 + (SACp_emal_9267__pinl_3217__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9267__pinl_3217__icc_1567 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9267__pinl_3217__icc_1567 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9267__pinl_3217__icc_1567 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9267__pinl_3217__icc_1567 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9267__pinl_3217__icc_1567__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567, SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567), ((6 + (SACp_emal_9267__pinl_3217__icc_1567__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9267__pinl_3217__icc_1567__desc) & (-1 ^ (3))))[0]) = 2; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9267__pinl_3217__icc_1567__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9267__pinl_3217__icc_1567__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-    if (!((SACp_emal_9267__pinl_3217__icc_1567__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 516, 10, "Assignment with incompatible types found"); };
-    if (!((SACp_emal_9267__pinl_3217__icc_1567__shp0 == 10))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 516, 10, "Assignment with incompatible types found"); };
-    ;
-
-    }
-    { ; ;
-
-
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 516, 10, "Assignment with incompatible types found"); };
-    ;
-
-    }
-    { ; ;
-
-
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 516, 10, "Assignment with incompatible types found"); };
-    ;
-
-    }
-   
-
-
-
-    {
-      int SAC_schedule_start0;
-      int SAC_schedule_stop0;
-
-
-
-
-      int SAC_SACp_emal_9267__pinl_3217__icc_1567_shpfac0;
-
-
-
-
-      {
-        int SAC_i;
-        SAC_SACp_emal_9267__pinl_3217__icc_1567_shpfac0 = 1;
-      }
-
-
-
-
-      SAC_schedule_start0 = 0;
-      SAC_schedule_stop0 = 10;
-
-
-
-
-      SACp_wlidx_9032__pinl_3217__icc_1567
-        = SAC_schedule_start0 * SAC_SACp_emal_9267__pinl_3217__icc_1567_shpfac0;
-
-      { int SAC_stop_SACp_pinl_3237__eat_1580 = 10; for (SACp_pinl_3237__eat_1580 = 0; SACp_pinl_3237__eat_1580 < 10;) {
-     
-      { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[0]) += 1; }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_3237__eat_1580 >= 0) { { SACp_emal_9272__uprf_4993 = SACp_pinl_3237__eat_1580; }; SACp_emal_9272__uprf_4993 = 1; } else { SACp_emal_9272__uprf_4993 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Non-negativity constraint violated " "for scalar " "SACp_pinl_3237__eat_1580"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_3237__eat_1580 < SACp_emal_9301__flat_3) { SACp_emal_9271__uprf_4987 = 1; } else { SACp_emal_9271__uprf_4987 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Scalar constraint `" "SACp_pinl_3237__eat_1580" " (" "%d" ") < " "SACp_emal_9301__flat_3" " (" "%d" ")" "' violated", SACp_pinl_3237__eat_1580, SACp_emal_9301__flat_3); }
-      { { if (!((1 == SACp_emal_9270__pinl_3529__idc_1721__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9270__pinl_3529__idc_1721")); }; { { if ((((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721)) + ((6 + (SACp_emal_9270__pinl_3529__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721)) + ((6 + (SACp_emal_9270__pinl_3529__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721)) + ((6 + (SACp_emal_9270__pinl_3529__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9270__pinl_3529__idc_1721 = (int *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9270__pinl_3529__idc_1721 = (int *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721)) + ((6 + (SACp_emal_9270__pinl_3529__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9270__pinl_3529__idc_1721 = (int *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9270__pinl_3529__idc_1721 = (int *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721)) + ((6 + (SACp_emal_9270__pinl_3529__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721)) + ((6 + (SACp_emal_9270__pinl_3529__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721)) + ((6 + (SACp_emal_9270__pinl_3529__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721)) + ((6 + (SACp_emal_9270__pinl_3529__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721)) + ((6 + (SACp_emal_9270__pinl_3529__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9270__pinl_3529__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9270__pinl_3529__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9270__pinl_3529__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9270__pinl_3529__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9270__pinl_3529__idc_1721__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721, SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721), ((6 + (SACp_emal_9270__pinl_3529__idc_1721__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9270__pinl_3529__idc_1721__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9270__pinl_3529__idc_1721__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9270__pinl_3529__idc_1721__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-      if (!((SACp_emal_9270__pinl_3529__idc_1721__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3112, "Assignment with incompatible types found"); };
-      if (!((SACp_emal_9270__pinl_3529__idc_1721__shp0 == 1))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3112, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      { SACp_emal_9270__pinl_3529__idc_1721[0] = SACp_pinl_3237__eat_1580; }
-
-      if (!SACp_emal_9271__uprf_4987) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9272__uprf_4993) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      SACp_emal_9269__ivesli_9053 = ( SACp_emal_9270__pinl_3529__idc_1721[0]);
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9270__pinl_3529__idc_1721__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721) - 1)->data1.arena)); } else { if (SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721) - 1)->data1.arena)); } } else { if (((((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721) - 1)->data1.arena)); } else { if (((((SACp_emal_9270__pinl_3529__idc_1721__sz * sizeof (*SACp_emal_9270__pinl_3529__idc_1721))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9270__pinl_3529__idc_1721); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9270__pinl_3529__idc_1721__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-     
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "1st argument of _idx_sel_ is not a scalar!"); };
-      { SACp_emal_9268__pinl_3486__icc_1700 = ( SACp_emal_9281__pinl_2431__icc_1506[SACp_emal_9269__ivesli_9053]); }
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { if (SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } } else { if (((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { if (((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ; }
-      if (!SACp_emal_9271__uprf_4987) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9272__uprf_4993) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ; }
-      { ; ; }
-
-
-
-      if (!((0 == (SACp_emal_9267__pinl_3217__icc_1567__dim - SACp_pinl_3235_i__SSA0_1__sz)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 517, 5, "WL expression with illegal dimension found!"); };
-      if (!((1 == SAC_SACp_emal_9267__pinl_3217__icc_1567_shpfac0))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 517, 5, "WL expression with illegal size found!"); };
-      { SACp_emal_9267__pinl_3217__icc_1567[SACp_wlidx_9032__pinl_3217__icc_1567] = SACp_emal_9268__pinl_3486__icc_1700; };
-
-      ;
-      SACp_wlidx_9032__pinl_3217__icc_1567 = SACp_wlidx_9032__pinl_3217__icc_1567 + 1;
-      SACp_pinl_3237__eat_1580 = SACp_pinl_3237__eat_1580 + 1;
-      } }
-# 2626 "/home/rubenhensen/sac/blas/a.out.c"
-    }
-
-   
-    _comp_10133_SAC_label:;
-    { ; ; }
-    { ; ; }
-
-
-
-    if (!((_tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__dim == (1)))) { SAC_RuntimeWarningLoc ("./blas.sac", 12, 5, "Assignment with incompatible types found"); };
-    _tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__desc = SACp_emal_9267__pinl_3217__icc_1567__desc;
-    _tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__shp0 = SACp_emal_9267__pinl_3217__icc_1567__shp0;
-    _tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__sz = SACp_emal_9267__pinl_3217__icc_1567__sz;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__desc) & (-1 ^ (3))))[(6 + (0))]) = SACp_emal_9267__pinl_3217__icc_1567__shp0;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__desc) & (-1 ^ (3))))[4]) = SACp_emal_9267__pinl_3217__icc_1567__sz;
-    { _tcp_10126_SACp_emal_9267__pinl_3217__icc_1567 = SACp_emal_9267__pinl_3217__icc_1567; }
-
-
-
-
-    SACof__MAIN_CLStdIO__print__d_X (_tcp_10126_SACp_emal_9267__pinl_3217__icc_1567, _tcp_10126_SACp_emal_9267__pinl_3217__icc_1567__desc);
-
-
-
-
-    if (!((_tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__dim == (1)))) { SAC_RuntimeWarningLoc ("./blas.sac", 13, 5, "Assignment with incompatible types found"); };
-    _tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__desc = SACp_emal_9274__pinl_3213__icc_1560__desc;
-    _tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__shp0 = SACp_emal_9274__pinl_3213__icc_1560__shp0;
-    _tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__sz = SACp_emal_9274__pinl_3213__icc_1560__sz;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__desc) & (-1 ^ (3))))[(6 + (0))]) = SACp_emal_9274__pinl_3213__icc_1560__shp0;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__desc) & (-1 ^ (3))))[4]) = SACp_emal_9274__pinl_3213__icc_1560__sz;
-    { _tcp_10125_SACp_emal_9274__pinl_3213__icc_1560 = SACp_emal_9274__pinl_3213__icc_1560; }
-
-
-
-
-    SACof__MAIN_CLStdIO__print__d_X (_tcp_10125_SACp_emal_9274__pinl_3213__icc_1560, _tcp_10125_SACp_emal_9274__pinl_3213__icc_1560__desc);
-
-
-
-
-    if ((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9267__pinl_3217__icc_1567__desc) & (-1 ^ (3))))[0]) == 1) {
-      if (!((SACp_emal_9252__pinl_3659__icc_1560__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "Assignment with incompatible types found"); };
-      if (!((SACp_emal_9252__pinl_3659__icc_1560__shp0 == SACp_emal_9267__pinl_3217__icc_1567__shp0))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "Assignment with incompatible types found"); };
-      SACp_emal_9252__pinl_3659__icc_1560__desc = SACp_emal_9267__pinl_3217__icc_1567__desc;
-      ;
-      ;
-      { SACp_emal_9252__pinl_3659__icc_1560 = SACp_emal_9267__pinl_3217__icc_1567; }
-     
-      }
-    else
-
-    { { if (!((1 == SACp_emal_9252__pinl_3659__icc_1560__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9252__pinl_3659__icc_1560")); }; { { if ((((SACp_emal_9252__pinl_3659__icc_1560__sz * sizeof (*SACp_emal_9252__pinl_3659__icc_1560)) + ((6 + (SACp_emal_9252__pinl_3659__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9252__pinl_3659__icc_1560__sz * sizeof (*SACp_emal_9252__pinl_3659__icc_1560)) + ((6 + (SACp_emal_9252__pinl_3659__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9252__pinl_3659__icc_1560__sz * sizeof (*SACp_emal_9252__pinl_3659__icc_1560)) + ((6 + (SACp_emal_9252__pinl_3659__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9252__pinl_3659__icc_1560 = (double *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9252__pinl_3659__icc_1560 = (double *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9252__pinl_3659__icc_1560__sz * sizeof (*SACp_emal_9252__pinl_3659__icc_1560)) + ((6 + (SACp_emal_9252__pinl_3659__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9252__pinl_3659__icc_1560 = (double *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9252__pinl_3659__icc_1560 = (double *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9252__pinl_3659__icc_1560__sz * sizeof (*SACp_emal_9252__pinl_3659__icc_1560)) + ((6 + (SACp_emal_9252__pinl_3659__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9252__pinl_3659__icc_1560__sz * sizeof (*SACp_emal_9252__pinl_3659__icc_1560)) + ((6 + (SACp_emal_9252__pinl_3659__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9252__pinl_3659__icc_1560__sz * sizeof (*SACp_emal_9252__pinl_3659__icc_1560)) + ((6 + (SACp_emal_9252__pinl_3659__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9252__pinl_3659__icc_1560__sz * sizeof (*SACp_emal_9252__pinl_3659__icc_1560)) + ((6 + (SACp_emal_9252__pinl_3659__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9252__pinl_3659__icc_1560__sz * sizeof (*SACp_emal_9252__pinl_3659__icc_1560)) + ((6 + (SACp_emal_9252__pinl_3659__icc_1560__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9252__pinl_3659__icc_1560 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9252__pinl_3659__icc_1560 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9252__pinl_3659__icc_1560 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9252__pinl_3659__icc_1560 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9252__pinl_3659__icc_1560__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9252__pinl_3659__icc_1560, SACp_emal_9252__pinl_3659__icc_1560__sz * sizeof (*SACp_emal_9252__pinl_3659__icc_1560), ((6 + (SACp_emal_9252__pinl_3659__icc_1560__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9252__pinl_3659__icc_1560__desc) & (-1 ^ (3))))[0]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9252__pinl_3659__icc_1560__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9252__pinl_3659__icc_1560__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-    if (!((SACp_emal_9252__pinl_3659__icc_1560__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "Assignment with incompatible types found"); };
-    if (!((SACp_emal_9252__pinl_3659__icc_1560__shp0 == 10))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "Assignment with incompatible types found"); };
-    ;
-
-    }
-    { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9252__pinl_3659__icc_1560__desc) & (-1 ^ (3))))[0]) += 1; }
-    { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9267__pinl_3217__icc_1567__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567, ((((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567) - 1)->data1.arena)); } else { if (SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567, ((((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567, ((((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567) - 1)->data1.arena)); } } else { if (((((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567, ((((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567) - 1)->data1.arena)); } else { if (((((SACp_emal_9267__pinl_3217__icc_1567__sz * sizeof (*SACp_emal_9267__pinl_3217__icc_1567))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567, ((((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9267__pinl_3217__icc_1567); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9267__pinl_3217__icc_1567__desc) & (-1 ^ (3))))); } } } } else { } }
-    { ; ;
-
-
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "Assignment with incompatible types found"); };
-    ;
-
-    }
-    { ; ;
-
-
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "Assignment with incompatible types found"); };
-    ;
-
-    }
-   
-
-
-
-    {
-      int SAC_schedule_start0;
-      int SAC_schedule_stop0;
-
-
-
-
-      int SAC_SACp_emal_9252__pinl_3659__icc_1560_shpfac0;
-
-
-
-
-      {
-        int SAC_i;
-        SAC_SACp_emal_9252__pinl_3659__icc_1560_shpfac0 = 1;
-      }
-
-
-
-
-      SAC_schedule_start0 = 0;
-      SAC_schedule_stop0 = 10;
-
-
-
-
-      SACp_wlidx_9033__pinl_3659__icc_1560
-        = SAC_schedule_start0 * SAC_SACp_emal_9252__pinl_3659__icc_1560_shpfac0;
-
-      { int SAC_stop_SACp_pinl_3682__eat_1579 = 10; for (SACp_pinl_3682__eat_1579 = 0; SACp_pinl_3682__eat_1579 < 10;) {
-     
-      { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[0]) += 1; }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 10265, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      ; ; { SACp_emal_9259__pinl_3899__flat_1858 = (SACp_pinl_3682__eat_1579) / (2); };
-      ; ; { SACp_emal_9259__pinl_3899__flat_1858 = (2) * (SACp_emal_9259__pinl_3899__flat_1858); };
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_emal_9259__pinl_3899__flat_1858 >= 0) { { SACp_emal_9257__uprf_4948 = SACp_emal_9259__pinl_3899__flat_1858; }; SACp_emal_9257__uprf_4948 = 1; } else { SACp_emal_9257__uprf_4948 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Non-negativity constraint violated " "for scalar " "SACp_emal_9259__pinl_3899__flat_1858"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_emal_9259__pinl_3899__flat_1858 < SACp_emal_9301__flat_3) { SACp_emal_9256__uprf_4942 = 1; } else { SACp_emal_9256__uprf_4942 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Scalar constraint `" "SACp_emal_9259__pinl_3899__flat_1858" " (" "%d" ") < " "SACp_emal_9301__flat_3" " (" "%d" ")" "' violated", SACp_emal_9259__pinl_3899__flat_1858, SACp_emal_9301__flat_3); }
-      { { if (!((1 == SACp_emal_9255__pinl_3834__idc_1721__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9255__pinl_3834__idc_1721")); }; { { if ((((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721)) + ((6 + (SACp_emal_9255__pinl_3834__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721)) + ((6 + (SACp_emal_9255__pinl_3834__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721)) + ((6 + (SACp_emal_9255__pinl_3834__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9255__pinl_3834__idc_1721 = (int *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9255__pinl_3834__idc_1721 = (int *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721)) + ((6 + (SACp_emal_9255__pinl_3834__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9255__pinl_3834__idc_1721 = (int *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9255__pinl_3834__idc_1721 = (int *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721)) + ((6 + (SACp_emal_9255__pinl_3834__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721)) + ((6 + (SACp_emal_9255__pinl_3834__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721)) + ((6 + (SACp_emal_9255__pinl_3834__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721)) + ((6 + (SACp_emal_9255__pinl_3834__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721)) + ((6 + (SACp_emal_9255__pinl_3834__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9255__pinl_3834__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9255__pinl_3834__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9255__pinl_3834__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9255__pinl_3834__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9255__pinl_3834__idc_1721__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721, SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721), ((6 + (SACp_emal_9255__pinl_3834__idc_1721__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9255__pinl_3834__idc_1721__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9255__pinl_3834__idc_1721__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9255__pinl_3834__idc_1721__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-      if (!((SACp_emal_9255__pinl_3834__idc_1721__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3112, "Assignment with incompatible types found"); };
-      if (!((SACp_emal_9255__pinl_3834__idc_1721__shp0 == 1))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3112, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      { SACp_emal_9255__pinl_3834__idc_1721[0] = SACp_emal_9259__pinl_3899__flat_1858; }
-
-      { ; ; }
-      if (!SACp_emal_9256__uprf_4942) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9257__uprf_4948) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      SACp_emal_9254__ivesli_9051 = ( SACp_emal_9255__pinl_3834__idc_1721[0]);
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9255__pinl_3834__idc_1721__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721) - 1)->data1.arena)); } else { if (SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721) - 1)->data1.arena)); } } else { if (((((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721) - 1)->data1.arena)); } else { if (((((SACp_emal_9255__pinl_3834__idc_1721__sz * sizeof (*SACp_emal_9255__pinl_3834__idc_1721))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9255__pinl_3834__idc_1721); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9255__pinl_3834__idc_1721__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-     
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "1st argument of _idx_sel_ is not a scalar!"); };
-      { SACp_emal_9253__pinl_3791__icc_1700 = ( SACp_emal_9290__pinl_2380__icc_1539[SACp_emal_9254__ivesli_9051]); }
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { if (SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } } else { if (((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { if (((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ; }
-      if (!SACp_emal_9256__uprf_4942) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9257__uprf_4948) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ; }
-      { ; ; }
-
-
-
-      if (!((0 == (SACp_emal_9252__pinl_3659__icc_1560__dim - SACp_pinl_3669_i__sz)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "WL expression with illegal dimension found!"); };
-      if (!((1 == SAC_SACp_emal_9252__pinl_3659__icc_1560_shpfac0))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "WL expression with illegal size found!"); };
-      { SACp_emal_9252__pinl_3659__icc_1560[SACp_wlidx_9033__pinl_3659__icc_1560] = SACp_emal_9253__pinl_3791__icc_1700; };
-
-      ;
-      SACp_wlidx_9033__pinl_3659__icc_1560 = SACp_wlidx_9033__pinl_3659__icc_1560 + 1;
-      SACp_pinl_3682__eat_1579 = SACp_pinl_3682__eat_1579 + 1;
-     
-      { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[0]) += 1; }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_3682__eat_1579 >= 0) { { SACp_emal_9265__uprf_5489 = SACp_pinl_3682__eat_1579; }; SACp_emal_9265__uprf_5489 = 1; } else { SACp_emal_9265__uprf_5489 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Non-negativity constraint violated " "for scalar " "SACp_pinl_3682__eat_1579"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_3682__eat_1579 < SACp_emal_9301__flat_3) { SACp_emal_9264__uprf_5483 = 1; } else { SACp_emal_9264__uprf_5483 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Scalar constraint `" "SACp_pinl_3682__eat_1579" " (" "%d" ") < " "SACp_emal_9301__flat_3" " (" "%d" ")" "' violated", SACp_pinl_3682__eat_1579, SACp_emal_9301__flat_3); }
-      { { if (!((1 == SACp_emal_9263__pinl_4657__idc_842__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9263__pinl_4657__idc_842")); }; { { if ((((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842)) + ((6 + (SACp_emal_9263__pinl_4657__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842)) + ((6 + (SACp_emal_9263__pinl_4657__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842)) + ((6 + (SACp_emal_9263__pinl_4657__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9263__pinl_4657__idc_842 = (int *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9263__pinl_4657__idc_842 = (int *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842)) + ((6 + (SACp_emal_9263__pinl_4657__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9263__pinl_4657__idc_842 = (int *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9263__pinl_4657__idc_842 = (int *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842)) + ((6 + (SACp_emal_9263__pinl_4657__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842)) + ((6 + (SACp_emal_9263__pinl_4657__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842)) + ((6 + (SACp_emal_9263__pinl_4657__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842)) + ((6 + (SACp_emal_9263__pinl_4657__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842)) + ((6 + (SACp_emal_9263__pinl_4657__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9263__pinl_4657__idc_842 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9263__pinl_4657__idc_842 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9263__pinl_4657__idc_842 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9263__pinl_4657__idc_842 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9263__pinl_4657__idc_842__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842, SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842), ((6 + (SACp_emal_9263__pinl_4657__idc_842__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9263__pinl_4657__idc_842__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9263__pinl_4657__idc_842__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9263__pinl_4657__idc_842__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-      if (!((SACp_emal_9263__pinl_4657__idc_842__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 732, "Assignment with incompatible types found"); };
-      if (!((SACp_emal_9263__pinl_4657__idc_842__shp0 == 1))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 732, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      { SACp_emal_9263__pinl_4657__idc_842[0] = SACp_pinl_3682__eat_1579; }
-
-      if (!SACp_emal_9264__uprf_5483) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9265__uprf_5489) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      SACp_emal_9262__ivesli_9052 = ( SACp_emal_9263__pinl_4657__idc_842[0]);
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9263__pinl_4657__idc_842__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842, ((((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842) - 1)->data1.arena)); } else { if (SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842, ((((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842, ((((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842) - 1)->data1.arena)); } } else { if (((((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842, ((((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842) - 1)->data1.arena)); } else { if (((((SACp_emal_9263__pinl_4657__idc_842__sz * sizeof (*SACp_emal_9263__pinl_4657__idc_842))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842, ((((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9263__pinl_4657__idc_842); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9263__pinl_4657__idc_842__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-     
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "1st argument of _idx_sel_ is not a scalar!"); };
-      { SACp_emal_9261__pinl_4615__icc_821 = ( SACp_emal_9281__pinl_2431__icc_1506[SACp_emal_9262__ivesli_9052]); }
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { if (SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } } else { if (((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { if (((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ; }
-      if (!SACp_emal_9264__uprf_5483) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9265__uprf_5489) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ; }
-      { ; ; }
-
-
-
-      if (!((0 == (SACp_emal_9252__pinl_3659__icc_1560__dim - SACp_pinl_3669_i__sz)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "WL expression with illegal dimension found!"); };
-      if (!((1 == SAC_SACp_emal_9252__pinl_3659__icc_1560_shpfac0))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 518, 5, "WL expression with illegal size found!"); };
-      { SACp_emal_9252__pinl_3659__icc_1560[SACp_wlidx_9033__pinl_3659__icc_1560] = SACp_emal_9261__pinl_4615__icc_821; };
-
-      ;
-      SACp_wlidx_9033__pinl_3659__icc_1560 = SACp_wlidx_9033__pinl_3659__icc_1560 + 1;
-      SACp_pinl_3682__eat_1579 = SACp_pinl_3682__eat_1579 + 1;
-      } }
-# 2921 "/home/rubenhensen/sac/blas/a.out.c"
-    }
-
-   
-    _comp_10134_SAC_label:;
-    { ; ; }
-    { ; ; }
-
-
-
-    if ((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9274__pinl_3213__icc_1560__desc) & (-1 ^ (3))))[0]) == 1) {
-      if (!((SACp_emal_9237__pinl_3663__icc_1567__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 516, 10, "Assignment with incompatible types found"); };
-      if (!((SACp_emal_9237__pinl_3663__icc_1567__shp0 == SACp_emal_9274__pinl_3213__icc_1560__shp0))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 516, 10, "Assignment with incompatible types found"); };
-      SACp_emal_9237__pinl_3663__icc_1567__desc = SACp_emal_9274__pinl_3213__icc_1560__desc;
-      ;
-      ;
-      { SACp_emal_9237__pinl_3663__icc_1567 = SACp_emal_9274__pinl_3213__icc_1560; }
-     
-      }
-    else
-
-    { { if (!((1 == SACp_emal_9237__pinl_3663__icc_1567__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9237__pinl_3663__icc_1567")); }; { { if ((((SACp_emal_9237__pinl_3663__icc_1567__sz * sizeof (*SACp_emal_9237__pinl_3663__icc_1567)) + ((6 + (SACp_emal_9237__pinl_3663__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9237__pinl_3663__icc_1567__sz * sizeof (*SACp_emal_9237__pinl_3663__icc_1567)) + ((6 + (SACp_emal_9237__pinl_3663__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9237__pinl_3663__icc_1567__sz * sizeof (*SACp_emal_9237__pinl_3663__icc_1567)) + ((6 + (SACp_emal_9237__pinl_3663__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9237__pinl_3663__icc_1567 = (double *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9237__pinl_3663__icc_1567 = (double *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9237__pinl_3663__icc_1567__sz * sizeof (*SACp_emal_9237__pinl_3663__icc_1567)) + ((6 + (SACp_emal_9237__pinl_3663__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9237__pinl_3663__icc_1567 = (double *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9237__pinl_3663__icc_1567 = (double *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9237__pinl_3663__icc_1567__sz * sizeof (*SACp_emal_9237__pinl_3663__icc_1567)) + ((6 + (SACp_emal_9237__pinl_3663__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9237__pinl_3663__icc_1567__sz * sizeof (*SACp_emal_9237__pinl_3663__icc_1567)) + ((6 + (SACp_emal_9237__pinl_3663__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9237__pinl_3663__icc_1567__sz * sizeof (*SACp_emal_9237__pinl_3663__icc_1567)) + ((6 + (SACp_emal_9237__pinl_3663__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9237__pinl_3663__icc_1567__sz * sizeof (*SACp_emal_9237__pinl_3663__icc_1567)) + ((6 + (SACp_emal_9237__pinl_3663__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9237__pinl_3663__icc_1567__sz * sizeof (*SACp_emal_9237__pinl_3663__icc_1567)) + ((6 + (SACp_emal_9237__pinl_3663__icc_1567__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9237__pinl_3663__icc_1567 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9237__pinl_3663__icc_1567 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9237__pinl_3663__icc_1567 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9237__pinl_3663__icc_1567 = (double *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9237__pinl_3663__icc_1567__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9237__pinl_3663__icc_1567, SACp_emal_9237__pinl_3663__icc_1567__sz * sizeof (*SACp_emal_9237__pinl_3663__icc_1567), ((6 + (SACp_emal_9237__pinl_3663__icc_1567__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9237__pinl_3663__icc_1567__desc) & (-1 ^ (3))))[0]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9237__pinl_3663__icc_1567__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9237__pinl_3663__icc_1567__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-    if (!((SACp_emal_9237__pinl_3663__icc_1567__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 516, 10, "Assignment with incompatible types found"); };
-    if (!((SACp_emal_9237__pinl_3663__icc_1567__shp0 == 10))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 516, 10, "Assignment with incompatible types found"); };
-    ;
-
-    }
-    { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9237__pinl_3663__icc_1567__desc) & (-1 ^ (3))))[0]) += 1; }
-    { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9274__pinl_3213__icc_1560__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560, ((((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560) - 1)->data1.arena)); } else { if (SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560, ((((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560, ((((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560) - 1)->data1.arena)); } } else { if (((((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560, ((((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560) - 1)->data1.arena)); } else { if (((((SACp_emal_9274__pinl_3213__icc_1560__sz * sizeof (*SACp_emal_9274__pinl_3213__icc_1560))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560, ((((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9274__pinl_3213__icc_1560); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9274__pinl_3213__icc_1560__desc) & (-1 ^ (3))))); } } } } else { } }
-    { ; ;
-
-
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 516, 10, "Assignment with incompatible types found"); };
-    ;
-
-    }
-    { ; ;
-
-
-
-    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 516, 10, "Assignment with incompatible types found"); };
-    ;
-
-    }
-   
-
-
-
-    {
-      int SAC_schedule_start0;
-      int SAC_schedule_stop0;
-
-
-
-
-      int SAC_SACp_emal_9237__pinl_3663__icc_1567_shpfac0;
-
-
-
-
-      {
-        int SAC_i;
-        SAC_SACp_emal_9237__pinl_3663__icc_1567_shpfac0 = 1;
-      }
-
-
-
-
-      SAC_schedule_start0 = 0;
-      SAC_schedule_stop0 = 10;
-
-
-
-
-      SACp_wlidx_9034__pinl_3663__icc_1567
-        = SAC_schedule_start0 * SAC_SACp_emal_9237__pinl_3663__icc_1567_shpfac0;
-
-      { int SAC_stop_SACp_pinl_3683__eat_1580 = 10; for (SACp_pinl_3683__eat_1580 = 0; SACp_pinl_3683__eat_1580 < 10;) {
-     
-      { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[0]) += 1; }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayArith.sac", 147, 10265, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      ; ; { SACp_emal_9244__pinl_4040__flat_1858 = (SACp_pinl_3683__eat_1580) / (2); };
-      ; ; { SACp_emal_9244__pinl_4040__flat_1858 = (2) * (SACp_emal_9244__pinl_4040__flat_1858); };
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_emal_9244__pinl_4040__flat_1858 >= 0) { { SACp_emal_9242__uprf_4903 = SACp_emal_9244__pinl_4040__flat_1858; }; SACp_emal_9242__uprf_4903 = 1; } else { SACp_emal_9242__uprf_4903 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Non-negativity constraint violated " "for scalar " "SACp_emal_9244__pinl_4040__flat_1858"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_emal_9244__pinl_4040__flat_1858 < SACp_emal_9301__flat_3) { SACp_emal_9241__uprf_4897 = 1; } else { SACp_emal_9241__uprf_4897 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Scalar constraint `" "SACp_emal_9244__pinl_4040__flat_1858" " (" "%d" ") < " "SACp_emal_9301__flat_3" " (" "%d" ")" "' violated", SACp_emal_9244__pinl_4040__flat_1858, SACp_emal_9301__flat_3); }
-      { { if (!((1 == SACp_emal_9240__pinl_3975__idc_1721__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9240__pinl_3975__idc_1721")); }; { { if ((((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721)) + ((6 + (SACp_emal_9240__pinl_3975__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721)) + ((6 + (SACp_emal_9240__pinl_3975__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721)) + ((6 + (SACp_emal_9240__pinl_3975__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9240__pinl_3975__idc_1721 = (int *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9240__pinl_3975__idc_1721 = (int *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721)) + ((6 + (SACp_emal_9240__pinl_3975__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9240__pinl_3975__idc_1721 = (int *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9240__pinl_3975__idc_1721 = (int *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721)) + ((6 + (SACp_emal_9240__pinl_3975__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721)) + ((6 + (SACp_emal_9240__pinl_3975__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721)) + ((6 + (SACp_emal_9240__pinl_3975__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721)) + ((6 + (SACp_emal_9240__pinl_3975__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721)) + ((6 + (SACp_emal_9240__pinl_3975__idc_1721__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9240__pinl_3975__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9240__pinl_3975__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9240__pinl_3975__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9240__pinl_3975__idc_1721 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9240__pinl_3975__idc_1721__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721, SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721), ((6 + (SACp_emal_9240__pinl_3975__idc_1721__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9240__pinl_3975__idc_1721__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9240__pinl_3975__idc_1721__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9240__pinl_3975__idc_1721__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-      if (!((SACp_emal_9240__pinl_3975__idc_1721__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3112, "Assignment with incompatible types found"); };
-      if (!((SACp_emal_9240__pinl_3975__idc_1721__shp0 == 1))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3112, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      { SACp_emal_9240__pinl_3975__idc_1721[0] = SACp_emal_9244__pinl_4040__flat_1858; }
-
-      { ; ; }
-      if (!SACp_emal_9241__uprf_4897) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9242__uprf_4903) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      SACp_emal_9239__ivesli_9049 = ( SACp_emal_9240__pinl_3975__idc_1721[0]);
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9240__pinl_3975__idc_1721__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721) - 1)->data1.arena)); } else { if (SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721) - 1)->data1.arena)); } } else { if (((((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721) - 1)->data1.arena)); } else { if (((((SACp_emal_9240__pinl_3975__idc_1721__sz * sizeof (*SACp_emal_9240__pinl_3975__idc_1721))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721, ((((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9240__pinl_3975__idc_1721); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9240__pinl_3975__idc_1721__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-     
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "1st argument of _idx_sel_ is not a scalar!"); };
-      { SACp_emal_9238__pinl_3932__icc_1700 = ( SACp_emal_9281__pinl_2431__icc_1506[SACp_emal_9239__ivesli_9049]); }
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { if (SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } } else { if (((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { if (((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ; }
-      if (!SACp_emal_9241__uprf_4897) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9242__uprf_4903) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ArrayBasics.sac", 152, 3147, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ; }
-      { ; ; }
-
-
-
-      if (!((0 == (SACp_emal_9237__pinl_3663__icc_1567__dim - SACp_pinl_3681_i__SSA0_1__sz)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 517, 5, "WL expression with illegal dimension found!"); };
-      if (!((1 == SAC_SACp_emal_9237__pinl_3663__icc_1567_shpfac0))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 517, 5, "WL expression with illegal size found!"); };
-      { SACp_emal_9237__pinl_3663__icc_1567[SACp_wlidx_9034__pinl_3663__icc_1567] = SACp_emal_9238__pinl_3932__icc_1700; };
-
-      ;
-      SACp_wlidx_9034__pinl_3663__icc_1567 = SACp_wlidx_9034__pinl_3663__icc_1567 + 1;
-      SACp_pinl_3683__eat_1580 = SACp_pinl_3683__eat_1580 + 1;
-     
-      { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[0]) += 1; }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_3683__eat_1580 >= 0) { { SACp_emal_9250__uprf_5474 = SACp_pinl_3683__eat_1580; }; SACp_emal_9250__uprf_5474 = 1; } else { SACp_emal_9250__uprf_5474 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Non-negativity constraint violated " "for scalar " "SACp_pinl_3683__eat_1580"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Assignment with incompatible types found"); };
-      ;
-
-      }
-      if (SACp_pinl_3683__eat_1580 < SACp_emal_9301__flat_3) { SACp_emal_9249__uprf_5468 = 1; } else { SACp_emal_9249__uprf_5468 = 0; SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Scalar constraint `" "SACp_pinl_3683__eat_1580" " (" "%d" ") < " "SACp_emal_9301__flat_3" " (" "%d" ")" "' violated", SACp_pinl_3683__eat_1580, SACp_emal_9301__flat_3); }
-      { { if (!((1 == SACp_emal_9248__pinl_4841__idc_842__dim))) { SAC_RuntimeWarning (("Inconsistant dimension for array %s found!", "SACp_emal_9248__pinl_4841__idc_842")); }; { { if ((((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842)) + ((6 + (SACp_emal_9248__pinl_4841__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842)) + ((6 + (SACp_emal_9248__pinl_4841__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842)) + ((6 + (SACp_emal_9248__pinl_4841__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9248__pinl_4841__idc_842 = (int *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_9248__pinl_4841__idc_842 = (int *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842)) + ((6 + (SACp_emal_9248__pinl_4841__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_9248__pinl_4841__idc_842 = (int *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_9248__pinl_4841__idc_842 = (int *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842)) + ((6 + (SACp_emal_9248__pinl_4841__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842)) + ((6 + (SACp_emal_9248__pinl_4841__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842)) + ((6 + (SACp_emal_9248__pinl_4841__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842)) + ((6 + (SACp_emal_9248__pinl_4841__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842)) + ((6 + (SACp_emal_9248__pinl_4841__idc_842__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_9248__pinl_4841__idc_842 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_9248__pinl_4841__idc_842 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_9248__pinl_4841__idc_842 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_9248__pinl_4841__idc_842 = (int *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_9248__pinl_4841__idc_842__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842, SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842), ((6 + (SACp_emal_9248__pinl_4841__idc_842__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9248__pinl_4841__idc_842__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9248__pinl_4841__idc_842__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9248__pinl_4841__idc_842__desc) & (-1 ^ (3))))[1]) = 0; }
-
-
-
-      if (!((SACp_emal_9248__pinl_4841__idc_842__dim == (1)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 732, "Assignment with incompatible types found"); };
-      if (!((SACp_emal_9248__pinl_4841__idc_842__shp0 == 1))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 732, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      { SACp_emal_9248__pinl_4841__idc_842[0] = SACp_pinl_3683__eat_1580; }
-
-      if (!SACp_emal_9249__uprf_5468) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9250__uprf_5474) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-      SACp_emal_9247__ivesli_9050 = ( SACp_emal_9248__pinl_4841__idc_842[0]);
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9248__pinl_4841__idc_842__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842, ((((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842) - 1)->data1.arena)); } else { if (SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842, ((((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842, ((((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842) - 1)->data1.arena)); } } else { if (((((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842, ((((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842) - 1)->data1.arena)); } else { if (((((SACp_emal_9248__pinl_4841__idc_842__sz * sizeof (*SACp_emal_9248__pinl_4841__idc_842))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842, ((((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9248__pinl_4841__idc_842); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9248__pinl_4841__idc_842__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ;
-
-
-
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Assignment with incompatible types found"); };
-      ;
-
-      }
-
-
-
-     
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "1st argument of _idx_sel_ is not a scalar!"); };
-      { SACp_emal_9246__pinl_4799__icc_821 = ( SACp_emal_9290__pinl_2380__icc_1539[SACp_emal_9247__ivesli_9050]); }
-
-      { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { if (SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } } else { if (((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { if (((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))); } } } } else { } }
-      { ; ; }
-      if (!SACp_emal_9249__uprf_5468) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Primitive function _sel_VxA_ guard failed"); }
-      if (!SACp_emal_9250__uprf_5474) { SAC_RuntimeErrorLoc ("//builds/sac-group/build-sac-pkgs/sac2c-build/sac2c-release/src/sac2c-release-build/runtime_build/src/runtime_libraries-build/sacprelude_p.sac", 67, 721, "Primitive function _sel_VxA_ guard failed"); }
-      { ; ; }
-      { ; ; }
-
-
-
-      if (!((0 == (SACp_emal_9237__pinl_3663__icc_1567__dim - SACp_pinl_3681_i__SSA0_1__sz)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 517, 5, "WL expression with illegal dimension found!"); };
-      if (!((1 == SAC_SACp_emal_9237__pinl_3663__icc_1567_shpfac0))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 517, 5, "WL expression with illegal size found!"); };
-      { SACp_emal_9237__pinl_3663__icc_1567[SACp_wlidx_9034__pinl_3663__icc_1567] = SACp_emal_9246__pinl_4799__icc_821; };
-
-      ;
-      SACp_wlidx_9034__pinl_3663__icc_1567 = SACp_wlidx_9034__pinl_3663__icc_1567 + 1;
-      SACp_pinl_3683__eat_1580 = SACp_pinl_3683__eat_1580 + 1;
-      } }
-# 3184 "/home/rubenhensen/sac/blas/a.out.c"
-    }
-
-   
-    _comp_10135_SAC_label:;
-    { ; ; }
-    { ; ; }
-    { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { if (SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } } else { if (((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { if (((((SACp_emal_9281__pinl_2431__icc_1506__sz * sizeof (*SACp_emal_9281__pinl_2431__icc_1506))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, ((((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9281__pinl_2431__icc_1506); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9281__pinl_2431__icc_1506__desc) & (-1 ^ (3))))); } } } } else { } }
-    { if (((((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))[0]) -= 1) == 0) { { { { if (((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539)) + 2 * (sizeof (SAC_HM_header_t))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { if (SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if (((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)->num == 4) { SAC_HM_FreeSmallChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } } else { if (((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539))-1) / (sizeof (SAC_HM_header_t))) + 1) + (2 + 2) < 8193) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { if (((((SACp_emal_9290__pinl_2380__icc_1539__sz * sizeof (*SACp_emal_9290__pinl_2380__icc_1539))-1) / (sizeof (SAC_HM_header_t))) + 1) + 2 < 8193) { if (((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)->num == 7) { SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, ((((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539) - 1)->data1.arena)); } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, &(SAC_HM_arenas [0][(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; } } } else { switch (SAC_HM_thread_status) { case SAC_HM_single_threaded: SAC_HM_FreeLargeChunk ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539, &(SAC_HM_arenas[0] [(9 - 1)])); break; case SAC_HM_multi_threaded: SAC_HM_FreeTopArena_mt ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; case SAC_HM_any_threaded: SAC_HM_FreeTopArena_at ((SAC_HM_header_t *)SACp_emal_9290__pinl_2380__icc_1539); break; } } } } } } } { { SAC_HM_FreeDesc ((SAC_HM_header_t *)((SAC_array_descriptor_t) (((intptr_t)SACp_emal_9290__pinl_2380__icc_1539__desc) & (-1 ^ (3))))); } } } } else { } }
-    { ; ; }
-
-
-
-    if (!((_tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__dim == (1)))) { SAC_RuntimeWarningLoc ("./blas.sac", 16, 5, "Assignment with incompatible types found"); };
-    _tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__desc = SACp_emal_9237__pinl_3663__icc_1567__desc;
-    _tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__shp0 = SACp_emal_9237__pinl_3663__icc_1567__shp0;
-    _tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__sz = SACp_emal_9237__pinl_3663__icc_1567__sz;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__desc) & (-1 ^ (3))))[(6 + (0))]) = SACp_emal_9237__pinl_3663__icc_1567__shp0;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__desc) & (-1 ^ (3))))[4]) = SACp_emal_9237__pinl_3663__icc_1567__sz;
-    { _tcp_10124_SACp_emal_9237__pinl_3663__icc_1567 = SACp_emal_9237__pinl_3663__icc_1567; }
-
-
-
-
-    SACof__MAIN_CLStdIO__print__d_X (_tcp_10124_SACp_emal_9237__pinl_3663__icc_1567, _tcp_10124_SACp_emal_9237__pinl_3663__icc_1567__desc);
-
-
-
-
-    if (!((_tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__dim == (1)))) { SAC_RuntimeWarningLoc ("./blas.sac", 17, 5, "Assignment with incompatible types found"); };
-    _tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__desc = SACp_emal_9252__pinl_3659__icc_1560__desc;
-    _tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__shp0 = SACp_emal_9252__pinl_3659__icc_1560__shp0;
-    _tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__sz = SACp_emal_9252__pinl_3659__icc_1560__sz;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__desc) & (-1 ^ (3))))[(6 + (0))]) = SACp_emal_9252__pinl_3659__icc_1560__shp0;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__desc) & (-1 ^ (3))))[4]) = SACp_emal_9252__pinl_3659__icc_1560__sz;
-    { _tcp_10123_SACp_emal_9252__pinl_3659__icc_1560 = SACp_emal_9252__pinl_3659__icc_1560; }
-
-
-
-
-    SACof__MAIN_CLStdIO__print__d_X (_tcp_10123_SACp_emal_9252__pinl_3659__icc_1560, _tcp_10123_SACp_emal_9252__pinl_3659__icc_1560__desc);
-
-
-
-
-    { *SAC_arg_1__p = SACp_emal_9302__isaa_5553__rso_18_TheWorld; }
+    { *SAC_arg_1__p = SACp_emal_2702__isaa_225__rso_10_TheWorld; }
     return;
    
   }
@@ -5924,7 +3936,7 @@ void SACf__MAIN__main (int * SAC_arg_1__p) {
 
 }
 }
-# 3246 "/home/rubenhensen/sac/blas/a.out.c"
+# 1386 "/home/rubenhensen/sac/blas/a.out.c"
 void SACf__MAIN_CL_INIT__init (void) {
 {
   static const SAC_HM_thread_status_t SAC_HM_thread_status = SAC_HM_single_threaded;
@@ -5946,59 +3958,6 @@ void SACf__MAIN_CL_INIT__init (void) {
 
 
     SACf_TermFile_CL_INIT__init_stdout__SACt_TermFile__TermFile (&SACo_TermFile__stdout, &SACo_TermFile__stdout__desc);
-
-
-
-
-    return;
-   
-  }
-
-
-
-}
-}
-# 3288 "/home/rubenhensen/sac/blas/a.out.c"
-void SACof__MAIN_CLStdIO__print__d_X (double * SACl_arr, SAC_array_descriptor_t SACl_arr__desc) {
-{
-  static const SAC_HM_thread_status_t SAC_HM_thread_status = SAC_HM_single_threaded;
- 
-
-  {
-
-
-
-    double * _tcp_10122_SACl_arr;
-    SAC_array_descriptor_t _tcp_10122_SACl_arr__desc = 
-# 3298 "/home/rubenhensen/sac/blas/a.out.c" 3 4
-   ((void *)0)
-# 3298 "/home/rubenhensen/sac/blas/a.out.c"
-   ;
-    int _tcp_10122_SACl_arr__sz = 0;
-    int _tcp_10122_SACl_arr__dim = 0;
-
-
-
-
-
-    int SACl_arr__shp0 = (((SAC_array_descriptor_t) (((intptr_t)SACl_arr__desc) & (-1 ^ (3))))[(6 + (0))]);
-    int SACl_arr__sz = (((SAC_array_descriptor_t) (((intptr_t)SACl_arr__desc) & (-1 ^ (3))))[4]);
-    const int SACl_arr__dim = 1;
-
-   
-
-
-
-    _tcp_10122_SACl_arr__desc = SACl_arr__desc;
-    _tcp_10122_SACl_arr__sz = SACl_arr__sz;
-    _tcp_10122_SACl_arr__dim = SACl_arr__dim;
-    (((SAC_array_descriptor_t) (((intptr_t)_tcp_10122_SACl_arr__desc) & (-1 ^ (3))))[3]) = SACl_arr__dim;
-    { _tcp_10122_SACl_arr = SACl_arr; }
-
-
-
-
-    SACf_ArrayIO__print__d_P (_tcp_10122_SACl_arr, _tcp_10122_SACl_arr__desc);
 
 
 

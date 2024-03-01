@@ -190,7 +190,8 @@
       INTRINSIC MAX
 *     ..
 *
-*     Test the input parameters.
+*     Test the input parameters. 
+*     ### not necessary in sac because of guards ###
 *
       INFO = 0
       IF (.NOT.LSAME(TRANS,'N') .AND. .NOT.LSAME(TRANS,'T') .AND.
@@ -214,6 +215,7 @@
 *
 *     Quick return if possible.
 *
+*    ### not possible in simple way because return not allowed in if-statement ###
       IF ((M.EQ.0) .OR. (N.EQ.0) .OR.
      +    ((ALPHA.EQ.ZERO).AND. (BETA.EQ.ONE))) RETURN
 *

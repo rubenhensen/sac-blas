@@ -1,0 +1,67 @@
+module BlasLevel2;
+
+use StdIO: all;
+use Structures: all;
+use Math: all;
+export all;
+
+/*
+* dgemv
+* DGEMV  performs one of the matrix-vector operations
+*
+*    y := alpha*A*x + beta*y,   or   y := alpha*A**T*x + beta*y,
+*
+* where alpha and beta are scalars, x and y are vectors and A is an
+* m by n matrix.
+*/
+
+double[*] dgemv(char trans, int m, int n, double alpha, double[lda,n] a, int lda, double[o] x, int incx, double beta, double[d:shp] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,m), dgemvDim(trans, m, n, incx, o), incx != 0, dgemvDim(trans, m, n, incy, o), incy != 0
+{
+  // Quick return if possible
+  // if (m == 0 || n == 0 || (alpha == 0 && beta == 1)) return y; // not possible to return inside if statement
+
+  // calc beta*y first
+  // {i -> c*X[i] + s*Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
+  if (trans == 'N' | trans == 'n') {
+    lenx = n;
+    leny = m;
+  } else {
+    lenx = m;
+    leny = n;
+  }
+
+  y = {i -> beta*y[i*incy] | i < [n*leny] step [incy] ; i -> y[i]};
+  
+  print(trans);
+  return [0.0];
+
+}
+
+bool ismember(char c, char[n] ca)
+{
+  b = false;
+  for(i=0; i<n;i++) {
+    if (ca[i] == c) b = true;
+  }
+  return b;
+}
+
+bool dgemvXdim(char trans, int m, int n, int incx, int o)
+{
+  if (trans == 'N' || trans == 'n') {
+    res = ( 1 + ( n - 1 )*abs( incx ) );
+  } else {
+    res = ( 1 + ( m - 1 )*abs( incx ) );
+  }
+  return o >= res;
+}
+
+bool dgemvYdim(char trans, int m, int n, int incx, int o)
+{
+  if (trans == 'N' || trans == 'n') {
+    res = ( 1 + ( m - 1 )*abs( incx ) );
+  } else {
+    res = ( 1 + ( n - 1 )*abs( incx ) );
+  }
+  return o >= res;
+}

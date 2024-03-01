@@ -1,0 +1,13 @@
+module Openblas;
+
+export all;
+
+external float, float, float, float srotg(float a, float b, float c, float s);
+    #pragma linkname "SACsrotg"
+    #pragma linkobj "src/srotg.o"
+    #pragma linksign [0,1,2,3,4,5,6,7]
+
+// external  syserr, File fopen(string NAME, string MODE);
+//     #pragma linkobj "src/File/fopen.o"
+//     #pragma effect TheFileSystem
+//     #pragma linkname "SACfopen"

@@ -45,6 +45,11 @@ int[d:shp] vsum2(int[n,d:shp] a)
     return c;
 }
 
+double[d:shp] vsum2(int[n,d:shp] a) 
+{
+    return { iv  -> sum({jv -> a[jv][iv] | jv < [n]}) | iv < shp};
+}
+
 int[m:ishp] rsum( int n, int[n:oshp, m:ishp] a)
 {
     b = with {

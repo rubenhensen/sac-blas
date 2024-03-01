@@ -1,0 +1,12 @@
+use StdIO: all;
+use Array: all;
+use Openblas: all;
+
+int main() {
+    a, b, c, s = srotg(0.0f, 0.0f, 0.0f, 0.0f);
+    print(a);
+    print(b);
+    print(c);
+    print(s);
+    return 0;
+}

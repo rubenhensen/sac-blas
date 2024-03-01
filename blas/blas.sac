@@ -1,20 +1,34 @@
 use StdIO: all;
 use Array: all;
-use BlasLevel1: all;
+// use BlasLevel1: all;
+// use BlasLevel2: all;
+use Openblas: all;
 
 int main() {
-    X = tod(iota(10));
-    Y = tod(iota(10)) + 10.0;
-    print(X);
-    print(Y);
+    // Blas 1
+    // X = tod(iota(10));
+    // Y = tod(iota(10)) + 10.0;
+    // print(X);
+    // print(Y);
 
-    Xp, Yp = dswap(10, X, 1, Y, 1);
-    print(Xp);
-    print(Yp);
+    // Xp, Yp = dswap(10, X, 1, Y, 1);
+    // print(Xp);
+    // print(Yp);
 
-    Xp, Yp = dswap(5, X, 2, Y, 2);
-    print(Xp);
-    print(Yp);
+    // Xp, Yp = dswap(5, X, 2, Y, 2);
+    // print(Xp);
+    // print(Yp);
 
+    // print([[1,2,3],[3,4,5]]);
+    // print([[2,3]]);
+
+    // Blas 2
+    // a = dgemv('n', 1,2, 0.0, [[0.0, 0.0]], 1, [0.0, 0.0, 0.0], 1, 0.0, [0.0], 1);
+    // print(a);
+    a, b, c, s = srotg(0.0f, 0.0f, 0.0f, 0.0f);
+    print(a);
+    print(b);
+    print(c);
+    print(s);
     return 0;
 }

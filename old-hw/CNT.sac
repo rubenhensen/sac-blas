@@ -1,0 +1,33 @@
+class CNT;
+
+classtype int;
+
+export all;
+use Array : all;
+use StdIO : all;
+
+objdef CNT GlobalCounter = initCounter();
+
+CNT initCounter () {
+    return to_CNT(0);
+}
+
+void incCounter (CNT &cnt) {
+    val = from_CNT(cnt);
+    val = val + 1;
+    cnt = to_CNT(val);
+}
+
+int getCounterVal (CNT &cnt) {
+    val = from_CNT(cnt);
+    cnt = to_CNT(val);
+    return val;
+}
+
+void incGC() {
+    incCounter(GlobalCounter);
+}
+
+int GCval() {
+    return getCounterVal(GlobalCounter);
+}

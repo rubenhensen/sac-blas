@@ -1,0 +1,14 @@
+use StdIO: all;
+use Array: all;
+
+// use sac2c -check t ./file
+int main() {
+    // a = reshape([5,3], iota (15));
+    // print(a);
+    // printf("test");
+
+    print( shape ({ iv -> [iv,iv] | iv < [2,3]}) );
+    print( { iv -> [iv,iv] | iv < [2,3]} );
+
+    return 0;
+}

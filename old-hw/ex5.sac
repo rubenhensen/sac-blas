@@ -1,0 +1,268 @@
+use StdIO: all;
+use Array: all;
+
+int[*], int[*] takedrop( int[.] shp, int[*] a) {
+    t = take(shp, a);
+    d = drop(shp, a);
+
+    return (t, d);
+}
+
+double[*] sumV (double[+] a) {
+    shp = shape(a);
+    b = with {
+        ([0]<= iv < [shp[[0]]]): a[iv];
+    }: fold (+, 0.0);
+
+    return b;
+}
+
+double[.,.] matmul (double[.,.] a, double[.,.] b) {
+    print(a[[1,1]]);
+    return { [i,j] -> sumV( {[k]-> a[[i,k]] * b[[k,j]]})};
+}
+
+
+
+int main()
+{
+    // reshape([3,0,5], [])[[]]?
+    // an selection of the entire empty array with shape vector [3,0,5], 
+    //print(reshape([3,0,5], [])[[]]);
+    // ans:
+    // Dimension:  3
+    // Shape    : <  3,  0,  5>
+    // <>
+
+
+    // reshape([3,0,5], [])[[1]]? 
+    // a partial selection of the empty array. with shape vector [0,5]? dim 2
+    //print(reshape([3,0,5], [])[[1]]);
+    // ans
+    // Dimension:  2
+    // Shape    : <  0,  5>
+    // <>
+
+
+    // reshape([3,0,5], [])[[1,0]]?
+    // same but shape [5] and dim 1
+    //print(reshape([3,1,5], [])[[1,1]]);
+    // ans
+    // crashes?
+
+    // mat[reshape([2,0], [])]
+    //vect = iota(12) + 1;
+    //mat = reshape ([3,4], []);
+    //print(mat[reshape([2,0], [])]);
+    //print(reshape([2,0],[]));
+    // Just returns mat
+    // ans:
+    // also crashes
+    // Try to select with 2 dim, which is not possible.
+
+
+    //vect = [1,2,3,4,5,6,7,8,9];
+
+    //vect = [1,2,3,4,5,6,7,8,9];
+
+    //mat = [vect, vect+10, vect+20];
+    //print(mat);
+
+    //mat2 = where(mat % 2 == 0, mat, -mat);
+    //print(mat2);
+
+    //print(max(mat2, 0));
+
+
+    //ex 6
+    //min(reshape([3,0,5], []), 42)? 
+    //could crash, could be an array of shap 3,0,5 with val 42 everywhere
+    //print(min(reshape([3,0,5], []), 42));
+    // ans: nil is lower, thus keeps to be an empty array.
+    
+    //reshape([3,0,5], []) + reshape([3,0,5], [])
+    // Will be just an empty array at [3,0,5]
+    //print(reshape([3,0,5], []) + reshape([3,0,5], []));
+
+    //reshape([1,1], [1]) + reshape([1], [1])
+    // An array of shape [1,1], filled with 2s
+    //print(reshape([1,1], [1]) + reshape([1,1], [1]));
+    // ans: breaks, arrays need to be the same size
+
+    //print(reshape([1,1], [1]));
+    //print(reshape([1], [1]));
+
+    // ex2 bs
+    a = reshape ([5,3], iota (15));
+    b = reshape ([5,3,2], iota (30));
+
+    x,y = takedrop([2],a);
+    //print(x);
+    //print(y);
+    //print(5);
+
+    xda = tod(a);
+    xdb = tod(b);
+    //print(xd);
+    ans = sumV(xda);
+    print(ans);
+    print(b);
+    ans = sumV(xdb);
+    print(ans);
+
+   // print("ANS");
+   // print(ans);
+
+//    print(a);
+//    print("test");
+//    print(a[1]);
+//    print(shape(a));
+//    print(shape(a[0]));
+//    print(shape(a)*0);
+
+
+    //.print(take([2,-2], mat));
+    //print(take([2], mat));
+    //print(take([], mat));
+
+    //print(take([0], mat));
+    //print(take([2, 0], mat));
+    //print(take([2], reshape([3,0,5], [])));
+
+    //print(drop([0, -1], mat));
+
+    //print(mat ++ mat);
+
+    //print(rotate([-1, 42], mat));
+    //print(rotate([ 1], mat));
+
+    //print(shift([0, -2], 0, mat));
+    //print(shift([0, -22], 0, mat));
+    //print(shift([1], 0, mat));
+
+
+
+    //mat = [vect, vect+10, vect+20];
+    //print(mat);
+
+   // mat2 = where(mat % 2 == 0, mat, -mat);
+    //print(mat2);
+
+    //print(max(mat2, 0)); 
+
+
+//    a = with {
+//         ([0,2] <= [i,j] < [5,6]): 42;
+//       }: genarray([5,6], 0);
+//   print(a);
+
+//    shp = [5,6];
+//    a = with {
+//          (0*shp <= iv < shp): 42;
+//        }: genarray(shp, 0);
+//    print(a);
+
+// / /  a = with {
+//          (. < iv < .): 42;/
+//        }: genarray([5,6], 0);
+//    print(a);
+
+//    a = with {
+// /         (. <= jv=[x,y] <= [4,5]): 42;
+//        }: genarray( [5,6], 0);
+//    print(a);
+
+//    a = with {
+//          (. <= [i,j] <= . step [1,4]): 42;
+//        }: genarray([5,6], 0);
+//    print(a);
+
+//    a = with {
+ //         (. <= [i,j] <= . step [2,4] width [1,2]): 42;
+//        }: genarray([5,6], 0);
+//   print(a); 
+
+//    a = with {
+//      (. <= [i] <= .): i;
+//    }: genarray( [6], 0);
+//    print(a); 
+
+//    c = with {
+//       ([0] <= iv <= [5]): a[iv];
+//      }: fold(*, 1);
+//    print(c); 
+
+
+    vect = [1,2,3,4,5,6,7,8,9];
+
+   mat = [vect, vect+10, vect+20];
+   print(mat);
+
+    print(take([2,-2], mat));
+    print(take([2], mat));
+    print(take([], mat));
+
+    print("HERE");
+    print(take([0], mat));
+    print(take([2, 0], mat));
+    print(take([2], reshape([3,0,5], [])));
+
+    print(drop([0, -1], mat));
+
+    print(mat ++ mat);
+
+    print(rotate([-1, 42], mat));
+    print(rotate([ 1], mat));
+
+    print(shift([0, -2], 0, mat));
+    //print(shift([0, -22], 0, mat));
+    print(shift([1], 0, mat)); 
+
+    print(prod(vect));
+    print(all(mat >= 1));
+    print(any(mat > 1));
+    print(maxval(mat));
+    print(minval(mat)); 
+
+    print(mat);
+
+    print(mat[[1]]);
+    print(mat[[1,.]]);
+    print(mat[[1,...]]);
+
+    print(mat[[.,1]]);
+    print(mat[[...,1]]);
+
+    print(mat[[1,...,1]]);
+
+    arr3d = [mat, mat];
+    print(arr3d);
+
+    print(arr3d[[.,1]]);
+    print(arr3d[[...,1]]); 
+
+    print("NEW");
+
+    vect = [0,1,2,3,4,5,6,7,8,9];
+    mat = {[i] -> vect[[i]]*10+vect};
+    print(mat);
+    mat_inc = {iv -> mat[iv] + 1};
+    print(mat_inc);
+
+    mat_trans = {[i,j] -> mat[[j,i]]};
+    print(mat_trans);
+
+    mat_diag = {[i,j] -> where(i == j , mat[[i,j]] , 0)};
+    print(mat_diag); 
+
+    a = reshape ([10,6], tod (iota (60)));
+    b = reshape ([6,8], tod (iota (48)));
+
+    c = matmul (a,b);
+    print(c);
+    print("#######################");
+    print( [10,8,6,3] / [5,4,2,3]);
+    print( [10,8,6,3] / [5,4,2]);
+    return 0;
+}
+

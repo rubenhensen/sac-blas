@@ -1,0 +1,54 @@
+use Array: all except {tile};
+use StdIO: all;
+
+int main() 
+{
+    a = reshape( [20,12], iota(240));
+    // print(a);
+    // print( tile( [2,2], [1,1], a) ); 
+    // print( tile ([2], [1], a) );
+    // print( tile ([], [], a) );
+
+    // print( block(a, [2,3]) );
+    // print( block(a, [2]) );
+    // print( block(a, []) );
+    // print( block (block (a,[2,3]), [2,2]) );
+
+    print(a);
+    print( all (unblock (block (a, [2,3]), 2) == a) );
+    print( unblock (block (a, [2,3]), 2));
+    // print( all (unblock (block (a, [2]), 1) == a) );
+    // print( all (unblock (block (a, []), 0) == a) );
+    // b = [1,2,3,4,5];
+    // print(take([-2], b));
+    // unblock()
+
+
+    return 0;
+}
+
+int[*] tile(int[n] shp, int[m] off, int[d:shp2] arr) 
+{
+    return {iv -> arr[iv + off] | iv < shp};
+} 
+
+int[od:shp,od:s,id:ishp] block( int[od:oshp,id:ishp] a, int[od] s) | all (mod(oshp, s) == 0) , all (shp == (oshp / s)) 
+{
+    shp = oshp / s;
+    rshp = shp ++ s ++ ishp;
+    
+    return {iv -> {jv -> a[iv+jv] | jv < s } | iv < shp};
+}
+
+int[od:shp, id:ishp] unblock(int[od:oshp, od:s, id:ishp] a, int od) | all(shp == oshp * s)
+{
+    // print((oshp * s) ++ ishp);
+    // a[oshp][s][ishp] -> x[shp][ishp]
+    // [20,12] 
+    // oshp = 20 
+    // s = 12
+    // shp = 240
+    // [12] -> [1][0]
+    // return {iv -> {kj -> a[iv/s][mod(iv,oshp)][kj] | kj < ishp} | iv < oshp * s};
+    return reshape(oshp * s ++ ishp, a);
+}

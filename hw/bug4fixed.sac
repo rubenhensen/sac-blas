@@ -1,0 +1,14 @@
+use StdIO: all;
+use Array: all;
+
+int main() {
+    print(myTake1 ([0], reshape ([10,5], iota(50))));
+    return 0;
+}
+
+int[shp] myTake1 (int[n] shp, int[n:shpo,m:shpi] data) |  all(shp < shpo) && all (shp >= 0)
+{
+    return {iv -> data[iv] | iv < shp};
+}
+
+

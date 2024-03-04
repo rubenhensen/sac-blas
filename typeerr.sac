@@ -1,7 +1,0 @@
-use StdIO: all;
-use Array: all;
-
-int main() {
-  print(3+"a");
-  return 0;
-}

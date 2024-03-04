@@ -1,0 +1,108 @@
+// Cannot seem to get matmul to work on n dimensional arrays.
+
+use StdIO: all;
+use Array: all;
+
+int[*], int[*] takedrop( int[.] shp, int[*] a) {
+    t = take(shp, a);
+    d = drop(shp, a);
+
+    return (t, d);
+}
+
+double[*] sumV (double[+] a) {
+    shp = shape(a);
+    b = with {
+        ([0]<= iv < [shp[[0]]]): a[iv];
+    }: fold (+, 0.0);
+
+    return b;
+}
+
+double[.,.] matmul (double[.,.] a, double[.,.] b) {
+    return { [i,j] -> sumV( {[k]-> a[[i,k]] * b[[k,j]]})};
+}
+
+//double[*] matmul1 (double[*] a, double[*] b) {
+//    print("shape A");
+//    print(shape(a));
+//
+//    print("drop([-1],shape(a))");
+//    print(drop([-1],shape(a)));
+
+//    print(transpose(b));
+//    print(drop([-1],reverse(shape(b))));
+//    return { iv -> sum( a[drop([-1],iv)] * transpose(b)[(drop([-1],iv))]) | iv < drop([-1],shape(a)) ++ drop([-1],reverse(shape(b)))};
+//    return a;
+//}
+
+double[.,.] block (int[1] bs, double[.] a) {
+    div = shape(a)/bs;
+    return reshape(bs++div, a);
+}
+
+double[+] block1 (int[1] bs, double[+] a) {
+    div = shape(a)[[0]]/bs;
+    return reshape(bs++div++drop([1], shape(a)), a);
+}
+
+double[*] block2 (int[.] bs, double[*] a) {
+    print(shape(bs));
+    print(shape(bs)[0]);
+    // Make bs same dim. as 'a'. e.g. bs [2,2] and 'a' [4,3,2] becomes [2,2,1]. 
+    b = with {
+      (shape(bs)*0 <= [i] < shape(bs)): bs[i];
+    }: genarray( shape(shape(a)), 1);
+    divShp = shape(a)/b;
+    newShp = bs++divShp;
+    return reshape(newShp, a);
+}
+
+double[*] unblock (int dims, double[*] a) {
+    print(a);
+    print(shape(a));
+
+    // Take the front dims
+    //print( take([dims],shape(a)) );
+    frontDims = take([dims],shape(a));
+    //print( drop([dims],shape(a)) );
+    backDims = drop([dims],shape(a));
+
+    // Make front dims same dim. as shape 'a'. e.g. bs [2,2] and 'a' [4,3,2] becomes [2,2,1]. 
+    b = with {
+      (shape(frontDims)*0 <= [i] < shape(frontDims)): frontDims[i];
+    }: genarray( shape(backDims), 1);
+
+    newShp = b*backDims;
+    return reshape(newShp, a);
+}
+
+int main()
+{
+    a = reshape ([10,6], tod (iota (60)));
+    b = reshape ([6,8], tod (iota (48)));
+    print( block ([3], tod (iota (12))) );
+    print( block1 ([3], tod(reshape([6,2,2], iota(24)))) );
+    print( "a" );
+    print( a );
+    print( "b" );
+    print( b );
+    print( "block2 ([2,2], a)" );
+    print( block2 ([2,2], a) );
+    print( "block2 ([2,2], b)" );
+    print( block2 ([2,2], b) );
+    print( "block2 ([], a)" );
+    print( block2 ([], a) );
+    print( "block2 ([3,2], tod(reshape([6,2,2], iota(24))))" );
+    print( block2 ([3,2], tod(reshape([6,2,2], iota(24)))) );
+
+    //print( "matmul1 (block2 ([2,2], a), block2 ([2,2], b))" );
+    //print( matmul1 (transpose(block2 ([2,2], a)), block2 ([2,2], b)) );
+    print(unblock (2, block2 ( [2,2], a)));
+
+    bs = [3,2];
+    a = tod(reshape([6,2,2], iota(24)));
+    print( all(unblock (shape(bs)[0], block2 (bs, a)) == a));
+    //print( all (unblock (2, matmul1 (block2 ( [2,2], a), block ([2,2], b))) == matmul (a, b)) );
+    return 0;
+}

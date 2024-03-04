@@ -2573,7 +2573,2558 @@ extern int SAC_MT_output_lock;
 extern unsigned int SAC_RTSPEC_controller_threads;
 # 133 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
 # 279 "/home/rubenhensen/sac/blas/a.out.c" 2
-# 311 "/home/rubenhensen/sac/blas/a.out.c"
+# 308 "/home/rubenhensen/sac/blas/a.out.c"
+# 1 "/usr/include/math.h" 1 3 4
+# 27 "/usr/include/math.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
+# 28 "/usr/include/math.h" 2 3 4
+
+
+
+
+
+
+
+
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/math-vector.h" 1 3 4
+# 25 "/usr/include/x86_64-linux-gnu/bits/math-vector.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h" 1 3 4
+# 26 "/usr/include/x86_64-linux-gnu/bits/math-vector.h" 2 3 4
+# 41 "/usr/include/math.h" 2 3 4
+# 152 "/usr/include/math.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h" 1 3 4
+# 153 "/usr/include/math.h" 2 3 4
+# 163 "/usr/include/math.h" 3 4
+
+# 163 "/usr/include/math.h" 3 4
+typedef float float_t;
+typedef double double_t;
+# 204 "/usr/include/math.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/fp-logb.h" 1 3 4
+# 205 "/usr/include/math.h" 2 3 4
+# 247 "/usr/include/math.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/fp-fast.h" 1 3 4
+# 248 "/usr/include/math.h" 2 3 4
+# 312 "/usr/include/math.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h" 3 4
+extern int __fpclassify (double __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+
+
+extern int __signbit (double __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+
+
+
+extern int __isinf (double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __finite (double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __isnan (double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __iseqsig (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern int __issignaling (double __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+# 313 "/usr/include/math.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 1 3 4
+# 53 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+__attribute__ ((__simd__ ("notinbranch"))) extern double acos (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __acos (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double asin (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __asin (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double atan (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __atan (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double atan2 (double __y, double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __atan2 (double __y, double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double cos (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __cos (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double sin (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __sin (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double tan (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __tan (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double cosh (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __cosh (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double sinh (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __sinh (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double tanh (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __tanh (double __x) __attribute__ ((__nothrow__ , __leaf__));
+# 85 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+__attribute__ ((__simd__ ("notinbranch"))) extern double acosh (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __acosh (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double asinh (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __asinh (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double atanh (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __atanh (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double exp (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __exp (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double frexp (double __x, int *__exponent) __attribute__ ((__nothrow__ , __leaf__)); extern double __frexp (double __x, int *__exponent) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double ldexp (double __x, int __exponent) __attribute__ ((__nothrow__ , __leaf__)); extern double __ldexp (double __x, int __exponent) __attribute__ ((__nothrow__ , __leaf__));
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double log (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __log (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double log10 (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __log10 (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double modf (double __x, double *__iptr) __attribute__ ((__nothrow__ , __leaf__)); extern double __modf (double __x, double *__iptr) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
+# 119 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+__attribute__ ((__simd__ ("notinbranch"))) extern double expm1 (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __expm1 (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double log1p (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __log1p (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double logb (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __logb (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double exp2 (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __exp2 (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double log2 (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __log2 (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double pow (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)); extern double __pow (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double sqrt (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __sqrt (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double hypot (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)); extern double __hypot (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double cbrt (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __cbrt (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern double ceil (double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern double __ceil (double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern double fabs (double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern double __fabs (double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern double floor (double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern double __floor (double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern double fmod (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)); extern double __fmod (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__));
+# 177 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern int isinf (double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+
+
+extern int finite (double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern double drem (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)); extern double __drem (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern double significand (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __significand (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern double copysign (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern double __copysign (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+
+extern double nan (const char *__tagb) __attribute__ ((__nothrow__ , __leaf__)); extern double __nan (const char *__tagb) __attribute__ ((__nothrow__ , __leaf__));
+# 213 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern int isnan (double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+
+
+
+extern double j0 (double) __attribute__ ((__nothrow__ , __leaf__)); extern double __j0 (double) __attribute__ ((__nothrow__ , __leaf__));
+extern double j1 (double) __attribute__ ((__nothrow__ , __leaf__)); extern double __j1 (double) __attribute__ ((__nothrow__ , __leaf__));
+extern double jn (int, double) __attribute__ ((__nothrow__ , __leaf__)); extern double __jn (int, double) __attribute__ ((__nothrow__ , __leaf__));
+extern double y0 (double) __attribute__ ((__nothrow__ , __leaf__)); extern double __y0 (double) __attribute__ ((__nothrow__ , __leaf__));
+extern double y1 (double) __attribute__ ((__nothrow__ , __leaf__)); extern double __y1 (double) __attribute__ ((__nothrow__ , __leaf__));
+extern double yn (int, double) __attribute__ ((__nothrow__ , __leaf__)); extern double __yn (int, double) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern double erf (double) __attribute__ ((__nothrow__ , __leaf__)); extern double __erf (double) __attribute__ ((__nothrow__ , __leaf__));
+__attribute__ ((__simd__ ("notinbranch"))) extern double erfc (double) __attribute__ ((__nothrow__ , __leaf__)); extern double __erfc (double) __attribute__ ((__nothrow__ , __leaf__));
+extern double lgamma (double) __attribute__ ((__nothrow__ , __leaf__)); extern double __lgamma (double) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+extern double tgamma (double) __attribute__ ((__nothrow__ , __leaf__)); extern double __tgamma (double) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern double gamma (double) __attribute__ ((__nothrow__ , __leaf__)); extern double __gamma (double) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+
+extern double lgamma_r (double, int *__signgamp) __attribute__ ((__nothrow__ , __leaf__)); extern double __lgamma_r (double, int *__signgamp) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern double rint (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __rint (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double nextafter (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)); extern double __nextafter (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+extern double nexttoward (double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)); extern double __nexttoward (double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+# 275 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern double remainder (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)); extern double __remainder (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern double scalbn (double __x, int __n) __attribute__ ((__nothrow__ , __leaf__)); extern double __scalbn (double __x, int __n) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern int ilogb (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern int __ilogb (double __x) __attribute__ ((__nothrow__ , __leaf__));
+# 293 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern double scalbln (double __x, long int __n) __attribute__ ((__nothrow__ , __leaf__)); extern double __scalbln (double __x, long int __n) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern double nearbyint (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern double __nearbyint (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern double round (double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern double __round (double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+extern double trunc (double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern double __trunc (double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+
+extern double remquo (double __x, double __y, int *__quo) __attribute__ ((__nothrow__ , __leaf__)); extern double __remquo (double __x, double __y, int *__quo) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern long int lrint (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long int __lrint (double __x) __attribute__ ((__nothrow__ , __leaf__));
+__extension__
+extern long long int llrint (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long long int __llrint (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern long int lround (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long int __lround (double __x) __attribute__ ((__nothrow__ , __leaf__));
+__extension__
+extern long long int llround (double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long long int __llround (double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern double fdim (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)); extern double __fdim (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern double fmax (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern double __fmax (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern double fmin (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern double __fmin (double __x, double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+extern double fma (double __x, double __y, double __z) __attribute__ ((__nothrow__ , __leaf__)); extern double __fma (double __x, double __y, double __z) __attribute__ ((__nothrow__ , __leaf__));
+# 435 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern double scalb (double __x, double __n) __attribute__ ((__nothrow__ , __leaf__)); extern double __scalb (double __x, double __n) __attribute__ ((__nothrow__ , __leaf__));
+# 314 "/usr/include/math.h" 2 3 4
+# 329 "/usr/include/math.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h" 3 4
+extern int __fpclassifyf (float __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+
+
+extern int __signbitf (float __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+
+
+
+extern int __isinff (float __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __finitef (float __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __isnanf (float __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __iseqsigf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern int __issignalingf (float __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+# 330 "/usr/include/math.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 1 3 4
+# 53 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+__attribute__ ((__simd__ ("notinbranch"))) extern float acosf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __acosf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float asinf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __asinf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float atanf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __atanf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float atan2f (float __y, float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __atan2f (float __y, float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float cosf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __cosf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float sinf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __sinf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float tanf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __tanf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float coshf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __coshf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float sinhf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __sinhf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float tanhf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __tanhf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+# 85 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+__attribute__ ((__simd__ ("notinbranch"))) extern float acoshf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __acoshf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float asinhf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __asinhf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float atanhf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __atanhf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float expf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __expf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float frexpf (float __x, int *__exponent) __attribute__ ((__nothrow__ , __leaf__)); extern float __frexpf (float __x, int *__exponent) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float ldexpf (float __x, int __exponent) __attribute__ ((__nothrow__ , __leaf__)); extern float __ldexpf (float __x, int __exponent) __attribute__ ((__nothrow__ , __leaf__));
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float logf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __logf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float log10f (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __log10f (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float modff (float __x, float *__iptr) __attribute__ ((__nothrow__ , __leaf__)); extern float __modff (float __x, float *__iptr) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
+# 119 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+__attribute__ ((__simd__ ("notinbranch"))) extern float expm1f (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __expm1f (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float log1pf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __log1pf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float logbf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __logbf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float exp2f (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __exp2f (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float log2f (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __log2f (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float powf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)); extern float __powf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float sqrtf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __sqrtf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float hypotf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)); extern float __hypotf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float cbrtf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __cbrtf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern float ceilf (float __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern float __ceilf (float __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern float fabsf (float __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern float __fabsf (float __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern float floorf (float __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern float __floorf (float __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern float fmodf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)); extern float __fmodf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__));
+# 177 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern int isinff (float __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+
+
+extern int finitef (float __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern float dremf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)); extern float __dremf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern float significandf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __significandf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern float copysignf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern float __copysignf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+
+extern float nanf (const char *__tagb) __attribute__ ((__nothrow__ , __leaf__)); extern float __nanf (const char *__tagb) __attribute__ ((__nothrow__ , __leaf__));
+# 213 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern int isnanf (float __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+
+
+
+extern float j0f (float) __attribute__ ((__nothrow__ , __leaf__)); extern float __j0f (float) __attribute__ ((__nothrow__ , __leaf__));
+extern float j1f (float) __attribute__ ((__nothrow__ , __leaf__)); extern float __j1f (float) __attribute__ ((__nothrow__ , __leaf__));
+extern float jnf (int, float) __attribute__ ((__nothrow__ , __leaf__)); extern float __jnf (int, float) __attribute__ ((__nothrow__ , __leaf__));
+extern float y0f (float) __attribute__ ((__nothrow__ , __leaf__)); extern float __y0f (float) __attribute__ ((__nothrow__ , __leaf__));
+extern float y1f (float) __attribute__ ((__nothrow__ , __leaf__)); extern float __y1f (float) __attribute__ ((__nothrow__ , __leaf__));
+extern float ynf (int, float) __attribute__ ((__nothrow__ , __leaf__)); extern float __ynf (int, float) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+__attribute__ ((__simd__ ("notinbranch"))) extern float erff (float) __attribute__ ((__nothrow__ , __leaf__)); extern float __erff (float) __attribute__ ((__nothrow__ , __leaf__));
+__attribute__ ((__simd__ ("notinbranch"))) extern float erfcf (float) __attribute__ ((__nothrow__ , __leaf__)); extern float __erfcf (float) __attribute__ ((__nothrow__ , __leaf__));
+extern float lgammaf (float) __attribute__ ((__nothrow__ , __leaf__)); extern float __lgammaf (float) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+extern float tgammaf (float) __attribute__ ((__nothrow__ , __leaf__)); extern float __tgammaf (float) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern float gammaf (float) __attribute__ ((__nothrow__ , __leaf__)); extern float __gammaf (float) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+
+extern float lgammaf_r (float, int *__signgamp) __attribute__ ((__nothrow__ , __leaf__)); extern float __lgammaf_r (float, int *__signgamp) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern float rintf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __rintf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float nextafterf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)); extern float __nextafterf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__));
+
+extern float nexttowardf (float __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)); extern float __nexttowardf (float __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+# 275 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern float remainderf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)); extern float __remainderf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern float scalbnf (float __x, int __n) __attribute__ ((__nothrow__ , __leaf__)); extern float __scalbnf (float __x, int __n) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern int ilogbf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern int __ilogbf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+# 293 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern float scalblnf (float __x, long int __n) __attribute__ ((__nothrow__ , __leaf__)); extern float __scalblnf (float __x, long int __n) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern float nearbyintf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern float __nearbyintf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern float roundf (float __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern float __roundf (float __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+extern float truncf (float __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern float __truncf (float __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+
+extern float remquof (float __x, float __y, int *__quo) __attribute__ ((__nothrow__ , __leaf__)); extern float __remquof (float __x, float __y, int *__quo) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern long int lrintf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern long int __lrintf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+__extension__
+extern long long int llrintf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern long long int __llrintf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern long int lroundf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern long int __lroundf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+__extension__
+extern long long int llroundf (float __x) __attribute__ ((__nothrow__ , __leaf__)); extern long long int __llroundf (float __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern float fdimf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)); extern float __fdimf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern float fmaxf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern float __fmaxf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern float fminf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern float __fminf (float __x, float __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+extern float fmaf (float __x, float __y, float __z) __attribute__ ((__nothrow__ , __leaf__)); extern float __fmaf (float __x, float __y, float __z) __attribute__ ((__nothrow__ , __leaf__));
+# 435 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern float scalbf (float __x, float __n) __attribute__ ((__nothrow__ , __leaf__)); extern float __scalbf (float __x, float __n) __attribute__ ((__nothrow__ , __leaf__));
+# 331 "/usr/include/math.h" 2 3 4
+# 398 "/usr/include/math.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h" 3 4
+extern int __fpclassifyl (long double __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+
+
+extern int __signbitl (long double __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+
+
+
+extern int __isinfl (long double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __finitel (long double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __isnanl (long double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __iseqsigl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern int __issignalingl (long double __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+# 399 "/usr/include/math.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 1 3 4
+# 53 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+ extern long double acosl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __acosl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+ extern long double asinl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __asinl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+ extern long double atanl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __atanl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+ extern long double atan2l (long double __y, long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __atan2l (long double __y, long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+ extern long double cosl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __cosl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+ extern long double sinl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __sinl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+ extern long double tanl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __tanl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+ extern long double coshl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __coshl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+ extern long double sinhl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __sinhl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+ extern long double tanhl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __tanhl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+# 85 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+ extern long double acoshl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __acoshl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+ extern long double asinhl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __asinhl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+ extern long double atanhl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __atanhl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+ extern long double expl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __expl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double frexpl (long double __x, int *__exponent) __attribute__ ((__nothrow__ , __leaf__)); extern long double __frexpl (long double __x, int *__exponent) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double ldexpl (long double __x, int __exponent) __attribute__ ((__nothrow__ , __leaf__)); extern long double __ldexpl (long double __x, int __exponent) __attribute__ ((__nothrow__ , __leaf__));
+
+
+ extern long double logl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __logl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+ extern long double log10l (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __log10l (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double modfl (long double __x, long double *__iptr) __attribute__ ((__nothrow__ , __leaf__)); extern long double __modfl (long double __x, long double *__iptr) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
+# 119 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+ extern long double expm1l (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __expm1l (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+ extern long double log1pl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __log1pl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double logbl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __logbl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+ extern long double exp2l (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __exp2l (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+ extern long double log2l (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __log2l (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+ extern long double powl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)); extern long double __powl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double sqrtl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __sqrtl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+ extern long double hypotl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)); extern long double __hypotl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+ extern long double cbrtl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __cbrtl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern long double ceill (long double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern long double __ceill (long double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern long double fabsl (long double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern long double __fabsl (long double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern long double floorl (long double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern long double __floorl (long double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern long double fmodl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)); extern long double __fmodl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+# 177 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern int isinfl (long double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+
+
+extern int finitel (long double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern long double dreml (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)); extern long double __dreml (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern long double significandl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __significandl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern long double copysignl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern long double __copysignl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+
+extern long double nanl (const char *__tagb) __attribute__ ((__nothrow__ , __leaf__)); extern long double __nanl (const char *__tagb) __attribute__ ((__nothrow__ , __leaf__));
+# 213 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern int isnanl (long double __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+
+
+
+extern long double j0l (long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __j0l (long double) __attribute__ ((__nothrow__ , __leaf__));
+extern long double j1l (long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __j1l (long double) __attribute__ ((__nothrow__ , __leaf__));
+extern long double jnl (int, long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __jnl (int, long double) __attribute__ ((__nothrow__ , __leaf__));
+extern long double y0l (long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __y0l (long double) __attribute__ ((__nothrow__ , __leaf__));
+extern long double y1l (long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __y1l (long double) __attribute__ ((__nothrow__ , __leaf__));
+extern long double ynl (int, long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __ynl (int, long double) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+ extern long double erfl (long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __erfl (long double) __attribute__ ((__nothrow__ , __leaf__));
+ extern long double erfcl (long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __erfcl (long double) __attribute__ ((__nothrow__ , __leaf__));
+extern long double lgammal (long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __lgammal (long double) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+extern long double tgammal (long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __tgammal (long double) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern long double gammal (long double) __attribute__ ((__nothrow__ , __leaf__)); extern long double __gammal (long double) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+
+extern long double lgammal_r (long double, int *__signgamp) __attribute__ ((__nothrow__ , __leaf__)); extern long double __lgammal_r (long double, int *__signgamp) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern long double rintl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __rintl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double nextafterl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)); extern long double __nextafterl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+extern long double nexttowardl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)); extern long double __nexttowardl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+# 275 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern long double remainderl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)); extern long double __remainderl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern long double scalbnl (long double __x, int __n) __attribute__ ((__nothrow__ , __leaf__)); extern long double __scalbnl (long double __x, int __n) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern int ilogbl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern int __ilogbl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+# 293 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern long double scalblnl (long double __x, long int __n) __attribute__ ((__nothrow__ , __leaf__)); extern long double __scalblnl (long double __x, long int __n) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern long double nearbyintl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long double __nearbyintl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern long double roundl (long double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern long double __roundl (long double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+extern long double truncl (long double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern long double __truncl (long double __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+
+extern long double remquol (long double __x, long double __y, int *__quo) __attribute__ ((__nothrow__ , __leaf__)); extern long double __remquol (long double __x, long double __y, int *__quo) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+extern long int lrintl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long int __lrintl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+__extension__
+extern long long int llrintl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long long int __llrintl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern long int lroundl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long int __lroundl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+__extension__
+extern long long int llroundl (long double __x) __attribute__ ((__nothrow__ , __leaf__)); extern long long int __llroundl (long double __x) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern long double fdiml (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)); extern long double __fdiml (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern long double fmaxl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern long double __fmaxl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+extern long double fminl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern long double __fminl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+
+
+
+extern long double fmal (long double __x, long double __y, long double __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double __fmal (long double __x, long double __y, long double __z) __attribute__ ((__nothrow__ , __leaf__));
+# 435 "/usr/include/x86_64-linux-gnu/bits/mathcalls.h" 3 4
+extern long double scalbl (long double __x, long double __n) __attribute__ ((__nothrow__ , __leaf__)); extern long double __scalbl (long double __x, long double __n) __attribute__ ((__nothrow__ , __leaf__));
+# 400 "/usr/include/math.h" 2 3 4
+# 481 "/usr/include/math.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h" 3 4
+extern int __fpclassifyf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+
+
+extern int __signbitf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+
+
+
+extern int __isinff128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __finitef128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __isnanf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__const__));
+
+
+extern int __iseqsigf128 (_Float128 __x, _Float128 __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern int __issignalingf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
+     __attribute__ ((__const__));
+# 482 "/usr/include/math.h" 2 3 4
+# 854 "/usr/include/math.h" 3 4
+extern int signgam;
+# 934 "/usr/include/math.h" 3 4
+enum
+  {
+    FP_NAN =
+
+      0,
+    FP_INFINITE =
+
+      1,
+    FP_ZERO =
+
+      2,
+    FP_SUBNORMAL =
+
+      3,
+    FP_NORMAL =
+
+      4
+  };
+# 1423 "/usr/include/math.h" 3 4
+
+# 309 "/home/rubenhensen/sac/blas/a.out.c" 2
+# 1 "/usr/include/x86_64-linux-gnu/cblas.h" 1
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 5 "/usr/include/x86_64-linux-gnu/cblas.h" 2
+# 1 "/usr/include/x86_64-linux-gnu/openblas_config.h" 1
+# 59 "/usr/include/x86_64-linux-gnu/openblas_config.h"
+
+# 59 "/usr/include/x86_64-linux-gnu/openblas_config.h"
+typedef long BLASLONG;
+typedef unsigned long BLASULONG;
+
+
+
+
+typedef uint16_t bfloat16;
+
+
+
+
+
+typedef int blasint;
+# 87 "/usr/include/x86_64-linux-gnu/openblas_config.h"
+# 1 "/usr/include/stdio.h" 1 3 4
+# 27 "/usr/include/stdio.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
+# 28 "/usr/include/stdio.h" 2 3 4
+
+
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 34 "/usr/include/stdio.h" 2 3 4
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 1 3 4
+# 40 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 3 4
+
+# 40 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h" 3 4
+typedef __builtin_va_list __gnuc_va_list;
+# 37 "/usr/include/stdio.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h" 1 3 4
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h" 1 3 4
+# 13 "/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h" 3 4
+typedef struct
+{
+  int __count;
+  union
+  {
+    unsigned int __wch;
+    char __wchb[4];
+  } __value;
+} __mbstate_t;
+# 6 "/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h" 2 3 4
+
+
+
+
+typedef struct _G_fpos_t
+{
+  __off_t __pos;
+  __mbstate_t __state;
+} __fpos_t;
+# 40 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h" 3 4
+typedef struct _G_fpos64_t
+{
+  __off64_t __pos;
+  __mbstate_t __state;
+} __fpos64_t;
+# 41 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__FILE.h" 1 3 4
+
+
+
+struct _IO_FILE;
+typedef struct _IO_FILE __FILE;
+# 42 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/FILE.h" 1 3 4
+
+
+
+struct _IO_FILE;
+
+
+typedef struct _IO_FILE FILE;
+# 43 "/usr/include/stdio.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h" 1 3 4
+# 35 "/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h" 3 4
+struct _IO_FILE;
+struct _IO_marker;
+struct _IO_codecvt;
+struct _IO_wide_data;
+
+
+
+
+typedef void _IO_lock_t;
+
+
+
+
+
+struct _IO_FILE
+{
+  int _flags;
+
+
+  char *_IO_read_ptr;
+  char *_IO_read_end;
+  char *_IO_read_base;
+  char *_IO_write_base;
+  char *_IO_write_ptr;
+  char *_IO_write_end;
+  char *_IO_buf_base;
+  char *_IO_buf_end;
+
+
+  char *_IO_save_base;
+  char *_IO_backup_base;
+  char *_IO_save_end;
+
+  struct _IO_marker *_markers;
+
+  struct _IO_FILE *_chain;
+
+  int _fileno;
+  int _flags2;
+  __off_t _old_offset;
+
+
+  unsigned short _cur_column;
+  signed char _vtable_offset;
+  char _shortbuf[1];
+
+  _IO_lock_t *_lock;
+
+
+
+
+
+
+
+  __off64_t _offset;
+
+  struct _IO_codecvt *_codecvt;
+  struct _IO_wide_data *_wide_data;
+  struct _IO_FILE *_freeres_list;
+  void *_freeres_buf;
+  size_t __pad5;
+  int _mode;
+
+  char _unused2[15 * sizeof (int) - 4 * sizeof (void *) - sizeof (size_t)];
+};
+# 44 "/usr/include/stdio.h" 2 3 4
+# 52 "/usr/include/stdio.h" 3 4
+typedef __gnuc_va_list va_list;
+# 84 "/usr/include/stdio.h" 3 4
+typedef __fpos_t fpos_t;
+# 133 "/usr/include/stdio.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdio_lim.h" 1 3 4
+# 134 "/usr/include/stdio.h" 2 3 4
+# 143 "/usr/include/stdio.h" 3 4
+extern FILE *stdin;
+extern FILE *stdout;
+extern FILE *stderr;
+
+
+
+
+
+
+extern int remove (const char *__filename) __attribute__ ((__nothrow__ , __leaf__));
+
+extern int rename (const char *__old, const char *__new) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern int renameat (int __oldfd, const char *__old, int __newfd,
+       const char *__new) __attribute__ ((__nothrow__ , __leaf__));
+# 178 "/usr/include/stdio.h" 3 4
+extern int fclose (FILE *__stream);
+# 188 "/usr/include/stdio.h" 3 4
+extern FILE *tmpfile (void)
+  __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (fclose, 1))) __attribute__ ((__warn_unused_result__));
+# 205 "/usr/include/stdio.h" 3 4
+extern char *tmpnam (char[20]) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+
+
+
+
+extern char *tmpnam_r (char __s[20]) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+# 222 "/usr/include/stdio.h" 3 4
+extern char *tempnam (const char *__dir, const char *__pfx)
+   __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__malloc__ (__builtin_free, 1)));
+
+
+
+
+
+
+extern int fflush (FILE *__stream);
+# 239 "/usr/include/stdio.h" 3 4
+extern int fflush_unlocked (FILE *__stream);
+# 258 "/usr/include/stdio.h" 3 4
+extern FILE *fopen (const char *__restrict __filename,
+      const char *__restrict __modes)
+  __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (fclose, 1))) __attribute__ ((__warn_unused_result__));
+
+
+
+
+extern FILE *freopen (const char *__restrict __filename,
+        const char *__restrict __modes,
+        FILE *__restrict __stream) __attribute__ ((__warn_unused_result__));
+# 293 "/usr/include/stdio.h" 3 4
+extern FILE *fdopen (int __fd, const char *__modes) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (fclose, 1))) __attribute__ ((__warn_unused_result__));
+# 308 "/usr/include/stdio.h" 3 4
+extern FILE *fmemopen (void *__s, size_t __len, const char *__modes)
+  __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (fclose, 1))) __attribute__ ((__warn_unused_result__));
+
+
+
+
+extern FILE *open_memstream (char **__bufloc, size_t *__sizeloc) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (fclose, 1))) __attribute__ ((__warn_unused_result__));
+# 328 "/usr/include/stdio.h" 3 4
+extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
+      int __modes, size_t __n) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+extern void setbuffer (FILE *__restrict __stream, char *__restrict __buf,
+         size_t __size) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern void setlinebuf (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+
+
+extern int fprintf (FILE *__restrict __stream,
+      const char *__restrict __format, ...);
+
+
+
+
+extern int printf (const char *__restrict __format, ...);
+
+extern int sprintf (char *__restrict __s,
+      const char *__restrict __format, ...) __attribute__ ((__nothrow__));
+
+
+
+
+
+extern int vfprintf (FILE *__restrict __s, const char *__restrict __format,
+       __gnuc_va_list __arg);
+
+
+
+
+extern int vprintf (const char *__restrict __format, __gnuc_va_list __arg);
+
+extern int vsprintf (char *__restrict __s, const char *__restrict __format,
+       __gnuc_va_list __arg) __attribute__ ((__nothrow__));
+
+
+
+extern int snprintf (char *__restrict __s, size_t __maxlen,
+       const char *__restrict __format, ...)
+     __attribute__ ((__nothrow__)) __attribute__ ((__format__ (__printf__, 3, 4)));
+
+extern int vsnprintf (char *__restrict __s, size_t __maxlen,
+        const char *__restrict __format, __gnuc_va_list __arg)
+     __attribute__ ((__nothrow__)) __attribute__ ((__format__ (__printf__, 3, 0)));
+# 403 "/usr/include/stdio.h" 3 4
+extern int vdprintf (int __fd, const char *__restrict __fmt,
+       __gnuc_va_list __arg)
+     __attribute__ ((__format__ (__printf__, 2, 0)));
+extern int dprintf (int __fd, const char *__restrict __fmt, ...)
+     __attribute__ ((__format__ (__printf__, 2, 3)));
+
+
+
+
+
+
+
+extern int fscanf (FILE *__restrict __stream,
+     const char *__restrict __format, ...) __attribute__ ((__warn_unused_result__));
+
+
+
+
+extern int scanf (const char *__restrict __format, ...) __attribute__ ((__warn_unused_result__));
+
+extern int sscanf (const char *__restrict __s,
+     const char *__restrict __format, ...) __attribute__ ((__nothrow__ , __leaf__));
+# 434 "/usr/include/stdio.h" 3 4
+extern int fscanf (FILE *__restrict __stream, const char *__restrict __format, ...) __asm__ ("" "__isoc99_fscanf")
+
+                          __attribute__ ((__warn_unused_result__));
+extern int scanf (const char *__restrict __format, ...) __asm__ ("" "__isoc99_scanf")
+                         __attribute__ ((__warn_unused_result__));
+extern int sscanf (const char *__restrict __s, const char *__restrict __format, ...) __asm__ ("" "__isoc99_sscanf") __attribute__ ((__nothrow__ , __leaf__))
+
+                      ;
+# 459 "/usr/include/stdio.h" 3 4
+extern int vfscanf (FILE *__restrict __s, const char *__restrict __format,
+      __gnuc_va_list __arg)
+     __attribute__ ((__format__ (__scanf__, 2, 0))) __attribute__ ((__warn_unused_result__));
+
+
+
+
+
+extern int vscanf (const char *__restrict __format, __gnuc_va_list __arg)
+     __attribute__ ((__format__ (__scanf__, 1, 0))) __attribute__ ((__warn_unused_result__));
+
+
+extern int vsscanf (const char *__restrict __s,
+      const char *__restrict __format, __gnuc_va_list __arg)
+     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__format__ (__scanf__, 2, 0)));
+
+
+
+
+
+extern int vfscanf (FILE *__restrict __s, const char *__restrict __format, __gnuc_va_list __arg) __asm__ ("" "__isoc99_vfscanf")
+
+
+
+     __attribute__ ((__format__ (__scanf__, 2, 0))) __attribute__ ((__warn_unused_result__));
+extern int vscanf (const char *__restrict __format, __gnuc_va_list __arg) __asm__ ("" "__isoc99_vscanf")
+
+     __attribute__ ((__format__ (__scanf__, 1, 0))) __attribute__ ((__warn_unused_result__));
+extern int vsscanf (const char *__restrict __s, const char *__restrict __format, __gnuc_va_list __arg) __asm__ ("" "__isoc99_vsscanf") __attribute__ ((__nothrow__ , __leaf__))
+
+
+
+     __attribute__ ((__format__ (__scanf__, 2, 0)));
+# 513 "/usr/include/stdio.h" 3 4
+extern int fgetc (FILE *__stream);
+extern int getc (FILE *__stream);
+
+
+
+
+
+extern int getchar (void);
+
+
+
+
+
+
+extern int getc_unlocked (FILE *__stream);
+extern int getchar_unlocked (void);
+# 538 "/usr/include/stdio.h" 3 4
+extern int fgetc_unlocked (FILE *__stream);
+# 549 "/usr/include/stdio.h" 3 4
+extern int fputc (int __c, FILE *__stream);
+extern int putc (int __c, FILE *__stream);
+
+
+
+
+
+extern int putchar (int __c);
+# 565 "/usr/include/stdio.h" 3 4
+extern int fputc_unlocked (int __c, FILE *__stream);
+
+
+
+
+
+
+
+extern int putc_unlocked (int __c, FILE *__stream);
+extern int putchar_unlocked (int __c);
+
+
+
+
+
+
+extern int getw (FILE *__stream);
+
+
+extern int putw (int __w, FILE *__stream);
+
+
+
+
+
+
+
+extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
+     __attribute__ ((__warn_unused_result__)) __attribute__ ((__access__ (__write_only__, 1, 2)));
+# 605 "/usr/include/stdio.h" 3 4
+extern char *gets (char *__s) __attribute__ ((__warn_unused_result__)) __attribute__ ((__deprecated__));
+# 632 "/usr/include/stdio.h" 3 4
+extern __ssize_t __getdelim (char **__restrict __lineptr,
+                             size_t *__restrict __n, int __delimiter,
+                             FILE *__restrict __stream) __attribute__ ((__warn_unused_result__));
+extern __ssize_t getdelim (char **__restrict __lineptr,
+                           size_t *__restrict __n, int __delimiter,
+                           FILE *__restrict __stream) __attribute__ ((__warn_unused_result__));
+
+
+
+
+
+
+
+extern __ssize_t getline (char **__restrict __lineptr,
+                          size_t *__restrict __n,
+                          FILE *__restrict __stream) __attribute__ ((__warn_unused_result__));
+
+
+
+
+
+
+
+extern int fputs (const char *__restrict __s, FILE *__restrict __stream);
+
+
+
+
+
+extern int puts (const char *__s);
+
+
+
+
+
+
+extern int ungetc (int __c, FILE *__stream);
+
+
+
+
+
+
+extern size_t fread (void *__restrict __ptr, size_t __size,
+       size_t __n, FILE *__restrict __stream) __attribute__ ((__warn_unused_result__));
+
+
+
+
+extern size_t fwrite (const void *__restrict __ptr, size_t __size,
+        size_t __n, FILE *__restrict __s);
+# 702 "/usr/include/stdio.h" 3 4
+extern size_t fread_unlocked (void *__restrict __ptr, size_t __size,
+         size_t __n, FILE *__restrict __stream) __attribute__ ((__warn_unused_result__));
+extern size_t fwrite_unlocked (const void *__restrict __ptr, size_t __size,
+          size_t __n, FILE *__restrict __stream);
+
+
+
+
+
+
+
+extern int fseek (FILE *__stream, long int __off, int __whence);
+
+
+
+
+extern long int ftell (FILE *__stream) __attribute__ ((__warn_unused_result__));
+
+
+
+
+extern void rewind (FILE *__stream);
+# 736 "/usr/include/stdio.h" 3 4
+extern int fseeko (FILE *__stream, __off_t __off, int __whence);
+
+
+
+
+extern __off_t ftello (FILE *__stream) __attribute__ ((__warn_unused_result__));
+# 760 "/usr/include/stdio.h" 3 4
+extern int fgetpos (FILE *__restrict __stream, fpos_t *__restrict __pos);
+
+
+
+
+extern int fsetpos (FILE *__stream, const fpos_t *__pos);
+# 786 "/usr/include/stdio.h" 3 4
+extern void clearerr (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
+
+extern int feof (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+
+extern int ferror (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+
+
+
+extern void clearerr_unlocked (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
+extern int feof_unlocked (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+extern int ferror_unlocked (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+
+
+
+
+
+
+
+extern void perror (const char *__s);
+
+
+
+
+extern int fileno (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+
+
+
+
+extern int fileno_unlocked (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+# 823 "/usr/include/stdio.h" 3 4
+extern int pclose (FILE *__stream);
+
+
+
+
+
+extern FILE *popen (const char *__command, const char *__modes)
+  __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (pclose, 1))) __attribute__ ((__warn_unused_result__));
+
+
+
+
+
+
+extern char *ctermid (char *__s) __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__access__ (__write_only__, 1)));
+# 867 "/usr/include/stdio.h" 3 4
+extern void flockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern int ftrylockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+
+
+extern void funlockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
+# 885 "/usr/include/stdio.h" 3 4
+extern int __uflow (FILE *);
+extern int __overflow (FILE *, int);
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdio.h" 1 3 4
+# 46 "/usr/include/x86_64-linux-gnu/bits/stdio.h" 3 4
+extern __inline __attribute__ ((__gnu_inline__)) int
+getchar (void)
+{
+  return getc (stdin);
+}
+
+
+
+
+extern __inline __attribute__ ((__gnu_inline__)) int
+fgetc_unlocked (FILE *__fp)
+{
+  return (__builtin_expect (((__fp)->_IO_read_ptr >= (__fp)->_IO_read_end), 0) ? __uflow (__fp) : *(unsigned char *) (__fp)->_IO_read_ptr++);
+}
+
+
+
+
+
+extern __inline __attribute__ ((__gnu_inline__)) int
+getc_unlocked (FILE *__fp)
+{
+  return (__builtin_expect (((__fp)->_IO_read_ptr >= (__fp)->_IO_read_end), 0) ? __uflow (__fp) : *(unsigned char *) (__fp)->_IO_read_ptr++);
+}
+
+
+extern __inline __attribute__ ((__gnu_inline__)) int
+getchar_unlocked (void)
+{
+  return (__builtin_expect (((stdin)->_IO_read_ptr >= (stdin)->_IO_read_end), 0) ? __uflow (stdin) : *(unsigned char *) (stdin)->_IO_read_ptr++);
+}
+
+
+
+
+extern __inline __attribute__ ((__gnu_inline__)) int
+putchar (int __c)
+{
+  return putc (__c, stdout);
+}
+
+
+
+
+extern __inline __attribute__ ((__gnu_inline__)) int
+fputc_unlocked (int __c, FILE *__stream)
+{
+  return (__builtin_expect (((__stream)->_IO_write_ptr >= (__stream)->_IO_write_end), 0) ? __overflow (__stream, (unsigned char) (__c)) : (unsigned char) (*(__stream)->_IO_write_ptr++ = (__c)));
+}
+
+
+
+
+
+extern __inline __attribute__ ((__gnu_inline__)) int
+putc_unlocked (int __c, FILE *__stream)
+{
+  return (__builtin_expect (((__stream)->_IO_write_ptr >= (__stream)->_IO_write_end), 0) ? __overflow (__stream, (unsigned char) (__c)) : (unsigned char) (*(__stream)->_IO_write_ptr++ = (__c)));
+}
+
+
+extern __inline __attribute__ ((__gnu_inline__)) int
+putchar_unlocked (int __c)
+{
+  return (__builtin_expect (((stdout)->_IO_write_ptr >= (stdout)->_IO_write_end), 0) ? __overflow (stdout, (unsigned char) (__c)) : (unsigned char) (*(stdout)->_IO_write_ptr++ = (__c)));
+}
+# 127 "/usr/include/x86_64-linux-gnu/bits/stdio.h" 3 4
+extern __inline __attribute__ ((__gnu_inline__)) int
+__attribute__ ((__nothrow__ , __leaf__)) feof_unlocked (FILE *__stream)
+{
+  return (((__stream)->_flags & 0x0010) != 0);
+}
+
+
+extern __inline __attribute__ ((__gnu_inline__)) int
+__attribute__ ((__nothrow__ , __leaf__)) ferror_unlocked (FILE *__stream)
+{
+  return (((__stream)->_flags & 0x0020) != 0);
+}
+# 892 "/usr/include/stdio.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdio2.h" 1 3 4
+# 26 "/usr/include/x86_64-linux-gnu/bits/stdio2.h" 3 4
+extern int __sprintf_chk (char *__restrict __s, int __flag, size_t __slen,
+     const char *__restrict __format, ...) __attribute__ ((__nothrow__ , __leaf__))
+    __attribute__ ((__access__ (__write_only__, 1, 3)));
+extern int __vsprintf_chk (char *__restrict __s, int __flag, size_t __slen,
+      const char *__restrict __format,
+      __gnuc_va_list __ap) __attribute__ ((__nothrow__ , __leaf__))
+    __attribute__ ((__access__ (__write_only__, 1, 3)));
+
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) int
+__attribute__ ((__nothrow__ , __leaf__)) sprintf (char *__restrict __s, const char *__restrict __fmt, ...)
+{
+  return __builtin___sprintf_chk (__s, 2 - 1,
+      __builtin_object_size (__s, 2 > 1), __fmt,
+      __builtin_va_arg_pack ());
+}
+
+
+
+
+
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) int
+__attribute__ ((__nothrow__ , __leaf__)) vsprintf (char *__restrict __s, const char *__restrict __fmt, __gnuc_va_list __ap)
+
+{
+  return __builtin___vsprintf_chk (__s, 2 - 1,
+       __builtin_object_size (__s, 2 > 1), __fmt, __ap);
+}
+
+
+
+extern int __snprintf_chk (char *__restrict __s, size_t __n, int __flag,
+      size_t __slen, const char *__restrict __format,
+      ...) __attribute__ ((__nothrow__ , __leaf__))
+    __attribute__ ((__access__ (__write_only__, 1, 2)));
+extern int __vsnprintf_chk (char *__restrict __s, size_t __n, int __flag,
+       size_t __slen, const char *__restrict __format,
+       __gnuc_va_list __ap) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) int
+__attribute__ ((__nothrow__ , __leaf__)) snprintf (char *__restrict __s, size_t __n, const char *__restrict __fmt, ...)
+
+{
+  return __builtin___snprintf_chk (__s, __n, 2 - 1,
+       __builtin_object_size (__s, 2 > 1), __fmt,
+       __builtin_va_arg_pack ());
+}
+
+
+
+
+
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) int
+__attribute__ ((__nothrow__ , __leaf__)) vsnprintf (char *__restrict __s, size_t __n, const char *__restrict __fmt, __gnuc_va_list __ap)
+
+{
+  return __builtin___vsnprintf_chk (__s, __n, 2 - 1,
+        __builtin_object_size (__s, 2 > 1), __fmt, __ap);
+}
+
+
+
+
+
+extern int __fprintf_chk (FILE *__restrict __stream, int __flag,
+     const char *__restrict __format, ...);
+extern int __printf_chk (int __flag, const char *__restrict __format, ...);
+extern int __vfprintf_chk (FILE *__restrict __stream, int __flag,
+      const char *__restrict __format, __gnuc_va_list __ap);
+extern int __vprintf_chk (int __flag, const char *__restrict __format,
+     __gnuc_va_list __ap);
+
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) int
+fprintf (FILE *__restrict __stream, const char *__restrict __fmt, ...)
+{
+  return __fprintf_chk (__stream, 2 - 1, __fmt,
+   __builtin_va_arg_pack ());
+}
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) int
+printf (const char *__restrict __fmt, ...)
+{
+  return __printf_chk (2 - 1, __fmt, __builtin_va_arg_pack ());
+}
+
+
+
+
+
+
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) int
+vprintf (const char *__restrict __fmt, __gnuc_va_list __ap)
+{
+
+  return __vfprintf_chk (stdout, 2 - 1, __fmt, __ap);
+
+
+
+}
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) int
+vfprintf (FILE *__restrict __stream,
+   const char *__restrict __fmt, __gnuc_va_list __ap)
+{
+  return __vfprintf_chk (__stream, 2 - 1, __fmt, __ap);
+}
+
+
+extern int __dprintf_chk (int __fd, int __flag, const char *__restrict __fmt,
+     ...) __attribute__ ((__format__ (__printf__, 3, 4)));
+extern int __vdprintf_chk (int __fd, int __flag,
+      const char *__restrict __fmt, __gnuc_va_list __arg)
+     __attribute__ ((__format__ (__printf__, 3, 0)));
+
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) int
+dprintf (int __fd, const char *__restrict __fmt, ...)
+{
+  return __dprintf_chk (__fd, 2 - 1, __fmt,
+   __builtin_va_arg_pack ());
+}
+
+
+
+
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) int
+vdprintf (int __fd, const char *__restrict __fmt, __gnuc_va_list __ap)
+{
+  return __vdprintf_chk (__fd, 2 - 1, __fmt, __ap);
+}
+# 234 "/usr/include/x86_64-linux-gnu/bits/stdio2.h" 3 4
+extern char *__gets_chk (char *__str, size_t) __attribute__ ((__warn_unused_result__));
+extern char *__gets_warn (char *__str) __asm__ ("" "gets")
+     __attribute__ ((__warn_unused_result__)) __attribute__((__warning__ ("please use fgets or getline instead, gets can't " "specify buffer size")))
+                               ;
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) __attribute__ ((__warn_unused_result__)) char *
+gets (char *__str)
+{
+  if (__builtin_object_size (__str, 2 > 1) != (size_t) -1)
+    return __gets_chk (__str, __builtin_object_size (__str, 2 > 1));
+  return __gets_warn (__str);
+}
+
+
+extern char *__fgets_chk (char *__restrict __s, size_t __size, int __n,
+     FILE *__restrict __stream)
+    __attribute__ ((__warn_unused_result__)) __attribute__ ((__access__ (__write_only__, 1, 3)));
+extern char *__fgets_alias (char *__restrict __s, int __n, FILE *__restrict __stream) __asm__ ("" "fgets")
+
+
+    __attribute__ ((__warn_unused_result__)) __attribute__ ((__access__ (__write_only__, 1, 2)));
+extern char *__fgets_chk_warn (char *__restrict __s, size_t __size, int __n, FILE *__restrict __stream) __asm__ ("" "__fgets_chk")
+
+
+     __attribute__ ((__warn_unused_result__)) __attribute__((__warning__ ("fgets called with bigger size than length " "of destination buffer")))
+                                 ;
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__access__ (__write_only__, 1, 2))) char *
+fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
+{
+  size_t sz = __builtin_object_size (__s, 2 > 1);
+  if ((((__typeof (__n)) 0 < (__typeof (__n)) -1 || (__builtin_constant_p (__n) && (__n) > 0)) && __builtin_constant_p ((((long unsigned int) (__n)) <= (sz) / (sizeof (char)))) && (((long unsigned int) (__n)) <= (sz) / (sizeof (char)))))
+    return __fgets_alias (__s, __n, __stream);
+  if ((((__typeof (__n)) 0 < (__typeof (__n)) -1 || (__builtin_constant_p (__n) && (__n) > 0)) && __builtin_constant_p ((((long unsigned int) (__n)) <= (sz) / (sizeof (char)))) && !(((long unsigned int) (__n)) <= (sz) / (sizeof (char)))))
+    return __fgets_chk_warn (__s, sz, __n, __stream);
+  return __fgets_chk (__s, sz, __n, __stream);
+}
+
+extern size_t __fread_chk (void *__restrict __ptr, size_t __ptrlen,
+      size_t __size, size_t __n,
+      FILE *__restrict __stream) __attribute__ ((__warn_unused_result__));
+extern size_t __fread_alias (void *__restrict __ptr, size_t __size, size_t __n, FILE *__restrict __stream) __asm__ ("" "fread")
+
+
+            __attribute__ ((__warn_unused_result__));
+extern size_t __fread_chk_warn (void *__restrict __ptr, size_t __ptrlen, size_t __size, size_t __n, FILE *__restrict __stream) __asm__ ("" "__fread_chk")
+
+
+
+
+     __attribute__ ((__warn_unused_result__)) __attribute__((__warning__ ("fread called with bigger size * nmemb than length " "of destination buffer")))
+                                 ;
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) __attribute__ ((__warn_unused_result__)) size_t
+fread (void *__restrict __ptr, size_t __size, size_t __n,
+       FILE *__restrict __stream)
+{
+  size_t sz = __builtin_object_size (__ptr, 0);
+  if ((((__typeof (__n)) 0 < (__typeof (__n)) -1 || (__builtin_constant_p (__n) && (__n) > 0)) && __builtin_constant_p ((((long unsigned int) (__n)) <= (sz) / (__size))) && (((long unsigned int) (__n)) <= (sz) / (__size))))
+    return __fread_alias (__ptr, __size, __n, __stream);
+  if ((((__typeof (__n)) 0 < (__typeof (__n)) -1 || (__builtin_constant_p (__n) && (__n) > 0)) && __builtin_constant_p ((((long unsigned int) (__n)) <= (sz) / (__size))) && !(((long unsigned int) (__n)) <= (sz) / (__size))))
+    return __fread_chk_warn (__ptr, sz, __size, __n, __stream);
+  return __fread_chk (__ptr, sz, __size, __n, __stream);
+}
+# 327 "/usr/include/x86_64-linux-gnu/bits/stdio2.h" 3 4
+extern size_t __fread_unlocked_chk (void *__restrict __ptr, size_t __ptrlen,
+        size_t __size, size_t __n,
+        FILE *__restrict __stream) __attribute__ ((__warn_unused_result__));
+extern size_t __fread_unlocked_alias (void *__restrict __ptr, size_t __size, size_t __n, FILE *__restrict __stream) __asm__ ("" "fread_unlocked")
+
+
+                     __attribute__ ((__warn_unused_result__));
+extern size_t __fread_unlocked_chk_warn (void *__restrict __ptr, size_t __ptrlen, size_t __size, size_t __n, FILE *__restrict __stream) __asm__ ("" "__fread_unlocked_chk")
+
+
+
+
+     __attribute__ ((__warn_unused_result__)) __attribute__((__warning__ ("fread_unlocked called with bigger size * nmemb than " "length of destination buffer")))
+                                        ;
+
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) __attribute__ ((__warn_unused_result__)) size_t
+fread_unlocked (void *__restrict __ptr, size_t __size, size_t __n,
+  FILE *__restrict __stream)
+{
+  size_t sz = __builtin_object_size (__ptr, 0);
+  if ((((__typeof (__n)) 0 < (__typeof (__n)) -1 || (__builtin_constant_p (__n) && (__n) > 0)) && __builtin_constant_p ((((long unsigned int) (__n)) <= (sz) / (__size))) && (((long unsigned int) (__n)) <= (sz) / (__size))))
+    {
+
+      if (__builtin_constant_p (__size)
+   && __builtin_constant_p (__n)
+   && (__size | __n) < (((size_t) 1) << (8 * sizeof (size_t) / 2))
+   && __size * __n <= 8)
+ {
+   size_t __cnt = __size * __n;
+   char *__cptr = (char *) __ptr;
+   if (__cnt == 0)
+     return 0;
+
+   for (; __cnt > 0; --__cnt)
+     {
+       int __c = getc_unlocked (__stream);
+       if (__c == (-1))
+  break;
+       *__cptr++ = __c;
+     }
+   return (__cptr - (char *) __ptr) / __size;
+ }
+
+      return __fread_unlocked_alias (__ptr, __size, __n, __stream);
+    }
+  if ((((__typeof (__n)) 0 < (__typeof (__n)) -1 || (__builtin_constant_p (__n) && (__n) > 0)) && __builtin_constant_p ((((long unsigned int) (__n)) <= (sz) / (__size))) && !(((long unsigned int) (__n)) <= (sz) / (__size))))
+    return __fread_unlocked_chk_warn (__ptr, sz, __size, __n, __stream);
+  return __fread_unlocked_chk (__ptr, sz, __size, __n, __stream);
+
+}
+# 895 "/usr/include/stdio.h" 2 3 4
+
+
+
+
+
+
+
+
+# 88 "/usr/include/x86_64-linux-gnu/openblas_config.h" 2
+# 96 "/usr/include/x86_64-linux-gnu/openblas_config.h"
+# 1 "/usr/include/complex.h" 1 3 4
+# 26 "/usr/include/complex.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
+# 27 "/usr/include/complex.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/mathdef.h" 1 3 4
+# 30 "/usr/include/complex.h" 2 3 4
+
+
+
+
+
+# 110 "/usr/include/complex.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/cmathcalls.h" 1 3 4
+# 55 "/usr/include/x86_64-linux-gnu/bits/cmathcalls.h" 3 4
+extern double _Complex cacos (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __cacos (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern double _Complex casin (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __casin (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern double _Complex catan (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __catan (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double _Complex ccos (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __ccos (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern double _Complex csin (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __csin (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern double _Complex ctan (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __ctan (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern double _Complex cacosh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __cacosh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern double _Complex casinh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __casinh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern double _Complex catanh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __catanh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double _Complex ccosh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __ccosh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern double _Complex csinh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __csinh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern double _Complex ctanh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __ctanh (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern double _Complex cexp (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __cexp (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double _Complex clog (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __clog (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+# 103 "/usr/include/x86_64-linux-gnu/bits/cmathcalls.h" 3 4
+extern double _Complex cpow (double _Complex __x, double _Complex __y) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __cpow (double _Complex __x, double _Complex __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double _Complex csqrt (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __csqrt (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern double cabs (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double __cabs (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double carg (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double __carg (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double _Complex conj (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __conj (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double _Complex cproj (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double _Complex __cproj (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern double cimag (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double __cimag (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern double creal (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern double __creal (double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+# 111 "/usr/include/complex.h" 2 3 4
+
+
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/cmathcalls.h" 1 3 4
+# 55 "/usr/include/x86_64-linux-gnu/bits/cmathcalls.h" 3 4
+extern float _Complex cacosf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __cacosf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern float _Complex casinf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __casinf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern float _Complex catanf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __catanf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float _Complex ccosf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __ccosf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern float _Complex csinf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __csinf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern float _Complex ctanf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __ctanf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern float _Complex cacoshf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __cacoshf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern float _Complex casinhf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __casinhf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern float _Complex catanhf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __catanhf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float _Complex ccoshf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __ccoshf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern float _Complex csinhf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __csinhf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern float _Complex ctanhf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __ctanhf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern float _Complex cexpf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __cexpf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float _Complex clogf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __clogf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+# 103 "/usr/include/x86_64-linux-gnu/bits/cmathcalls.h" 3 4
+extern float _Complex cpowf (float _Complex __x, float _Complex __y) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __cpowf (float _Complex __x, float _Complex __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float _Complex csqrtf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __csqrtf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern float cabsf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float __cabsf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float cargf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float __cargf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float _Complex conjf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __conjf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float _Complex cprojf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float _Complex __cprojf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern float cimagf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float __cimagf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern float crealf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern float __crealf (float _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+# 118 "/usr/include/complex.h" 2 3 4
+# 143 "/usr/include/complex.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/cmathcalls.h" 1 3 4
+# 55 "/usr/include/x86_64-linux-gnu/bits/cmathcalls.h" 3 4
+extern long double _Complex cacosl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __cacosl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern long double _Complex casinl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __casinl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern long double _Complex catanl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __catanl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double _Complex ccosl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __ccosl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern long double _Complex csinl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __csinl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern long double _Complex ctanl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __ctanl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern long double _Complex cacoshl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __cacoshl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern long double _Complex casinhl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __casinhl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern long double _Complex catanhl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __catanhl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double _Complex ccoshl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __ccoshl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern long double _Complex csinhl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __csinhl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+extern long double _Complex ctanhl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __ctanhl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern long double _Complex cexpl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __cexpl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double _Complex clogl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __clogl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+# 103 "/usr/include/x86_64-linux-gnu/bits/cmathcalls.h" 3 4
+extern long double _Complex cpowl (long double _Complex __x, long double _Complex __y) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __cpowl (long double _Complex __x, long double _Complex __y) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double _Complex csqrtl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __csqrtl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern long double cabsl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double __cabsl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double cargl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double __cargl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double _Complex conjl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __conjl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double _Complex cprojl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double _Complex __cprojl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+
+
+extern long double cimagl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double __cimagl (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern long double creall (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double __creall (long double _Complex __z) __attribute__ ((__nothrow__ , __leaf__));
+# 144 "/usr/include/complex.h" 2 3 4
+# 247 "/usr/include/complex.h" 3 4
+
+# 97 "/usr/include/x86_64-linux-gnu/openblas_config.h" 2
+
+  
+# 98 "/usr/include/x86_64-linux-gnu/openblas_config.h"
+ typedef float _Complex openblas_complex_float;
+  typedef double _Complex openblas_complex_double;
+  typedef double _Complex openblas_complex_xdouble;
+# 131 "/usr/include/x86_64-linux-gnu/openblas_config.h"
+# 1 "/usr/include/sched.h" 1 3 4
+# 29 "/usr/include/sched.h" 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 30 "/usr/include/sched.h" 2 3 4
+# 43 "/usr/include/sched.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/sched.h" 1 3 4
+# 76 "/usr/include/x86_64-linux-gnu/bits/sched.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h" 1 3 4
+# 23 "/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h" 3 4
+
+# 23 "/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h" 3 4
+struct sched_param
+{
+  int sched_priority;
+};
+# 77 "/usr/include/x86_64-linux-gnu/bits/sched.h" 2 3 4
+
+
+# 98 "/usr/include/x86_64-linux-gnu/bits/sched.h" 3 4
+
+# 44 "/usr/include/sched.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/cpu-set.h" 1 3 4
+# 32 "/usr/include/x86_64-linux-gnu/bits/cpu-set.h" 3 4
+typedef unsigned long int __cpu_mask;
+
+
+
+
+
+
+typedef struct
+{
+  __cpu_mask __bits[1024 / (8 * sizeof (__cpu_mask))];
+} cpu_set_t;
+# 115 "/usr/include/x86_64-linux-gnu/bits/cpu-set.h" 3 4
+
+
+extern int __sched_cpucount (size_t __setsize, const cpu_set_t *__setp)
+     __attribute__ ((__nothrow__ , __leaf__));
+extern cpu_set_t *__sched_cpualloc (size_t __count) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+extern void __sched_cpufree (cpu_set_t *__set) __attribute__ ((__nothrow__ , __leaf__));
+
+
+# 45 "/usr/include/sched.h" 2 3 4
+
+
+
+
+
+
+
+
+
+extern int sched_setparam (__pid_t __pid, const struct sched_param *__param)
+     __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern int sched_getparam (__pid_t __pid, struct sched_param *__param) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern int sched_setscheduler (__pid_t __pid, int __policy,
+          const struct sched_param *__param) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern int sched_getscheduler (__pid_t __pid) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern int sched_yield (void) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern int sched_get_priority_max (int __algorithm) __attribute__ ((__nothrow__ , __leaf__));
+
+
+extern int sched_get_priority_min (int __algorithm) __attribute__ ((__nothrow__ , __leaf__));
+
+
+
+extern int sched_rr_get_interval (__pid_t __pid, struct timespec *__t) __attribute__ ((__nothrow__ , __leaf__));
+# 138 "/usr/include/sched.h" 3 4
+
+# 132 "/usr/include/x86_64-linux-gnu/openblas_config.h" 2
+# 6 "/usr/include/x86_64-linux-gnu/cblas.h" 2
+
+
+
+
+
+
+
+
+# 13 "/usr/include/x86_64-linux-gnu/cblas.h"
+void openblas_set_num_threads(int num_threads);
+void goto_set_num_threads(int num_threads);
+
+
+int openblas_get_num_threads(void);
+
+
+int openblas_get_num_procs(void);
+
+
+char* openblas_get_config(void);
+
+
+char* openblas_get_corename(void);
+
+
+
+int openblas_setaffinity(int thread_idx, size_t cpusetsize, cpu_set_t* cpu_set);
+
+
+
+int openblas_get_parallel(void);
+# 54 "/usr/include/x86_64-linux-gnu/cblas.h"
+typedef enum CBLAS_ORDER {CblasRowMajor=101, CblasColMajor=102} CBLAS_ORDER;
+typedef enum CBLAS_TRANSPOSE {CblasNoTrans=111, CblasTrans=112, CblasConjTrans=113, CblasConjNoTrans=114} CBLAS_TRANSPOSE;
+typedef enum CBLAS_UPLO {CblasUpper=121, CblasLower=122} CBLAS_UPLO;
+typedef enum CBLAS_DIAG {CblasNonUnit=131, CblasUnit=132} CBLAS_DIAG;
+typedef enum CBLAS_SIDE {CblasLeft=141, CblasRight=142} CBLAS_SIDE;
+typedef CBLAS_ORDER CBLAS_LAYOUT;
+
+float cblas_sdsdot(const blasint n, const float alpha, const float *x, const blasint incx, const float *y, const blasint incy);
+double cblas_dsdot (const blasint n, const float *x, const blasint incx, const float *y, const blasint incy);
+float cblas_sdot(const blasint n, const float *x, const blasint incx, const float *y, const blasint incy);
+double cblas_ddot(const blasint n, const double *x, const blasint incx, const double *y, const blasint incy);
+
+openblas_complex_float cblas_cdotu(const blasint n, const void *x, const blasint incx, const void *y, const blasint incy);
+openblas_complex_float cblas_cdotc(const blasint n, const void *x, const blasint incx, const void *y, const blasint incy);
+openblas_complex_double cblas_zdotu(const blasint n, const void *x, const blasint incx, const void *y, const blasint incy);
+openblas_complex_double cblas_zdotc(const blasint n, const void *x, const blasint incx, const void *y, const blasint incy);
+
+void cblas_cdotu_sub(const blasint n, const void *x, const blasint incx, const void *y, const blasint incy, void *ret);
+void cblas_cdotc_sub(const blasint n, const void *x, const blasint incx, const void *y, const blasint incy, void *ret);
+void cblas_zdotu_sub(const blasint n, const void *x, const blasint incx, const void *y, const blasint incy, void *ret);
+void cblas_zdotc_sub(const blasint n, const void *x, const blasint incx, const void *y, const blasint incy, void *ret);
+
+float cblas_sasum (const blasint n, const float *x, const blasint incx);
+double cblas_dasum (const blasint n, const double *x, const blasint incx);
+float cblas_scasum(const blasint n, const void *x, const blasint incx);
+double cblas_dzasum(const blasint n, const void *x, const blasint incx);
+
+float cblas_ssum (const blasint n, const float *x, const blasint incx);
+double cblas_dsum (const blasint n, const double *x, const blasint incx);
+float cblas_scsum(const blasint n, const void *x, const blasint incx);
+double cblas_dzsum(const blasint n, const void *x, const blasint incx);
+
+float cblas_snrm2 (const blasint N, const float *X, const blasint incX);
+double cblas_dnrm2 (const blasint N, const double *X, const blasint incX);
+float cblas_scnrm2(const blasint N, const void *X, const blasint incX);
+double cblas_dznrm2(const blasint N, const void *X, const blasint incX);
+
+size_t cblas_isamax(const blasint n, const float *x, const blasint incx);
+size_t cblas_idamax(const blasint n, const double *x, const blasint incx);
+size_t cblas_icamax(const blasint n, const void *x, const blasint incx);
+size_t cblas_izamax(const blasint n, const void *x, const blasint incx);
+
+size_t cblas_isamin(const blasint n, const float *x, const blasint incx);
+size_t cblas_idamin(const blasint n, const double *x, const blasint incx);
+size_t cblas_icamin(const blasint n, const void *x, const blasint incx);
+size_t cblas_izamin(const blasint n, const void *x, const blasint incx);
+
+size_t cblas_ismax(const blasint n, const float *x, const blasint incx);
+size_t cblas_idmax(const blasint n, const double *x, const blasint incx);
+size_t cblas_icmax(const blasint n, const void *x, const blasint incx);
+size_t cblas_izmax(const blasint n, const void *x, const blasint incx);
+
+size_t cblas_ismin(const blasint n, const float *x, const blasint incx);
+size_t cblas_idmin(const blasint n, const double *x, const blasint incx);
+size_t cblas_icmin(const blasint n, const void *x, const blasint incx);
+size_t cblas_izmin(const blasint n, const void *x, const blasint incx);
+
+void cblas_saxpy(const blasint n, const float alpha, const float *x, const blasint incx, float *y, const blasint incy);
+void cblas_daxpy(const blasint n, const double alpha, const double *x, const blasint incx, double *y, const blasint incy);
+void cblas_caxpy(const blasint n, const void *alpha, const void *x, const blasint incx, void *y, const blasint incy);
+void cblas_zaxpy(const blasint n, const void *alpha, const void *x, const blasint incx, void *y, const blasint incy);
+
+void cblas_scopy(const blasint n, const float *x, const blasint incx, float *y, const blasint incy);
+void cblas_dcopy(const blasint n, const double *x, const blasint incx, double *y, const blasint incy);
+void cblas_ccopy(const blasint n, const void *x, const blasint incx, void *y, const blasint incy);
+void cblas_zcopy(const blasint n, const void *x, const blasint incx, void *y, const blasint incy);
+
+void cblas_sswap(const blasint n, float *x, const blasint incx, float *y, const blasint incy);
+void cblas_dswap(const blasint n, double *x, const blasint incx, double *y, const blasint incy);
+void cblas_cswap(const blasint n, void *x, const blasint incx, void *y, const blasint incy);
+void cblas_zswap(const blasint n, void *x, const blasint incx, void *y, const blasint incy);
+
+void cblas_srot(const blasint N, float *X, const blasint incX, float *Y, const blasint incY, const float c, const float s);
+void cblas_drot(const blasint N, double *X, const blasint incX, double *Y, const blasint incY, const double c, const double s);
+void cblas_csrot(const blasint n, const void *x, const blasint incx, void *y, const blasint incY, const float c, const float s);
+void cblas_zdrot(const blasint n, const void *x, const blasint incx, void *y, const blasint incY, const double c, const double s);
+
+void cblas_srotg(float *a, float *b, float *c, float *s);
+void cblas_drotg(double *a, double *b, double *c, double *s);
+void cblas_crotg(void *a, void *b, float *c, void *s);
+void cblas_zrotg(void *a, void *b, double *c, void *s);
+
+
+void cblas_srotm(const blasint N, float *X, const blasint incX, float *Y, const blasint incY, const float *P);
+void cblas_drotm(const blasint N, double *X, const blasint incX, double *Y, const blasint incY, const double *P);
+
+void cblas_srotmg(float *d1, float *d2, float *b1, const float b2, float *P);
+void cblas_drotmg(double *d1, double *d2, double *b1, const double b2, double *P);
+
+void cblas_sscal(const blasint N, const float alpha, float *X, const blasint incX);
+void cblas_dscal(const blasint N, const double alpha, double *X, const blasint incX);
+void cblas_cscal(const blasint N, const void *alpha, void *X, const blasint incX);
+void cblas_zscal(const blasint N, const void *alpha, void *X, const blasint incX);
+void cblas_csscal(const blasint N, const float alpha, void *X, const blasint incX);
+void cblas_zdscal(const blasint N, const double alpha, void *X, const blasint incX);
+
+void cblas_sgemv(const enum CBLAS_ORDER order, const enum CBLAS_TRANSPOSE trans, const blasint m, const blasint n,
+   const float alpha, const float *a, const blasint lda, const float *x, const blasint incx, const float beta, float *y, const blasint incy);
+void cblas_dgemv(const enum CBLAS_ORDER order, const enum CBLAS_TRANSPOSE trans, const blasint m, const blasint n,
+   const double alpha, const double *a, const blasint lda, const double *x, const blasint incx, const double beta, double *y, const blasint incy);
+void cblas_cgemv(const enum CBLAS_ORDER order, const enum CBLAS_TRANSPOSE trans, const blasint m, const blasint n,
+   const void *alpha, const void *a, const blasint lda, const void *x, const blasint incx, const void *beta, void *y, const blasint incy);
+void cblas_zgemv(const enum CBLAS_ORDER order, const enum CBLAS_TRANSPOSE trans, const blasint m, const blasint n,
+   const void *alpha, const void *a, const blasint lda, const void *x, const blasint incx, const void *beta, void *y, const blasint incy);
+
+void cblas_sger (const enum CBLAS_ORDER order, const blasint M, const blasint N, const float alpha, const float *X, const blasint incX, const float *Y, const blasint incY, float *A, const blasint lda);
+void cblas_dger (const enum CBLAS_ORDER order, const blasint M, const blasint N, const double alpha, const double *X, const blasint incX, const double *Y, const blasint incY, double *A, const blasint lda);
+void cblas_cgeru(const enum CBLAS_ORDER order, const blasint M, const blasint N, const void *alpha, const void *X, const blasint incX, const void *Y, const blasint incY, void *A, const blasint lda);
+void cblas_cgerc(const enum CBLAS_ORDER order, const blasint M, const blasint N, const void *alpha, const void *X, const blasint incX, const void *Y, const blasint incY, void *A, const blasint lda);
+void cblas_zgeru(const enum CBLAS_ORDER order, const blasint M, const blasint N, const void *alpha, const void *X, const blasint incX, const void *Y, const blasint incY, void *A, const blasint lda);
+void cblas_zgerc(const enum CBLAS_ORDER order, const blasint M, const blasint N, const void *alpha, const void *X, const blasint incX, const void *Y, const blasint incY, void *A, const blasint lda);
+
+void cblas_strsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag, const blasint N, const float *A, const blasint lda, float *X, const blasint incX);
+void cblas_dtrsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag, const blasint N, const double *A, const blasint lda, double *X, const blasint incX);
+void cblas_ctrsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag, const blasint N, const void *A, const blasint lda, void *X, const blasint incX);
+void cblas_ztrsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag, const blasint N, const void *A, const blasint lda, void *X, const blasint incX);
+
+void cblas_strmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag, const blasint N, const float *A, const blasint lda, float *X, const blasint incX);
+void cblas_dtrmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag, const blasint N, const double *A, const blasint lda, double *X, const blasint incX);
+void cblas_ctrmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag, const blasint N, const void *A, const blasint lda, void *X, const blasint incX);
+void cblas_ztrmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag, const blasint N, const void *A, const blasint lda, void *X, const blasint incX);
+
+void cblas_ssyr(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const float alpha, const float *X, const blasint incX, float *A, const blasint lda);
+void cblas_dsyr(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const double alpha, const double *X, const blasint incX, double *A, const blasint lda);
+void cblas_cher(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const float alpha, const void *X, const blasint incX, void *A, const blasint lda);
+void cblas_zher(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const double alpha, const void *X, const blasint incX, void *A, const blasint lda);
+
+void cblas_ssyr2(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo,const blasint N, const float alpha, const float *X,
+                const blasint incX, const float *Y, const blasint incY, float *A, const blasint lda);
+void cblas_dsyr2(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const double alpha, const double *X,
+                const blasint incX, const double *Y, const blasint incY, double *A, const blasint lda);
+void cblas_cher2(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const void *alpha, const void *X, const blasint incX,
+                const void *Y, const blasint incY, void *A, const blasint lda);
+void cblas_zher2(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const void *alpha, const void *X, const blasint incX,
+                const void *Y, const blasint incY, void *A, const blasint lda);
+
+void cblas_sgbmv(const enum CBLAS_ORDER order, const enum CBLAS_TRANSPOSE TransA, const blasint M, const blasint N,
+                 const blasint KL, const blasint KU, const float alpha, const float *A, const blasint lda, const float *X, const blasint incX, const float beta, float *Y, const blasint incY);
+void cblas_dgbmv(const enum CBLAS_ORDER order, const enum CBLAS_TRANSPOSE TransA, const blasint M, const blasint N,
+                 const blasint KL, const blasint KU, const double alpha, const double *A, const blasint lda, const double *X, const blasint incX, const double beta, double *Y, const blasint incY);
+void cblas_cgbmv(const enum CBLAS_ORDER order, const enum CBLAS_TRANSPOSE TransA, const blasint M, const blasint N,
+                 const blasint KL, const blasint KU, const void *alpha, const void *A, const blasint lda, const void *X, const blasint incX, const void *beta, void *Y, const blasint incY);
+void cblas_zgbmv(const enum CBLAS_ORDER order, const enum CBLAS_TRANSPOSE TransA, const blasint M, const blasint N,
+                 const blasint KL, const blasint KU, const void *alpha, const void *A, const blasint lda, const void *X, const blasint incX, const void *beta, void *Y, const blasint incY);
+
+void cblas_ssbmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const blasint K, const float alpha, const float *A,
+                 const blasint lda, const float *X, const blasint incX, const float beta, float *Y, const blasint incY);
+void cblas_dsbmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const blasint K, const double alpha, const double *A,
+                 const blasint lda, const double *X, const blasint incX, const double beta, double *Y, const blasint incY);
+
+
+void cblas_stbmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const blasint K, const float *A, const blasint lda, float *X, const blasint incX);
+void cblas_dtbmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const blasint K, const double *A, const blasint lda, double *X, const blasint incX);
+void cblas_ctbmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const blasint K, const void *A, const blasint lda, void *X, const blasint incX);
+void cblas_ztbmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const blasint K, const void *A, const blasint lda, void *X, const blasint incX);
+
+void cblas_stbsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const blasint K, const float *A, const blasint lda, float *X, const blasint incX);
+void cblas_dtbsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const blasint K, const double *A, const blasint lda, double *X, const blasint incX);
+void cblas_ctbsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const blasint K, const void *A, const blasint lda, void *X, const blasint incX);
+void cblas_ztbsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const blasint K, const void *A, const blasint lda, void *X, const blasint incX);
+
+void cblas_stpmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const float *Ap, float *X, const blasint incX);
+void cblas_dtpmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const double *Ap, double *X, const blasint incX);
+void cblas_ctpmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const void *Ap, void *X, const blasint incX);
+void cblas_ztpmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const void *Ap, void *X, const blasint incX);
+
+void cblas_stpsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const float *Ap, float *X, const blasint incX);
+void cblas_dtpsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const double *Ap, double *X, const blasint incX);
+void cblas_ctpsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const void *Ap, void *X, const blasint incX);
+void cblas_ztpsv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_DIAG Diag,
+                 const blasint N, const void *Ap, void *X, const blasint incX);
+
+void cblas_ssymv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const float alpha, const float *A,
+                 const blasint lda, const float *X, const blasint incX, const float beta, float *Y, const blasint incY);
+void cblas_dsymv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const double alpha, const double *A,
+                 const blasint lda, const double *X, const blasint incX, const double beta, double *Y, const blasint incY);
+void cblas_chemv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const void *alpha, const void *A,
+                 const blasint lda, const void *X, const blasint incX, const void *beta, void *Y, const blasint incY);
+void cblas_zhemv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const void *alpha, const void *A,
+                 const blasint lda, const void *X, const blasint incX, const void *beta, void *Y, const blasint incY);
+
+
+void cblas_sspmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const float alpha, const float *Ap,
+                 const float *X, const blasint incX, const float beta, float *Y, const blasint incY);
+void cblas_dspmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const double alpha, const double *Ap,
+                 const double *X, const blasint incX, const double beta, double *Y, const blasint incY);
+
+void cblas_sspr(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const float alpha, const float *X, const blasint incX, float *Ap);
+void cblas_dspr(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const double alpha, const double *X, const blasint incX, double *Ap);
+
+void cblas_chpr(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const float alpha, const void *X, const blasint incX, void *A);
+void cblas_zhpr(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const double alpha, const void *X,const blasint incX, void *A);
+
+void cblas_sspr2(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const float alpha, const float *X, const blasint incX, const float *Y, const blasint incY, float *A);
+void cblas_dspr2(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const double alpha, const double *X, const blasint incX, const double *Y, const blasint incY, double *A);
+void cblas_chpr2(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const void *alpha, const void *X, const blasint incX, const void *Y, const blasint incY, void *Ap);
+void cblas_zhpr2(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const void *alpha, const void *X, const blasint incX, const void *Y, const blasint incY, void *Ap);
+
+void cblas_chbmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const blasint K,
+   const void *alpha, const void *A, const blasint lda, const void *X, const blasint incX, const void *beta, void *Y, const blasint incY);
+void cblas_zhbmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N, const blasint K,
+   const void *alpha, const void *A, const blasint lda, const void *X, const blasint incX, const void *beta, void *Y, const blasint incY);
+
+void cblas_chpmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N,
+   const void *alpha, const void *Ap, const void *X, const blasint incX, const void *beta, void *Y, const blasint incY);
+void cblas_zhpmv(const enum CBLAS_ORDER order, const enum CBLAS_UPLO Uplo, const blasint N,
+   const void *alpha, const void *Ap, const void *X, const blasint incX, const void *beta, void *Y, const blasint incY);
+
+void cblas_sgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_TRANSPOSE TransB, const blasint M, const blasint N, const blasint K,
+   const float alpha, const float *A, const blasint lda, const float *B, const blasint ldb, const float beta, float *C, const blasint ldc);
+void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_TRANSPOSE TransB, const blasint M, const blasint N, const blasint K,
+   const double alpha, const double *A, const blasint lda, const double *B, const blasint ldb, const double beta, double *C, const blasint ldc);
+void cblas_cgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_TRANSPOSE TransB, const blasint M, const blasint N, const blasint K,
+   const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const void *beta, void *C, const blasint ldc);
+void cblas_cgemm3m(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_TRANSPOSE TransB, const blasint M, const blasint N, const blasint K,
+   const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const void *beta, void *C, const blasint ldc);
+void cblas_zgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_TRANSPOSE TransB, const blasint M, const blasint N, const blasint K,
+   const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const void *beta, void *C, const blasint ldc);
+void cblas_zgemm3m(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_TRANSPOSE TransB, const blasint M, const blasint N, const blasint K,
+   const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const void *beta, void *C, const blasint ldc);
+
+
+void cblas_ssymm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const blasint M, const blasint N,
+                 const float alpha, const float *A, const blasint lda, const float *B, const blasint ldb, const float beta, float *C, const blasint ldc);
+void cblas_dsymm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const blasint M, const blasint N,
+                 const double alpha, const double *A, const blasint lda, const double *B, const blasint ldb, const double beta, double *C, const blasint ldc);
+void cblas_csymm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const blasint M, const blasint N,
+                 const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const void *beta, void *C, const blasint ldc);
+void cblas_zsymm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const blasint M, const blasint N,
+                 const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const void *beta, void *C, const blasint ldc);
+
+void cblas_ssyrk(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans,
+   const blasint N, const blasint K, const float alpha, const float *A, const blasint lda, const float beta, float *C, const blasint ldc);
+void cblas_dsyrk(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans,
+   const blasint N, const blasint K, const double alpha, const double *A, const blasint lda, const double beta, double *C, const blasint ldc);
+void cblas_csyrk(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans,
+   const blasint N, const blasint K, const void *alpha, const void *A, const blasint lda, const void *beta, void *C, const blasint ldc);
+void cblas_zsyrk(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans,
+   const blasint N, const blasint K, const void *alpha, const void *A, const blasint lda, const void *beta, void *C, const blasint ldc);
+
+void cblas_ssyr2k(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans,
+    const blasint N, const blasint K, const float alpha, const float *A, const blasint lda, const float *B, const blasint ldb, const float beta, float *C, const blasint ldc);
+void cblas_dsyr2k(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans,
+    const blasint N, const blasint K, const double alpha, const double *A, const blasint lda, const double *B, const blasint ldb, const double beta, double *C, const blasint ldc);
+void cblas_csyr2k(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans,
+    const blasint N, const blasint K, const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const void *beta, void *C, const blasint ldc);
+void cblas_zsyr2k(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans,
+    const blasint N, const blasint K, const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const void *beta, void *C, const blasint ldc);
+
+void cblas_strmm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA,
+                 const enum CBLAS_DIAG Diag, const blasint M, const blasint N, const float alpha, const float *A, const blasint lda, float *B, const blasint ldb);
+void cblas_dtrmm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA,
+                 const enum CBLAS_DIAG Diag, const blasint M, const blasint N, const double alpha, const double *A, const blasint lda, double *B, const blasint ldb);
+void cblas_ctrmm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA,
+                 const enum CBLAS_DIAG Diag, const blasint M, const blasint N, const void *alpha, const void *A, const blasint lda, void *B, const blasint ldb);
+void cblas_ztrmm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA,
+                 const enum CBLAS_DIAG Diag, const blasint M, const blasint N, const void *alpha, const void *A, const blasint lda, void *B, const blasint ldb);
+
+void cblas_strsm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA,
+                 const enum CBLAS_DIAG Diag, const blasint M, const blasint N, const float alpha, const float *A, const blasint lda, float *B, const blasint ldb);
+void cblas_dtrsm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA,
+                 const enum CBLAS_DIAG Diag, const blasint M, const blasint N, const double alpha, const double *A, const blasint lda, double *B, const blasint ldb);
+void cblas_ctrsm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA,
+                 const enum CBLAS_DIAG Diag, const blasint M, const blasint N, const void *alpha, const void *A, const blasint lda, void *B, const blasint ldb);
+void cblas_ztrsm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE TransA,
+                 const enum CBLAS_DIAG Diag, const blasint M, const blasint N, const void *alpha, const void *A, const blasint lda, void *B, const blasint ldb);
+
+void cblas_chemm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const blasint M, const blasint N,
+                 const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const void *beta, void *C, const blasint ldc);
+void cblas_zhemm(const enum CBLAS_ORDER Order, const enum CBLAS_SIDE Side, const enum CBLAS_UPLO Uplo, const blasint M, const blasint N,
+                 const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const void *beta, void *C, const blasint ldc);
+
+void cblas_cherk(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans, const blasint N, const blasint K,
+                 const float alpha, const void *A, const blasint lda, const float beta, void *C, const blasint ldc);
+void cblas_zherk(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans, const blasint N, const blasint K,
+                 const double alpha, const void *A, const blasint lda, const double beta, void *C, const blasint ldc);
+
+void cblas_cher2k(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans, const blasint N, const blasint K,
+                  const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const float beta, void *C, const blasint ldc);
+void cblas_zher2k(const enum CBLAS_ORDER Order, const enum CBLAS_UPLO Uplo, const enum CBLAS_TRANSPOSE Trans, const blasint N, const blasint K,
+                  const void *alpha, const void *A, const blasint lda, const void *B, const blasint ldb, const double beta, void *C, const blasint ldc);
+
+void cblas_xerbla(blasint p, char *rout, char *form, ...);
+
+
+
+void cblas_saxpby(const blasint n, const float alpha, const float *x, const blasint incx,const float beta, float *y, const blasint incy);
+
+void cblas_daxpby(const blasint n, const double alpha, const double *x, const blasint incx,const double beta, double *y, const blasint incy);
+
+void cblas_caxpby(const blasint n, const void *alpha, const void *x, const blasint incx,const void *beta, void *y, const blasint incy);
+
+void cblas_zaxpby(const blasint n, const void *alpha, const void *x, const blasint incx,const void *beta, void *y, const blasint incy);
+
+void cblas_somatcopy(const enum CBLAS_ORDER CORDER, const enum CBLAS_TRANSPOSE CTRANS, const blasint crows, const blasint ccols, const float calpha, const float *a,
+       const blasint clda, float *b, const blasint cldb);
+void cblas_domatcopy(const enum CBLAS_ORDER CORDER, const enum CBLAS_TRANSPOSE CTRANS, const blasint crows, const blasint ccols, const double calpha, const double *a,
+       const blasint clda, double *b, const blasint cldb);
+void cblas_comatcopy(const enum CBLAS_ORDER CORDER, const enum CBLAS_TRANSPOSE CTRANS, const blasint crows, const blasint ccols, const float* calpha, const float* a,
+       const blasint clda, float*b, const blasint cldb);
+void cblas_zomatcopy(const enum CBLAS_ORDER CORDER, const enum CBLAS_TRANSPOSE CTRANS, const blasint crows, const blasint ccols, const double* calpha, const double* a,
+       const blasint clda, double *b, const blasint cldb);
+
+void cblas_simatcopy(const enum CBLAS_ORDER CORDER, const enum CBLAS_TRANSPOSE CTRANS, const blasint crows, const blasint ccols, const float calpha, float *a,
+       const blasint clda, const blasint cldb);
+void cblas_dimatcopy(const enum CBLAS_ORDER CORDER, const enum CBLAS_TRANSPOSE CTRANS, const blasint crows, const blasint ccols, const double calpha, double *a,
+       const blasint clda, const blasint cldb);
+void cblas_cimatcopy(const enum CBLAS_ORDER CORDER, const enum CBLAS_TRANSPOSE CTRANS, const blasint crows, const blasint ccols, const float* calpha, float* a,
+       const blasint clda, const blasint cldb);
+void cblas_zimatcopy(const enum CBLAS_ORDER CORDER, const enum CBLAS_TRANSPOSE CTRANS, const blasint crows, const blasint ccols, const double* calpha, double* a,
+       const blasint clda, const blasint cldb);
+
+void cblas_sgeadd(const enum CBLAS_ORDER CORDER,const blasint crows, const blasint ccols, const float calpha, float *a, const blasint clda, const float cbeta,
+    float *c, const blasint cldc);
+void cblas_dgeadd(const enum CBLAS_ORDER CORDER,const blasint crows, const blasint ccols, const double calpha, double *a, const blasint clda, const double cbeta,
+    double *c, const blasint cldc);
+void cblas_cgeadd(const enum CBLAS_ORDER CORDER,const blasint crows, const blasint ccols, const float *calpha, float *a, const blasint clda, const float *cbeta,
+    float *c, const blasint cldc);
+void cblas_zgeadd(const enum CBLAS_ORDER CORDER,const blasint crows, const blasint ccols, const double *calpha, double *a, const blasint clda, const double *cbeta,
+    double *c, const blasint cldc);
+
+
+
+void cblas_sbstobf16(const blasint n, const float *in, const blasint incin, bfloat16 *out, const blasint incout);
+
+void cblas_sbdtobf16(const blasint n, const double *in, const blasint incin, bfloat16 *out, const blasint incout);
+
+void cblas_sbf16tos(const blasint n, const bfloat16 *in, const blasint incin, float *out, const blasint incout);
+
+void cblas_dbf16tod(const blasint n, const bfloat16 *in, const blasint incin, double *out, const blasint incout);
+
+float cblas_sbdot(const blasint n, const bfloat16 *x, const blasint incx, const bfloat16 *y, const blasint incy);
+void cblas_sbgemv(const enum CBLAS_ORDER order, const enum CBLAS_TRANSPOSE trans, const blasint m, const blasint n, const float alpha, const bfloat16 *a, const blasint lda, const bfloat16 *x, const blasint incx, const float beta, float *y, const blasint incy);
+
+void cblas_sbgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_TRANSPOSE TransB, const blasint M, const blasint N, const blasint K,
+      const float alpha, const bfloat16 *A, const blasint lda, const bfloat16 *B, const blasint ldb, const float beta, float *C, const blasint ldc);
+# 310 "/home/rubenhensen/sac/blas/a.out.c" 2
+
+
+
+
+
+
 typedef SAC_hidden SACt_sacprelude_p__SACarg;
 
 extern SACt_sacprelude_p__SACarg SACARGcopy( SACt_sacprelude_p__SACarg);
@@ -2603,113 +5154,113 @@ typedef SAC_hidden SACt_Structures__string;
 
 static void SAC_PF_BeginComm (void) { } static void SAC_PF_EndComm (void) { }
 SAC_HM_arena_t SAC_HM_arenas[128][9 + 2] = { { { 0, { {{0, &(SAC_HM_arenas[0][0])}}, {{0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 }}, { { 0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0) 
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 } } }, SAC_HM_arenas[0][0].freelist, 131072, 1, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 1, { {{0, &(SAC_HM_arenas[0][1])}}, {{0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 }}, { { 0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0) 
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 } } }, SAC_HM_arenas[0][1].freelist, 512, 3 - 1, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 2, { {{0, &(SAC_HM_arenas[0][2])}}, {{0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 }}, { { 0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0) 
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 } } }, SAC_HM_arenas[0][2].freelist, 512, 5 - 1, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 3, { {{0, &(SAC_HM_arenas[0][3])}}, {{0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 }}, { { 0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0) 
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 } } }, SAC_HM_arenas[0][3].freelist, 256, 9 - 1, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 4, { {{0, &(SAC_HM_arenas[0][4])}}, {{0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 }}, { { 0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0) 
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 } } }, SAC_HM_arenas[0][4].freelist, 512, 17 - 1, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 5, { {{-1, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 }}, {{0, &(SAC_HM_arenas[0][5])}}, { { 0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0) 
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 } } }, SAC_HM_arenas[0][5].freelist, 2048, 17, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 6, { {{-1, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 }}, {{0, &(SAC_HM_arenas[0][6])}}, { { 0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0) 
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 } } }, SAC_HM_arenas[0][6].freelist, 8196, 129, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 7, { {{-1, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 }}, {{0, &(SAC_HM_arenas[0][7])}}, { { 0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0) 
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 } } }, SAC_HM_arenas[0][7].freelist, 32768, 1025, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 8, { {{-1, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 }}, {{0, &(SAC_HM_arenas[0][8])}}, { { 0, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0) 
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 } } }, SAC_HM_arenas[0][8].freelist, 0, 8193, 
-# 339 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 344 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 ((void *)0)
-# 339 "/home/rubenhensen/sac/blas/a.out.c"
+# 344 "/home/rubenhensen/sac/blas/a.out.c"
 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } } }; const SAC_HM_size_byte_t SAC_HM_initial_master_arena_of_arenas_size = 1048576; const SAC_HM_size_byte_t SAC_HM_initial_worker_arena_of_arenas_size = 65536; const SAC_HM_size_byte_t SAC_HM_initial_top_arena_size = 0; const unsigned int SAC_HM_max_worker_threads = 128 - 1;
 
 
@@ -2721,7 +5272,13 @@ extern
 
 
 
-float SACsrotg (float * SAC_arg_1__p, float * SAC_arg_2__p, float * SAC_arg_3__p, float SACl_a, float SACl_b, float SACl_c, float SACl_s);
+void SACsrotg (float * SACl_a__p, float * SACl_b__p, float * SACl_c__p, float * SACl_s__p);
+
+extern
+
+
+
+float sqrtf (float SACl_X);
 
 extern
 
@@ -2758,9 +5315,9 @@ extern
 
 
 void SACwf_sacprelude_p__isPartitionIntersectNull__i_S__i_S__i_S__i_S (
-# 386 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 397 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 386 "/home/rubenhensen/sac/blas/a.out.c"
+# 397 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idxmin, SAC_array_descriptor_t SACl_idxmin__desc, int * SACl_idxmax, SAC_array_descriptor_t SACl_idxmax__desc, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -2774,9 +5331,9 @@ extern
 
 
 void SACwf_sacprelude_p__adjustLacFunParams__bl_S__i_S__i_S (int * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, 
-# 398 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 409 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 398 "/home/rubenhensen/sac/blas/a.out.c"
+# 409 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_p, SAC_array_descriptor_t SACl_p__desc, int * SACl_i, SAC_array_descriptor_t SACl_i__desc, int * SACl_iv, SAC_array_descriptor_t SACl_iv__desc);
 
 extern
@@ -2796,9 +5353,9 @@ extern
 
 
 void SACwf_sacprelude_p__adjustLacFunParamsReshape__bl_S__i_S__i_S__i_S (int * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, 
-# 416 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 427 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 416 "/home/rubenhensen/sac/blas/a.out.c"
+# 427 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_p, SAC_array_descriptor_t SACl_p__desc, int * SACl_i, SAC_array_descriptor_t SACl_i__desc, int * SACl_iv, SAC_array_descriptor_t SACl_iv__desc, int * SACl_shp, SAC_array_descriptor_t SACl_shp__desc);
 
 extern
@@ -2806,9 +5363,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__i_S__i_S (
-# 422 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 433 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 422 "/home/rubenhensen/sac/blas/a.out.c"
+# 433 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, int * SACl_A, SAC_array_descriptor_t SACl_A__desc, int * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2816,9 +5373,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__f_S__f_S (
-# 428 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 439 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 428 "/home/rubenhensen/sac/blas/a.out.c"
+# 439 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, float * SACl_A, SAC_array_descriptor_t SACl_A__desc, float * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2826,9 +5383,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__d_S__d_S (
-# 434 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 445 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 434 "/home/rubenhensen/sac/blas/a.out.c"
+# 445 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, double * SACl_A, SAC_array_descriptor_t SACl_A__desc, double * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2836,17 +5393,17 @@ extern
 
 
 void SACwf_sacprelude_p__eq__bl_S__bl_S (
-# 440 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 451 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 440 "/home/rubenhensen/sac/blas/a.out.c"
+# 451 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 440 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 451 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 440 "/home/rubenhensen/sac/blas/a.out.c"
+# 451 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_A, SAC_array_descriptor_t SACl_A__desc, 
-# 440 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 451 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 440 "/home/rubenhensen/sac/blas/a.out.c"
+# 451 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2854,9 +5411,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__c_S__c_S (
-# 446 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 457 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 446 "/home/rubenhensen/sac/blas/a.out.c"
+# 457 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, unsigned char * SACl_A, SAC_array_descriptor_t SACl_A__desc, unsigned char * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2864,9 +5421,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__b_S__b_S (
-# 452 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 463 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 452 "/home/rubenhensen/sac/blas/a.out.c"
+# 463 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, byte * SACl_A, SAC_array_descriptor_t SACl_A__desc, byte * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2874,9 +5431,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__s_S__s_S (
-# 458 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 469 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 458 "/home/rubenhensen/sac/blas/a.out.c"
+# 469 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, short * SACl_A, SAC_array_descriptor_t SACl_A__desc, short * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2884,9 +5441,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__l_S__l_S (
-# 464 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 475 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 464 "/home/rubenhensen/sac/blas/a.out.c"
+# 475 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, long * SACl_A, SAC_array_descriptor_t SACl_A__desc, long * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2894,9 +5451,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__ll_S__ll_S (
-# 470 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 481 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 470 "/home/rubenhensen/sac/blas/a.out.c"
+# 481 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, longlong * SACl_A, SAC_array_descriptor_t SACl_A__desc, longlong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2904,9 +5461,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__ub_S__ub_S (
-# 476 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 487 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 476 "/home/rubenhensen/sac/blas/a.out.c"
+# 487 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ubyte * SACl_A, SAC_array_descriptor_t SACl_A__desc, ubyte * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2914,9 +5471,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__us_S__us_S (
-# 482 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 493 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 482 "/home/rubenhensen/sac/blas/a.out.c"
+# 493 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ushort * SACl_A, SAC_array_descriptor_t SACl_A__desc, ushort * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2924,9 +5481,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__ui_S__ui_S (
-# 488 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 499 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 488 "/home/rubenhensen/sac/blas/a.out.c"
+# 499 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, uint * SACl_A, SAC_array_descriptor_t SACl_A__desc, uint * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2934,9 +5491,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__ul_S__ul_S (
-# 494 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 505 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 494 "/home/rubenhensen/sac/blas/a.out.c"
+# 505 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ulong * SACl_A, SAC_array_descriptor_t SACl_A__desc, ulong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2944,9 +5501,9 @@ extern
 
 
 void SACwf_sacprelude_p__eq__ull_S__ull_S (
-# 500 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 511 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 500 "/home/rubenhensen/sac/blas/a.out.c"
+# 511 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ulonglong * SACl_A, SAC_array_descriptor_t SACl_A__desc, ulonglong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -2960,9 +5517,9 @@ extern
 
 
 void SACwf_sacprelude_p__isPartitionIntersect1Part__i_S__i_S__i_S__i_S (
-# 512 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 523 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 512 "/home/rubenhensen/sac/blas/a.out.c"
+# 523 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idxmin, SAC_array_descriptor_t SACl_idxmin__desc, int * SACl_idxmax, SAC_array_descriptor_t SACl_idxmax__desc, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -2994,13 +5551,13 @@ extern
 
 
 void SACwf_sacprelude_p__zero__bl_S (
-# 542 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 553 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 542 "/home/rubenhensen/sac/blas/a.out.c"
+# 553 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 542 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 553 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 542 "/home/rubenhensen/sac/blas/a.out.c"
+# 553 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_A, SAC_array_descriptor_t SACl_A__desc);
 
 extern
@@ -3098,13 +5655,13 @@ extern
 
 
 void SACwf_sacprelude_p__sel__i_S__bl_S (
-# 638 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 649 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 638 "/home/rubenhensen/sac/blas/a.out.c"
+# 649 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idx, SAC_array_descriptor_t SACl_idx__desc, 
-# 638 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 649 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 638 "/home/rubenhensen/sac/blas/a.out.c"
+# 649 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_array, SAC_array_descriptor_t SACl_array__desc);
 
 extern
@@ -3183,6 +5740,16 @@ extern
 
 
 
+void SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f (
+# 727 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+_Bool 
+# 727 "/home/rubenhensen/sac/blas/a.out.c"
+* SAC_arg_1__p, float SACl_a1, float SACl_b1, float SACl_c1, float SACl_s1, float SACl_a2, float SACl_b2);
+
+extern
+
+
+
 void SACf_World_CL_INIT__init_TheWorld__SACt_World__World (SAC_hidden * SACp_OI_object__p, SAC_array_descriptor_t * SACp_OI_object__desc__p);
 
 extern
@@ -3201,7 +5768,11 @@ extern
 
 
 
-void SACf_ScalarIO__print__f (float SACl_n);
+void SACf_ScalarIO__print__bl (
+# 751 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+_Bool 
+# 751 "/home/rubenhensen/sac/blas/a.out.c"
+SACl_n);
 
 extern
 
@@ -3268,13 +5839,13 @@ extern
 
 
 void SACf_sacprelude_p__sel__i_X__bl_S (
-# 800 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 817 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 800 "/home/rubenhensen/sac/blas/a.out.c"
+# 817 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idx, SAC_array_descriptor_t SACl_idx__desc, 
-# 800 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 817 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 800 "/home/rubenhensen/sac/blas/a.out.c"
+# 817 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_array, SAC_array_descriptor_t SACl_array__desc);
 
 extern
@@ -3408,13 +5979,13 @@ extern
 
 
 void SACf_sacprelude_p__zero__bl_P (
-# 932 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 949 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 932 "/home/rubenhensen/sac/blas/a.out.c"
+# 949 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 932 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 949 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 932 "/home/rubenhensen/sac/blas/a.out.c"
+# 949 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_A, SAC_array_descriptor_t SACl_A__desc);
 
 extern
@@ -3422,13 +5993,13 @@ extern
 
 
 void SACf_sacprelude_p__zero__bl_S (
-# 938 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 955 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 938 "/home/rubenhensen/sac/blas/a.out.c"
+# 955 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 938 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 955 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 938 "/home/rubenhensen/sac/blas/a.out.c"
+# 955 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_A, SAC_array_descriptor_t SACl_A__desc);
 
 extern
@@ -3484,9 +6055,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__ull_S__ull_S (
-# 992 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1009 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 992 "/home/rubenhensen/sac/blas/a.out.c"
+# 1009 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ulonglong * SACl_A, SAC_array_descriptor_t SACl_A__desc, ulonglong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3494,9 +6065,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__ul_S__ul_S (
-# 998 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1015 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 998 "/home/rubenhensen/sac/blas/a.out.c"
+# 1015 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ulong * SACl_A, SAC_array_descriptor_t SACl_A__desc, ulong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3504,9 +6075,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__ui_S__ui_S (
-# 1004 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1021 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1004 "/home/rubenhensen/sac/blas/a.out.c"
+# 1021 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, uint * SACl_A, SAC_array_descriptor_t SACl_A__desc, uint * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3514,9 +6085,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__us_S__us_S (
-# 1010 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1027 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1010 "/home/rubenhensen/sac/blas/a.out.c"
+# 1027 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ushort * SACl_A, SAC_array_descriptor_t SACl_A__desc, ushort * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3524,9 +6095,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__ub_S__ub_S (
-# 1016 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1033 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1016 "/home/rubenhensen/sac/blas/a.out.c"
+# 1033 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, ubyte * SACl_A, SAC_array_descriptor_t SACl_A__desc, ubyte * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3534,9 +6105,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__ll_S__ll_S (
-# 1022 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1039 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1022 "/home/rubenhensen/sac/blas/a.out.c"
+# 1039 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, longlong * SACl_A, SAC_array_descriptor_t SACl_A__desc, longlong * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3544,9 +6115,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__l_S__l_S (
-# 1028 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1045 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1028 "/home/rubenhensen/sac/blas/a.out.c"
+# 1045 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, long * SACl_A, SAC_array_descriptor_t SACl_A__desc, long * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3554,9 +6125,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__s_S__s_S (
-# 1034 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1051 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1034 "/home/rubenhensen/sac/blas/a.out.c"
+# 1051 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, short * SACl_A, SAC_array_descriptor_t SACl_A__desc, short * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3564,9 +6135,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__b_S__b_S (
-# 1040 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1057 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1040 "/home/rubenhensen/sac/blas/a.out.c"
+# 1057 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, byte * SACl_A, SAC_array_descriptor_t SACl_A__desc, byte * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3574,9 +6145,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__c_S__c_S (
-# 1046 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1063 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1046 "/home/rubenhensen/sac/blas/a.out.c"
+# 1063 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, unsigned char * SACl_A, SAC_array_descriptor_t SACl_A__desc, unsigned char * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3584,17 +6155,17 @@ extern
 
 
 void SACf_sacprelude_p__eq__bl_S__bl_S (
-# 1052 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1069 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1052 "/home/rubenhensen/sac/blas/a.out.c"
+# 1069 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 1052 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1069 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1052 "/home/rubenhensen/sac/blas/a.out.c"
+# 1069 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_A, SAC_array_descriptor_t SACl_A__desc, 
-# 1052 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1069 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1052 "/home/rubenhensen/sac/blas/a.out.c"
+# 1069 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3602,9 +6173,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__d_S__d_S (
-# 1058 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1075 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1058 "/home/rubenhensen/sac/blas/a.out.c"
+# 1075 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, double * SACl_A, SAC_array_descriptor_t SACl_A__desc, double * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3612,9 +6183,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__f_S__f_S (
-# 1064 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1081 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1064 "/home/rubenhensen/sac/blas/a.out.c"
+# 1081 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, float * SACl_A, SAC_array_descriptor_t SACl_A__desc, float * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3622,9 +6193,9 @@ extern
 
 
 void SACf_sacprelude_p__eq__i_S__i_S (
-# 1070 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1087 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1070 "/home/rubenhensen/sac/blas/a.out.c"
+# 1087 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, int * SACl_A, SAC_array_descriptor_t SACl_A__desc, int * SACl_B, SAC_array_descriptor_t SACl_B__desc);
 
 extern
@@ -3632,9 +6203,9 @@ extern
 
 
 void SACf_sacprelude_p__adjustLacFunParams__bl_S__i_S__i_X (int * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, 
-# 1076 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1093 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1076 "/home/rubenhensen/sac/blas/a.out.c"
+# 1093 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_p, SAC_array_descriptor_t SACl_p__desc, int * SACl_i, SAC_array_descriptor_t SACl_i__desc, int * SACl_iv, SAC_array_descriptor_t SACl_iv__desc);
 
 extern
@@ -3642,9 +6213,9 @@ extern
 
 
 void SACf_sacprelude_p__adjustLacFunParamsReshape__bl_S__i_S__i_X__i_X (int * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, 
-# 1082 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1099 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1082 "/home/rubenhensen/sac/blas/a.out.c"
+# 1099 "/home/rubenhensen/sac/blas/a.out.c"
 * SACl_p, SAC_array_descriptor_t SACl_p__desc, int * SACl_i, SAC_array_descriptor_t SACl_i__desc, int * SACl_iv, SAC_array_descriptor_t SACl_iv__desc, int * SACl_shp, SAC_array_descriptor_t SACl_shp__desc);
 
 extern
@@ -3652,9 +6223,9 @@ extern
 
 
 void SACf_sacprelude_p__isPartitionIntersectNull__i_X__i_X__i_X__i_X (
-# 1088 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1105 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1088 "/home/rubenhensen/sac/blas/a.out.c"
+# 1105 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idxmin, SAC_array_descriptor_t SACl_idxmin__desc, int * SACl_idxmax, SAC_array_descriptor_t SACl_idxmax__desc, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -3662,9 +6233,9 @@ extern
 
 
 void SACf_sacprelude_p__isPartitionIntersectNull__i__i__i_X__i_X (
-# 1094 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1111 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1094 "/home/rubenhensen/sac/blas/a.out.c"
+# 1111 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int SACl_idxmin, int SACl_idxmax, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -3684,9 +6255,9 @@ extern
 
 
 void SACf_sacprelude_p__isPartitionIntersect1Part__i_X__i_X__i_X__i_X (
-# 1112 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1129 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1112 "/home/rubenhensen/sac/blas/a.out.c"
+# 1129 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int * SACl_idxmin, SAC_array_descriptor_t SACl_idxmin__desc, int * SACl_idxmax, SAC_array_descriptor_t SACl_idxmax__desc, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -3694,9 +6265,9 @@ extern
 
 
 void SACf_sacprelude_p__isPartitionIntersect1Part__i__i__i_X__i_X (
-# 1118 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1135 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1118 "/home/rubenhensen/sac/blas/a.out.c"
+# 1135 "/home/rubenhensen/sac/blas/a.out.c"
 * * SAC_arg_1__p, SAC_array_descriptor_t * SAC_arg_1__desc__p, int SACl_idxmin, int SACl_idxmax, int * SACl_bound1, SAC_array_descriptor_t SACl_bound1__desc, int * SACl_bound2, SAC_array_descriptor_t SACl_bound2__desc);
 
 extern
@@ -3758,19 +6329,19 @@ extern
 
 
 void SACf_sacprelude_p__and__bl__bl (
-# 1178 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1195 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1178 "/home/rubenhensen/sac/blas/a.out.c"
+# 1195 "/home/rubenhensen/sac/blas/a.out.c"
 * SAC_arg_1__p, 
-# 1178 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1195 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1178 "/home/rubenhensen/sac/blas/a.out.c"
+# 1195 "/home/rubenhensen/sac/blas/a.out.c"
 SACl_a, 
-# 1178 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+# 1195 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
-# 1178 "/home/rubenhensen/sac/blas/a.out.c"
+# 1195 "/home/rubenhensen/sac/blas/a.out.c"
 SACl_b);
-# 1189 "/home/rubenhensen/sac/blas/a.out.c"
+# 1206 "/home/rubenhensen/sac/blas/a.out.c"
 extern SAC_hidden SACo_World__TheWorld;
 extern SAC_array_descriptor_t SACo_World__TheWorld__desc;
 
@@ -3788,7 +6359,7 @@ extern SAC_array_descriptor_t SACo_Terminal__TheTerminal__desc;
 extern SAC_hidden SACo_TermFile__stdout;
 extern SAC_array_descriptor_t SACo_TermFile__stdout__desc;
 
-# 1222 "/home/rubenhensen/sac/blas/a.out.c"
+# 1239 "/home/rubenhensen/sac/blas/a.out.c"
 void SACwf__MAIN__main (int * SAC_arg_1__p) {
 {
   static const SAC_HM_thread_status_t SAC_HM_thread_status = SAC_HM_single_threaded;
@@ -3798,7 +6369,7 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    int SACp_cwc_20;
+    int SACp_cwc_31;
    
    
 
@@ -3807,7 +6378,7 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    SACf__MAIN__main (&SACp_cwc_20);
+    SACf__MAIN__main (&SACp_cwc_31);
 
 
 
@@ -3817,7 +6388,7 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    { *SAC_arg_1__p = SACp_cwc_20; }
+    { *SAC_arg_1__p = SACp_cwc_31; }
     return;
    
   }
@@ -3826,40 +6397,23 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 }
 }
-# 1268 "/home/rubenhensen/sac/blas/a.out.c"
+# 1285 "/home/rubenhensen/sac/blas/a.out.c"
 void SACf__MAIN__main (int * SAC_arg_1__p) {
 {
   static const SAC_HM_thread_status_t SAC_HM_thread_status = SAC_HM_single_threaded;
  
 
   {
-    const int SACp_emal_2702__isaa_225__rso_10_TheWorld = 0;
-    const float SACp_emal_2701__flat_5 = 0.0f;
+    const int SACp_emal_3042__isaa_380__rso_21_TheWorld = 0;
+    const float SACp_emal_3041__flat_15 = 0.0f;
 
 
 
-    float SACl_s;
-   
-   
-
-
-
-
-    float SACl_c;
-   
-   
-
-
-
-
-    float SACl_b;
-   
-   
-
-
-
-
-    float SACl_a;
+    
+# 1296 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1296 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_flat_7;
    
    
 
@@ -3873,61 +6427,22 @@ void SACf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    SACl_a = SACsrotg( &SACl_b, &SACl_c, &SACl_s, SACp_emal_2701__flat_5, SACp_emal_2701__flat_5, SACp_emal_2701__flat_5, SACp_emal_2701__flat_5);
+    SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f (&SACp_flat_7, SACp_emal_3041__flat_15, SACp_emal_3041__flat_15, SACp_emal_3041__flat_15, SACp_emal_3041__flat_15, SACp_emal_3041__flat_15, SACp_emal_3041__flat_15);
+
+
+
 
     ;
 
 
 
-    ;
 
-    ;
-    ;
-
-
-
-    ;
-
-    ;
-    ;
-
-
-
-    ;
-
-    ;
-    ;
-
-
-
-    ;
-
-    ;
-    ;
-
-
-
-    SACf_ScalarIO__print__f (SACl_a);
+    SACf_ScalarIO__print__bl (SACp_flat_7);
 
 
 
 
-    SACf_ScalarIO__print__f (SACl_b);
-
-
-
-
-    SACf_ScalarIO__print__f (SACl_c);
-
-
-
-
-    SACf_ScalarIO__print__f (SACl_s);
-
-
-
-
-    { *SAC_arg_1__p = SACp_emal_2702__isaa_225__rso_10_TheWorld; }
+    { *SAC_arg_1__p = SACp_emal_3042__isaa_380__rso_21_TheWorld; }
     return;
    
   }
@@ -3936,7 +6451,7 @@ void SACf__MAIN__main (int * SAC_arg_1__p) {
 
 }
 }
-# 1386 "/home/rubenhensen/sac/blas/a.out.c"
+# 1343 "/home/rubenhensen/sac/blas/a.out.c"
 void SACf__MAIN_CL_INIT__init (void) {
 {
   static const SAC_HM_thread_status_t SAC_HM_thread_status = SAC_HM_single_threaded;
@@ -3962,6 +6477,910 @@ void SACf__MAIN_CL_INIT__init (void) {
 
 
 
+    return;
+   
+  }
+
+
+
+}
+}
+# 1385 "/home/rubenhensen/sac/blas/a.out.c"
+void SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f (
+# 1385 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+_Bool 
+# 1385 "/home/rubenhensen/sac/blas/a.out.c"
+* SAC_arg_1__p, float SACl_a1, float SACl_b1, float SACl_c1, float SACl_s1, float SACl_a2, float SACl_b2) {
+{
+  static const SAC_HM_thread_status_t SAC_HM_thread_status = SAC_HM_single_threaded;
+ 
+
+  {
+
+
+
+    
+# 1394 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1394 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3777__emal_3052__hce_4__SSA0_1;
+   
+   
+
+
+
+
+    float SACp_pinl_3776__emal_3051__ctz_188;
+   
+   
+
+
+
+
+    
+# 1408 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1408 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3775__emal_3050__pinl_167__flat_1104;
+   
+   
+
+
+
+
+    
+# 1415 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1415 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3771__emal_3055__hce_5__SSA0_1;
+   
+   
+
+
+
+
+    
+# 1422 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1422 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3769__emal_3053__pinl_166__flat_1104;
+   
+   
+
+
+
+
+    
+# 1429 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1429 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3765__emal_3058__hce_6__SSA0_1;
+   
+   
+
+
+
+
+    float SACp_pinl_3764__emal_3057__ctz_192;
+   
+   
+
+
+
+
+    
+# 1443 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1443 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3763__emal_3056__pinl_165__flat_1104;
+   
+   
+
+
+
+
+    float SACp_pinl_3759__emal_3079__pinl_147__flat_953;
+   
+   
+
+    const float SACp_pinl_3758__emal_3078__hce_143 = 1.0f;
+
+
+
+    float SACp_pinl_3755__emal_3077__esd_1563;
+   
+   
+
+
+
+
+    
+# 1465 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1465 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3754__emal_3076__pinl_146__flat_1104;
+   
+   
+
+    const int SACp_pinl_3751__emal_3085_res__SSA0_1 = 0;
+    const int SACp_pinl_3750__emal_3084_res = 1;
+
+
+
+    
+# 1474 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1474 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3747__emal_3083__pinl_126__flat_1108;
+   
+   
+
+    const int SACp_pinl_3746__emal_3082_res = -1;
+    const int SACp_pinl_3743__emal_3089_res__SSA0_1 = 0;
+    const int SACp_pinl_3742__emal_3088_res = 1;
+
+
+
+    
+# 1484 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1484 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3739__emal_3087__pinl_126__flat_1108;
+   
+   
+
+    const int SACp_pinl_3738__emal_3086_res = -1;
+
+
+
+    
+# 1492 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1492 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3735__emal_3081__pinl_136__flat_1106;
+   
+   
+
+
+
+
+    
+# 1499 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1499 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3734__emal_3080__pinl_130__flat_1106;
+   
+   
+
+
+
+
+    float SACp_pinl_3731__emal_3075__pinl_121__flat_967;
+   
+   
+
+
+
+
+    float SACp_pinl_3730__emal_3074__pinl_122__flat_967;
+   
+   
+
+
+
+
+    
+# 1520 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1520 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3728__emal_3072__pinl_123__flat_1108;
+   
+   
+
+
+
+
+    float SACp_pinl_3727__emal_3071__pinl_139__flat_1170;
+   
+   
+
+
+
+
+    float SACp_pinl_3726__emal_3070__pinl_140__flat_952;
+   
+   
+
+
+
+
+    float SACp_pinl_3725__emal_3069__pinl_141__flat_952;
+   
+   
+
+
+
+
+    float SACp_pinl_3722__emal_3066__pinl_144__flat_953;
+   
+   
+
+
+
+
+    float SACp_pinl_3721__emal_3065__pinl_145__flat_953;
+   
+   
+
+    const float SACp_pinl_3720__emal_3064_z = 1.0f;
+    const float SACp_pinl_3719__emal_3063_c = 0.0f;
+
+
+
+    float SACp_pinl_3707__flat_165;
+   
+   
+
+
+
+
+    int SACp_pinl_3705__hce_144;
+   
+   
+
+
+
+
+    float SACp_pinl_3703__emal_3062__esd_1561;
+   
+   
+
+
+
+
+    
+# 1585 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1585 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_pinl_3702__emal_3061__pinl_120__flat_1104;
+   
+   
+
+    const float SACp_pinl_3701__emal_3060_z = 0.0f;
+    const float SACp_pinl_3700__emal_3059_c = 1.0f;
+
+
+
+    float SACp_emal_3049__emec_3033_s1;
+   
+   
+
+
+
+
+    float SACp_emal_3048__emec_3032_c1;
+   
+   
+
+
+
+
+    float SACp_emal_3047__emec_3031_b1;
+   
+   
+
+
+
+
+    float SACp_emal_3046__emec_3030_a1;
+   
+   
+
+
+
+
+    
+# 1622 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1622 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_emal_3045__pinl_154__flat_1104;
+   
+   
+
+
+
+
+    float SACp_emal_3044__ctz_186;
+   
+   
+
+
+
+
+    
+# 1636 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1636 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_emal_3043__pinl_164__flat_1104;
+   
+   
+
+
+
+
+    float SACp_pinl_153_c__SSA0_1;
+   
+   
+
+
+
+
+    float SACp_pinl_152_s__SSA0_1;
+   
+   
+
+
+
+
+    float SACp_pinl_151_z;
+   
+   
+
+
+
+
+    float SACp_pinl_150_r;
+   
+   
+
+
+
+
+    
+# 1671 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1671 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_hce_4;
+   
+   
+
+
+
+
+    
+# 1678 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1678 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_hce_5;
+   
+   
+
+
+
+
+    
+# 1685 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+   _Bool 
+# 1685 "/home/rubenhensen/sac/blas/a.out.c"
+   SACp_hce_6;
+   
+   
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+   
+
+   
+    { { SACp_emal_3049__emec_3033_s1 = SACl_s1; } }
+    ;
+    { { SACp_emal_3048__emec_3032_c1 = SACl_c1; } }
+    ;
+    { { SACp_emal_3047__emec_3031_b1 = SACl_b1; } }
+    ;
+    { ; ;
+
+
+
+    ;
+    ;
+
+    }
+    { { SACp_emal_3046__emec_3030_a1 = SACl_a1; } }
+    ;
+
+
+
+    SACsrotg (&SACp_emal_3046__emec_3030_a1, &SACp_emal_3047__emec_3031_b1, &SACp_emal_3048__emec_3032_c1, &SACp_emal_3049__emec_3033_s1);
+
+
+
+
+    ;
+
+
+
+
+    ;
+
+
+
+
+    ;
+
+
+
+
+    ;
+
+    ; ; { SACp_emal_3045__pinl_154__flat_1104 = (SACl_b2) == (0.0f); };
+    if (SACp_emal_3045__pinl_154__flat_1104)
+    {
+      ;
+      { ; ; }
+
+
+
+      ;
+      ;
+      ;
+      ;
+      { SACp_pinl_153_c__SSA0_1 = SACp_pinl_3700__emal_3059_c; }
+
+
+
+
+      ;
+      ;
+      ;
+      ;
+      { SACp_pinl_152_s__SSA0_1 = SACp_pinl_3701__emal_3060_z; }
+
+
+
+
+      ;
+      ;
+      ;
+      ;
+      { SACp_pinl_151_z = SACp_pinl_3701__emal_3060_z; }
+
+
+
+
+      ;
+      ;
+      ;
+      ;
+      { SACp_pinl_150_r = SACl_a2; }
+
+    }
+    else
+    {
+      { ; ; }
+      ; { SACp_pinl_3703__emal_3062__esd_1561 = -(SACl_a2); };
+      ; ; { SACp_pinl_3702__emal_3061__pinl_120__flat_1104 = (SACp_pinl_3703__emal_3062__esd_1561) == (0.0f); };
+      { ; ; }
+      if (SACp_pinl_3702__emal_3061__pinl_120__flat_1104)
+      {
+        ;
+        { ; ; }
+
+
+
+        ;
+        ;
+        ;
+        ;
+        { SACp_pinl_153_c__SSA0_1 = SACp_pinl_3719__emal_3063_c; }
+
+
+
+
+        ;
+        ;
+        ;
+        ;
+        { SACp_pinl_152_s__SSA0_1 = SACp_pinl_3720__emal_3064_z; }
+
+
+
+
+        ;
+        ;
+        ;
+        ;
+        { SACp_pinl_151_z = SACp_pinl_3720__emal_3064_z; }
+
+
+
+
+        ;
+        ;
+        ;
+        ;
+        { SACp_pinl_150_r = SACl_b2; }
+
+      }
+      else
+      {
+        { ; ; }
+        ; { SACp_pinl_3731__emal_3075__pinl_121__flat_967 = ((SACl_b2) < 0) ? -(SACl_b2) : (SACl_b2); };
+        { ; ;
+
+
+
+        ;
+        ;
+
+        }
+        ; { SACp_pinl_3730__emal_3074__pinl_122__flat_967 = ((SACl_a2) < 0) ? -(SACl_a2) : (SACl_a2); };
+        ; ; { SACp_pinl_3730__emal_3074__pinl_122__flat_967 = (SACp_pinl_3730__emal_3074__pinl_122__flat_967) - (SACp_pinl_3731__emal_3075__pinl_121__flat_967); };
+        { ; ; }
+        ; ; { SACp_pinl_3728__emal_3072__pinl_123__flat_1108 = (SACp_pinl_3730__emal_3074__pinl_122__flat_967) > (0.0f); };
+        { ; ; }
+        if (SACp_pinl_3728__emal_3072__pinl_123__flat_1108)
+        {
+          ; ; { SACp_pinl_3734__emal_3080__pinl_130__flat_1106 = (SACl_a2) < (0.0f); };
+          if (SACp_pinl_3734__emal_3080__pinl_130__flat_1106)
+          {
+            { ; ; }
+
+
+
+            ;
+            ;
+            ;
+            ;
+            { SACp_pinl_3705__hce_144 = SACp_pinl_3738__emal_3086_res; }
+
+          }
+          else
+          {
+            { ; ; }
+            ; ; { SACp_pinl_3739__emal_3087__pinl_126__flat_1108 = (SACl_a2) > (0.0f); };
+            if (SACp_pinl_3739__emal_3087__pinl_126__flat_1108)
+            {
+              { ; ; }
+
+
+
+              ;
+              ;
+              ;
+              ;
+              { SACp_pinl_3705__hce_144 = SACp_pinl_3742__emal_3088_res; }
+
+            }
+            else
+            {
+              { ; ; }
+
+
+
+              ;
+              ;
+              ;
+              ;
+              { SACp_pinl_3705__hce_144 = SACp_pinl_3743__emal_3089_res__SSA0_1; }
+
+            }
+          }
+        }
+        else
+        {
+          ; ; { SACp_pinl_3735__emal_3081__pinl_136__flat_1106 = (SACl_b2) < (0.0f); };
+          if (SACp_pinl_3735__emal_3081__pinl_136__flat_1106)
+          {
+            { ; ; }
+
+
+
+            ;
+            ;
+            ;
+            ;
+            { SACp_pinl_3705__hce_144 = SACp_pinl_3746__emal_3082_res; }
+
+          }
+          else
+          {
+            { ; ; }
+            ; ; { SACp_pinl_3747__emal_3083__pinl_126__flat_1108 = (SACl_b2) > (0.0f); };
+            if (SACp_pinl_3747__emal_3083__pinl_126__flat_1108)
+            {
+              { ; ; }
+
+
+
+              ;
+              ;
+              ;
+              ;
+              { SACp_pinl_3705__hce_144 = SACp_pinl_3750__emal_3084_res; }
+
+            }
+            else
+            {
+              { ; ; }
+
+
+
+              ;
+              ;
+              ;
+              ;
+              { SACp_pinl_3705__hce_144 = SACp_pinl_3751__emal_3085_res__SSA0_1; }
+
+            }
+          }
+        }
+        { ; ;
+
+
+
+        ;
+        ;
+
+        }
+        ; { SACp_pinl_3727__emal_3071__pinl_139__flat_1170 = (float)(SACp_pinl_3705__hce_144); };
+        { ; ; }
+        { ; ;
+
+
+
+        ;
+        ;
+
+        }
+        ; ; { SACp_pinl_3726__emal_3070__pinl_140__flat_952 = (SACl_b2) * (SACl_b2); };
+        ; ; { SACp_pinl_3725__emal_3069__pinl_141__flat_952 = (SACl_a2) * (SACl_a2); };
+        ; ; { SACp_pinl_3726__emal_3070__pinl_140__flat_952 = (SACp_pinl_3726__emal_3070__pinl_140__flat_952) + (SACp_pinl_3725__emal_3069__pinl_141__flat_952); };
+        { ; ; }
+
+
+
+        SACp_pinl_3707__flat_165 = sqrtf( SACp_pinl_3726__emal_3070__pinl_140__flat_952);
+
+        ;
+
+
+
+        ;
+
+        ;
+        ;
+        ; ; { SACp_pinl_3727__emal_3071__pinl_139__flat_1170 = (SACp_pinl_3707__flat_165) * (SACp_pinl_3727__emal_3071__pinl_139__flat_1170); };
+        ;
+        ; ; { SACp_pinl_3722__emal_3066__pinl_144__flat_953 = (SACl_a2) / (SACp_pinl_3727__emal_3071__pinl_139__flat_1170); };
+        ;
+        ; ; { SACp_pinl_3721__emal_3065__pinl_145__flat_953 = (SACl_b2) / (SACp_pinl_3727__emal_3071__pinl_139__flat_1170); };
+        ;
+        if (SACp_pinl_3728__emal_3072__pinl_123__flat_1108)
+        {
+          ;
+          { ; ; }
+
+
+
+          ;
+          ;
+          ;
+          ;
+          { SACp_pinl_151_z = SACp_pinl_3721__emal_3065__pinl_145__flat_953; }
+
+        }
+        else
+        {
+          { ; ; }
+          ; { SACp_pinl_3755__emal_3077__esd_1563 = -(SACp_pinl_3722__emal_3066__pinl_144__flat_953); };
+          ; ; { SACp_pinl_3754__emal_3076__pinl_146__flat_1104 = (SACp_pinl_3755__emal_3077__esd_1563) == (0.0f); };
+          { ; ; }
+          if (SACp_pinl_3754__emal_3076__pinl_146__flat_1104)
+          {
+            { ; ; }
+
+
+
+            ;
+            ;
+            ;
+            ;
+            { SACp_pinl_151_z = SACp_pinl_3758__emal_3078__hce_143; }
+
+          }
+          else
+          {
+            { ; ; }
+            ; ; { SACp_pinl_3759__emal_3079__pinl_147__flat_953 = (1.0f) / (SACp_pinl_3722__emal_3066__pinl_144__flat_953); };
+
+
+
+            ;
+            ;
+            ;
+            ;
+            { SACp_pinl_151_z = SACp_pinl_3759__emal_3079__pinl_147__flat_953; }
+
+          }
+        }
+
+
+
+        ;
+        ;
+        ;
+        ;
+        { SACp_pinl_153_c__SSA0_1 = SACp_pinl_3722__emal_3066__pinl_144__flat_953; }
+
+
+
+
+        ;
+        ;
+        ;
+        ;
+        { SACp_pinl_152_s__SSA0_1 = SACp_pinl_3721__emal_3065__pinl_145__flat_953; }
+
+
+
+
+        ;
+        ;
+        ;
+        ;
+        { SACp_pinl_150_r = SACp_pinl_3727__emal_3071__pinl_139__flat_1170; }
+
+      }
+    }
+    ; ; { SACp_emal_3044__ctz_186 = (SACp_emal_3046__emec_3030_a1) - (SACp_pinl_150_r); };
+    ;
+    ;
+    ; ; { SACp_emal_3043__pinl_164__flat_1104 = (SACp_emal_3044__ctz_186) == (0.0f); };
+    { ; ; }
+    if (SACp_emal_3043__pinl_164__flat_1104)
+    {
+      { ; ; }
+      ; ; { SACp_pinl_3764__emal_3057__ctz_192 = (SACp_emal_3047__emec_3031_b1) - (SACp_pinl_151_z); };
+      ;
+      ;
+      ; ; { SACp_pinl_3763__emal_3056__pinl_165__flat_1104 = (SACp_pinl_3764__emal_3057__ctz_192) == (0.0f); };
+      { ; ; }
+
+
+
+      ;
+      ;
+      ;
+      ;
+      { SACp_hce_6 = SACp_pinl_3763__emal_3056__pinl_165__flat_1104; }
+
+    }
+    else
+    {
+      ;
+      ;
+      { ; ; }
+      { { SACp_pinl_3765__emal_3058__hce_6__SSA0_1 = 
+# 2110 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+     0
+# 2110 "/home/rubenhensen/sac/blas/a.out.c"
+     ; }; }
+
+
+
+      ;
+      ;
+      ;
+      ;
+      { SACp_hce_6 = SACp_pinl_3765__emal_3058__hce_6__SSA0_1; }
+
+    }
+    if (SACp_hce_6)
+    {
+      { ; ; }
+      ; ; { SACp_pinl_153_c__SSA0_1 = (SACp_emal_3048__emec_3032_c1) - (SACp_pinl_153_c__SSA0_1); };
+      ;
+      ; ; { SACp_pinl_3769__emal_3053__pinl_166__flat_1104 = (SACp_pinl_153_c__SSA0_1) == (0.0f); };
+      { ; ; }
+
+
+
+      ;
+      ;
+      ;
+      ;
+      { SACp_hce_5 = SACp_pinl_3769__emal_3053__pinl_166__flat_1104; }
+
+    }
+    else
+    {
+      ;
+      ;
+      { ; ; }
+      { { SACp_pinl_3771__emal_3055__hce_5__SSA0_1 = 
+# 2143 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+     0
+# 2143 "/home/rubenhensen/sac/blas/a.out.c"
+     ; }; }
+
+
+
+      ;
+      ;
+      ;
+      ;
+      { SACp_hce_5 = SACp_pinl_3771__emal_3055__hce_5__SSA0_1; }
+
+    }
+    if (SACp_hce_5)
+    {
+      { ; ; }
+      ; ; { SACp_pinl_3776__emal_3051__ctz_188 = (SACp_emal_3049__emec_3033_s1) - (SACp_pinl_152_s__SSA0_1); };
+      ;
+      ;
+      ; ; { SACp_pinl_3775__emal_3050__pinl_167__flat_1104 = (SACp_pinl_3776__emal_3051__ctz_188) == (0.0f); };
+      { ; ; }
+
+
+
+      ;
+      ;
+      ;
+      ;
+      { SACp_hce_4 = SACp_pinl_3775__emal_3050__pinl_167__flat_1104; }
+
+    }
+    else
+    {
+      ;
+      ;
+      { ; ; }
+      { { SACp_pinl_3777__emal_3052__hce_4__SSA0_1 = 
+# 2177 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+     0
+# 2177 "/home/rubenhensen/sac/blas/a.out.c"
+     ; }; }
+
+
+
+      ;
+      ;
+      ;
+      ;
+      { SACp_hce_4 = SACp_pinl_3777__emal_3052__hce_4__SSA0_1; }
+
+    }
+
+
+
+    { *SAC_arg_1__p = SACp_hce_4; }
     return;
    
   }

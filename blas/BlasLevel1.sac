@@ -2,7 +2,9 @@ module BlasLevel1;
 
 use Structures: all;
 use Math: all;
+
 export all;
+
 /*
  * srotg
  */
@@ -34,7 +36,7 @@ float, float, float, float srotg(float a, float b, float c, float s)
  * srotmg
  */
 inline
-float, float, float, float[5] srotmg(float sd1, float sd2, float sx1, float sy1)
+float, float, float, float[5] srotmg(float d1, float d2, float x1, float y1)
 {
   //A very literal translation from Fortran
   gam    = 4096f;
@@ -221,7 +223,7 @@ float[k], float[l] sswap(int n, float[k] sx, int incx, float[l] sy, int incy) | 
 inline
 float[k] sscal(int n, float sa, float[k] sx, int incx) | n > 0, incx > 0
 {
-  return {i -> sa * sx[i] | [0] <= i < [n*incx] step [incx] ; i -> sx[i]};
+  return {i -> sa * sx[i] | [0] <= i < [n] step [incx] ; i -> sx[i]};
 }
 
 
@@ -279,15 +281,16 @@ float snrm2(int n, float[k] x, int incx) | n > 0, incx > 0
 }
 
 
-/*
- * scnrm2
- */
-inline
-float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
-{
-  x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
-  return sqrtf(tof(sum(normSq(x_prime))));
-}
+// Creates compiler core dump error
+// /*
+//  * scnrm2
+//  */
+// inline
+// float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
+// {
+//   x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
+//   return sqrtf(tof(sum(normSq(x_prime))));
+// }
 
 
 /*

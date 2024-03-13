@@ -2371,7 +2371,8 @@ typedef unsigned long ulong;
 
 
 
-
+# 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/extras_h/runtimecheck.h" 1
+# 64 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/sac.h" 2
 
 
 # 1 "/usr/local/include/sac2c/1.3.3-MijasCosta-1165-g41c84/release/runtime/hwloc_h/cpubind.h" 1
@@ -5740,11 +5741,11 @@ extern
 
 
 
-void SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f (
+void SACf__MAIN__compareSrotg__f__f__f__f (
 # 727 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
 # 727 "/home/rubenhensen/sac/blas/a.out.c"
-* SAC_arg_1__p, float SACl_a1, float SACl_b1, float SACl_c1, float SACl_s1, float SACl_a2, float SACl_b2);
+* SAC_arg_1__p, float SACl_a, float SACl_b, float SACl_c, float SACl_s);
 
 extern
 
@@ -6369,7 +6370,7 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    int SACp_cwc_31;
+    int SACp_cwc_27;
    
    
 
@@ -6378,7 +6379,7 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    SACf__MAIN__main (&SACp_cwc_31);
+    SACf__MAIN__main (&SACp_cwc_27);
 
 
 
@@ -6388,7 +6389,7 @@ void SACwf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    { *SAC_arg_1__p = SACp_cwc_31; }
+    { *SAC_arg_1__p = SACp_cwc_27; }
     return;
    
   }
@@ -6404,8 +6405,8 @@ void SACf__MAIN__main (int * SAC_arg_1__p) {
  
 
   {
-    const int SACp_emal_3042__isaa_380__rso_21_TheWorld = 0;
-    const float SACp_emal_3041__flat_15 = 0.0f;
+    const int SACp_emal_6119__isaa_2317__rso_17_TheWorld = 0;
+    const float SACp_emal_6118__flat_11 = 1.0f;
 
 
 
@@ -6427,7 +6428,7 @@ void SACf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f (&SACp_flat_7, SACp_emal_3041__flat_15, SACp_emal_3041__flat_15, SACp_emal_3041__flat_15, SACp_emal_3041__flat_15, SACp_emal_3041__flat_15, SACp_emal_3041__flat_15);
+    SACf__MAIN__compareSrotg__f__f__f__f (&SACp_flat_7, SACp_emal_6118__flat_11, SACp_emal_6118__flat_11, SACp_emal_6118__flat_11, SACp_emal_6118__flat_11);
 
 
 
@@ -6442,7 +6443,7 @@ void SACf__MAIN__main (int * SAC_arg_1__p) {
 
 
 
-    { *SAC_arg_1__p = SACp_emal_3042__isaa_380__rso_21_TheWorld; }
+    { *SAC_arg_1__p = SACp_emal_6119__isaa_2317__rso_17_TheWorld; }
     return;
    
   }
@@ -6486,11 +6487,11 @@ void SACf__MAIN_CL_INIT__init (void) {
 }
 }
 # 1385 "/home/rubenhensen/sac/blas/a.out.c"
-void SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f (
+void SACf__MAIN__compareSrotg__f__f__f__f (
 # 1385 "/home/rubenhensen/sac/blas/a.out.c" 3 4
 _Bool 
 # 1385 "/home/rubenhensen/sac/blas/a.out.c"
-* SAC_arg_1__p, float SACl_a1, float SACl_b1, float SACl_c1, float SACl_s1, float SACl_a2, float SACl_b2) {
+* SAC_arg_1__p, float SACl_a, float SACl_b, float SACl_c, float SACl_s) {
 {
   static const SAC_HM_thread_status_t SAC_HM_thread_status = SAC_HM_single_threaded;
  
@@ -6503,14 +6504,14 @@ _Bool
 # 1394 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1394 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3777__emal_3052__hce_4__SSA0_1;
+   SACp_pinl_7150__emal_6129__hce_4__SSA0_1;
    
    
 
 
 
 
-    float SACp_pinl_3776__emal_3051__ctz_188;
+    float SACp_pinl_7149__emal_6128__ctz_1909;
    
    
 
@@ -6521,7 +6522,7 @@ _Bool
 # 1408 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1408 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3775__emal_3050__pinl_167__flat_1104;
+   SACp_pinl_7148__emal_6127__pinl_1888__flat_1104;
    
    
 
@@ -6532,7 +6533,7 @@ _Bool
 # 1415 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1415 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3771__emal_3055__hce_5__SSA0_1;
+   SACp_pinl_7144__emal_6132__hce_5__SSA0_1;
    
    
 
@@ -6543,7 +6544,7 @@ _Bool
 # 1422 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1422 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3769__emal_3053__pinl_166__flat_1104;
+   SACp_pinl_7142__emal_6130__pinl_1887__flat_1104;
    
    
 
@@ -6554,14 +6555,14 @@ _Bool
 # 1429 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1429 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3765__emal_3058__hce_6__SSA0_1;
+   SACp_pinl_7138__emal_6135__hce_6__SSA0_1;
    
    
 
 
 
 
-    float SACp_pinl_3764__emal_3057__ctz_192;
+    float SACp_pinl_7137__emal_6134__ctz_1913;
    
    
 
@@ -6572,22 +6573,22 @@ _Bool
 # 1443 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1443 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3763__emal_3056__pinl_165__flat_1104;
+   SACp_pinl_7136__emal_6133__pinl_1886__flat_1104;
    
    
 
 
 
 
-    float SACp_pinl_3759__emal_3079__pinl_147__flat_953;
+    float SACp_pinl_7132__emal_6156__pinl_1868__flat_953;
    
    
 
-    const float SACp_pinl_3758__emal_3078__hce_143 = 1.0f;
+    const float SACp_pinl_7131__emal_6155__hce_243 = 1.0f;
 
 
 
-    float SACp_pinl_3755__emal_3077__esd_1563;
+    float SACp_pinl_7128__emal_6154__esd_4120;
    
    
 
@@ -6598,12 +6599,12 @@ _Bool
 # 1465 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1465 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3754__emal_3076__pinl_146__flat_1104;
+   SACp_pinl_7127__emal_6153__pinl_1867__flat_1104;
    
    
 
-    const int SACp_pinl_3751__emal_3085_res__SSA0_1 = 0;
-    const int SACp_pinl_3750__emal_3084_res = 1;
+    const int SACp_pinl_7124__emal_6162_res__SSA0_1 = 0;
+    const int SACp_pinl_7123__emal_6161_res = 1;
 
 
 
@@ -6611,13 +6612,13 @@ _Bool
 # 1474 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1474 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3747__emal_3083__pinl_126__flat_1108;
+   SACp_pinl_7120__emal_6160__pinl_1847__flat_1108;
    
    
 
-    const int SACp_pinl_3746__emal_3082_res = -1;
-    const int SACp_pinl_3743__emal_3089_res__SSA0_1 = 0;
-    const int SACp_pinl_3742__emal_3088_res = 1;
+    const int SACp_pinl_7119__emal_6159_res = -1;
+    const int SACp_pinl_7116__emal_6166_res__SSA0_1 = 0;
+    const int SACp_pinl_7115__emal_6165_res = 1;
 
 
 
@@ -6625,11 +6626,11 @@ _Bool
 # 1484 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1484 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3739__emal_3087__pinl_126__flat_1108;
+   SACp_pinl_7112__emal_6164__pinl_1847__flat_1108;
    
    
 
-    const int SACp_pinl_3738__emal_3086_res = -1;
+    const int SACp_pinl_7111__emal_6163_res = -1;
 
 
 
@@ -6637,7 +6638,7 @@ _Bool
 # 1492 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1492 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3735__emal_3081__pinl_136__flat_1106;
+   SACp_pinl_7108__emal_6158__pinl_1857__flat_1106;
    
    
 
@@ -6648,21 +6649,21 @@ _Bool
 # 1499 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1499 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3734__emal_3080__pinl_130__flat_1106;
+   SACp_pinl_7107__emal_6157__pinl_1851__flat_1106;
    
    
 
 
 
 
-    float SACp_pinl_3731__emal_3075__pinl_121__flat_967;
+    float SACp_pinl_7104__emal_6152__pinl_1842__flat_967;
    
    
 
 
 
 
-    float SACp_pinl_3730__emal_3074__pinl_122__flat_967;
+    float SACp_pinl_7103__emal_6151__pinl_1843__flat_967;
    
    
 
@@ -6673,65 +6674,65 @@ _Bool
 # 1520 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1520 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3728__emal_3072__pinl_123__flat_1108;
+   SACp_pinl_7101__emal_6149__pinl_1844__flat_1108;
    
    
 
 
 
 
-    float SACp_pinl_3727__emal_3071__pinl_139__flat_1170;
+    float SACp_pinl_7100__emal_6148__pinl_1860__flat_1170;
    
    
 
 
 
 
-    float SACp_pinl_3726__emal_3070__pinl_140__flat_952;
+    float SACp_pinl_7099__emal_6147__pinl_1861__flat_952;
    
    
 
 
 
 
-    float SACp_pinl_3725__emal_3069__pinl_141__flat_952;
+    float SACp_pinl_7098__emal_6146__pinl_1862__flat_952;
    
    
 
 
 
 
-    float SACp_pinl_3722__emal_3066__pinl_144__flat_953;
+    float SACp_pinl_7095__emal_6143__pinl_1865__flat_953;
    
    
 
 
 
 
-    float SACp_pinl_3721__emal_3065__pinl_145__flat_953;
+    float SACp_pinl_7094__emal_6142__pinl_1866__flat_953;
    
    
 
-    const float SACp_pinl_3720__emal_3064_z = 1.0f;
-    const float SACp_pinl_3719__emal_3063_c = 0.0f;
+    const float SACp_pinl_7093__emal_6141_z = 1.0f;
+    const float SACp_pinl_7092__emal_6140_c = 0.0f;
 
 
 
-    float SACp_pinl_3707__flat_165;
-   
-   
-
-
-
-
-    int SACp_pinl_3705__hce_144;
+    float SACp_pinl_7080__flat_337;
    
    
 
 
 
 
-    float SACp_pinl_3703__emal_3062__esd_1561;
+    int SACp_pinl_7078__hce_244;
+   
+   
+
+
+
+
+    float SACp_pinl_7076__emal_6139__esd_4118;
    
    
 
@@ -6742,37 +6743,37 @@ _Bool
 # 1585 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1585 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_pinl_3702__emal_3061__pinl_120__flat_1104;
+   SACp_pinl_7075__emal_6138__pinl_1841__flat_1104;
    
    
 
-    const float SACp_pinl_3701__emal_3060_z = 0.0f;
-    const float SACp_pinl_3700__emal_3059_c = 1.0f;
+    const float SACp_pinl_7074__emal_6137_z = 0.0f;
+    const float SACp_pinl_7073__emal_6136_c = 1.0f;
 
 
 
-    float SACp_emal_3049__emec_3033_s1;
-   
-   
-
-
-
-
-    float SACp_emal_3048__emec_3032_c1;
+    float SACp_emal_6126__emec_6110_s;
    
    
 
 
 
 
-    float SACp_emal_3047__emec_3031_b1;
+    float SACp_emal_6125__emec_6109_c;
    
    
 
 
 
 
-    float SACp_emal_3046__emec_3030_a1;
+    float SACp_emal_6124__emec_6108_b;
+   
+   
+
+
+
+
+    float SACp_emal_6123__emec_6107_a;
    
    
 
@@ -6783,14 +6784,14 @@ _Bool
 # 1622 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1622 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_3045__pinl_154__flat_1104;
+   SACp_emal_6122__pinl_1875__flat_1104;
    
    
 
 
 
 
-    float SACp_emal_3044__ctz_186;
+    float SACp_emal_6121__ctz_1907;
    
    
 
@@ -6801,35 +6802,35 @@ _Bool
 # 1636 "/home/rubenhensen/sac/blas/a.out.c" 3 4
    _Bool 
 # 1636 "/home/rubenhensen/sac/blas/a.out.c"
-   SACp_emal_3043__pinl_164__flat_1104;
+   SACp_emal_6120__pinl_1885__flat_1104;
    
    
 
 
 
 
-    float SACp_pinl_153_c__SSA0_1;
+    float SACp_pinl_1874_c__SSA0_1;
    
    
 
 
 
 
-    float SACp_pinl_152_s__SSA0_1;
+    float SACp_pinl_1873_s__SSA0_1;
    
    
 
 
 
 
-    float SACp_pinl_151_z;
+    float SACp_pinl_1872_z;
    
    
 
 
 
 
-    float SACp_pinl_150_r;
+    float SACp_pinl_1871_r;
    
    
 
@@ -6887,42 +6888,25 @@ _Bool
 
    
 
-
-
-
    
-
-
-
-
-   
-
-   
-    { { SACp_emal_3049__emec_3033_s1 = SACl_s1; } }
+    { { SACp_emal_6126__emec_6110_s = SACl_s; } }
     ;
-    { { SACp_emal_3048__emec_3032_c1 = SACl_c1; } }
+    { { SACp_emal_6125__emec_6109_c = SACl_c; } }
     ;
-    { { SACp_emal_3047__emec_3031_b1 = SACl_b1; } }
-    ;
+    { { SACp_emal_6124__emec_6108_b = SACl_b; } }
     { ; ;
 
 
 
-    ;
+    if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./test/rotg.sac", 16, 22, "Assignment with incompatible types found"); };
     ;
 
     }
-    { { SACp_emal_3046__emec_3030_a1 = SACl_a1; } }
-    ;
+    { { SACp_emal_6123__emec_6107_a = SACl_a; } }
 
 
 
-    SACsrotg (&SACp_emal_3046__emec_3030_a1, &SACp_emal_3047__emec_3031_b1, &SACp_emal_3048__emec_3032_c1, &SACp_emal_3049__emec_3033_s1);
-
-
-
-
-    ;
+    SACsrotg (&SACp_emal_6123__emec_6107_a, &SACp_emal_6124__emec_6108_b, &SACp_emal_6125__emec_6109_c, &SACp_emal_6126__emec_6110_s);
 
 
 
@@ -6939,143 +6923,148 @@ _Bool
 
     ;
 
-    ; ; { SACp_emal_3045__pinl_154__flat_1104 = (SACl_b2) == (0.0f); };
-    if (SACp_emal_3045__pinl_154__flat_1104)
+
+
+
+    ;
+
+    ; ; { SACp_emal_6122__pinl_1875__flat_1104 = (SACl_b) == (0.0f); };
+    if (SACp_emal_6122__pinl_1875__flat_1104)
     {
       ;
       { ; ; }
 
 
 
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 14, 3, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      ;
-      { SACp_pinl_153_c__SSA0_1 = SACp_pinl_3700__emal_3059_c; }
+      { SACp_pinl_1874_c__SSA0_1 = SACp_pinl_7073__emal_6136_c; }
 
 
 
 
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 14, 3, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      ;
-      { SACp_pinl_152_s__SSA0_1 = SACp_pinl_3701__emal_3060_z; }
+      { SACp_pinl_1873_s__SSA0_1 = SACp_pinl_7074__emal_6137_z; }
 
 
 
 
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 14, 3, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      ;
-      { SACp_pinl_151_z = SACp_pinl_3701__emal_3060_z; }
+      { SACp_pinl_1872_z = SACp_pinl_7074__emal_6137_z; }
 
 
 
 
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 14, 3, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      ;
-      { SACp_pinl_150_r = SACl_a2; }
+      { SACp_pinl_1871_r = SACl_a; }
 
     }
     else
     {
       { ; ; }
-      ; { SACp_pinl_3703__emal_3062__esd_1561 = -(SACl_a2); };
-      ; ; { SACp_pinl_3702__emal_3061__pinl_120__flat_1104 = (SACp_pinl_3703__emal_3062__esd_1561) == (0.0f); };
+      ; { SACp_pinl_7076__emal_6139__esd_4118 = -(SACl_a); };
+      ; ; { SACp_pinl_7075__emal_6138__pinl_1841__flat_1104 = (SACp_pinl_7076__emal_6139__esd_4118) == (0.0f); };
       { ; ; }
-      if (SACp_pinl_3702__emal_3061__pinl_120__flat_1104)
+      if (SACp_pinl_7075__emal_6138__pinl_1841__flat_1104)
       {
         ;
         { ; ; }
 
 
 
+        if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 19, 10, "Assignment with incompatible types found"); };
         ;
         ;
         ;
-        ;
-        { SACp_pinl_153_c__SSA0_1 = SACp_pinl_3719__emal_3063_c; }
+        { SACp_pinl_1874_c__SSA0_1 = SACp_pinl_7092__emal_6140_c; }
 
 
 
 
+        if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 19, 10, "Assignment with incompatible types found"); };
         ;
         ;
         ;
-        ;
-        { SACp_pinl_152_s__SSA0_1 = SACp_pinl_3720__emal_3064_z; }
+        { SACp_pinl_1873_s__SSA0_1 = SACp_pinl_7093__emal_6141_z; }
 
 
 
 
+        if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 19, 10, "Assignment with incompatible types found"); };
         ;
         ;
         ;
-        ;
-        { SACp_pinl_151_z = SACp_pinl_3720__emal_3064_z; }
+        { SACp_pinl_1872_z = SACp_pinl_7093__emal_6141_z; }
 
 
 
 
+        if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 19, 10, "Assignment with incompatible types found"); };
         ;
         ;
         ;
-        ;
-        { SACp_pinl_150_r = SACl_b2; }
+        { SACp_pinl_1871_r = SACl_b; }
 
       }
       else
       {
         { ; ; }
-        ; { SACp_pinl_3731__emal_3075__pinl_121__flat_967 = ((SACl_b2) < 0) ? -(SACl_b2) : (SACl_b2); };
+        ; { SACp_pinl_7104__emal_6152__pinl_1842__flat_967 = ((SACl_b) < 0) ? -(SACl_b) : (SACl_b); };
         { ; ;
 
 
 
-        ;
+        if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ScalarArith.sac", 92, 293, "Assignment with incompatible types found"); };
         ;
 
         }
-        ; { SACp_pinl_3730__emal_3074__pinl_122__flat_967 = ((SACl_a2) < 0) ? -(SACl_a2) : (SACl_a2); };
-        ; ; { SACp_pinl_3730__emal_3074__pinl_122__flat_967 = (SACp_pinl_3730__emal_3074__pinl_122__flat_967) - (SACp_pinl_3731__emal_3075__pinl_121__flat_967); };
+        ; { SACp_pinl_7103__emal_6151__pinl_1843__flat_967 = ((SACl_a) < 0) ? -(SACl_a) : (SACl_a); };
+        ; ; { SACp_pinl_7103__emal_6151__pinl_1843__flat_967 = (SACp_pinl_7103__emal_6151__pinl_1843__flat_967) - (SACp_pinl_7104__emal_6152__pinl_1842__flat_967); };
         { ; ; }
-        ; ; { SACp_pinl_3728__emal_3072__pinl_123__flat_1108 = (SACp_pinl_3730__emal_3074__pinl_122__flat_967) > (0.0f); };
+        ; ; { SACp_pinl_7101__emal_6149__pinl_1844__flat_1108 = (SACp_pinl_7103__emal_6151__pinl_1843__flat_967) > (0.0f); };
         { ; ; }
-        if (SACp_pinl_3728__emal_3072__pinl_123__flat_1108)
+        if (SACp_pinl_7101__emal_6149__pinl_1844__flat_1108)
         {
-          ; ; { SACp_pinl_3734__emal_3080__pinl_130__flat_1106 = (SACl_a2) < (0.0f); };
-          if (SACp_pinl_3734__emal_3080__pinl_130__flat_1106)
+          ; ; { SACp_pinl_7107__emal_6157__pinl_1851__flat_1106 = (SACl_a) < (0.0f); };
+          if (SACp_pinl_7107__emal_6157__pinl_1851__flat_1106)
           {
             { ; ; }
 
 
 
+            if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 555, 3, "Assignment with incompatible types found"); };
             ;
             ;
             ;
-            ;
-            { SACp_pinl_3705__hce_144 = SACp_pinl_3738__emal_3086_res; }
+            { SACp_pinl_7078__hce_244 = SACp_pinl_7111__emal_6163_res; }
 
           }
           else
           {
             { ; ; }
-            ; ; { SACp_pinl_3739__emal_3087__pinl_126__flat_1108 = (SACl_a2) > (0.0f); };
-            if (SACp_pinl_3739__emal_3087__pinl_126__flat_1108)
+            ; ; { SACp_pinl_7112__emal_6164__pinl_1847__flat_1108 = (SACl_a) > (0.0f); };
+            if (SACp_pinl_7112__emal_6164__pinl_1847__flat_1108)
             {
               { ; ; }
 
 
 
+              if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, "Assignment with incompatible types found"); };
               ;
               ;
               ;
-              ;
-              { SACp_pinl_3705__hce_144 = SACp_pinl_3742__emal_3088_res; }
+              { SACp_pinl_7078__hce_244 = SACp_pinl_7115__emal_6165_res; }
 
             }
             else
@@ -7084,46 +7073,46 @@ _Bool
 
 
 
+              if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, "Assignment with incompatible types found"); };
               ;
               ;
               ;
-              ;
-              { SACp_pinl_3705__hce_144 = SACp_pinl_3743__emal_3089_res__SSA0_1; }
+              { SACp_pinl_7078__hce_244 = SACp_pinl_7116__emal_6166_res__SSA0_1; }
 
             }
           }
         }
         else
         {
-          ; ; { SACp_pinl_3735__emal_3081__pinl_136__flat_1106 = (SACl_b2) < (0.0f); };
-          if (SACp_pinl_3735__emal_3081__pinl_136__flat_1106)
+          ; ; { SACp_pinl_7108__emal_6158__pinl_1857__flat_1106 = (SACl_b) < (0.0f); };
+          if (SACp_pinl_7108__emal_6158__pinl_1857__flat_1106)
           {
             { ; ; }
 
 
 
+            if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 555, 3, "Assignment with incompatible types found"); };
             ;
             ;
             ;
-            ;
-            { SACp_pinl_3705__hce_144 = SACp_pinl_3746__emal_3082_res; }
+            { SACp_pinl_7078__hce_244 = SACp_pinl_7119__emal_6159_res; }
 
           }
           else
           {
             { ; ; }
-            ; ; { SACp_pinl_3747__emal_3083__pinl_126__flat_1108 = (SACl_b2) > (0.0f); };
-            if (SACp_pinl_3747__emal_3083__pinl_126__flat_1108)
+            ; ; { SACp_pinl_7120__emal_6160__pinl_1847__flat_1108 = (SACl_b) > (0.0f); };
+            if (SACp_pinl_7120__emal_6160__pinl_1847__flat_1108)
             {
               { ; ; }
 
 
 
+              if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, "Assignment with incompatible types found"); };
               ;
               ;
               ;
-              ;
-              { SACp_pinl_3705__hce_144 = SACp_pinl_3750__emal_3084_res; }
+              { SACp_pinl_7078__hce_244 = SACp_pinl_7123__emal_6161_res; }
 
             }
             else
@@ -7132,11 +7121,11 @@ _Bool
 
 
 
+              if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, "Assignment with incompatible types found"); };
               ;
               ;
               ;
-              ;
-              { SACp_pinl_3705__hce_144 = SACp_pinl_3751__emal_3085_res__SSA0_1; }
+              { SACp_pinl_7078__hce_244 = SACp_pinl_7124__emal_6162_res__SSA0_1; }
 
             }
           }
@@ -7145,28 +7134,28 @@ _Bool
 
 
 
-        ;
+        if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ScalarArith.sac", 153, 1404, "Assignment with incompatible types found"); };
         ;
 
         }
-        ; { SACp_pinl_3727__emal_3071__pinl_139__flat_1170 = (float)(SACp_pinl_3705__hce_144); };
+        ; { SACp_pinl_7100__emal_6148__pinl_1860__flat_1170 = (float)(SACp_pinl_7078__hce_244); };
         { ; ; }
         { ; ;
 
 
 
-        ;
+        if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ScalarArith.sac", 81, 4104, "Assignment with incompatible types found"); };
         ;
 
         }
-        ; ; { SACp_pinl_3726__emal_3070__pinl_140__flat_952 = (SACl_b2) * (SACl_b2); };
-        ; ; { SACp_pinl_3725__emal_3069__pinl_141__flat_952 = (SACl_a2) * (SACl_a2); };
-        ; ; { SACp_pinl_3726__emal_3070__pinl_140__flat_952 = (SACp_pinl_3726__emal_3070__pinl_140__flat_952) + (SACp_pinl_3725__emal_3069__pinl_141__flat_952); };
+        ; ; { SACp_pinl_7099__emal_6147__pinl_1861__flat_952 = (SACl_b) * (SACl_b); };
+        ; ; { SACp_pinl_7098__emal_6146__pinl_1862__flat_952 = (SACl_a) * (SACl_a); };
+        ; ; { SACp_pinl_7099__emal_6147__pinl_1861__flat_952 = (SACp_pinl_7099__emal_6147__pinl_1861__flat_952) + (SACp_pinl_7098__emal_6146__pinl_1862__flat_952); };
         { ; ; }
 
 
 
-        SACp_pinl_3707__flat_165 = sqrtf( SACp_pinl_3726__emal_3070__pinl_140__flat_952);
+        SACp_pinl_7080__flat_337 = sqrtf( SACp_pinl_7099__emal_6147__pinl_1861__flat_952);
 
         ;
 
@@ -7176,110 +7165,110 @@ _Bool
 
         ;
         ;
-        ; ; { SACp_pinl_3727__emal_3071__pinl_139__flat_1170 = (SACp_pinl_3707__flat_165) * (SACp_pinl_3727__emal_3071__pinl_139__flat_1170); };
+        ; ; { SACp_pinl_7100__emal_6148__pinl_1860__flat_1170 = (SACp_pinl_7080__flat_337) * (SACp_pinl_7100__emal_6148__pinl_1860__flat_1170); };
         ;
-        ; ; { SACp_pinl_3722__emal_3066__pinl_144__flat_953 = (SACl_a2) / (SACp_pinl_3727__emal_3071__pinl_139__flat_1170); };
+        ; ; { SACp_pinl_7095__emal_6143__pinl_1865__flat_953 = (SACl_a) / (SACp_pinl_7100__emal_6148__pinl_1860__flat_1170); };
         ;
-        ; ; { SACp_pinl_3721__emal_3065__pinl_145__flat_953 = (SACl_b2) / (SACp_pinl_3727__emal_3071__pinl_139__flat_1170); };
+        ; ; { SACp_pinl_7094__emal_6142__pinl_1866__flat_953 = (SACl_b) / (SACp_pinl_7100__emal_6148__pinl_1860__flat_1170); };
         ;
-        if (SACp_pinl_3728__emal_3072__pinl_123__flat_1108)
+        if (SACp_pinl_7101__emal_6149__pinl_1844__flat_1108)
         {
           ;
           { ; ; }
 
 
 
+          if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 29, 9, "Assignment with incompatible types found"); };
           ;
           ;
           ;
-          ;
-          { SACp_pinl_151_z = SACp_pinl_3721__emal_3065__pinl_145__flat_953; }
+          { SACp_pinl_1872_z = SACp_pinl_7094__emal_6142__pinl_1866__flat_953; }
 
         }
         else
         {
           { ; ; }
-          ; { SACp_pinl_3755__emal_3077__esd_1563 = -(SACp_pinl_3722__emal_3066__pinl_144__flat_953); };
-          ; ; { SACp_pinl_3754__emal_3076__pinl_146__flat_1104 = (SACp_pinl_3755__emal_3077__esd_1563) == (0.0f); };
+          ; { SACp_pinl_7128__emal_6154__esd_4120 = -(SACp_pinl_7095__emal_6143__pinl_1865__flat_953); };
+          ; ; { SACp_pinl_7127__emal_6153__pinl_1867__flat_1104 = (SACp_pinl_7128__emal_6154__esd_4120) == (0.0f); };
           { ; ; }
-          if (SACp_pinl_3754__emal_3076__pinl_146__flat_1104)
+          if (SACp_pinl_7127__emal_6153__pinl_1867__flat_1104)
           {
             { ; ; }
 
 
 
+            if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 29, 31, "Assignment with incompatible types found"); };
             ;
             ;
             ;
-            ;
-            { SACp_pinl_151_z = SACp_pinl_3758__emal_3078__hce_143; }
+            { SACp_pinl_1872_z = SACp_pinl_7131__emal_6155__hce_243; }
 
           }
           else
           {
             { ; ; }
-            ; ; { SACp_pinl_3759__emal_3079__pinl_147__flat_953 = (1.0f) / (SACp_pinl_3722__emal_3066__pinl_144__flat_953); };
+            ; ; { SACp_pinl_7132__emal_6156__pinl_1868__flat_953 = (1.0f) / (SACp_pinl_7095__emal_6143__pinl_1865__flat_953); };
 
 
 
+            if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 29, 31, "Assignment with incompatible types found"); };
             ;
             ;
             ;
-            ;
-            { SACp_pinl_151_z = SACp_pinl_3759__emal_3079__pinl_147__flat_953; }
+            { SACp_pinl_1872_z = SACp_pinl_7132__emal_6156__pinl_1868__flat_953; }
 
           }
         }
 
 
 
+        if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 19, 10, "Assignment with incompatible types found"); };
         ;
         ;
         ;
-        ;
-        { SACp_pinl_153_c__SSA0_1 = SACp_pinl_3722__emal_3066__pinl_144__flat_953; }
+        { SACp_pinl_1874_c__SSA0_1 = SACp_pinl_7095__emal_6143__pinl_1865__flat_953; }
 
 
 
 
+        if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 19, 10, "Assignment with incompatible types found"); };
         ;
         ;
         ;
-        ;
-        { SACp_pinl_152_s__SSA0_1 = SACp_pinl_3721__emal_3065__pinl_145__flat_953; }
+        { SACp_pinl_1873_s__SSA0_1 = SACp_pinl_7094__emal_6142__pinl_1866__flat_953; }
 
 
 
 
+        if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel1.sac", 19, 10, "Assignment with incompatible types found"); };
         ;
         ;
         ;
-        ;
-        { SACp_pinl_150_r = SACp_pinl_3727__emal_3071__pinl_139__flat_1170; }
+        { SACp_pinl_1871_r = SACp_pinl_7100__emal_6148__pinl_1860__flat_1170; }
 
       }
     }
-    ; ; { SACp_emal_3044__ctz_186 = (SACp_emal_3046__emec_3030_a1) - (SACp_pinl_150_r); };
+    ; ; { SACp_emal_6121__ctz_1907 = (SACp_emal_6123__emec_6107_a) - (SACp_pinl_1871_r); };
     ;
     ;
-    ; ; { SACp_emal_3043__pinl_164__flat_1104 = (SACp_emal_3044__ctz_186) == (0.0f); };
+    ; ; { SACp_emal_6120__pinl_1885__flat_1104 = (SACp_emal_6121__ctz_1907) == (0.0f); };
     { ; ; }
-    if (SACp_emal_3043__pinl_164__flat_1104)
+    if (SACp_emal_6120__pinl_1885__flat_1104)
     {
       { ; ; }
-      ; ; { SACp_pinl_3764__emal_3057__ctz_192 = (SACp_emal_3047__emec_3031_b1) - (SACp_pinl_151_z); };
+      ; ; { SACp_pinl_7137__emal_6134__ctz_1913 = (SACp_emal_6124__emec_6108_b) - (SACp_pinl_1872_z); };
       ;
       ;
-      ; ; { SACp_pinl_3763__emal_3056__pinl_165__flat_1104 = (SACp_pinl_3764__emal_3057__ctz_192) == (0.0f); };
+      ; ; { SACp_pinl_7136__emal_6133__pinl_1886__flat_1104 = (SACp_pinl_7137__emal_6134__ctz_1913) == (0.0f); };
       { ; ; }
 
 
 
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./test/rotg.sac", 19, 12, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      ;
-      { SACp_hce_6 = SACp_pinl_3763__emal_3056__pinl_165__flat_1104; }
+      { SACp_hce_6 = SACp_pinl_7136__emal_6133__pinl_1886__flat_1104; }
 
     }
     else
@@ -7287,36 +7276,36 @@ _Bool
       ;
       ;
       { ; ; }
-      { { SACp_pinl_3765__emal_3058__hce_6__SSA0_1 = 
-# 2110 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+      { { SACp_pinl_7138__emal_6135__hce_6__SSA0_1 = 
+# 2098 "/home/rubenhensen/sac/blas/a.out.c" 3 4
      0
-# 2110 "/home/rubenhensen/sac/blas/a.out.c"
+# 2098 "/home/rubenhensen/sac/blas/a.out.c"
      ; }; }
 
 
 
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./test/rotg.sac", 19, 12, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      ;
-      { SACp_hce_6 = SACp_pinl_3765__emal_3058__hce_6__SSA0_1; }
+      { SACp_hce_6 = SACp_pinl_7138__emal_6135__hce_6__SSA0_1; }
 
     }
     if (SACp_hce_6)
     {
       { ; ; }
-      ; ; { SACp_pinl_153_c__SSA0_1 = (SACp_emal_3048__emec_3032_c1) - (SACp_pinl_153_c__SSA0_1); };
+      ; ; { SACp_pinl_1874_c__SSA0_1 = (SACp_emal_6125__emec_6109_c) - (SACp_pinl_1874_c__SSA0_1); };
       ;
-      ; ; { SACp_pinl_3769__emal_3053__pinl_166__flat_1104 = (SACp_pinl_153_c__SSA0_1) == (0.0f); };
+      ; ; { SACp_pinl_7142__emal_6130__pinl_1887__flat_1104 = (SACp_pinl_1874_c__SSA0_1) == (0.0f); };
       { ; ; }
 
 
 
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./test/rotg.sac", 19, 12, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      ;
-      { SACp_hce_5 = SACp_pinl_3769__emal_3053__pinl_166__flat_1104; }
+      { SACp_hce_5 = SACp_pinl_7142__emal_6130__pinl_1887__flat_1104; }
 
     }
     else
@@ -7324,37 +7313,37 @@ _Bool
       ;
       ;
       { ; ; }
-      { { SACp_pinl_3771__emal_3055__hce_5__SSA0_1 = 
-# 2143 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+      { { SACp_pinl_7144__emal_6132__hce_5__SSA0_1 = 
+# 2131 "/home/rubenhensen/sac/blas/a.out.c" 3 4
      0
-# 2143 "/home/rubenhensen/sac/blas/a.out.c"
+# 2131 "/home/rubenhensen/sac/blas/a.out.c"
      ; }; }
 
 
 
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./test/rotg.sac", 19, 12, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      ;
-      { SACp_hce_5 = SACp_pinl_3771__emal_3055__hce_5__SSA0_1; }
+      { SACp_hce_5 = SACp_pinl_7144__emal_6132__hce_5__SSA0_1; }
 
     }
     if (SACp_hce_5)
     {
       { ; ; }
-      ; ; { SACp_pinl_3776__emal_3051__ctz_188 = (SACp_emal_3049__emec_3033_s1) - (SACp_pinl_152_s__SSA0_1); };
+      ; ; { SACp_pinl_7149__emal_6128__ctz_1909 = (SACp_emal_6126__emec_6110_s) - (SACp_pinl_1873_s__SSA0_1); };
       ;
       ;
-      ; ; { SACp_pinl_3775__emal_3050__pinl_167__flat_1104 = (SACp_pinl_3776__emal_3051__ctz_188) == (0.0f); };
+      ; ; { SACp_pinl_7148__emal_6127__pinl_1888__flat_1104 = (SACp_pinl_7149__emal_6128__ctz_1909) == (0.0f); };
       { ; ; }
 
 
 
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./test/rotg.sac", 19, 12, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      ;
-      { SACp_hce_4 = SACp_pinl_3775__emal_3050__pinl_167__flat_1104; }
+      { SACp_hce_4 = SACp_pinl_7148__emal_6127__pinl_1888__flat_1104; }
 
     }
     else
@@ -7362,19 +7351,19 @@ _Bool
       ;
       ;
       { ; ; }
-      { { SACp_pinl_3777__emal_3052__hce_4__SSA0_1 = 
-# 2177 "/home/rubenhensen/sac/blas/a.out.c" 3 4
+      { { SACp_pinl_7150__emal_6129__hce_4__SSA0_1 = 
+# 2165 "/home/rubenhensen/sac/blas/a.out.c" 3 4
      0
-# 2177 "/home/rubenhensen/sac/blas/a.out.c"
+# 2165 "/home/rubenhensen/sac/blas/a.out.c"
      ; }; }
 
 
 
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./test/rotg.sac", 19, 12, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      ;
-      { SACp_hce_4 = SACp_pinl_3777__emal_3052__hce_4__SSA0_1; }
+      { SACp_hce_4 = SACp_pinl_7150__emal_6129__hce_4__SSA0_1; }
 
     }
 

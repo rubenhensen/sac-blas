@@ -1,8 +1,9 @@
 module BlasLevel2;
 
 use StdIO: all;
-use Structures: all;
-use Math: all;
+use Array: all;
+// use Structures: all;
+// use Math: all;
 export all;
 
 /*
@@ -15,12 +16,14 @@ export all;
 * m by n matrix.
 */
 
-double[*] dgemv(char trans, int m, int n, double alpha, double[lda,n] a, int lda, double[o] x, int incx, double beta, double[d:shp] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,m), dgemvDim(trans, m, n, incx, o), incx != 0, dgemvDim(trans, m, n, incy, o), incy != 0
+// lda >= max(1,n) because row major sac
+
+float[*] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
 {
   // Quick return if possible
   // if (m == 0 || n == 0 || (alpha == 0 && beta == 1)) return y; // not possible to return inside if statement
 
-  // calc beta*y first
+ 
   // {i -> c*X[i] + s*Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
   if (trans == 'N' | trans == 'n') {
     lenx = n;
@@ -30,12 +33,66 @@ double[*] dgemv(char trans, int m, int n, double alpha, double[lda,n] a, int lda
     leny = n;
   }
 
-  y = {i -> beta*y[i*incy] | i < [n*leny] step [incy] ; i -> y[i]};
-  
-  print(trans);
-  return [0.0];
+  // if (incx > 0) {
+  //   kx = 1;
+  // } else {
+  //   kx = 1 - (lenx-1)*incx;
+  // }
 
+  // if (incy > 0) {
+  //   ky = 1;
+  // } else {
+  //   ky = 1 - (lenx-1)*incy;
+  // }
+  
+  // als beta niet gelijk is aan 1
+    // als incy gelijk is aan 1
+      // als beta gelijk is aan 0 -> dan zet alles in y op 0
+
+  // does not incluce negative incy
+  // calc betaY =  beta*y first
+  // betaY =  BlasLevel1::sscal(leny, beta, y, incy);
+  // return betaY;
+
+  // calc alphaX = alpha * x
+  // sscal(int n, float sa, float[k] sx, int incx) 
+  alphaX =  BlasLevel1::sscal(lenx, alpha, x, incx);
+  // alphaX = {i -> alpha * x[i] | [0] <= i <= [lenx*incx] step [incx] ; i -> x[i]};
+  return alphaX;
+
+  // calc resA = alphaX * a;]
+  // resA = alphaX * a;
+  // res = {i -> { j -> sum(a[j] * alphaX[j]) + betaY[i]  |  j < [lenx*incx] step [incx] ; j -> x[j]}  | i < [leny*incy] step [incy] ; i -> y[i]};
+
+  // res = {[i,k] -> sum(a[i,.] * alphaX[k])  |  [i,k] < [m, lenx*incx] step [1,incx]; [i,k] -> x[i]};
+  // return resA;
 }
+
+// int[i,k] matmul(int[i,j] a, int[j,k] b) {
+//   return {[i,k] -> sum(a[i,.] * b[.,k])};
+// }
+
+
+
+
+//   res = {j -> mymul(a, alphaX, j)  |  j < [lenx*incx] step [incx] ; j -> x[j]};
+//   // res = a[3]*alphaX;
+//   return res;
+// }
+
+// float mymul(float[*] a, float[.] x, int[1] i ){
+//   print(i);
+//   print(a);
+//   print(x);
+//   res = a[i] *x;
+//   print(res);
+//   res = sum(res);
+//   print(res);
+//   return res;
+// }
+
+
+// matmul {[i,j] -> }
 
 bool ismember(char c, char[n] ca)
 {
@@ -46,22 +103,23 @@ bool ismember(char c, char[n] ca)
   return b;
 }
 
-bool dgemvXdim(char trans, int m, int n, int incx, int o)
+// Checks max index of elements we go through is smaller than the length of x
+bool sgemvXdim(char trans, int m, int n, int incx, int xn)
 {
   if (trans == 'N' || trans == 'n') {
-    res = ( 1 + ( n - 1 )*abs( incx ) );
+    res = xn > (n-1)*incx;
   } else {
-    res = ( 1 + ( m - 1 )*abs( incx ) );
+    res = xn > (m-1)*incx;
   }
-  return o >= res;
+  return res;
 }
 
-bool dgemvYdim(char trans, int m, int n, int incx, int o)
+bool sgemvYdim(char trans, int m, int n, int incy, int yn)
 {
   if (trans == 'N' || trans == 'n') {
-    res = ( 1 + ( m - 1 )*abs( incx ) );
+    res = yn > (m-1)*incy;
   } else {
-    res = ( 1 + ( n - 1 )*abs( incx ) );
+    res = yn > (n-1)*incy;
   }
-  return o >= res;
+  return res;
 }

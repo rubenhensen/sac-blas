@@ -1,0 +1,21 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+// use Openblas: all;
+
+int main() {
+    print( compareSrotg(1.0f,1.0f,1.0f,1.0f) );
+
+    return 0;
+}
+
+
+bool compareSrotg(float a, float b, float c, float s)
+{
+    r1, z1, c1, s1 = Openblas::srotg(a, b, c, s);
+    r2, z2, c2, s2 = srotg(a, b, c, s);
+    
+    return r1 == r2 && z1 == z2 && c1 == c2 && s1 == s2;
+}
+

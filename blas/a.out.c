@@ -5,10 +5,10 @@
  */
 
 #ifndef SAC_DO_CHECK
-#define SAC_DO_CHECK                             0
+#define SAC_DO_CHECK                             1
 #endif
 #ifndef SAC_DO_CHECK_TYPE
-#define SAC_DO_CHECK_TYPE                        0
+#define SAC_DO_CHECK_TYPE                        1
 #endif
 #ifndef SAC_DO_CHECK_GPU
 #define SAC_DO_CHECK_GPU                         0
@@ -300,7 +300,7 @@
 #endif
 
 /*
- *  SAC-Program blas.sac :
+ *  SAC-Program rotg.sac :
  */
 
 
@@ -722,9 +722,9 @@ SAC_ND_DECL_FUN2( SACf__MAIN_CL_INIT__init, void, void);
 
 SAC_C_EXTERN 
 /*
- * ND_FUN_DECL( SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f, , 7, out, bool, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (BOO, )))))))))), in, float, (SACl_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))))
+ * ND_FUN_DECL( SACf__MAIN__compareSrotg__f__f__f__f, , 5, out, bool, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (BOO, )))))))))), in, float, (SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))))
  */
-SAC_ND_DECL_FUN2( SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f, void,  SAC_ND_PARAM_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (BOO, )))))))))), bool), SAC_ND_PARAM_in( (SACl_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float));
+SAC_ND_DECL_FUN2( SACf__MAIN__compareSrotg__f__f__f__f, void,  SAC_ND_PARAM_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (BOO, )))))))))), bool), SAC_ND_PARAM_in( (SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float));
 
 SAC_C_EXTERN 
 /*
@@ -1243,28 +1243,28 @@ SAC_ND_DEF_FUN_BEGIN2( SACwf__MAIN__main, void,  SAC_ND_PARAM_out( (SAC_arg_1, (
 
   { 
     /*
-     * ND_DECL( (SACp_cwc_31, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
+     * ND_DECL( (SACp_cwc_27, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_cwc_31, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, )
-    SAC_ND_DECL__DESC( (SACp_cwc_31, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_cwc_27, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, )
+    SAC_ND_DECL__DESC( (SACp_cwc_27, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
     SAC_NOTHING()
 
 
     SAC_INIT_LOCAL_MEM()
     /*
-     * ND_FUN_AP( SACf__MAIN__main, , 1, out, int, SAC_SET_NT_USG( FAG, (SACp_cwc_31, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))))
+     * ND_FUN_AP( SACf__MAIN__main, , 1, out, int, SAC_SET_NT_USG( FAG, (SACp_cwc_27, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))))
      */
-    SAC_ND_FUNAP2( SACf__MAIN__main,  SAC_ND_ARG_out( SAC_SET_NT_USG( FAG, (SACp_cwc_31, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))), int))
+    SAC_ND_FUNAP2( SACf__MAIN__main,  SAC_ND_ARG_out( SAC_SET_NT_USG( FAG, (SACp_cwc_27, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))), int))
 
     /*
-     * ND_REFRESH__MIRROR( (SACp_cwc_31, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0)
+     * ND_REFRESH__MIRROR( (SACp_cwc_27, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0)
      */
     SAC_NOOP()
 
     /*
-     * ND_FUN_RET( , 1, out, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_cwc_31, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
+     * ND_FUN_RET( , 1, out, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_cwc_27, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
      */
-    SAC_ND_RET_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_cwc_31, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
+    SAC_ND_RET_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_cwc_27, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
     return;
     SAC_CLEANUP_LOCAL_MEM()
   }
@@ -1288,8 +1288,8 @@ SAC_ND_DEF_FUN_BEGIN2( SACf__MAIN__main, void,  SAC_ND_PARAM_out( (SAC_arg_1, (S
   SAC_MT_DEFINE_ST_SELF()
 
   { 
-    SAC_ND_DECL_CONST__DATA((SACp_emal_3042__isaa_380__rso_21_TheWorld, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
-    SAC_ND_DECL_CONST__DATA((SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0.0f)
+    SAC_ND_DECL_CONST__DATA((SACp_emal_6119__isaa_2317__rso_17_TheWorld, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
+    SAC_ND_DECL_CONST__DATA((SACp_emal_6118__flat_11, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 1.0f)
     /*
      * ND_DECL( (SACp_flat_7, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
@@ -1305,9 +1305,9 @@ SAC_ND_DEF_FUN_BEGIN2( SACf__MAIN__main, void,  SAC_ND_PARAM_out( (SAC_arg_1, (S
     SAC_ND_FUNAP2( SACf__MAIN_CL_INIT__init, )
 
     /*
-     * ND_FUN_AP( SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f, , 7, out, bool, SAC_SET_NT_USG( FAG, (SACp_flat_7, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))), in, float, SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), in, float, SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), in, float, SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), in, float, SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), in, float, SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), in, float, SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))))
+     * ND_FUN_AP( SACf__MAIN__compareSrotg__f__f__f__f, , 5, out, bool, SAC_SET_NT_USG( FAG, (SACp_flat_7, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))), in, float, SAC_SET_NT_USG( FAG, (SACp_emal_6118__flat_11, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), in, float, SAC_SET_NT_USG( FAG, (SACp_emal_6118__flat_11, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), in, float, SAC_SET_NT_USG( FAG, (SACp_emal_6118__flat_11, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), in, float, SAC_SET_NT_USG( FAG, (SACp_emal_6118__flat_11, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))))
      */
-    SAC_ND_FUNAP2( SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f,  SAC_ND_ARG_out( SAC_SET_NT_USG( FAG, (SACp_flat_7, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))), bool), SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_emal_3041__flat_15, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float))
+    SAC_ND_FUNAP2( SACf__MAIN__compareSrotg__f__f__f__f,  SAC_ND_ARG_out( SAC_SET_NT_USG( FAG, (SACp_flat_7, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))), bool), SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_emal_6118__flat_11, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_emal_6118__flat_11, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_emal_6118__flat_11, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_emal_6118__flat_11, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float))
 
     /*
      * ND_REFRESH__MIRROR( (SACp_flat_7, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0)
@@ -1320,9 +1320,9 @@ SAC_ND_DEF_FUN_BEGIN2( SACf__MAIN__main, void,  SAC_ND_PARAM_out( (SAC_arg_1, (S
     SAC_ND_FUNAP2( SACf_ScalarIO__print__bl,  SAC_ND_ARG_in( SAC_SET_NT_USG( FAG, (SACp_flat_7, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))), bool))
 
     /*
-     * ND_FUN_RET( , 1, out, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_emal_3042__isaa_380__rso_21_TheWorld, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
+     * ND_FUN_RET( , 1, out, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_emal_6119__isaa_2317__rso_17_TheWorld, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
      */
-    SAC_ND_RET_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_emal_3042__isaa_380__rso_21_TheWorld, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
+    SAC_ND_RET_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_emal_6119__isaa_2317__rso_17_TheWorld, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
     return;
     SAC_CLEANUP_LOCAL_MEM()
   }
@@ -1377,292 +1377,292 @@ SAC_ND_FUN_DEF_END2()
 
 
 /****************************************************************************
- * _MAIN::SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f(...) [ body ]
+ * _MAIN::SACf__MAIN__compareSrotg__f__f__f__f(...) [ body ]
  ****************************************************************************/
 /*
- * ND_FUN_DEF_BEGIN( SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f, , 7, out, bool, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (BOO, )))))))))), in, float, (SACl_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))))
+ * ND_FUN_DEF_BEGIN( SACf__MAIN__compareSrotg__f__f__f__f, , 5, out, bool, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (BOO, )))))))))), in, float, (SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))))
  */
-SAC_ND_DEF_FUN_BEGIN2( SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f, void,  SAC_ND_PARAM_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (BOO, )))))))))), bool), SAC_ND_PARAM_in( (SACl_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float))
+SAC_ND_DEF_FUN_BEGIN2( SACf__MAIN__compareSrotg__f__f__f__f, void,  SAC_ND_PARAM_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (BOO, )))))))))), bool), SAC_ND_PARAM_in( (SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float), SAC_ND_PARAM_in( (SACl_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), float))
 {
   SAC_HM_DEFINE_THREAD_STATUS( SAC_HM_single_threaded)
   SAC_MT_DEFINE_ST_SELF()
 
   { 
     /*
-     * ND_DECL( (SACp_pinl_3777__emal_3052__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_pinl_7150__emal_6129__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3777__emal_3052__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3777__emal_3052__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7150__emal_6129__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7150__emal_6129__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3776__emal_3051__ctz_188, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7149__emal_6128__ctz_1909, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3776__emal_3051__ctz_188, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3776__emal_3051__ctz_188, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7149__emal_6128__ctz_1909, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7149__emal_6128__ctz_1909, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3775__emal_3050__pinl_167__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_pinl_7148__emal_6127__pinl_1888__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3775__emal_3050__pinl_167__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3775__emal_3050__pinl_167__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7148__emal_6127__pinl_1888__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7148__emal_6127__pinl_1888__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3771__emal_3055__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_pinl_7144__emal_6132__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3771__emal_3055__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3771__emal_3055__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7144__emal_6132__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7144__emal_6132__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3769__emal_3053__pinl_166__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_pinl_7142__emal_6130__pinl_1887__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3769__emal_3053__pinl_166__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3769__emal_3053__pinl_166__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7142__emal_6130__pinl_1887__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7142__emal_6130__pinl_1887__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3765__emal_3058__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_pinl_7138__emal_6135__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3765__emal_3058__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3765__emal_3058__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7138__emal_6135__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7138__emal_6135__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3764__emal_3057__ctz_192, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7137__emal_6134__ctz_1913, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3764__emal_3057__ctz_192, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3764__emal_3057__ctz_192, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7137__emal_6134__ctz_1913, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7137__emal_6134__ctz_1913, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3763__emal_3056__pinl_165__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_pinl_7136__emal_6133__pinl_1886__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3763__emal_3056__pinl_165__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3763__emal_3056__pinl_165__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7136__emal_6133__pinl_1886__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7136__emal_6133__pinl_1886__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3759__emal_3079__pinl_147__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7132__emal_6156__pinl_1868__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3759__emal_3079__pinl_147__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3759__emal_3079__pinl_147__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7132__emal_6156__pinl_1868__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7132__emal_6156__pinl_1868__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3758__emal_3078__hce_143, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 1.0f)
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7131__emal_6155__hce_243, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 1.0f)
     /*
-     * ND_DECL( (SACp_pinl_3755__emal_3077__esd_1563, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7128__emal_6154__esd_4120, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3755__emal_3077__esd_1563, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3755__emal_3077__esd_1563, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
-    SAC_NOTHING()
-
-    /*
-     * ND_DECL( (SACp_pinl_3754__emal_3076__pinl_146__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
-     */
-    SAC_ND_DECL__DATA( (SACp_pinl_3754__emal_3076__pinl_146__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3754__emal_3076__pinl_146__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-    SAC_NOTHING()
-
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3751__emal_3085_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3750__emal_3084_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 1)
-    /*
-     * ND_DECL( (SACp_pinl_3747__emal_3083__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
-     */
-    SAC_ND_DECL__DATA( (SACp_pinl_3747__emal_3083__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3747__emal_3083__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-    SAC_NOTHING()
-
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3746__emal_3082_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, -1)
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3743__emal_3089_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3742__emal_3088_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 1)
-    /*
-     * ND_DECL( (SACp_pinl_3739__emal_3087__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
-     */
-    SAC_ND_DECL__DATA( (SACp_pinl_3739__emal_3087__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3739__emal_3087__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-    SAC_NOTHING()
-
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3738__emal_3086_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, -1)
-    /*
-     * ND_DECL( (SACp_pinl_3735__emal_3081__pinl_136__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
-     */
-    SAC_ND_DECL__DATA( (SACp_pinl_3735__emal_3081__pinl_136__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3735__emal_3081__pinl_136__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7128__emal_6154__esd_4120, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7128__emal_6154__esd_4120, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3734__emal_3080__pinl_130__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_pinl_7127__emal_6153__pinl_1867__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3734__emal_3080__pinl_130__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3734__emal_3080__pinl_130__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7127__emal_6153__pinl_1867__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7127__emal_6153__pinl_1867__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_NOTHING()
+
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7124__emal_6162_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7123__emal_6161_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 1)
+    /*
+     * ND_DECL( (SACp_pinl_7120__emal_6160__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     */
+    SAC_ND_DECL__DATA( (SACp_pinl_7120__emal_6160__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7120__emal_6160__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_NOTHING()
+
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7119__emal_6159_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, -1)
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7116__emal_6166_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7115__emal_6165_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 1)
+    /*
+     * ND_DECL( (SACp_pinl_7112__emal_6164__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     */
+    SAC_ND_DECL__DATA( (SACp_pinl_7112__emal_6164__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7112__emal_6164__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_NOTHING()
+
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7111__emal_6163_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, -1)
+    /*
+     * ND_DECL( (SACp_pinl_7108__emal_6158__pinl_1857__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     */
+    SAC_ND_DECL__DATA( (SACp_pinl_7108__emal_6158__pinl_1857__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7108__emal_6158__pinl_1857__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3731__emal_3075__pinl_121__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7107__emal_6157__pinl_1851__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3731__emal_3075__pinl_121__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3731__emal_3075__pinl_121__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7107__emal_6157__pinl_1851__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7107__emal_6157__pinl_1851__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7104__emal_6152__pinl_1842__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7104__emal_6152__pinl_1842__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7104__emal_6152__pinl_1842__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3728__emal_3072__pinl_123__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3728__emal_3072__pinl_123__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3728__emal_3072__pinl_123__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7101__emal_6149__pinl_1844__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7101__emal_6149__pinl_1844__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7101__emal_6149__pinl_1844__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3725__emal_3069__pinl_141__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3725__emal_3069__pinl_141__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3725__emal_3069__pinl_141__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3722__emal_3066__pinl_144__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7098__emal_6146__pinl_1862__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3722__emal_3066__pinl_144__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3722__emal_3066__pinl_144__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7098__emal_6146__pinl_1862__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7098__emal_6146__pinl_1862__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3721__emal_3065__pinl_145__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7095__emal_6143__pinl_1865__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3721__emal_3065__pinl_145__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3721__emal_3065__pinl_145__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
-    SAC_NOTHING()
-
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3720__emal_3064_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 1.0f)
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3719__emal_3063_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0.0f)
-    /*
-     * ND_DECL( (SACp_pinl_3707__flat_165, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
-     */
-    SAC_ND_DECL__DATA( (SACp_pinl_3707__flat_165, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3707__flat_165, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7095__emal_6143__pinl_1865__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7095__emal_6143__pinl_1865__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
+     * ND_DECL( (SACp_pinl_7094__emal_6142__pinl_1866__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7094__emal_6142__pinl_1866__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7094__emal_6142__pinl_1866__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_NOTHING()
+
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7093__emal_6141_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 1.0f)
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7092__emal_6140_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0.0f)
+    /*
+     * ND_DECL( (SACp_pinl_7080__flat_337, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     */
+    SAC_ND_DECL__DATA( (SACp_pinl_7080__flat_337, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7080__flat_337, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3703__emal_3062__esd_1561, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3703__emal_3062__esd_1561, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3703__emal_3062__esd_1561, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_3702__emal_3061__pinl_120__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_pinl_7076__emal_6139__esd_4118, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_3702__emal_3061__pinl_120__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_pinl_3702__emal_3061__pinl_120__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-    SAC_NOTHING()
-
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3701__emal_3060_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0.0f)
-    SAC_ND_DECL_CONST__DATA((SACp_pinl_3700__emal_3059_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 1.0f)
-    /*
-     * ND_DECL( (SACp_emal_3049__emec_3033_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
-     */
-    SAC_ND_DECL__DATA( (SACp_emal_3049__emec_3033_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_emal_3049__emec_3033_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7076__emal_6139__esd_4118, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7076__emal_6139__esd_4118, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_emal_3048__emec_3032_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_7075__emal_6138__pinl_1841__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_emal_3048__emec_3032_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_emal_3048__emec_3032_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_7075__emal_6138__pinl_1841__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_pinl_7075__emal_6138__pinl_1841__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_NOTHING()
+
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7074__emal_6137_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0.0f)
+    SAC_ND_DECL_CONST__DATA((SACp_pinl_7073__emal_6136_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 1.0f)
+    /*
+     * ND_DECL( (SACp_emal_6126__emec_6110_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     */
+    SAC_ND_DECL__DATA( (SACp_emal_6126__emec_6110_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_emal_6126__emec_6110_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_emal_3047__emec_3031_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_emal_6125__emec_6109_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_emal_3047__emec_3031_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_emal_3047__emec_3031_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_emal_6125__emec_6109_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_emal_6125__emec_6109_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_emal_6124__emec_6108_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_emal_6124__emec_6108_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_emal_6124__emec_6108_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_emal_3045__pinl_154__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_emal_3045__pinl_154__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_emal_3045__pinl_154__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_emal_3044__ctz_186, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_emal_6122__pinl_1875__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_emal_3044__ctz_186, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_emal_3044__ctz_186, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_emal_6122__pinl_1875__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_emal_6122__pinl_1875__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_emal_3043__pinl_164__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
+     * ND_DECL( (SACp_emal_6121__ctz_1907, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_emal_3043__pinl_164__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
-    SAC_ND_DECL__DESC( (SACp_emal_3043__pinl_164__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_emal_6121__ctz_1907, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_emal_6121__ctz_1907, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_emal_6120__pinl_1885__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_emal_6120__pinl_1885__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), bool, )
+    SAC_ND_DECL__DESC( (SACp_emal_6120__pinl_1885__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
-     * ND_DECL( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     * ND_DECL( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
-    SAC_ND_DECL__DESC( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_NOTHING()
+
+    /*
+     * ND_DECL( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, 0)
+     */
+    SAC_ND_DECL__DATA( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), float, )
+    SAC_ND_DECL__DESC( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
     SAC_NOTHING()
 
     /*
@@ -1688,501 +1688,489 @@ SAC_ND_DEF_FUN_BEGIN2( SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f, void,  
 
 
     /*
-     * ND_DECL__MIRROR_PARAM( (SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+     * ND_DECL__MIRROR_PARAM( (SACl_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
      */
     SAC_NOTHING()
 
     /*
-     * ND_DECL__MIRROR_PARAM( (SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+     * ND_DECL__MIRROR_PARAM( (SACl_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
      */
     SAC_NOTHING()
 
     /*
-     * ND_DECL__MIRROR_PARAM( (SACl_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+     * ND_DECL__MIRROR_PARAM( (SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
      */
     SAC_NOTHING()
 
     /*
-     * ND_DECL__MIRROR_PARAM( (SACl_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
-     */
-    SAC_NOTHING()
-
-    /*
-     * ND_DECL__MIRROR_PARAM( (SACl_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
-     */
-    SAC_NOTHING()
-
-    /*
-     * ND_DECL__MIRROR_PARAM( (SACl_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+     * ND_DECL__MIRROR_PARAM( (SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
      */
     SAC_NOTHING()
 
     SAC_INIT_LOCAL_MEM()
-    SAC_ND_COPY__DATA((SACp_emal_3049__emec_3033_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), )
-    SAC_ND_DEC_RC_FREE((SACl_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
-    SAC_ND_COPY__DATA((SACp_emal_3048__emec_3032_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), )
-    SAC_ND_DEC_RC_FREE((SACl_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
-    SAC_ND_COPY__DATA((SACp_emal_3047__emec_3031_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), )
-    SAC_ND_DEC_RC_FREE((SACl_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
-    SAC_ND_ALLOC_BEGIN((SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
+    SAC_ND_COPY__DATA((SACp_emal_6126__emec_6110_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DEC_RC_FREE((SACl_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
+    SAC_ND_COPY__DATA((SACp_emal_6125__emec_6109_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_DEC_RC_FREE((SACl_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
+    SAC_ND_COPY__DATA((SACp_emal_6124__emec_6108_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), )
+    SAC_ND_ALLOC_BEGIN((SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
     /*
-     * ND_SET__SHAPE_arr( (SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+     * ND_SET__SHAPE_arr( (SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
      */
-    SAC_ASSURE_TYPE_LINE ("./blas.sac", 35, 22, (SAC_ND_A_DIM( (SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+    SAC_ASSURE_TYPE_LINE ("./test/rotg.sac", 16, 22, (SAC_ND_A_DIM( (SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
     SAC_NOOP()
 
-    SAC_ND_ALLOC_END((SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
-    SAC_ND_COPY__DATA((SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), )
-    SAC_ND_DEC_RC_FREE((SACl_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
+    SAC_ND_ALLOC_END((SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
+    SAC_ND_COPY__DATA((SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), )
     /*
-     * ND_FUN_AP( SACsrotg, , 4, inout_nodesc, float, SAC_SET_NT_USG( FAG, (SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), inout_nodesc, float, SAC_SET_NT_USG( FAG, (SACp_emal_3047__emec_3031_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), inout_nodesc, float, SAC_SET_NT_USG( FAG, (SACp_emal_3048__emec_3032_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), inout_nodesc, float, SAC_SET_NT_USG( FAG, (SACp_emal_3049__emec_3033_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))))
+     * ND_FUN_AP( SACsrotg, , 4, inout_nodesc, float, SAC_SET_NT_USG( FAG, (SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), inout_nodesc, float, SAC_SET_NT_USG( FAG, (SACp_emal_6124__emec_6108_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), inout_nodesc, float, SAC_SET_NT_USG( FAG, (SACp_emal_6125__emec_6109_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), inout_nodesc, float, SAC_SET_NT_USG( FAG, (SACp_emal_6126__emec_6110_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))))
      */
-    SAC_ND_FUNAP2( SACsrotg,  SAC_ND_ARG_inout_nodesc( SAC_SET_NT_USG( FAG, (SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_inout_nodesc( SAC_SET_NT_USG( FAG, (SACp_emal_3047__emec_3031_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_inout_nodesc( SAC_SET_NT_USG( FAG, (SACp_emal_3048__emec_3032_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_inout_nodesc( SAC_SET_NT_USG( FAG, (SACp_emal_3049__emec_3033_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float))
+    SAC_ND_FUNAP2( SACsrotg,  SAC_ND_ARG_inout_nodesc( SAC_SET_NT_USG( FAG, (SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_inout_nodesc( SAC_SET_NT_USG( FAG, (SACp_emal_6124__emec_6108_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_inout_nodesc( SAC_SET_NT_USG( FAG, (SACp_emal_6125__emec_6109_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float), SAC_ND_ARG_inout_nodesc( SAC_SET_NT_USG( FAG, (SACp_emal_6126__emec_6110_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float))
 
     /*
-     * ND_REFRESH__MIRROR( (SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
-     */
-    SAC_NOOP()
-
-    /*
-     * ND_REFRESH__MIRROR( (SACp_emal_3047__emec_3031_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+     * ND_REFRESH__MIRROR( (SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
      */
     SAC_NOOP()
 
     /*
-     * ND_REFRESH__MIRROR( (SACp_emal_3048__emec_3032_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+     * ND_REFRESH__MIRROR( (SACp_emal_6124__emec_6108_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
      */
     SAC_NOOP()
 
     /*
-     * ND_REFRESH__MIRROR( (SACp_emal_3049__emec_3033_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+     * ND_REFRESH__MIRROR( (SACp_emal_6125__emec_6109_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
      */
     SAC_NOOP()
 
-    SAC_ND_PRF_SxS__DATA((SACp_emal_3045__pinl_154__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-    if (SAC_ND_GETVAR((SACp_emal_3045__pinl_154__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_emal_3045__pinl_154__flat_1104)) 
+    /*
+     * ND_REFRESH__MIRROR( (SACp_emal_6126__emec_6110_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+     */
+    SAC_NOOP()
+
+    SAC_ND_PRF_SxS__DATA((SACp_emal_6122__pinl_1875__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+    if (SAC_ND_GETVAR((SACp_emal_6122__pinl_1875__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_emal_6122__pinl_1875__flat_1104)) 
     { 
-      SAC_ND_DEC_RC_FREE((SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
-      SAC_ND_FREE((SACp_emal_3045__pinl_154__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+      SAC_ND_DEC_RC_FREE((SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_FREE((SACp_emal_6122__pinl_1875__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
       /*
-       * ND_ASSIGN( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3700__emal_3059_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+       * ND_ASSIGN( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7073__emal_6136_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
        */
-      SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 12, 3, (SAC_ND_A_DIM( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+      SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 14, 3, (SAC_ND_A_DIM( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
       SAC_NOOP()
       SAC_NOOP()
       SAC_NOOP()
-      SAC_ND_ASSIGN__DATA( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3700__emal_3059_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+      SAC_ND_ASSIGN__DATA( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7073__emal_6136_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
       /*
-       * ND_ASSIGN( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3701__emal_3060_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+       * ND_ASSIGN( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7074__emal_6137_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
        */
-      SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 12, 3, (SAC_ND_A_DIM( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+      SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 14, 3, (SAC_ND_A_DIM( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
       SAC_NOOP()
       SAC_NOOP()
       SAC_NOOP()
-      SAC_ND_ASSIGN__DATA( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3701__emal_3060_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+      SAC_ND_ASSIGN__DATA( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7074__emal_6137_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
       /*
-       * ND_ASSIGN( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3701__emal_3060_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+       * ND_ASSIGN( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7074__emal_6137_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
        */
-      SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 12, 3, (SAC_ND_A_DIM( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+      SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 14, 3, (SAC_ND_A_DIM( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
       SAC_NOOP()
       SAC_NOOP()
       SAC_NOOP()
-      SAC_ND_ASSIGN__DATA( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3701__emal_3060_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+      SAC_ND_ASSIGN__DATA( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7074__emal_6137_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
       /*
-       * ND_ASSIGN( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+       * ND_ASSIGN( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
        */
-      SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 12, 3, (SAC_ND_A_DIM( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+      SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 14, 3, (SAC_ND_A_DIM( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
       SAC_NOOP()
       SAC_NOOP()
       SAC_NOOP()
-      SAC_ND_ASSIGN__DATA( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+      SAC_ND_ASSIGN__DATA( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
     }
     else
     { 
-      SAC_ND_FREE((SACp_emal_3045__pinl_154__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-      SAC_ND_PRF_S__DATA((SACp_pinl_3703__emal_3062__esd_1561, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), SAC_ND_PRF_NEG, SAC_ND_READ((SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0))
-      SAC_ND_PRF_SxS__DATA((SACp_pinl_3702__emal_3061__pinl_120__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_pinl_3703__emal_3062__esd_1561, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-      SAC_ND_FREE((SACp_pinl_3703__emal_3062__esd_1561, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
-      if (SAC_ND_GETVAR((SACp_pinl_3702__emal_3061__pinl_120__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_3702__emal_3061__pinl_120__flat_1104)) 
+      SAC_ND_FREE((SACp_emal_6122__pinl_1875__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+      SAC_ND_PRF_S__DATA((SACp_pinl_7076__emal_6139__esd_4118, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), SAC_ND_PRF_NEG, SAC_ND_READ((SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0))
+      SAC_ND_PRF_SxS__DATA((SACp_pinl_7075__emal_6138__pinl_1841__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_pinl_7076__emal_6139__esd_4118, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+      SAC_ND_FREE((SACp_pinl_7076__emal_6139__esd_4118, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+      if (SAC_ND_GETVAR((SACp_pinl_7075__emal_6138__pinl_1841__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_7075__emal_6138__pinl_1841__flat_1104)) 
       { 
-        SAC_ND_DEC_RC_FREE((SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
-        SAC_ND_FREE((SACp_pinl_3702__emal_3061__pinl_120__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+        SAC_ND_DEC_RC_FREE((SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
+        SAC_ND_FREE((SACp_pinl_7075__emal_6138__pinl_1841__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
         /*
-         * ND_ASSIGN( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3719__emal_3063_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+         * ND_ASSIGN( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7092__emal_6140_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
          */
-        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 17, 10, (SAC_ND_A_DIM( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 19, 10, (SAC_ND_A_DIM( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
         SAC_NOOP()
         SAC_NOOP()
         SAC_NOOP()
-        SAC_ND_ASSIGN__DATA( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3719__emal_3063_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+        SAC_ND_ASSIGN__DATA( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7092__emal_6140_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
         /*
-         * ND_ASSIGN( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3720__emal_3064_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+         * ND_ASSIGN( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7093__emal_6141_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
          */
-        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 17, 10, (SAC_ND_A_DIM( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 19, 10, (SAC_ND_A_DIM( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
         SAC_NOOP()
         SAC_NOOP()
         SAC_NOOP()
-        SAC_ND_ASSIGN__DATA( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3720__emal_3064_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+        SAC_ND_ASSIGN__DATA( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7093__emal_6141_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
         /*
-         * ND_ASSIGN( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3720__emal_3064_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+         * ND_ASSIGN( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7093__emal_6141_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
          */
-        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 17, 10, (SAC_ND_A_DIM( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 19, 10, (SAC_ND_A_DIM( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
         SAC_NOOP()
         SAC_NOOP()
         SAC_NOOP()
-        SAC_ND_ASSIGN__DATA( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3720__emal_3064_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+        SAC_ND_ASSIGN__DATA( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7093__emal_6141_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
         /*
-         * ND_ASSIGN( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+         * ND_ASSIGN( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
          */
-        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 17, 10, (SAC_ND_A_DIM( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 19, 10, (SAC_ND_A_DIM( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
         SAC_NOOP()
         SAC_NOOP()
         SAC_NOOP()
-        SAC_ND_ASSIGN__DATA( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+        SAC_ND_ASSIGN__DATA( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
       }
       else
       { 
-        SAC_ND_FREE((SACp_pinl_3702__emal_3061__pinl_120__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-        SAC_ND_PRF_S__DATA((SACp_pinl_3731__emal_3075__pinl_121__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), SAC_ND_PRF_ABS, SAC_ND_READ((SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0))
-        SAC_ND_ALLOC_BEGIN((SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
+        SAC_ND_FREE((SACp_pinl_7075__emal_6138__pinl_1841__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+        SAC_ND_PRF_S__DATA((SACp_pinl_7104__emal_6152__pinl_1842__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), SAC_ND_PRF_ABS, SAC_ND_READ((SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0))
+        SAC_ND_ALLOC_BEGIN((SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
         /*
-         * ND_SET__SHAPE_arr( (SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+         * ND_SET__SHAPE_arr( (SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
          */
-        SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ScalarArith.sac", 92, 293, (SAC_ND_A_DIM( (SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+        SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ScalarArith.sac", 92, 293, (SAC_ND_A_DIM( (SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
         SAC_NOOP()
 
-        SAC_ND_ALLOC_END((SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
-        SAC_ND_PRF_S__DATA((SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), SAC_ND_PRF_ABS, SAC_ND_READ((SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0))
-        SAC_ND_PRF_SxS__DATA((SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_SUB, SAC_ND_READ((SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_3731__emal_3075__pinl_121__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
-        SAC_ND_FREE((SACp_pinl_3731__emal_3075__pinl_121__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
-        SAC_ND_PRF_SxS__DATA((SACp_pinl_3728__emal_3072__pinl_123__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_GT, SAC_ND_READ((SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-        SAC_ND_FREE((SACp_pinl_3730__emal_3074__pinl_122__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
-        if (SAC_ND_GETVAR((SACp_pinl_3728__emal_3072__pinl_123__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_3728__emal_3072__pinl_123__flat_1108)) 
+        SAC_ND_ALLOC_END((SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
+        SAC_ND_PRF_S__DATA((SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), SAC_ND_PRF_ABS, SAC_ND_READ((SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0))
+        SAC_ND_PRF_SxS__DATA((SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_SUB, SAC_ND_READ((SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_7104__emal_6152__pinl_1842__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+        SAC_ND_FREE((SACp_pinl_7104__emal_6152__pinl_1842__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+        SAC_ND_PRF_SxS__DATA((SACp_pinl_7101__emal_6149__pinl_1844__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_GT, SAC_ND_READ((SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+        SAC_ND_FREE((SACp_pinl_7103__emal_6151__pinl_1843__flat_967, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+        if (SAC_ND_GETVAR((SACp_pinl_7101__emal_6149__pinl_1844__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_7101__emal_6149__pinl_1844__flat_1108)) 
         { 
-          SAC_ND_PRF_SxS__DATA((SACp_pinl_3734__emal_3080__pinl_130__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_LT, SAC_ND_READ((SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-          if (SAC_ND_GETVAR((SACp_pinl_3734__emal_3080__pinl_130__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_3734__emal_3080__pinl_130__flat_1106)) 
+          SAC_ND_PRF_SxS__DATA((SACp_pinl_7107__emal_6157__pinl_1851__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_LT, SAC_ND_READ((SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+          if (SAC_ND_GETVAR((SACp_pinl_7107__emal_6157__pinl_1851__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_7107__emal_6157__pinl_1851__flat_1106)) 
           { 
-            SAC_ND_FREE((SACp_pinl_3734__emal_3080__pinl_130__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+            SAC_ND_FREE((SACp_pinl_7107__emal_6157__pinl_1851__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
             /*
-             * ND_ASSIGN( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_3738__emal_3086_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
+             * ND_ASSIGN( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_7111__emal_6163_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
              */
-            SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 555, 3, (SAC_ND_A_DIM( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
+            SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 555, 3, (SAC_ND_A_DIM( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
             SAC_NOOP()
             SAC_NOOP()
             SAC_NOOP()
-            SAC_ND_ASSIGN__DATA( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_3738__emal_3086_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
+            SAC_ND_ASSIGN__DATA( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_7111__emal_6163_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
 
           }
           else
           { 
-            SAC_ND_FREE((SACp_pinl_3734__emal_3080__pinl_130__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-            SAC_ND_PRF_SxS__DATA((SACp_pinl_3739__emal_3087__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_GT, SAC_ND_READ((SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-            if (SAC_ND_GETVAR((SACp_pinl_3739__emal_3087__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_3739__emal_3087__pinl_126__flat_1108)) 
+            SAC_ND_FREE((SACp_pinl_7107__emal_6157__pinl_1851__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+            SAC_ND_PRF_SxS__DATA((SACp_pinl_7112__emal_6164__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_GT, SAC_ND_READ((SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+            if (SAC_ND_GETVAR((SACp_pinl_7112__emal_6164__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_7112__emal_6164__pinl_1847__flat_1108)) 
             { 
-              SAC_ND_FREE((SACp_pinl_3739__emal_3087__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+              SAC_ND_FREE((SACp_pinl_7112__emal_6164__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
               /*
-               * ND_ASSIGN( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_3742__emal_3088_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
+               * ND_ASSIGN( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_7115__emal_6165_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
                */
-              SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, (SAC_ND_A_DIM( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
+              SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, (SAC_ND_A_DIM( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
               SAC_NOOP()
               SAC_NOOP()
               SAC_NOOP()
-              SAC_ND_ASSIGN__DATA( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_3742__emal_3088_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
+              SAC_ND_ASSIGN__DATA( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_7115__emal_6165_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
 
             }
             else
             { 
-              SAC_ND_FREE((SACp_pinl_3739__emal_3087__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+              SAC_ND_FREE((SACp_pinl_7112__emal_6164__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
               /*
-               * ND_ASSIGN( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_3743__emal_3089_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
+               * ND_ASSIGN( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_7116__emal_6166_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
                */
-              SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, (SAC_ND_A_DIM( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
+              SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, (SAC_ND_A_DIM( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
               SAC_NOOP()
               SAC_NOOP()
               SAC_NOOP()
-              SAC_ND_ASSIGN__DATA( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_3743__emal_3089_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
+              SAC_ND_ASSIGN__DATA( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_7116__emal_6166_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
 
             }
           }
         }
         else
         { 
-          SAC_ND_PRF_SxS__DATA((SACp_pinl_3735__emal_3081__pinl_136__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_LT, SAC_ND_READ((SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-          if (SAC_ND_GETVAR((SACp_pinl_3735__emal_3081__pinl_136__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_3735__emal_3081__pinl_136__flat_1106)) 
+          SAC_ND_PRF_SxS__DATA((SACp_pinl_7108__emal_6158__pinl_1857__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_LT, SAC_ND_READ((SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+          if (SAC_ND_GETVAR((SACp_pinl_7108__emal_6158__pinl_1857__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_7108__emal_6158__pinl_1857__flat_1106)) 
           { 
-            SAC_ND_FREE((SACp_pinl_3735__emal_3081__pinl_136__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+            SAC_ND_FREE((SACp_pinl_7108__emal_6158__pinl_1857__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
             /*
-             * ND_ASSIGN( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_3746__emal_3082_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
+             * ND_ASSIGN( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_7119__emal_6159_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
              */
-            SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 555, 3, (SAC_ND_A_DIM( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
+            SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 555, 3, (SAC_ND_A_DIM( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
             SAC_NOOP()
             SAC_NOOP()
             SAC_NOOP()
-            SAC_ND_ASSIGN__DATA( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_3746__emal_3082_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
+            SAC_ND_ASSIGN__DATA( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_7119__emal_6159_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
 
           }
           else
           { 
-            SAC_ND_FREE((SACp_pinl_3735__emal_3081__pinl_136__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-            SAC_ND_PRF_SxS__DATA((SACp_pinl_3747__emal_3083__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_GT, SAC_ND_READ((SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-            if (SAC_ND_GETVAR((SACp_pinl_3747__emal_3083__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_3747__emal_3083__pinl_126__flat_1108)) 
+            SAC_ND_FREE((SACp_pinl_7108__emal_6158__pinl_1857__flat_1106, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+            SAC_ND_PRF_SxS__DATA((SACp_pinl_7120__emal_6160__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_GT, SAC_ND_READ((SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+            if (SAC_ND_GETVAR((SACp_pinl_7120__emal_6160__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_7120__emal_6160__pinl_1847__flat_1108)) 
             { 
-              SAC_ND_FREE((SACp_pinl_3747__emal_3083__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+              SAC_ND_FREE((SACp_pinl_7120__emal_6160__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
               /*
-               * ND_ASSIGN( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_3750__emal_3084_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
+               * ND_ASSIGN( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_7123__emal_6161_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
                */
-              SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, (SAC_ND_A_DIM( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
+              SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, (SAC_ND_A_DIM( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
               SAC_NOOP()
               SAC_NOOP()
               SAC_NOOP()
-              SAC_ND_ASSIGN__DATA( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_3750__emal_3084_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
+              SAC_ND_ASSIGN__DATA( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_7123__emal_6161_res, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
 
             }
             else
             { 
-              SAC_ND_FREE((SACp_pinl_3747__emal_3083__pinl_126__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+              SAC_ND_FREE((SACp_pinl_7120__emal_6160__pinl_1847__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
               /*
-               * ND_ASSIGN( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_3751__emal_3085_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
+               * ND_ASSIGN( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, (SACp_pinl_7124__emal_6162_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0, )
                */
-              SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, (SAC_ND_A_DIM( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
+              SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib/src/numerical/Math.sac", 561, 5, (SAC_ND_A_DIM( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))) == (0)), "Assignment with incompatible types found");
               SAC_NOOP()
               SAC_NOOP()
               SAC_NOOP()
-              SAC_ND_ASSIGN__DATA( (SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_3751__emal_3085_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
+              SAC_ND_ASSIGN__DATA( (SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), (SACp_pinl_7124__emal_6162_res__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
 
             }
           }
         }
-        SAC_ND_ALLOC_BEGIN((SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
+        SAC_ND_ALLOC_BEGIN((SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
         /*
-         * ND_SET__SHAPE_arr( (SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+         * ND_SET__SHAPE_arr( (SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
          */
-        SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ScalarArith.sac", 153, 1404, (SAC_ND_A_DIM( (SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+        SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ScalarArith.sac", 153, 1404, (SAC_ND_A_DIM( (SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
         SAC_NOOP()
 
-        SAC_ND_ALLOC_END((SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
-        SAC_ND_PRF_S__DATA((SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), SAC_ND_PRF_TOF, SAC_ND_READ((SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0))
-        SAC_ND_FREE((SACp_pinl_3705__hce_144, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
-        SAC_ND_ALLOC_BEGIN((SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
+        SAC_ND_ALLOC_END((SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
+        SAC_ND_PRF_S__DATA((SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), SAC_ND_PRF_TOF, SAC_ND_READ((SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0))
+        SAC_ND_FREE((SACp_pinl_7078__hce_244, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
+        SAC_ND_ALLOC_BEGIN((SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
         /*
-         * ND_SET__SHAPE_arr( (SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+         * ND_SET__SHAPE_arr( (SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
          */
-        SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ScalarArith.sac", 81, 4104, (SAC_ND_A_DIM( (SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+        SAC_ASSURE_TYPE_LINE ("//builds/sac-group/build-sac-pkgs/stdlib-build/src-mt_pth/structures/ScalarArith.sac", 81, 4104, (SAC_ND_A_DIM( (SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
         SAC_NOOP()
 
-        SAC_ND_ALLOC_END((SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
-        SAC_ND_PRF_SxS__DATA((SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_MUL, SAC_ND_READ((SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0))
-        SAC_ND_PRF_SxS__DATA((SACp_pinl_3725__emal_3069__pinl_141__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_MUL, SAC_ND_READ((SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0))
-        SAC_ND_PRF_SxS__DATA((SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_ADD, SAC_ND_READ((SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_3725__emal_3069__pinl_141__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
-        SAC_ND_FREE((SACp_pinl_3725__emal_3069__pinl_141__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+        SAC_ND_ALLOC_END((SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, 0, float)
+        SAC_ND_PRF_SxS__DATA((SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_MUL, SAC_ND_READ((SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0))
+        SAC_ND_PRF_SxS__DATA((SACp_pinl_7098__emal_6146__pinl_1862__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_MUL, SAC_ND_READ((SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0))
+        SAC_ND_PRF_SxS__DATA((SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_ADD, SAC_ND_READ((SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_7098__emal_6146__pinl_1862__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+        SAC_ND_FREE((SACp_pinl_7098__emal_6146__pinl_1862__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
         /*
-         * ND_FUN_AP( sqrtf, SACp_pinl_3707__flat_165, 1, in_nodesc, float, SAC_SET_NT_USG( FAG, (SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))))
+         * ND_FUN_AP( sqrtf, SACp_pinl_7080__flat_337, 1, in_nodesc, float, SAC_SET_NT_USG( FAG, (SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))))
          */
-        SACp_pinl_3707__flat_165 = sqrtf( SAC_ND_ARG_in_nodesc( SAC_SET_NT_USG( FAG, (SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float));
+        SACp_pinl_7080__flat_337 = sqrtf( SAC_ND_ARG_in_nodesc( SAC_SET_NT_USG( FAG, (SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))), float));
 
-        SAC_ND_ALLOC__DESC((SACp_pinl_3707__flat_165, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+        SAC_ND_ALLOC__DESC((SACp_pinl_7080__flat_337, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
         /*
-         * ND_REFRESH__MIRROR( (SACp_pinl_3707__flat_165, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
+         * ND_REFRESH__MIRROR( (SACp_pinl_7080__flat_337, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0)
          */
         SAC_NOOP()
 
-        SAC_ND_SET__RC((SACp_pinl_3707__flat_165, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1)
-        SAC_ND_DEC_RC_FREE((SACp_pinl_3726__emal_3070__pinl_140__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-        SAC_ND_PRF_SxS__DATA((SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_MUL, SAC_ND_READ((SACp_pinl_3707__flat_165, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
-        SAC_ND_DEC_RC_FREE((SACp_pinl_3707__flat_165, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-        SAC_ND_PRF_SxS__DATA((SACp_pinl_3722__emal_3066__pinl_144__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_DIV, SAC_ND_READ((SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
-        SAC_ND_DEC_RC_FREE((SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
-        SAC_ND_PRF_SxS__DATA((SACp_pinl_3721__emal_3065__pinl_145__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_DIV, SAC_ND_READ((SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
-        SAC_ND_DEC_RC_FREE((SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
-        if (SAC_ND_GETVAR((SACp_pinl_3728__emal_3072__pinl_123__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_3728__emal_3072__pinl_123__flat_1108)) 
+        SAC_ND_SET__RC((SACp_pinl_7080__flat_337, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1)
+        SAC_ND_DEC_RC_FREE((SACp_pinl_7099__emal_6147__pinl_1861__flat_952, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+        SAC_ND_PRF_SxS__DATA((SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_MUL, SAC_ND_READ((SACp_pinl_7080__flat_337, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+        SAC_ND_DEC_RC_FREE((SACp_pinl_7080__flat_337, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+        SAC_ND_PRF_SxS__DATA((SACp_pinl_7095__emal_6143__pinl_1865__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_DIV, SAC_ND_READ((SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+        SAC_ND_DEC_RC_FREE((SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
+        SAC_ND_PRF_SxS__DATA((SACp_pinl_7094__emal_6142__pinl_1866__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_DIV, SAC_ND_READ((SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+        SAC_ND_DEC_RC_FREE((SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), 1, )
+        if (SAC_ND_GETVAR((SACp_pinl_7101__emal_6149__pinl_1844__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_7101__emal_6149__pinl_1844__flat_1108)) 
         { 
-          SAC_ND_INC_RC((SACp_pinl_3721__emal_3065__pinl_145__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1)
-          SAC_ND_FREE((SACp_pinl_3728__emal_3072__pinl_123__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+          SAC_ND_INC_RC((SACp_pinl_7094__emal_6142__pinl_1866__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1)
+          SAC_ND_FREE((SACp_pinl_7101__emal_6149__pinl_1844__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
           /*
-           * ND_ASSIGN( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3721__emal_3065__pinl_145__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+           * ND_ASSIGN( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7094__emal_6142__pinl_1866__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
            */
-          SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 27, 9, (SAC_ND_A_DIM( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+          SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 29, 9, (SAC_ND_A_DIM( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
           SAC_NOOP()
           SAC_NOOP()
           SAC_NOOP()
-          SAC_ND_ASSIGN__DATA( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3721__emal_3065__pinl_145__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+          SAC_ND_ASSIGN__DATA( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7094__emal_6142__pinl_1866__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
         }
         else
         { 
-          SAC_ND_FREE((SACp_pinl_3728__emal_3072__pinl_123__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-          SAC_ND_PRF_S__DATA((SACp_pinl_3755__emal_3077__esd_1563, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), SAC_ND_PRF_NEG, SAC_ND_READ((SACp_pinl_3722__emal_3066__pinl_144__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
-          SAC_ND_PRF_SxS__DATA((SACp_pinl_3754__emal_3076__pinl_146__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_pinl_3755__emal_3077__esd_1563, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-          SAC_ND_FREE((SACp_pinl_3755__emal_3077__esd_1563, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
-          if (SAC_ND_GETVAR((SACp_pinl_3754__emal_3076__pinl_146__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_3754__emal_3076__pinl_146__flat_1104)) 
+          SAC_ND_FREE((SACp_pinl_7101__emal_6149__pinl_1844__flat_1108, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+          SAC_ND_PRF_S__DATA((SACp_pinl_7128__emal_6154__esd_4120, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), SAC_ND_PRF_NEG, SAC_ND_READ((SACp_pinl_7095__emal_6143__pinl_1865__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+          SAC_ND_PRF_SxS__DATA((SACp_pinl_7127__emal_6153__pinl_1867__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_pinl_7128__emal_6154__esd_4120, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+          SAC_ND_FREE((SACp_pinl_7128__emal_6154__esd_4120, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+          if (SAC_ND_GETVAR((SACp_pinl_7127__emal_6153__pinl_1867__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_pinl_7127__emal_6153__pinl_1867__flat_1104)) 
           { 
-            SAC_ND_FREE((SACp_pinl_3754__emal_3076__pinl_146__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+            SAC_ND_FREE((SACp_pinl_7127__emal_6153__pinl_1867__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
             /*
-             * ND_ASSIGN( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3758__emal_3078__hce_143, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+             * ND_ASSIGN( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7131__emal_6155__hce_243, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
              */
-            SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 27, 31, (SAC_ND_A_DIM( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+            SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 29, 31, (SAC_ND_A_DIM( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
             SAC_NOOP()
             SAC_NOOP()
             SAC_NOOP()
-            SAC_ND_ASSIGN__DATA( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3758__emal_3078__hce_143, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+            SAC_ND_ASSIGN__DATA( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7131__emal_6155__hce_243, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
           }
           else
           { 
-            SAC_ND_FREE((SACp_pinl_3754__emal_3076__pinl_146__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-            SAC_ND_PRF_SxS__DATA((SACp_pinl_3759__emal_3079__pinl_147__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_DIV, 1.0f, SAC_ND_READ((SACp_pinl_3722__emal_3066__pinl_144__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+            SAC_ND_FREE((SACp_pinl_7127__emal_6153__pinl_1867__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+            SAC_ND_PRF_SxS__DATA((SACp_pinl_7132__emal_6156__pinl_1868__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_DIV, 1.0f, SAC_ND_READ((SACp_pinl_7095__emal_6143__pinl_1865__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
             /*
-             * ND_ASSIGN( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3759__emal_3079__pinl_147__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+             * ND_ASSIGN( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7132__emal_6156__pinl_1868__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
              */
-            SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 27, 31, (SAC_ND_A_DIM( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+            SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 29, 31, (SAC_ND_A_DIM( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
             SAC_NOOP()
             SAC_NOOP()
             SAC_NOOP()
-            SAC_ND_ASSIGN__DATA( (SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3759__emal_3079__pinl_147__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+            SAC_ND_ASSIGN__DATA( (SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7132__emal_6156__pinl_1868__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
           }
         }
         /*
-         * ND_ASSIGN( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3722__emal_3066__pinl_144__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+         * ND_ASSIGN( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7095__emal_6143__pinl_1865__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
          */
-        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 17, 10, (SAC_ND_A_DIM( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 19, 10, (SAC_ND_A_DIM( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
         SAC_NOOP()
         SAC_NOOP()
         SAC_NOOP()
-        SAC_ND_ASSIGN__DATA( (SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3722__emal_3066__pinl_144__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+        SAC_ND_ASSIGN__DATA( (SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7095__emal_6143__pinl_1865__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
         /*
-         * ND_ASSIGN( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3721__emal_3065__pinl_145__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+         * ND_ASSIGN( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7094__emal_6142__pinl_1866__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
          */
-        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 17, 10, (SAC_ND_A_DIM( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 19, 10, (SAC_ND_A_DIM( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
         SAC_NOOP()
         SAC_NOOP()
         SAC_NOOP()
-        SAC_ND_ASSIGN__DATA( (SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3721__emal_3065__pinl_145__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+        SAC_ND_ASSIGN__DATA( (SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7094__emal_6142__pinl_1866__flat_953, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
         /*
-         * ND_ASSIGN( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
+         * ND_ASSIGN( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, (SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0, )
          */
-        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 17, 10, (SAC_ND_A_DIM( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
+        SAC_ASSURE_TYPE_LINE ("./BlasLevel1.sac", 19, 10, (SAC_ND_A_DIM( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, ))))))))))) == (0)), "Assignment with incompatible types found");
         SAC_NOOP()
         SAC_NOOP()
         SAC_NOOP()
-        SAC_ND_ASSIGN__DATA( (SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_3727__emal_3071__pinl_139__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+        SAC_ND_ASSIGN__DATA( (SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), (SACp_pinl_7100__emal_6148__pinl_1860__flat_1170, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
 
       }
     }
-    SAC_ND_PRF_SxS__DATA((SACp_emal_3044__ctz_186, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_SUB, SAC_ND_READ((SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
-    SAC_ND_DEC_RC_FREE((SACp_pinl_150_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-    SAC_ND_DEC_RC_FREE((SACp_emal_3046__emec_3030_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-    SAC_ND_PRF_SxS__DATA((SACp_emal_3043__pinl_164__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_emal_3044__ctz_186, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-    SAC_ND_FREE((SACp_emal_3044__ctz_186, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
-    if (SAC_ND_GETVAR((SACp_emal_3043__pinl_164__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_emal_3043__pinl_164__flat_1104)) 
+    SAC_ND_PRF_SxS__DATA((SACp_emal_6121__ctz_1907, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_SUB, SAC_ND_READ((SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+    SAC_ND_DEC_RC_FREE((SACp_pinl_1871_r, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+    SAC_ND_DEC_RC_FREE((SACp_emal_6123__emec_6107_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+    SAC_ND_PRF_SxS__DATA((SACp_emal_6120__pinl_1885__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_emal_6121__ctz_1907, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+    SAC_ND_FREE((SACp_emal_6121__ctz_1907, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+    if (SAC_ND_GETVAR((SACp_emal_6120__pinl_1885__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_emal_6120__pinl_1885__flat_1104)) 
     { 
-      SAC_ND_FREE((SACp_emal_3043__pinl_164__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-      SAC_ND_PRF_SxS__DATA((SACp_pinl_3764__emal_3057__ctz_192, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_SUB, SAC_ND_READ((SACp_emal_3047__emec_3031_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
-      SAC_ND_DEC_RC_FREE((SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-      SAC_ND_DEC_RC_FREE((SACp_emal_3047__emec_3031_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-      SAC_ND_PRF_SxS__DATA((SACp_pinl_3763__emal_3056__pinl_165__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_pinl_3764__emal_3057__ctz_192, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-      SAC_ND_FREE((SACp_pinl_3764__emal_3057__ctz_192, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+      SAC_ND_FREE((SACp_emal_6120__pinl_1885__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+      SAC_ND_PRF_SxS__DATA((SACp_pinl_7137__emal_6134__ctz_1913, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_SUB, SAC_ND_READ((SACp_emal_6124__emec_6108_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+      SAC_ND_DEC_RC_FREE((SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_DEC_RC_FREE((SACp_emal_6124__emec_6108_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_PRF_SxS__DATA((SACp_pinl_7136__emal_6133__pinl_1886__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_pinl_7137__emal_6134__ctz_1913, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+      SAC_ND_FREE((SACp_pinl_7137__emal_6134__ctz_1913, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
       /*
-       * ND_ASSIGN( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_3763__emal_3056__pinl_165__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
+       * ND_ASSIGN( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_7136__emal_6133__pinl_1886__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
        */
-      SAC_ASSURE_TYPE_LINE ("./blas.sac", 38, 12, (SAC_ND_A_DIM( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
+      SAC_ASSURE_TYPE_LINE ("./test/rotg.sac", 19, 12, (SAC_ND_A_DIM( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
       SAC_NOOP()
       SAC_NOOP()
       SAC_NOOP()
-      SAC_ND_ASSIGN__DATA( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_3763__emal_3056__pinl_165__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+      SAC_ND_ASSIGN__DATA( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_7136__emal_6133__pinl_1886__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
 
     }
     else
     { 
-      SAC_ND_DEC_RC_FREE((SACp_pinl_151_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-      SAC_ND_DEC_RC_FREE((SACp_emal_3047__emec_3031_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-      SAC_ND_FREE((SACp_emal_3043__pinl_164__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-      SAC_ND_CREATE__SCALAR__DATA((SACp_pinl_3765__emal_3058__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), false)
+      SAC_ND_DEC_RC_FREE((SACp_pinl_1872_z, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_DEC_RC_FREE((SACp_emal_6124__emec_6108_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_FREE((SACp_emal_6120__pinl_1885__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+      SAC_ND_CREATE__SCALAR__DATA((SACp_pinl_7138__emal_6135__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), false)
       /*
-       * ND_ASSIGN( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_3765__emal_3058__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
+       * ND_ASSIGN( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_7138__emal_6135__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
        */
-      SAC_ASSURE_TYPE_LINE ("./blas.sac", 38, 12, (SAC_ND_A_DIM( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
+      SAC_ASSURE_TYPE_LINE ("./test/rotg.sac", 19, 12, (SAC_ND_A_DIM( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
       SAC_NOOP()
       SAC_NOOP()
       SAC_NOOP()
-      SAC_ND_ASSIGN__DATA( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_3765__emal_3058__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+      SAC_ND_ASSIGN__DATA( (SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_7138__emal_6135__hce_6__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
 
     }
     if (SAC_ND_GETVAR((SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_hce_6)) 
     { 
       SAC_ND_FREE((SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-      SAC_ND_PRF_SxS__DATA((SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_SUB, SAC_ND_READ((SACp_emal_3048__emec_3032_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
-      SAC_ND_DEC_RC_FREE((SACp_emal_3048__emec_3032_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-      SAC_ND_PRF_SxS__DATA((SACp_pinl_3769__emal_3053__pinl_166__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-      SAC_ND_FREE((SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+      SAC_ND_PRF_SxS__DATA((SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_SUB, SAC_ND_READ((SACp_emal_6125__emec_6109_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+      SAC_ND_DEC_RC_FREE((SACp_emal_6125__emec_6109_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_PRF_SxS__DATA((SACp_pinl_7142__emal_6130__pinl_1887__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+      SAC_ND_FREE((SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
       /*
-       * ND_ASSIGN( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_3769__emal_3053__pinl_166__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
+       * ND_ASSIGN( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_7142__emal_6130__pinl_1887__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
        */
-      SAC_ASSURE_TYPE_LINE ("./blas.sac", 38, 12, (SAC_ND_A_DIM( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
+      SAC_ASSURE_TYPE_LINE ("./test/rotg.sac", 19, 12, (SAC_ND_A_DIM( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
       SAC_NOOP()
       SAC_NOOP()
       SAC_NOOP()
-      SAC_ND_ASSIGN__DATA( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_3769__emal_3053__pinl_166__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+      SAC_ND_ASSIGN__DATA( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_7142__emal_6130__pinl_1887__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
 
     }
     else
     { 
-      SAC_ND_DEC_RC_FREE((SACp_emal_3048__emec_3032_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-      SAC_ND_DEC_RC_FREE((SACp_pinl_153_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_DEC_RC_FREE((SACp_pinl_1874_c__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_DEC_RC_FREE((SACp_emal_6125__emec_6109_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
       SAC_ND_FREE((SACp_hce_6, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-      SAC_ND_CREATE__SCALAR__DATA((SACp_pinl_3771__emal_3055__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), false)
+      SAC_ND_CREATE__SCALAR__DATA((SACp_pinl_7144__emal_6132__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), false)
       /*
-       * ND_ASSIGN( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_3771__emal_3055__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
+       * ND_ASSIGN( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_7144__emal_6132__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
        */
-      SAC_ASSURE_TYPE_LINE ("./blas.sac", 38, 12, (SAC_ND_A_DIM( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
+      SAC_ASSURE_TYPE_LINE ("./test/rotg.sac", 19, 12, (SAC_ND_A_DIM( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
       SAC_NOOP()
       SAC_NOOP()
       SAC_NOOP()
-      SAC_ND_ASSIGN__DATA( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_3771__emal_3055__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+      SAC_ND_ASSIGN__DATA( (SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_7144__emal_6132__hce_5__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
 
     }
     if (SAC_ND_GETVAR((SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), SACp_hce_5)) 
     { 
       SAC_ND_FREE((SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-      SAC_ND_PRF_SxS__DATA((SACp_pinl_3776__emal_3051__ctz_188, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_SUB, SAC_ND_READ((SACp_emal_3049__emec_3033_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
-      SAC_ND_DEC_RC_FREE((SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-      SAC_ND_DEC_RC_FREE((SACp_emal_3049__emec_3033_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-      SAC_ND_PRF_SxS__DATA((SACp_pinl_3775__emal_3050__pinl_167__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_pinl_3776__emal_3051__ctz_188, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
-      SAC_ND_FREE((SACp_pinl_3776__emal_3051__ctz_188, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
+      SAC_ND_PRF_SxS__DATA((SACp_pinl_7149__emal_6128__ctz_1909, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), T_float, SAC_ND_PRF_SUB, SAC_ND_READ((SACp_emal_6126__emec_6110_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), SAC_ND_READ((SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0))
+      SAC_ND_DEC_RC_FREE((SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_DEC_RC_FREE((SACp_emal_6126__emec_6110_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_PRF_SxS__DATA((SACp_pinl_7148__emal_6127__pinl_1888__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), T_float, SAC_ND_PRF_EQ, SAC_ND_READ((SACp_pinl_7149__emal_6128__ctz_1909, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 0), 0.0f)
+      SAC_ND_FREE((SACp_pinl_7149__emal_6128__ctz_1909, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), )
       /*
-       * ND_ASSIGN( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_3775__emal_3050__pinl_167__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
+       * ND_ASSIGN( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_7148__emal_6127__pinl_1888__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
        */
-      SAC_ASSURE_TYPE_LINE ("./blas.sac", 38, 12, (SAC_ND_A_DIM( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
+      SAC_ASSURE_TYPE_LINE ("./test/rotg.sac", 19, 12, (SAC_ND_A_DIM( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
       SAC_NOOP()
       SAC_NOOP()
       SAC_NOOP()
-      SAC_ND_ASSIGN__DATA( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_3775__emal_3050__pinl_167__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+      SAC_ND_ASSIGN__DATA( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_7148__emal_6127__pinl_1888__flat_1104, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
 
     }
     else
     { 
-      SAC_ND_DEC_RC_FREE((SACp_emal_3049__emec_3033_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
-      SAC_ND_DEC_RC_FREE((SACp_pinl_152_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_DEC_RC_FREE((SACp_pinl_1873_s__SSA0_1, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
+      SAC_ND_DEC_RC_FREE((SACp_emal_6126__emec_6110_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (NON, (NOT, (NDI, (FLO, )))))))))), 1, )
       SAC_ND_FREE((SACp_hce_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
-      SAC_ND_CREATE__SCALAR__DATA((SACp_pinl_3777__emal_3052__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), false)
+      SAC_ND_CREATE__SCALAR__DATA((SACp_pinl_7150__emal_6129__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), false)
       /*
-       * ND_ASSIGN( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_3777__emal_3052__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
+       * ND_ASSIGN( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, (SACp_pinl_7150__emal_6129__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), 0, )
        */
-      SAC_ASSURE_TYPE_LINE ("./blas.sac", 38, 12, (SAC_ND_A_DIM( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
+      SAC_ASSURE_TYPE_LINE ("./test/rotg.sac", 19, 12, (SAC_ND_A_DIM( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, ))))))))))) == (0)), "Assignment with incompatible types found");
       SAC_NOOP()
       SAC_NOOP()
       SAC_NOOP()
-      SAC_ND_ASSIGN__DATA( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_3777__emal_3052__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
+      SAC_ND_ASSIGN__DATA( (SACp_hce_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), (SACp_pinl_7150__emal_6129__hce_4__SSA0_1, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (BOO, )))))))))), )
 
     }
     /*
@@ -2193,7 +2181,7 @@ SAC_ND_DEF_FUN_BEGIN2( SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f, void,  
     SAC_CLEANUP_LOCAL_MEM()
   }
 /*
-   * ND_FUN_DEF_END( SACf__MAIN__compareSrotg__f__f__f__f__f__f__f__f, , 7, out, bool, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (BOO, )))))))))), in, float, (SACl_a1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_b1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_c1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_s1, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_a2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_b2, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))))
+   * ND_FUN_DEF_END( SACf__MAIN__compareSrotg__f__f__f__f, , 5, out, bool, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (BOO, )))))))))), in, float, (SACl_a, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_b, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_c, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))), in, float, (SACl_s, (SCL, (NHD, (NUQ, (FLO, (GLO, (FPM, (NOT, (NDI, (FLO, )))))))))))
    */
 }
 SAC_ND_FUN_DEF_END2()
@@ -2213,7 +2201,7 @@ int main( int __argc, char *__argv[])
   SAC_NOTHING()
   SAC_HWLOC_SETUP();
   SAC_MT_SETUP_INITIAL();
-  SAC_RTSPEC_SETUP_INITIAL(2, " blas.sac", "sac2c");
+  SAC_RTSPEC_SETUP_INITIAL(2, " -check tc test/rotg.sac", "sac2c");
   SAC_PF_SETUP();
   SAC_HM_SETUP();
   SAC_MT_SETUP();

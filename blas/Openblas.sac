@@ -2,9 +2,75 @@ module Openblas;
 
 export all;
 
+
 external float, float, float, float srotg(float a, float b, float c, float s);
     #pragma linkname "SACsrotg"
     #pragma linkobj "src/srotg.o"
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [1,2,3,4,1,2,3,4]
 
+external float, float, float, float[5] srotmg(float d1, float d2, float x1, float y1)
+    #pragma linkname "SACsrotmg"
+    #pragma linkobj "src/srotmg.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [1,2,3,5,1,2,3,4]
+
+// external float[k], float[l] srot(int n, float[k] sx, int incx, float[l] sy, int incy, float c, float s) | n > 0, incx > 0, incy > 0
+
+// external float[.], float[.] srotm(int n, float[.] sx, int incx, float[.] sy, int incy, float[5] sparam) | n > 0, -2f <= sparam[0], sparam[0] <= 1f 
+
+// external float[k], float[l] sswap(int n, float[k] sx, int incx, float[l] sy, int incy) | n > 0, incx > 0, incy > 0
+
+// external float[k] sscal(int n, float sa, float[k] sx, int incx) | n > 0, incx > 0
+
+// external float[l] scopy(int n, float[k] sx, int incx, float[l] sy, int incy) | n > 0, incx >= 0, incy > 0
+
+// external float[l] saxpy(int n, float sa, float[k] sx, int incx, float[l] sy, int incy) | n > 0, incx >= 0, incy > 0
+
+// external float sdot(int n, float[k] sx, int incx, float[l] sy, int incy) | n > 0, incx >= 0, incy >= 0
+
+// external double sdsdot(int n, float sb, float[k] sx, int incx, float[l] sy, int incy) | n > 0, incx >= 0, incy >= 0
+
+// external float snrm2(int n, float[k] x, int incx) | n > 0, incx > 0
+
+// external float scnrm2(int n, complex[.] x, int incx) | n > 0, incx > 0
+
+// external float sasum(int n, float[k] sx, int incx) | n > 0, incx > 0
+
+// external int isamax(int n, float[k] sx, int incx) | n > 0, incx > 0
+
+// external double, double, double, double drotg(double a, double b)
+
+// external double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1)
+
+// external double[k], double[l] drot(int n, double[k] X, int incx, double[l] Y, int incy, double c, double s) | n > 0, incx > 0, incy > 0
+
+// external double[.], double[.] drotm(int n, double[.] X, int incx, double[.] Y, int incy, double[5] param) | n > 0, -2d <= param[0], param[0] <= 1d
+
+// external double[k], double[l] dswap(int n, double[k] X, int incx, double[l] Y, int incy) | n > 0, incx > 0, incy > 0
+
+// external double[k] dscal(int n, double a, double[k] X, int incx) | n > 0, incx > 0
+
+// external double[l] dcopy(int n, double[k] X, int incx, double[l] Y, int incy) | n > 0, incx >= 0, incy > 0
+
+// external double[l] daxpy(int n, double a, double[k] X, int incx, double[l] Y, int incy) | n > 0, incx >= 0, incy > 0
+
+// external double ddot(int n, double[k] X, int incx, double[l] Y, int incy) | n > 0, incx >= 0, incy >= 0
+
+// external double dsdot(int n, float[k] X, int incx, float[l] Y, int incy) | n > 0, incx >= 0, incy >= 0
+
+// external double dnrm2(int n, double[k] X, int incx) | n > 0, incx > 0
+
+// external double dznrm2(int n, complex[.] X, int incx) | n > 0, incx > 0
+
+// external double dasum(int n, double[k] X, int incx) | n > 0, incx > 0
+
+// external int idamax(int n, double[k] X, int incx) | n > 0, incx > 0
+
+
+
+external float[*] sgemv(char trans, int m, int n, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy);
+    #pragma linkname "SACsgemv"
+    #pragma linkobj "src/sgemv.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]

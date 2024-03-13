@@ -1,0 +1,13 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+// use Openblas: all;
+
+int main() {
+    a = reshape([6],iota(6));
+    b = reshape([6],iota(6));
+    print(a+b);
+
+    return 0;
+}

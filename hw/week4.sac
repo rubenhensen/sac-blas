@@ -15,10 +15,12 @@ int main()
     // print( block (block (a,[2,3]), [2,2]) );
 
     print(a);
-    print( all (unblock (block (a, [2,3]), 2) == a) );
+    // print( all (unblock (block (a, [2,3]), 2) == a) );
+    print( block (a, [2,3]) );
     print( unblock (block (a, [2,3]), 2));
-    // print( all (unblock (block (a, [2]), 1) == a) );
-    // print( all (unblock (block (a, []), 0) == a) );
+    print( all (unblock (block (a, [2]), 1) == a) );
+    print( all (unblock2 (block (a, []), 0) == a) );
+    print( unblock (block (a, [2,3]), 2));
     // b = [1,2,3,4,5];
     // print(take([-2], b));
     // unblock()
@@ -27,7 +29,7 @@ int main()
     return 0;
 }
 
-int[*] tile(int[n] shp, int[m] off, int[d:shp2] arr) 
+int[n:shp, m:ishp] tile(int[n] shp, int[m] off, int[d:oshp, m:ishp] arr) | all(off >= 0), all(off + shp <= oshp)
 {
     return {iv -> arr[iv + off] | iv < shp};
 } 
@@ -35,20 +37,24 @@ int[*] tile(int[n] shp, int[m] off, int[d:shp2] arr)
 int[od:shp,od:s,id:ishp] block( int[od:oshp,id:ishp] a, int[od] s) | all (mod(oshp, s) == 0) , all (shp == (oshp / s)) 
 {
     shp = oshp / s;
-    rshp = shp ++ s ++ ishp;
-    
-    return {iv -> {jv -> a[iv+jv] | jv < s } | iv < shp};
+
+    // rshp = shp ++ s ++ ishp;
+    return {iv -> {jv -> a[iv*s+jv] | jv < s } | iv < shp};
 }
 
-int[od:shp, id:ishp] unblock(int[od:oshp, od:s, id:ishp] a, int od) | all(shp == oshp * s)
+int[od:shp,od:s,id:ishp] block2( int[od:oshp,id:ishp] a, int[od] s) | all (mod(oshp, s) == 0) , all (shp == (oshp / s)) 
 {
-    // print((oshp * s) ++ ishp);
-    // a[oshp][s][ishp] -> x[shp][ishp]
-    // [20,12] 
-    // oshp = 20 
-    // s = 12
-    // shp = 240
-    // [12] -> [1][0]
-    // return {iv -> {kj -> a[iv/s][mod(iv,oshp)][kj] | kj < ishp} | iv < oshp * s};
+    shp = oshp / s;
+    return {iv -> tile(s,iv*s,a) | iv < shp};
+}
+
+int[od:shp, id:ishp] unblock(int[od:oshp, od:s, id:ishp] a, int od) | all(oshp * s == shp)
+{    
     return reshape(oshp * s ++ ishp, a);
+}
+
+int[od:shp, id:ishp] unblock2(int[od:oshp, od:s, id:ishp] a, int od) | all(oshp * s == shp), od >= 0
+{    
+    return {iv -> a[iv/oshp][mod(iv,s)] | iv < shp};
+    // return {iv -> {jv -> a[iv/oshp][mod(iv,s)][jv] | jv < ishp } | iv < shp};
 }

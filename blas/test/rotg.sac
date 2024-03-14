@@ -5,17 +5,25 @@ use BlasLevel2: all;
 // use Openblas: all;
 
 int main() {
-    print( compareSrotg(1.0f,1.0f,1.0f,1.0f) );
-
+    compareSrotg(1.0f,1.0f,1.0f,1.0f) ;
+    compareSrotg(1.0f,1.0f,1.0f,2.0f) ;
+    compareSrotg(1.0f,2.0f,3.0f,4.0f) ;
+    compareSrotg(4.0f,2.0f,1.0f,0.0f) ;
+    compareSrotg(0.0f,0.0f,0.0f,0.0f) ;
+    compareSrotg(4.0f,-2.0f,1.0f,-0.0f) ;
+    compareSrotg(-1.0f,-2.0f,-3.0f,4.5f) ;
+    compareSrotg(-1.1f,-2.2f,-3.3f,4.5f) ;
     return 0;
 }
 
 
-bool compareSrotg(float a, float b, float c, float s)
+void compareSrotg(float a, float b, float c, float s)
 {
     r1, z1, c1, s1 = Openblas::srotg(a, b, c, s);
     r2, z2, c2, s2 = srotg(a, b, c, s);
-    
-    return r1 == r2 && z1 == z2 && c1 == c2 && s1 == s2;
-}
 
+    if(!(r1 == r2 && z1 == z2 && c1 == c2 && s1 == s2))
+    {
+        printf("Error in srotg. a:%f, b:%f, c:%f, s:%f\n", a, b, c, s);
+    }
+}

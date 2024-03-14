@@ -1,0 +1,36 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+// use Openblas: all;
+
+int main() {
+    compare(1, 1.0f, tof(reshape([10],iota(10))), 1);
+    compare(3, 1.0f, tof(reshape([3],iota(3))), 1);
+    compare(3, 1.0f, tof(reshape([5],iota(5))), 2);
+    compare(5, 1.0f, tof(reshape([5],iota(5))), 1);
+    // compare(4, 12.4f, tof(reshape([9],iota(9))), 3); // should error, out of bounds
+    compare(4, 12.4f, tof(reshape([10],iota(10))), 3);
+    compare(4, 12.4f, tof(reshape([11],iota(11))), 3);
+    // compare(4, -12.4f, tof(reshape([9],iota(9))), 3); // should error, out of bounds
+    compare(4, -12.4f, tof(reshape([10],iota(10))), 3);
+    compare(4, -12.4f, tof(reshape([11],iota(11))), 3);
+    compare(4, -99.99f, tof(reshape([10],iota(10))), 3);
+    return 0;
+}
+
+void compare(int n, float a, float[k] x, int incx)
+{
+    x1 = Openblas::sscal(n, a, x, incx);
+    x2 = sscal(n, a, x, incx);
+
+    if(!(eq(x1,x2)))
+    {
+        printf("Error in srotg. n:%d, a:%f, incx:%d\nx:\n", n, a, incx); 
+        print(x);
+        print(x1);
+        print(x2);
+        printf("\n");
+    }
+}

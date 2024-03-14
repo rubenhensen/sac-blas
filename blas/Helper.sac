@@ -1,0 +1,54 @@
+module Helper;
+export all;
+
+use StdIO: all;
+use Array: all;
+
+bool eq (int[d1:shp1] a, int[d2:shp2] b) {
+    return all(a == b) && all(shp1==shp2) && all(d1==d2);
+}
+
+bool eq (float[d1:shp1] a, float[d2:shp2] b) {
+    return all(a == b) && all(shp1==shp2) && all(d1==d2);
+}
+
+bool ismember(char c, char[n] ca)
+{
+  b = false;
+  for(i=0; i<n;i++) {
+    if (ca[i] == c) b = true;
+  }
+  return b;
+}
+
+bool ismember(float c, float[n] ca)
+{
+  b = false;
+  for(i=0; i<n;i++) {
+    if (ca[i] == c) b = true;
+  }
+  return b;
+}
+
+bool ismember(int c, int[n] ca)
+{
+  b = false;
+  for(i=0; i<n;i++) {
+    if (ca[i] == c) b = true;
+  }
+  return b;
+}
+
+bool ismember(double c, double[n] ca)
+{
+  b = false;
+  for(i=0; i<n;i++) {
+    if (ca[i] == c) b = true;
+  }
+  return b;
+}
+
+bool minArrLen(int n, int arrLength, int inc)
+{
+    return arrLength  > (n-1)*inc;
+}

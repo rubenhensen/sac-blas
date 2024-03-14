@@ -1,0 +1,28 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+// use Openblas: all;
+
+int main() {
+    compareSrotmg(1.0f,1.0f,1.0f,1.0f) ;
+    compareSrotmg(1.0f,1.0f,1.0f,2.0f) ;
+    compareSrotmg(1.0f,2.0f,3.0f,4.0f) ;
+    compareSrotmg(4.0f,2.0f,1.0f,0.0f) ;
+    compareSrotmg(0.0f,0.0f,0.0f,0.0f) ;
+    compareSrotmg(4.0f,-2.0f,1.0f,-0.0f) ;
+    compareSrotmg(-1.0f,-2.0f,-3.0f,4.5f) ;
+    compareSrotmg(-1.1f,-2.2f,-3.3f,4.5f) ;
+    return 0;
+}
+
+void compareSrotmg(float d1, float d2, float x1, float y1)
+{
+    d11, d21, c11, param1 = Openblas::srotg(d1, d2, x1, y1);
+    d12, d22, c12, param2 = srotg(d1, d2, x1, y1);
+
+    if(!(d11 == d12 && d21 == d22 && c11 == c12 && param1 == param2))
+    {
+        printf("Error in srotg. d1:%f, d2:%f, x1:%f, y1:%f\n", d1, d2, x1, y1);
+    }
+}

@@ -2,6 +2,7 @@ module BlasLevel2;
 
 use StdIO: all;
 use Array: all;
+use Helper: all;
 // use Structures: all;
 // use Math: all;
 export all;
@@ -94,14 +95,6 @@ float[*] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, f
 
 // matmul {[i,j] -> }
 
-bool ismember(char c, char[n] ca)
-{
-  b = false;
-  for(i=0; i<n;i++) {
-    if (ca[i] == c) b = true;
-  }
-  return b;
-}
 
 // Checks max index of elements we go through is smaller than the length of x
 bool sgemvXdim(char trans, int m, int n, int incx, int xn)

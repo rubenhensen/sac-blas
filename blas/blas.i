@@ -5260,7 +5260,7 @@ extern
 
 
 
-void SACf_BlasLevel2__ismember__c__c_6 (
+void SACf_BlasLevel2_CLHelper__ismember__c__c_6 (
 # 1020 "/home/rubenhensen/sac/blas/blas.c" 3 4
 _Bool 
 # 1020 "/home/rubenhensen/sac/blas/blas.c"
@@ -8169,7 +8169,7 @@ _Bool
 # 3537 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3537 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12452__emal_12222__hce_12__SSA0_1;
+   SACp_pinl_12452__emal_12222__hce_10__SSA0_1;
    
    
 
@@ -8180,7 +8180,7 @@ _Bool
 # 3544 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3544 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12450__emal_12223__hce_13__SSA0_1;
+   SACp_pinl_12450__emal_12223__hce_11__SSA0_1;
    
    
 
@@ -8191,7 +8191,7 @@ _Bool
 # 3551 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3551 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12448__emal_12224__hce_14__SSA0_1;
+   SACp_pinl_12448__emal_12224__hce_12__SSA0_1;
    
    
 
@@ -8202,7 +8202,7 @@ _Bool
 # 3558 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3558 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12446__emal_12225__hce_15__SSA0_1;
+   SACp_pinl_12446__emal_12225__hce_13__SSA0_1;
    
    
 
@@ -8213,7 +8213,7 @@ _Bool
 # 3565 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3565 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12444__emal_12226__hce_16__SSA0_1;
+   SACp_pinl_12444__emal_12226__hce_14__SSA0_1;
    
    
 
@@ -8224,7 +8224,7 @@ _Bool
 # 3572 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3572 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12442__emal_12227__hce_17__SSA0_1;
+   SACp_pinl_12442__emal_12227__hce_15__SSA0_1;
    
    
 
@@ -8235,7 +8235,7 @@ _Bool
 # 3579 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3579 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12440__emal_12228__hce_18__SSA0_1;
+   SACp_pinl_12440__emal_12228__hce_16__SSA0_1;
    
    
 
@@ -8246,7 +8246,7 @@ _Bool
 # 3586 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3586 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12438__emal_12230__hce_19__SSA0_1;
+   SACp_pinl_12438__emal_12230__hce_17__SSA0_1;
    
    
 
@@ -8257,7 +8257,7 @@ _Bool
 # 3593 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3593 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12437__emal_12229__hce_19;
+   SACp_pinl_12437__emal_12229__hce_17;
    
    
 
@@ -8279,15 +8279,15 @@ _Bool
 
 
 
-    unsigned char * SACp_emal_12218__pinl_5589__flat_35;
-    SAC_array_descriptor_t SACp_emal_12218__pinl_5589__flat_35__desc = 
+    unsigned char * SACp_emal_12218__pinl_5589__flat_33;
+    SAC_array_descriptor_t SACp_emal_12218__pinl_5589__flat_33__desc = 
 # 3612 "/home/rubenhensen/sac/blas/blas.c" 3 4
    ((void *)0)
 # 3612 "/home/rubenhensen/sac/blas/blas.c"
    ;
-    const int SACp_emal_12218__pinl_5589__flat_35__shp0 = 6;
-    const int SACp_emal_12218__pinl_5589__flat_35__sz = 6;
-    const int SACp_emal_12218__pinl_5589__flat_35__dim = 1;
+    const int SACp_emal_12218__pinl_5589__flat_33__shp0 = 6;
+    const int SACp_emal_12218__pinl_5589__flat_33__sz = 6;
+    const int SACp_emal_12218__pinl_5589__flat_33__dim = 1;
 
 
 
@@ -8372,7 +8372,7 @@ _Bool
 # 3676 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3676 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5614__hce_12;
+   SACp_pinl_5614__hce_10;
    
    
 
@@ -8383,7 +8383,7 @@ _Bool
 # 3683 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3683 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5613__hce_13;
+   SACp_pinl_5613__hce_11;
    
    
 
@@ -8394,7 +8394,7 @@ _Bool
 # 3690 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3690 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5612__hce_14;
+   SACp_pinl_5612__hce_12;
    
    
 
@@ -8405,7 +8405,7 @@ _Bool
 # 3697 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3697 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5611__hce_15;
+   SACp_pinl_5611__hce_13;
    
    
 
@@ -8416,7 +8416,7 @@ _Bool
 # 3704 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3704 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5610__hce_16;
+   SACp_pinl_5610__hce_14;
    
    
 
@@ -8427,7 +8427,7 @@ _Bool
 # 3711 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3711 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5609__hce_17;
+   SACp_pinl_5609__hce_15;
    
    
 
@@ -8438,7 +8438,7 @@ _Bool
 # 3718 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3718 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5608__hce_18;
+   SACp_pinl_5608__hce_16;
    
    
 
@@ -8449,7 +8449,7 @@ _Bool
 # 3725 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3725 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5607__hce_19;
+   SACp_pinl_5607__hce_17;
    
    
 
@@ -8460,7 +8460,7 @@ _Bool
 # 3732 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3732 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5602__flat_52;
+   SACp_pinl_5602__flat_50;
    
    
 
@@ -8471,7 +8471,7 @@ _Bool
 # 3739 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3739 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5600__flat_49;
+   SACp_pinl_5600__flat_47;
    
    
 
@@ -8482,7 +8482,7 @@ _Bool
 # 3746 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 3746 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5588__flat_34;
+   SACp_pinl_5588__flat_32;
    
    
 
@@ -8654,39 +8654,39 @@ _Bool
 
     SACwf_StdIO__print__f_S (_tcp_12474_SACp_emal_12221__emec_11309_y, _tcp_12474_SACp_emal_12221__emec_11309_y__desc);
 
-    { { if (!((1 == SACp_emal_12218__pinl_5589__flat_35__dim))) { SAC_RuntimeWarning ("Inconsistant dimension for array %s found!", "SACp_emal_12218__pinl_5589__flat_35"); }; { { if ((((SACp_emal_12218__pinl_5589__flat_35__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_35)) + ((6 + (SACp_emal_12218__pinl_5589__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_12218__pinl_5589__flat_35__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_35)) + ((6 + (SACp_emal_12218__pinl_5589__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_12218__pinl_5589__flat_35__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_35)) + ((6 + (SACp_emal_12218__pinl_5589__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_12218__pinl_5589__flat_35 = (unsigned char *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_12218__pinl_5589__flat_35 = (unsigned char *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_12218__pinl_5589__flat_35__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_35)) + ((6 + (SACp_emal_12218__pinl_5589__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_12218__pinl_5589__flat_35 = (unsigned char *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_12218__pinl_5589__flat_35 = (unsigned char *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_12218__pinl_5589__flat_35__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_35)) + ((6 + (SACp_emal_12218__pinl_5589__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_12218__pinl_5589__flat_35__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_35)) + ((6 + (SACp_emal_12218__pinl_5589__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_12218__pinl_5589__flat_35__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_35)) + ((6 + (SACp_emal_12218__pinl_5589__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_12218__pinl_5589__flat_35__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_35)) + ((6 + (SACp_emal_12218__pinl_5589__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_12218__pinl_5589__flat_35__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_35)) + ((6 + (SACp_emal_12218__pinl_5589__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_12218__pinl_5589__flat_35 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_12218__pinl_5589__flat_35 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_12218__pinl_5589__flat_35 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_12218__pinl_5589__flat_35 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_12218__pinl_5589__flat_35__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_12218__pinl_5589__flat_35, SACp_emal_12218__pinl_5589__flat_35__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_35), ((6 + (SACp_emal_12218__pinl_5589__flat_35__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12218__pinl_5589__flat_35__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12218__pinl_5589__flat_35__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12218__pinl_5589__flat_35__desc) & (-1 ^ (3))))[1]) = 0; }
+    { { if (!((1 == SACp_emal_12218__pinl_5589__flat_33__dim))) { SAC_RuntimeWarning ("Inconsistant dimension for array %s found!", "SACp_emal_12218__pinl_5589__flat_33"); }; { { if ((((SACp_emal_12218__pinl_5589__flat_33__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_33)) + ((6 + (SACp_emal_12218__pinl_5589__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_12218__pinl_5589__flat_33__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_33)) + ((6 + (SACp_emal_12218__pinl_5589__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_12218__pinl_5589__flat_33__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_33)) + ((6 + (SACp_emal_12218__pinl_5589__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_12218__pinl_5589__flat_33 = (unsigned char *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_12218__pinl_5589__flat_33 = (unsigned char *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_12218__pinl_5589__flat_33__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_33)) + ((6 + (SACp_emal_12218__pinl_5589__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_12218__pinl_5589__flat_33 = (unsigned char *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_12218__pinl_5589__flat_33 = (unsigned char *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_12218__pinl_5589__flat_33__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_33)) + ((6 + (SACp_emal_12218__pinl_5589__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_12218__pinl_5589__flat_33__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_33)) + ((6 + (SACp_emal_12218__pinl_5589__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_12218__pinl_5589__flat_33__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_33)) + ((6 + (SACp_emal_12218__pinl_5589__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_12218__pinl_5589__flat_33__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_33)) + ((6 + (SACp_emal_12218__pinl_5589__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_12218__pinl_5589__flat_33__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_33)) + ((6 + (SACp_emal_12218__pinl_5589__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_12218__pinl_5589__flat_33 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_12218__pinl_5589__flat_33 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_12218__pinl_5589__flat_33 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_12218__pinl_5589__flat_33 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_12218__pinl_5589__flat_33__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_12218__pinl_5589__flat_33, SACp_emal_12218__pinl_5589__flat_33__sz * sizeof (*SACp_emal_12218__pinl_5589__flat_33), ((6 + (SACp_emal_12218__pinl_5589__flat_33__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12218__pinl_5589__flat_33__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12218__pinl_5589__flat_33__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12218__pinl_5589__flat_33__desc) & (-1 ^ (3))))[1]) = 0; }
 
 
 
-    if (!((SACp_emal_12218__pinl_5589__flat_35__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 156, "Assignment with incompatible types found"); };
-    if (!((SACp_emal_12218__pinl_5589__flat_35__shp0 == 6))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 156, "Assignment with incompatible types found"); };
+    if (!((SACp_emal_12218__pinl_5589__flat_33__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 156, "Assignment with incompatible types found"); };
+    if (!((SACp_emal_12218__pinl_5589__flat_33__shp0 == 6))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 156, "Assignment with incompatible types found"); };
     ;
 
     }
 
 
 
-    { SACp_emal_12218__pinl_5589__flat_35[0] = 110; }
-    { SACp_emal_12218__pinl_5589__flat_35[1] = 78; }
-    { SACp_emal_12218__pinl_5589__flat_35[2] = 116; }
-    { SACp_emal_12218__pinl_5589__flat_35[3] = 84; }
-    { SACp_emal_12218__pinl_5589__flat_35[4] = 99; }
-    { SACp_emal_12218__pinl_5589__flat_35[5] = 67; }
+    { SACp_emal_12218__pinl_5589__flat_33[0] = 110; }
+    { SACp_emal_12218__pinl_5589__flat_33[1] = 78; }
+    { SACp_emal_12218__pinl_5589__flat_33[2] = 116; }
+    { SACp_emal_12218__pinl_5589__flat_33[3] = 84; }
+    { SACp_emal_12218__pinl_5589__flat_33[4] = 99; }
+    { SACp_emal_12218__pinl_5589__flat_33[5] = 67; }
 
 
 
 
-    SACf_BlasLevel2__ismember__c__c_6 (&SACp_pinl_5588__flat_34, SACl_trans, SACp_emal_12218__pinl_5589__flat_35, SACp_emal_12218__pinl_5589__flat_35__desc);
+    SACf_BlasLevel2_CLHelper__ismember__c__c_6 (&SACp_pinl_5588__flat_32, SACl_trans, SACp_emal_12218__pinl_5589__flat_33, SACp_emal_12218__pinl_5589__flat_33__desc);
 
 
 
 
     ;
 
-    if (SACp_pinl_5588__flat_34)
+    if (SACp_pinl_5588__flat_32)
     {
       ;
-      { { SACp_pinl_12437__emal_12229__hce_19 = 
+      { { SACp_pinl_12437__emal_12229__hce_17 = 
 # 3930 "/home/rubenhensen/sac/blas/blas.c" 3 4
      1
 # 3930 "/home/rubenhensen/sac/blas/blas.c"
@@ -8694,25 +8694,25 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5607__hce_19 = SACp_pinl_12437__emal_12229__hce_19; }
+      { SACp_pinl_5607__hce_17 = SACp_pinl_12437__emal_12229__hce_17; }
 
     }
     else
     {
       ;
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failed"); SACp_pinl_12438__emal_12230__hce_19__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failed"); SACp_pinl_12438__emal_12230__hce_17__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5607__hce_19 = SACp_pinl_12438__emal_12230__hce_19__SSA0_1; }
+      { SACp_pinl_5607__hce_17 = SACp_pinl_12438__emal_12230__hce_17__SSA0_1; }
 
     }
     ; ; { SACp_emal_12217__pinl_5640__flat_1061 = (SACl_m) >= (0); };
@@ -8722,26 +8722,26 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5608__hce_18 = SACp_pinl_5607__hce_19; }
+      { SACp_pinl_5608__hce_16 = SACp_pinl_5607__hce_17; }
 
     }
     else
     {
       { ; ; }
       { ; ; }
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12440__emal_12228__hce_18__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12440__emal_12228__hce_16__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5608__hce_18 = SACp_pinl_12440__emal_12228__hce_18__SSA0_1; }
+      { SACp_pinl_5608__hce_16 = SACp_pinl_12440__emal_12228__hce_16__SSA0_1; }
 
     }
     ; ; { SACp_emal_12216__pinl_5639__flat_1061 = (SACl_n) >= (0); };
@@ -8751,26 +8751,26 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5609__hce_17 = SACp_pinl_5608__hce_18; }
+      { SACp_pinl_5609__hce_15 = SACp_pinl_5608__hce_16; }
 
     }
     else
     {
       ;
       { ; ; }
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12442__emal_12227__hce_17__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12442__emal_12227__hce_15__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5609__hce_17 = SACp_pinl_12442__emal_12227__hce_17__SSA0_1; }
+      { SACp_pinl_5609__hce_15 = SACp_pinl_12442__emal_12227__hce_15__SSA0_1; }
 
     }
     { ; ;
@@ -8791,64 +8791,64 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5610__hce_16 = SACp_pinl_5609__hce_17; }
+      { SACp_pinl_5610__hce_14 = SACp_pinl_5609__hce_15; }
 
     }
     else
     {
       ;
       { ; ; }
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12444__emal_12226__hce_16__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12444__emal_12226__hce_14__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5610__hce_16 = SACp_pinl_12444__emal_12226__hce_16__SSA0_1; }
+      { SACp_pinl_5610__hce_14 = SACp_pinl_12444__emal_12226__hce_14__SSA0_1; }
 
     }
 
 
 
-    SACf_BlasLevel2__sgemvXdim__c__i__i__i__i (&SACp_pinl_5600__flat_49, SACl_trans, SACl_m, SACl_n, SACl_incx, SACp_emal_12220__pinl_5605_xn);
+    SACf_BlasLevel2__sgemvXdim__c__i__i__i__i (&SACp_pinl_5600__flat_47, SACl_trans, SACl_m, SACl_n, SACl_incx, SACp_emal_12220__pinl_5605_xn);
 
 
 
 
     ;
 
-    if (SACp_pinl_5600__flat_49)
+    if (SACp_pinl_5600__flat_47)
     {
       ;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5611__hce_15 = SACp_pinl_5610__hce_16; }
+      { SACp_pinl_5611__hce_13 = SACp_pinl_5610__hce_14; }
 
     }
     else
     {
       ;
       ;
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12446__emal_12225__hce_15__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12446__emal_12225__hce_13__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5611__hce_15 = SACp_pinl_12446__emal_12225__hce_15__SSA0_1; }
+      { SACp_pinl_5611__hce_13 = SACp_pinl_12446__emal_12225__hce_13__SSA0_1; }
 
     }
     ; { SACp_emal_12212__esd_9358 = -(SACl_incx); };
@@ -8860,64 +8860,64 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5612__hce_14 = SACp_pinl_5611__hce_15; }
+      { SACp_pinl_5612__hce_12 = SACp_pinl_5611__hce_13; }
 
     }
     else
     {
       ;
       { ; ; }
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12448__emal_12224__hce_14__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12448__emal_12224__hce_12__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5612__hce_14 = SACp_pinl_12448__emal_12224__hce_14__SSA0_1; }
+      { SACp_pinl_5612__hce_12 = SACp_pinl_12448__emal_12224__hce_12__SSA0_1; }
 
     }
 
 
 
-    SACf_BlasLevel2__sgemvYdim__c__i__i__i__i (&SACp_pinl_5602__flat_52, SACl_trans, SACl_m, SACl_n, SACl_incy, SACp_emal_12219__pinl_5606_yn);
+    SACf_BlasLevel2__sgemvYdim__c__i__i__i__i (&SACp_pinl_5602__flat_50, SACl_trans, SACl_m, SACl_n, SACl_incy, SACp_emal_12219__pinl_5606_yn);
 
 
 
 
     ;
 
-    if (SACp_pinl_5602__flat_52)
+    if (SACp_pinl_5602__flat_50)
     {
       ;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5613__hce_13 = SACp_pinl_5612__hce_14; }
+      { SACp_pinl_5613__hce_11 = SACp_pinl_5612__hce_12; }
 
     }
     else
     {
       ;
       ;
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12450__emal_12223__hce_13__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12450__emal_12223__hce_11__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5613__hce_13 = SACp_pinl_12450__emal_12223__hce_13__SSA0_1; }
+      { SACp_pinl_5613__hce_11 = SACp_pinl_12450__emal_12223__hce_11__SSA0_1; }
 
     }
     ; { SACp_emal_12210__esd_9357 = -(SACl_incy); };
@@ -8929,33 +8929,33 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5614__hce_12 = SACp_pinl_5613__hce_13; }
+      { SACp_pinl_5614__hce_10 = SACp_pinl_5613__hce_11; }
 
     }
     else
     {
       ;
       { ; ; }
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12452__emal_12222__hce_12__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12452__emal_12222__hce_10__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5614__hce_12 = SACp_pinl_12452__emal_12222__hce_12__SSA0_1; }
+      { SACp_pinl_5614__hce_10 = SACp_pinl_12452__emal_12222__hce_10__SSA0_1; }
 
     }
-    if (!SACp_pinl_5614__hce_12) { SAC_RuntimeErrorLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); }
+    if (!SACp_pinl_5614__hce_10) { SAC_RuntimeErrorLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); }
 
 
 
-    if (!((SACp_pinl_5564_y__SSA0_1__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+    if (!((SACp_pinl_5564_y__SSA0_1__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
     SACp_pinl_5564_y__SSA0_1__desc = SACl_y__desc;
     SACp_pinl_5564_y__SSA0_1__shp0 = SACl_y__shp0;
     SACp_pinl_5564_y__SSA0_1__sz = SACl_y__sz;
@@ -8966,7 +8966,7 @@ _Bool
 
 
 
-    if (!((SACp_pinl_5561_x__SSA0_1__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+    if (!((SACp_pinl_5561_x__SSA0_1__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
     SACp_pinl_5561_x__SSA0_1__desc = SACl_x__desc;
     SACp_pinl_5561_x__SSA0_1__shp0 = SACl_x__shp0;
     SACp_pinl_5561_x__SSA0_1__sz = SACl_x__sz;
@@ -8985,7 +8985,7 @@ _Bool
     SACp_pinl_5554__rtpf_5_res__shp0 = (((SAC_array_descriptor_t) (((intptr_t)SACp_pinl_5554__rtpf_5_res__desc) & (-1 ^ (3))))[(6 + (0))]);
     SACp_pinl_5554__rtpf_5_res__sz = (((SAC_array_descriptor_t) (((intptr_t)SACp_pinl_5554__rtpf_5_res__desc) & (-1 ^ (3))))[4]);
 
-    if (!SACp_pinl_5614__hce_12) { SAC_RuntimeErrorLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failed"); }
+    if (!SACp_pinl_5614__hce_10) { SAC_RuntimeErrorLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failed"); }
     ;
 
 
@@ -9077,7 +9077,7 @@ _Bool
 # 4309 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4309 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12470__emal_12244__hce_12__SSA0_1;
+   SACp_pinl_12470__emal_12244__hce_10__SSA0_1;
    
    
 
@@ -9088,7 +9088,7 @@ _Bool
 # 4316 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4316 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12468__emal_12245__hce_13__SSA0_1;
+   SACp_pinl_12468__emal_12245__hce_11__SSA0_1;
    
    
 
@@ -9099,7 +9099,7 @@ _Bool
 # 4323 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4323 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12466__emal_12246__hce_14__SSA0_1;
+   SACp_pinl_12466__emal_12246__hce_12__SSA0_1;
    
    
 
@@ -9110,7 +9110,7 @@ _Bool
 # 4330 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4330 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12464__emal_12247__hce_15__SSA0_1;
+   SACp_pinl_12464__emal_12247__hce_13__SSA0_1;
    
    
 
@@ -9121,7 +9121,7 @@ _Bool
 # 4337 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4337 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12462__emal_12248__hce_16__SSA0_1;
+   SACp_pinl_12462__emal_12248__hce_14__SSA0_1;
    
    
 
@@ -9132,7 +9132,7 @@ _Bool
 # 4344 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4344 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12460__emal_12249__hce_17__SSA0_1;
+   SACp_pinl_12460__emal_12249__hce_15__SSA0_1;
    
    
 
@@ -9143,7 +9143,7 @@ _Bool
 # 4351 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4351 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12458__emal_12250__hce_18__SSA0_1;
+   SACp_pinl_12458__emal_12250__hce_16__SSA0_1;
    
    
 
@@ -9154,7 +9154,7 @@ _Bool
 # 4358 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4358 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12456__emal_12252__hce_19__SSA0_1;
+   SACp_pinl_12456__emal_12252__hce_17__SSA0_1;
    
    
 
@@ -9165,7 +9165,7 @@ _Bool
 # 4365 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4365 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_12455__emal_12251__hce_19;
+   SACp_pinl_12455__emal_12251__hce_17;
    
    
 
@@ -9187,15 +9187,15 @@ _Bool
 
 
 
-    unsigned char * SACp_emal_12240__pinl_5757__flat_35;
-    SAC_array_descriptor_t SACp_emal_12240__pinl_5757__flat_35__desc = 
+    unsigned char * SACp_emal_12240__pinl_5757__flat_33;
+    SAC_array_descriptor_t SACp_emal_12240__pinl_5757__flat_33__desc = 
 # 4384 "/home/rubenhensen/sac/blas/blas.c" 3 4
    ((void *)0)
 # 4384 "/home/rubenhensen/sac/blas/blas.c"
    ;
-    const int SACp_emal_12240__pinl_5757__flat_35__shp0 = 6;
-    const int SACp_emal_12240__pinl_5757__flat_35__sz = 6;
-    const int SACp_emal_12240__pinl_5757__flat_35__dim = 1;
+    const int SACp_emal_12240__pinl_5757__flat_33__shp0 = 6;
+    const int SACp_emal_12240__pinl_5757__flat_33__sz = 6;
+    const int SACp_emal_12240__pinl_5757__flat_33__dim = 1;
 
 
 
@@ -9280,7 +9280,7 @@ _Bool
 # 4448 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4448 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5782__hce_12;
+   SACp_pinl_5782__hce_10;
    
    
 
@@ -9291,7 +9291,7 @@ _Bool
 # 4455 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4455 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5781__hce_13;
+   SACp_pinl_5781__hce_11;
    
    
 
@@ -9302,7 +9302,7 @@ _Bool
 # 4462 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4462 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5780__hce_14;
+   SACp_pinl_5780__hce_12;
    
    
 
@@ -9313,7 +9313,7 @@ _Bool
 # 4469 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4469 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5779__hce_15;
+   SACp_pinl_5779__hce_13;
    
    
 
@@ -9324,7 +9324,7 @@ _Bool
 # 4476 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4476 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5778__hce_16;
+   SACp_pinl_5778__hce_14;
    
    
 
@@ -9335,7 +9335,7 @@ _Bool
 # 4483 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4483 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5777__hce_17;
+   SACp_pinl_5777__hce_15;
    
    
 
@@ -9346,7 +9346,7 @@ _Bool
 # 4490 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4490 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5776__hce_18;
+   SACp_pinl_5776__hce_16;
    
    
 
@@ -9357,7 +9357,7 @@ _Bool
 # 4497 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4497 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5775__hce_19;
+   SACp_pinl_5775__hce_17;
    
    
 
@@ -9368,7 +9368,7 @@ _Bool
 # 4504 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4504 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5770__flat_52;
+   SACp_pinl_5770__flat_50;
    
    
 
@@ -9379,7 +9379,7 @@ _Bool
 # 4511 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4511 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5768__flat_49;
+   SACp_pinl_5768__flat_47;
    
    
 
@@ -9390,7 +9390,7 @@ _Bool
 # 4518 "/home/rubenhensen/sac/blas/blas.c" 3 4
    _Bool 
 # 4518 "/home/rubenhensen/sac/blas/blas.c"
-   SACp_pinl_5756__flat_34;
+   SACp_pinl_5756__flat_32;
    
    
 
@@ -9562,39 +9562,39 @@ _Bool
 
     SACwf_StdIO__print__f_S (_tcp_12472_SACp_emal_12243__emec_11310_y, _tcp_12472_SACp_emal_12243__emec_11310_y__desc);
 
-    { { if (!((1 == SACp_emal_12240__pinl_5757__flat_35__dim))) { SAC_RuntimeWarning ("Inconsistant dimension for array %s found!", "SACp_emal_12240__pinl_5757__flat_35"); }; { { if ((((SACp_emal_12240__pinl_5757__flat_35__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_35)) + ((6 + (SACp_emal_12240__pinl_5757__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_12240__pinl_5757__flat_35__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_35)) + ((6 + (SACp_emal_12240__pinl_5757__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_12240__pinl_5757__flat_35__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_35)) + ((6 + (SACp_emal_12240__pinl_5757__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_12240__pinl_5757__flat_35 = (unsigned char *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_12240__pinl_5757__flat_35 = (unsigned char *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_12240__pinl_5757__flat_35__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_35)) + ((6 + (SACp_emal_12240__pinl_5757__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_12240__pinl_5757__flat_35 = (unsigned char *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_12240__pinl_5757__flat_35 = (unsigned char *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_12240__pinl_5757__flat_35__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_35)) + ((6 + (SACp_emal_12240__pinl_5757__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_12240__pinl_5757__flat_35__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_35)) + ((6 + (SACp_emal_12240__pinl_5757__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_12240__pinl_5757__flat_35__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_35)) + ((6 + (SACp_emal_12240__pinl_5757__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_12240__pinl_5757__flat_35__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_35)) + ((6 + (SACp_emal_12240__pinl_5757__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_12240__pinl_5757__flat_35__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_35)) + ((6 + (SACp_emal_12240__pinl_5757__flat_35__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_12240__pinl_5757__flat_35 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_12240__pinl_5757__flat_35 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_12240__pinl_5757__flat_35 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_12240__pinl_5757__flat_35 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_12240__pinl_5757__flat_35__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_12240__pinl_5757__flat_35, SACp_emal_12240__pinl_5757__flat_35__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_35), ((6 + (SACp_emal_12240__pinl_5757__flat_35__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12240__pinl_5757__flat_35__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12240__pinl_5757__flat_35__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12240__pinl_5757__flat_35__desc) & (-1 ^ (3))))[1]) = 0; }
+    { { if (!((1 == SACp_emal_12240__pinl_5757__flat_33__dim))) { SAC_RuntimeWarning ("Inconsistant dimension for array %s found!", "SACp_emal_12240__pinl_5757__flat_33"); }; { { if ((((SACp_emal_12240__pinl_5757__flat_33__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_33)) + ((6 + (SACp_emal_12240__pinl_5757__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((17 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_12240__pinl_5757__flat_33__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_33)) + ((6 + (SACp_emal_12240__pinl_5757__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((5 - 2) * (sizeof (SAC_HM_header_t)))) { if ((((SACp_emal_12240__pinl_5757__flat_33__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_33)) + ((6 + (SACp_emal_12240__pinl_5757__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((3 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_12240__pinl_5757__flat_33 = (unsigned char *)SAC_HM_MallocSmallChunk (2, &(SAC_HM_arenas[0][1])); } else { SACp_emal_12240__pinl_5757__flat_33 = (unsigned char *)SAC_HM_MallocSmallChunk (4, &(SAC_HM_arenas[0][2])); } } else { if ((((SACp_emal_12240__pinl_5757__flat_33__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_33)) + ((6 + (SACp_emal_12240__pinl_5757__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) <= ((9 - 2) * (sizeof (SAC_HM_header_t)))) { SACp_emal_12240__pinl_5757__flat_33 = (unsigned char *)SAC_HM_MallocSmallChunk (8, &(SAC_HM_arenas[0][3])); } else { SACp_emal_12240__pinl_5757__flat_33 = (unsigned char *)SAC_HM_MallocSmallChunk (16, &(SAC_HM_arenas[0][4])); } } } else { const SAC_HM_size_byte_t _real_size_1 = ((SACp_emal_12240__pinl_5757__flat_33__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_33)) + ((6 + (SACp_emal_12240__pinl_5757__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t))) + ((-1) <= 0 ? 0 : ((((SACp_emal_12240__pinl_5757__flat_33__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_33)) + ((6 + (SACp_emal_12240__pinl_5757__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (((SACp_emal_12240__pinl_5757__flat_33__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_33)) + ((6 + (SACp_emal_12240__pinl_5757__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : ((-1) - (((SACp_emal_12240__pinl_5757__flat_33__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_33)) + ((6 + (SACp_emal_12240__pinl_5757__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (((SACp_emal_12240__pinl_5757__flat_33__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_33)) + ((6 + (SACp_emal_12240__pinl_5757__flat_33__dim)*1) * sizeof (intptr_t)) + 2 * (sizeof (SAC_HM_header_t)))) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_2 = _real_size_1 + ((-1) <= 0 ? 0 : ((_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_1) % (-1) : ((-1) - (_real_size_1) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_1) % (-1) : 0))); const SAC_HM_size_byte_t _real_size_3 = _real_size_2 + ((-1) <= 0 ? 0 : ((_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) - (_real_size_2) % (-1) : ((-1) - (_real_size_2) % (-1) < (-1) * (0.00) ? (SAC_HM_size_byte_t) ((-1) * (0.00)) + (-1) - (_real_size_2) % (-1) : 0))); const SAC_HM_size_unit_t _units = ((((_real_size_3)-1) / (sizeof (SAC_HM_header_t))) + 1) + 2; if (_units < 1025) { if (_units < 129) { SACp_emal_12240__pinl_5757__flat_33 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][5])); } else { SACp_emal_12240__pinl_5757__flat_33 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][6])); } } else { if (_units < 8193) { SACp_emal_12240__pinl_5757__flat_33 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][7])); } else { SACp_emal_12240__pinl_5757__flat_33 = (unsigned char *)SAC_HM_MallocLargeChunk (_units, &(SAC_HM_arenas[0][(9 - 1)])); } } } } SACp_emal_12240__pinl_5757__flat_33__desc = (intptr_t *)SAC_HM_MallocDesc ((SAC_HM_header_t *)SACp_emal_12240__pinl_5757__flat_33, SACp_emal_12240__pinl_5757__flat_33__sz * sizeof (*SACp_emal_12240__pinl_5757__flat_33), ((6 + (SACp_emal_12240__pinl_5757__flat_33__dim)*1) * sizeof (intptr_t))); } } { (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12240__pinl_5757__flat_33__desc) & (-1 ^ (3))))[0]) = 1; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12240__pinl_5757__flat_33__desc) & (-1 ^ (3))))[2]) = 0; (((SAC_array_descriptor_t) (((intptr_t)SACp_emal_12240__pinl_5757__flat_33__desc) & (-1 ^ (3))))[1]) = 0; }
 
 
 
-    if (!((SACp_emal_12240__pinl_5757__flat_35__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 156, "Assignment with incompatible types found"); };
-    if (!((SACp_emal_12240__pinl_5757__flat_35__shp0 == 6))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 156, "Assignment with incompatible types found"); };
+    if (!((SACp_emal_12240__pinl_5757__flat_33__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 156, "Assignment with incompatible types found"); };
+    if (!((SACp_emal_12240__pinl_5757__flat_33__shp0 == 6))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 156, "Assignment with incompatible types found"); };
     ;
 
     }
 
 
 
-    { SACp_emal_12240__pinl_5757__flat_35[0] = 110; }
-    { SACp_emal_12240__pinl_5757__flat_35[1] = 78; }
-    { SACp_emal_12240__pinl_5757__flat_35[2] = 116; }
-    { SACp_emal_12240__pinl_5757__flat_35[3] = 84; }
-    { SACp_emal_12240__pinl_5757__flat_35[4] = 99; }
-    { SACp_emal_12240__pinl_5757__flat_35[5] = 67; }
+    { SACp_emal_12240__pinl_5757__flat_33[0] = 110; }
+    { SACp_emal_12240__pinl_5757__flat_33[1] = 78; }
+    { SACp_emal_12240__pinl_5757__flat_33[2] = 116; }
+    { SACp_emal_12240__pinl_5757__flat_33[3] = 84; }
+    { SACp_emal_12240__pinl_5757__flat_33[4] = 99; }
+    { SACp_emal_12240__pinl_5757__flat_33[5] = 67; }
 
 
 
 
-    SACf_BlasLevel2__ismember__c__c_6 (&SACp_pinl_5756__flat_34, SACl_trans, SACp_emal_12240__pinl_5757__flat_35, SACp_emal_12240__pinl_5757__flat_35__desc);
+    SACf_BlasLevel2_CLHelper__ismember__c__c_6 (&SACp_pinl_5756__flat_32, SACl_trans, SACp_emal_12240__pinl_5757__flat_33, SACp_emal_12240__pinl_5757__flat_33__desc);
 
 
 
 
     ;
 
-    if (SACp_pinl_5756__flat_34)
+    if (SACp_pinl_5756__flat_32)
     {
       ;
-      { { SACp_pinl_12455__emal_12251__hce_19 = 
+      { { SACp_pinl_12455__emal_12251__hce_17 = 
 # 4702 "/home/rubenhensen/sac/blas/blas.c" 3 4
      1
 # 4702 "/home/rubenhensen/sac/blas/blas.c"
@@ -9602,25 +9602,25 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5775__hce_19 = SACp_pinl_12455__emal_12251__hce_19; }
+      { SACp_pinl_5775__hce_17 = SACp_pinl_12455__emal_12251__hce_17; }
 
     }
     else
     {
       ;
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failed"); SACp_pinl_12456__emal_12252__hce_19__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failed"); SACp_pinl_12456__emal_12252__hce_17__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5775__hce_19 = SACp_pinl_12456__emal_12252__hce_19__SSA0_1; }
+      { SACp_pinl_5775__hce_17 = SACp_pinl_12456__emal_12252__hce_17__SSA0_1; }
 
     }
     ; ; { SACp_emal_12239__pinl_5808__flat_1061 = (SACl_m) >= (0); };
@@ -9630,26 +9630,26 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5776__hce_18 = SACp_pinl_5775__hce_19; }
+      { SACp_pinl_5776__hce_16 = SACp_pinl_5775__hce_17; }
 
     }
     else
     {
       { ; ; }
       { ; ; }
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12458__emal_12250__hce_18__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12458__emal_12250__hce_16__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5776__hce_18 = SACp_pinl_12458__emal_12250__hce_18__SSA0_1; }
+      { SACp_pinl_5776__hce_16 = SACp_pinl_12458__emal_12250__hce_16__SSA0_1; }
 
     }
     ; ; { SACp_emal_12238__pinl_5807__flat_1061 = (SACl_n) >= (0); };
@@ -9659,26 +9659,26 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5777__hce_17 = SACp_pinl_5776__hce_18; }
+      { SACp_pinl_5777__hce_15 = SACp_pinl_5776__hce_16; }
 
     }
     else
     {
       ;
       { ; ; }
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12460__emal_12249__hce_17__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12460__emal_12249__hce_15__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5777__hce_17 = SACp_pinl_12460__emal_12249__hce_17__SSA0_1; }
+      { SACp_pinl_5777__hce_15 = SACp_pinl_12460__emal_12249__hce_15__SSA0_1; }
 
     }
     { ; ;
@@ -9699,64 +9699,64 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5778__hce_16 = SACp_pinl_5777__hce_17; }
+      { SACp_pinl_5778__hce_14 = SACp_pinl_5777__hce_15; }
 
     }
     else
     {
       ;
       { ; ; }
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12462__emal_12248__hce_16__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12462__emal_12248__hce_14__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5778__hce_16 = SACp_pinl_12462__emal_12248__hce_16__SSA0_1; }
+      { SACp_pinl_5778__hce_14 = SACp_pinl_12462__emal_12248__hce_14__SSA0_1; }
 
     }
 
 
 
-    SACf_BlasLevel2__sgemvXdim__c__i__i__i__i (&SACp_pinl_5768__flat_49, SACl_trans, SACl_m, SACl_n, SACl_incx, SACp_emal_12242__pinl_5773_xn);
+    SACf_BlasLevel2__sgemvXdim__c__i__i__i__i (&SACp_pinl_5768__flat_47, SACl_trans, SACl_m, SACl_n, SACl_incx, SACp_emal_12242__pinl_5773_xn);
 
 
 
 
     ;
 
-    if (SACp_pinl_5768__flat_49)
+    if (SACp_pinl_5768__flat_47)
     {
       ;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5779__hce_15 = SACp_pinl_5778__hce_16; }
+      { SACp_pinl_5779__hce_13 = SACp_pinl_5778__hce_14; }
 
     }
     else
     {
       ;
       ;
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12464__emal_12247__hce_15__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12464__emal_12247__hce_13__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5779__hce_15 = SACp_pinl_12464__emal_12247__hce_15__SSA0_1; }
+      { SACp_pinl_5779__hce_13 = SACp_pinl_12464__emal_12247__hce_13__SSA0_1; }
 
     }
     ; { SACp_emal_12234__esd_9366 = -(SACl_incx); };
@@ -9768,64 +9768,64 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5780__hce_14 = SACp_pinl_5779__hce_15; }
+      { SACp_pinl_5780__hce_12 = SACp_pinl_5779__hce_13; }
 
     }
     else
     {
       ;
       { ; ; }
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12466__emal_12246__hce_14__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12466__emal_12246__hce_12__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5780__hce_14 = SACp_pinl_12466__emal_12246__hce_14__SSA0_1; }
+      { SACp_pinl_5780__hce_12 = SACp_pinl_12466__emal_12246__hce_12__SSA0_1; }
 
     }
 
 
 
-    SACf_BlasLevel2__sgemvYdim__c__i__i__i__i (&SACp_pinl_5770__flat_52, SACl_trans, SACl_m, SACl_n, SACl_incy, SACp_emal_12241__pinl_5774_yn);
+    SACf_BlasLevel2__sgemvYdim__c__i__i__i__i (&SACp_pinl_5770__flat_50, SACl_trans, SACl_m, SACl_n, SACl_incy, SACp_emal_12241__pinl_5774_yn);
 
 
 
 
     ;
 
-    if (SACp_pinl_5770__flat_52)
+    if (SACp_pinl_5770__flat_50)
     {
       ;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5781__hce_13 = SACp_pinl_5780__hce_14; }
+      { SACp_pinl_5781__hce_11 = SACp_pinl_5780__hce_12; }
 
     }
     else
     {
       ;
       ;
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12468__emal_12245__hce_13__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12468__emal_12245__hce_11__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5781__hce_13 = SACp_pinl_12468__emal_12245__hce_13__SSA0_1; }
+      { SACp_pinl_5781__hce_11 = SACp_pinl_12468__emal_12245__hce_11__SSA0_1; }
 
     }
     ; { SACp_emal_12232__esd_9365 = -(SACl_incy); };
@@ -9837,33 +9837,33 @@ _Bool
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5782__hce_12 = SACp_pinl_5781__hce_13; }
+      { SACp_pinl_5782__hce_10 = SACp_pinl_5781__hce_11; }
 
     }
     else
     {
       ;
       { ; ; }
-      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12470__emal_12244__hce_12__SSA0_1 = 0;
+      SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); SACp_pinl_12470__emal_12244__hce_10__SSA0_1 = 0;
 
 
 
-      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+      if (!((0 == (0)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
       ;
       ;
       ;
-      { SACp_pinl_5782__hce_12 = SACp_pinl_12470__emal_12244__hce_12__SSA0_1; }
+      { SACp_pinl_5782__hce_10 = SACp_pinl_12470__emal_12244__hce_10__SSA0_1; }
 
     }
-    if (!SACp_pinl_5782__hce_12) { SAC_RuntimeErrorLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); }
+    if (!SACp_pinl_5782__hce_10) { SAC_RuntimeErrorLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failedType pattern pre-condition of sgemv failed"); }
 
 
 
-    if (!((SACp_pinl_5732_y__SSA0_1__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+    if (!((SACp_pinl_5732_y__SSA0_1__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
     SACp_pinl_5732_y__SSA0_1__desc = SACl_y__desc;
     SACp_pinl_5732_y__SSA0_1__shp0 = SACl_y__shp0;
     SACp_pinl_5732_y__SSA0_1__sz = SACl_y__sz;
@@ -9874,7 +9874,7 @@ _Bool
 
 
 
-    if (!((SACp_pinl_5729_x__SSA0_1__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 21, 1, "Assignment with incompatible types found"); };
+    if (!((SACp_pinl_5729_x__SSA0_1__dim == (1)))) { SAC_RuntimeWarningLoc ("./BlasLevel2.sac", 22, 1, "Assignment with incompatible types found"); };
     SACp_pinl_5729_x__SSA0_1__desc = SACl_x__desc;
     SACp_pinl_5729_x__SSA0_1__shp0 = SACl_x__shp0;
     SACp_pinl_5729_x__SSA0_1__sz = SACl_x__sz;
@@ -9893,7 +9893,7 @@ _Bool
     SACp_pinl_5722__rtpf_5_res__shp0 = (((SAC_array_descriptor_t) (((intptr_t)SACp_pinl_5722__rtpf_5_res__desc) & (-1 ^ (3))))[(6 + (0))]);
     SACp_pinl_5722__rtpf_5_res__sz = (((SAC_array_descriptor_t) (((intptr_t)SACp_pinl_5722__rtpf_5_res__desc) & (-1 ^ (3))))[4]);
 
-    if (!SACp_pinl_5782__hce_12) { SAC_RuntimeErrorLoc ("./BlasLevel2.sac", 21, 1, "Type pattern pre-condition of sgemv failed"); }
+    if (!SACp_pinl_5782__hce_10) { SAC_RuntimeErrorLoc ("./BlasLevel2.sac", 22, 1, "Type pattern pre-condition of sgemv failed"); }
     ;
 
 

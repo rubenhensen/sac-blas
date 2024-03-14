@@ -1,7 +1,7 @@
 #include <cblas.h>
 
-void SACsrotg(float *a, float *b, float *c, float *s)
+void SACsscal(const int n, const float a, float *x, const int incx)
 {
-    cblas_srotg(a, b, c, s);
+    cblas_sscal(n, a, x, incx);
 }
 

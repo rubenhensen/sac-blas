@@ -27,7 +27,11 @@ external float[.], float[.] srotm(int n, float[.] x, int incx, float[.] y, int i
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [2,4,1,2,3,4,5,6]
 
-// external float[k], float[l] sswap(int n, float[k] sx, int incx, float[l] sy, int incy) | n > 0, incx > 0, incy > 0
+external float[k], float[l] sswap(int n, float[k] x, int incx, float[l] y, int incy);
+    #pragma linkname "SACsswap"
+    #pragma linkobj "src/sswap.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [2,4,1,2,3,4,5]
 
 external float[k] sscal(int n, float a, float[k] x, int incx);
     #pragma linkname "SACsscal"

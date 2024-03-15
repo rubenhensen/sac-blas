@@ -1,0 +1,37 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    compare(3, tof(iota(3)), 1, tof(iota(4)), 1);
+    compare(3, tof(iota(5)), 2, tof(iota(4)), 1);
+    compare(3, tof(iota(9)), 2, tof(iota(4)), 1);
+    compare(3, tof(iota(3)), 1, tof(iota(5)), 2);
+    compare(3, tof(iota(3)), 1, tof(iota(9)), 2);
+    compare(6, tof(iota(19)), 3, tof(iota(19)), 3);
+
+
+
+    return 0;
+}
+
+void compare(int n, float[xn] x, int incx, float[yn] y, int incy)
+{
+    x1, y1 = OpenBlas::sswap(n, x, incx, y, incy);
+
+    x2, y2 = sswap(n, x, incx, y, incy);
+    
+    if(!(eq(x1, x2) && eq(y1,y2)))
+    {
+        printf("Error in sgemv. n:%d, incx:%d, incy:%d", n, incx, incy); 
+        print(x);
+        print(y);
+        print(x1);
+        print(x2);
+        print(y1);
+        print(y2);
+        printf("\n");
+    }
+}

@@ -70,3 +70,7 @@ clean:
 	rm -f a.out.c 
 	rm -f a.out.i 
 	rm -f a.out.o
+	rm -f test/*.out
+	rm -f test/*.i
+	rm -f test/*.o
+	rm -f test/*.c

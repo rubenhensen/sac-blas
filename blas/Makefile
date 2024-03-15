@@ -14,7 +14,7 @@ TESTSACEXEC=$(TESTSAC:.sac=.out)
 
 all: blas run
 
-.PHONY: all test
+.PHONY: all test dblas1
 
 %.o: %.c 
 	$(CC) -c -o $@ $< $(CFLAGS) $(LIBS)
@@ -49,6 +49,10 @@ blas: Blas.sac host/seq/libOpenblasMod.so host/seq/libBlasLevel1Mod.so host/seq/
 
 notc: Blas.sac host/seq/libOpenblasMod.so host/seq/libBlasLevel1Mod.so host/seq/libBlasLevel2Mod.so tree/host/libOpenblasTree.so tree/host/libBlasLevel1Tree.so tree/host/libBlasLevel2Tree.so
 	sac2c  Blas.sac
+
+dblas1:
+	sed 's/float/double/g' BlasLevel1.sac > DBlasLevel1.sac
+	sed -i 's/s\(.*(\)/d\1/g' DBlasLevel1.sac
 
 run: 
 	./blas

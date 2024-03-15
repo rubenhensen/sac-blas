@@ -34,39 +34,28 @@ float[*] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, f
     leny = n;
   }
 
-  // if (incx > 0) {
-  //   kx = 1;
-  // } else {
-  //   kx = 1 - (lenx-1)*incx;
-  // }
+  if (incx > 0) {
+    kx = 1;
+  } else {
+    kx = 1 - (lenx-1)*incx;
+  }
 
-  // if (incy > 0) {
-  //   ky = 1;
-  // } else {
-  //   ky = 1 - (lenx-1)*incy;
-  // }
+  if (incy > 0) {
+    ky = 1;
+  } else {
+    ky = 1 - (lenx-1)*incy;
+  }
   
-  // als beta niet gelijk is aan 1
-    // als incy gelijk is aan 1
-      // als beta gelijk is aan 0 -> dan zet alles in y op 0
 
-  // does not incluce negative incy
-  // calc betaY =  beta*y first
-  // betaY =  BlasLevel1::sscal(leny, beta, y, incy);
-  // return betaY;
+  betaY =  BlasLevel1::sscal(leny, beta, y, incy);
 
-  // calc alphaX = alpha * x
-  // sscal(int n, float sa, float[k] sx, int incx) 
-  alphaX =  BlasLevel1::sscal(lenx, alpha, x, incx);
-  // alphaX = {i -> alpha * x[i] | [0] <= i <= [lenx*incx] step [incx] ; i -> x[i]};
-  return alphaX;
+  alphaX =  {iv -> alpha * x[iv*incx] | [0] <= iv < [n]};
 
-  // calc resA = alphaX * a;]
-  // resA = alphaX * a;
-  // res = {i -> { j -> sum(a[j] * alphaX[j]) + betaY[i]  |  j < [lenx*incx] step [incx] ; j -> x[j]}  | i < [leny*incy] step [incy] ; i -> y[i]};
+  resA = {iv -> sum(a[iv] * alphaX) | iv < [m]};
 
-  // res = {[i,k] -> sum(a[i,.] * alphaX[k])  |  [i,k] < [m, lenx*incx] step [1,incx]; [i,k] -> x[i]};
-  // return resA;
+  res = {iv -> resA[iv/incy] +  betaY[iv] | iv < [yn] step [incy] ; iv -> y[iv]};
+
+  return res;
 }
 
 // int[i,k] matmul(int[i,j] a, int[j,k] b) {

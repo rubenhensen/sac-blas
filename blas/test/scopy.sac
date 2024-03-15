@@ -1,0 +1,32 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    compare(3, tof(iota(3)), 1, tof(iota(4)), 1);
+    compare(3, tof(iota(5)), 2, tof(iota(4)), 1);
+    compare(3, tof(iota(3)), 1, tof(iota(5)), 2);
+    compare(3, tof(iota(9)), 1, tof(iota(9)), 1);
+    compare(3, tof(iota(9)), 3, tof(iota(9)), 2);
+
+    return 0;
+}
+
+void compare(int n, float[k] x, int incx, float[l] y, int incy)
+{
+    y1 = OpenBlas::scopy(n, x, incx, y, incy);
+
+    y2 = scopy(n, x, incx, y, incy);
+    
+    if(!(eq(y1,y2)))
+    {
+        printf("Error in sgemv. n:%d, incx:%d, incy:%d", n, incx, incy); 
+        print(x);
+        print(y);
+        print(y1);
+        print(y2);
+        printf("\n");
+    }
+}

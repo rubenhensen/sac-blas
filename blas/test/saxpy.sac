@@ -1,0 +1,35 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    compare(3, 1.0f, tof(iota(3)), 1, tof(iota(4)), 1);
+    compare(3, 0.0f, tof(iota(3)), 1, tof(iota(4)), 1);
+    compare(3, 1.0f, tof(iota(5)), 2, tof(iota(4)), 1);
+    compare(3, 1.0f, tof(iota(3)), 1, tof(iota(5)), 2);
+    compare(3, 1.0f, tof(iota(9)), 2, tof(iota(9)), 2);
+    compare(3, 1.34534f, tof(iota(3)), 1, tof(iota(4)), 1);
+    compare(3, 9999.99909f, tof(iota(3)), 1, tof(iota(4)), 1);
+
+    return 0;
+}
+
+
+void compare(int n, float a, float[xn] x, int incx, float[yn] y, int incy)
+{
+    y1 = OpenBlas::saxpy(n, a, x, incx, y, incy);
+
+    y2 = saxpy(n, a, x, incx, y, incy);
+    
+    if(!(eq(y1,y2)))
+    {
+        printf("Error in sgemv. n:%d, a:%f, incx:%d, incy:%d", n, a, incx, incy); 
+        print(x);
+        print(y);
+        print(y1);
+        print(y2);
+        printf("\n");
+    }
+}

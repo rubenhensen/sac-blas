@@ -45,17 +45,17 @@ external float[l] scopy(int n, float[k] x, int incx, float[l] y, int incy);
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [4,1,2,3,4,5]
 
-// external float[l] saxpy(int n, float sa, float[k] sx, int incx, float[l] sy, int incy);
-    // #pragma linkname "SACsaxpy"
-    // #pragma linkobj "src/saxpy.o"
-    // #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
-    // #pragma linksign []
+external float[l] saxpy(int n, float a, float[k] x, int incx, float[l] y, int incy);
+    #pragma linkname "SACsaxpy"
+    #pragma linkobj "src/saxpy.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [5,1,2,3,4,5,6]
 
-// external float sdot(int n, float[k] sx, int incx, float[l] sy, int incy);
-    // #pragma linkname "SACsdot"
-    // #pragma linkobj "src/sdot.o"
-    // #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
-    // #pragma linksign []
+external float sdot(int n, float[k] x, int incx, float[l] y, int incy);
+    #pragma linkname "SACsdot"
+    #pragma linkobj "src/sdot.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [0,1,2,3,4,5]
 
 // external double sdsdot(int n, float sb, float[k] sx, int incx, float[l] sy, int incy);
     // #pragma linkname "SACsdsdot"

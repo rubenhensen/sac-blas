@@ -1,4 +1,4 @@
-module Openblas;
+module OpenBlas;
 
 export all;
 

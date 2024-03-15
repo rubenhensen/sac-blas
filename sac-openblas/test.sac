@@ -1,6 +1,6 @@
 use StdIO: all;
 use Array: all;
-use Openblas2: all;
+use OpenBlas2: all;
 
 void main()
 {

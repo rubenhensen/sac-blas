@@ -7,12 +7,28 @@ use Helper: all;
 int main() {
     compare('n', 4, 3, 1.0f, tof(reshape([4,3], iota(12))), 3, tof([1,1,1]), 1, 0.0f, tof([1,1,1,1]), 1);
     compare('n', 4, 3, 2.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 0.0f, tof([1,1,1,1]), 1);
+    compare('n', 4, 3, 2.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 1.0f, tof([1,1,1,1]), 1);
+    compare('n', 4, 3, 2.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 0.0f, tof(iota(4)), 1);
+    compare('n', 4, 3, 2.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 1.0f, tof(iota(7)), 2);
+    compare('n', 4, 3, 2.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 0.0f, tof(iota(7)), 2);
+    compare('n', 4, 3, 0.3235f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 0.0f, tof(iota(9)), 2);
+    compare('n', 4, 3, 1.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 33.0f, tof(iota(7)), 2);
+    compare('n', 4, 3, 2.34556f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 42.7f, tof(iota(9)), 2);
+    compare('t', 3, 4, 1.0f, tof(reshape([3,4], iota(12))), 4, tof([1,1,1]), 1, 0.0f, tof([1,1,1,1]), 1);
+    compare('t', 3, 4, 2.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 0.0f, tof([1,1,1,1]), 1);
+    compare('t', 3, 4, 2.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 1.0f, tof([1,1,1,1]), 1);
+    compare('t', 3, 4, 2.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 0.0f, tof(iota(4)), 1);
+    compare('t', 3, 4, 2.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 1.0f, tof(iota(7)), 2);
+    compare('t', 3, 4, 2.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 0.0f, tof(iota(7)), 2);
+    compare('t', 3, 4, 0.3235f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 0.0f, tof(iota(9)), 2);
+    compare('t', 3, 4, 1.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 33.0f, tof(iota(7)), 2);
+    compare('t', 3, 4, 2.34556f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 42.7f, tof(iota(9)), 2);
     return 0;
 }
 
 void compare(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy)
 {
-    y1 = Openblas::sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+    y1 = OpenBlas::sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
     // print(y1);
 
     y2 = sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);

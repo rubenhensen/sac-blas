@@ -3,7 +3,7 @@ use Array: all;
 use BlasLevel1: all;
 use BlasLevel2: all;
 use Helper: all;
-// use Openblas: all;
+// use OpenBlas: all;
 
 int main() {
     compare(1, 1.0f, tof(reshape([10],iota(10))), 1);
@@ -17,12 +17,14 @@ int main() {
     compare(4, -12.4f, tof(reshape([10],iota(10))), 3);
     compare(4, -12.4f, tof(reshape([11],iota(11))), 3);
     compare(4, -99.99f, tof(reshape([10],iota(10))), 3);
+    compare(3, 0.0f, tof(iota(9)), 2);
+    
     return 0;
 }
 
 void compare(int n, float a, float[k] x, int incx)
 {
-    x1 = Openblas::sscal(n, a, x, incx);
+    x1 = OpenBlas::sscal(n, a, x, incx);
     x2 = sscal(n, a, x, incx);
 
     if(!(eq(x1,x2)))

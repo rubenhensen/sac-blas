@@ -2,7 +2,7 @@ use StdIO: all;
 use Array: all;
 use BlasLevel1: all;
 use BlasLevel2: all;
-// use Openblas: all;
+// use OpenBlas: all;
 
 int main() {
     compareSrotg(1.0f,1.0f,1.0f,1.0f) ;
@@ -19,7 +19,7 @@ int main() {
 
 void compareSrotg(float a, float b, float c, float s)
 {
-    r1, z1, c1, s1 = Openblas::srotg(a, b, c, s);
+    r1, z1, c1, s1 = OpenBlas::srotg(a, b, c, s);
     r2, z2, c2, s2 = srotg(a, b, c, s);
 
     if(!(r1 == r2 && z1 == z2 && c1 == c2 && s1 == s2))

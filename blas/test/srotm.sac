@@ -3,7 +3,7 @@ use Array: all;
 use BlasLevel1: all;
 use BlasLevel2: all;
 use Helper: all;
-// use Openblas: all;
+// use OpenBlas: all;
 
 int main() {
     compare(10, tof(reshape([10],iota(10))), 1, tof(reshape([10],iota(10))), 1, [-1.0f, 4.2f, 4.2f, 4.2f, 4.2f]);
@@ -18,7 +18,7 @@ int main() {
 
 void compare(int n, float[.] x, int incx, float[.] y, int incy, float[5] param)
 {
-    x1, y1 = Openblas::srotm(n, x, incx, y, incy, param);
+    x1, y1 = OpenBlas::srotm(n, x, incx, y, incy, param);
     x2, y2 = srotm(n, x, incx, y, incy, param);
 
     if(!(eq(x1,x2) && eq(y1,y2)))

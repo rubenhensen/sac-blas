@@ -8,8 +8,8 @@ use Helper: all;
 export all;
 
 /*
-* dgemv
-* DGEMV  performs one of the matrix-vector operations
+* sgemv
+* SGEMV  performs one of the matrix-vector operations
 *
 *    y := alpha*A*x + beta*y,   or   y := alpha*A**T*x + beta*y,
 *
@@ -19,79 +19,32 @@ export all;
 
 // lda >= max(1,n) because row major sac
 
-float[*] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
+float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
 {
-  // Quick return if possible
-  // if (m == 0 || n == 0 || (alpha == 0 && beta == 1)) return y; // not possible to return inside if statement
-
- 
-  // {i -> c*X[i] + s*Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
   if (trans == 'N' | trans == 'n') {
     lenx = n;
     leny = m;
   } else {
     lenx = m;
     leny = n;
+    a = transpose(a);
   }
 
-  if (incx > 0) {
-    kx = 1;
-  } else {
-    kx = 1 - (lenx-1)*incx;
-  }
-
-  if (incy > 0) {
-    ky = 1;
-  } else {
-    ky = 1 - (lenx-1)*incy;
-  }
-  
-
-  betaY =  BlasLevel1::sscal(leny, beta, y, incy);
-
-  alphaX =  {iv -> alpha * x[iv*incx] | [0] <= iv < [n]};
-
-  resA = {iv -> sum(a[iv] * alphaX) | iv < [m]};
-
-  res = {iv -> resA[iv/incy] +  betaY[iv] | iv < [yn] step [incy] ; iv -> y[iv]};
+  betaY =   BlasLevel1::sscal(leny, beta, y, incy);
+  alphaX =  {iv -> alpha * x[iv*incx]         | [0] <= iv < [lenx]};
+  resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
 
   return res;
 }
-
-// int[i,k] matmul(int[i,j] a, int[j,k] b) {
-//   return {[i,k] -> sum(a[i,.] * b[.,k])};
-// }
-
-
-
-
-//   res = {j -> mymul(a, alphaX, j)  |  j < [lenx*incx] step [incx] ; j -> x[j]};
-//   // res = a[3]*alphaX;
-//   return res;
-// }
-
-// float mymul(float[*] a, float[.] x, int[1] i ){
-//   print(i);
-//   print(a);
-//   print(x);
-//   res = a[i] *x;
-//   print(res);
-//   res = sum(res);
-//   print(res);
-//   return res;
-// }
-
-
-// matmul {[i,j] -> }
-
 
 // Checks max index of elements we go through is smaller than the length of x
 bool sgemvXdim(char trans, int m, int n, int incx, int xn)
 {
   if (trans == 'N' || trans == 'n') {
-    res = xn > (n-1)*incx;
+    res = minArrLen(n, xn, incx);
   } else {
-    res = xn > (m-1)*incx;
+    res = minArrLen(m, xn, incx);
   }
   return res;
 }
@@ -99,9 +52,9 @@ bool sgemvXdim(char trans, int m, int n, int incx, int xn)
 bool sgemvYdim(char trans, int m, int n, int incy, int yn)
 {
   if (trans == 'N' || trans == 'n') {
-    res = yn > (m-1)*incy;
+    res = minArrLen(m, yn, incy);
   } else {
-    res = yn > (n-1)*incy;
+    res = minArrLen(n, yn, incy);
   }
   return res;
 }

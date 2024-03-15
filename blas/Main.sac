@@ -2,7 +2,7 @@ use StdIO: all;
 use Array: all;
 use BlasLevel1: all;
 use BlasLevel2: all;
-// use Openblas: all;
+// use OpenBlas: all;
 
 int main() {
     // Blas 1
@@ -154,7 +154,7 @@ int[*] matmul2(int[i,j] a, int[j,k] b) {
 }
 bool compareSgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy)
 {
-    res1 = Openblas::sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+    res1 = OpenBlas::sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
     print(res1);
 
     res2 = sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
@@ -165,7 +165,7 @@ bool compareSgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda
 
 bool compareSrotg(float a, float b, float c, float s)
 {
-    r1, z1, c1, s1 = Openblas::srotg(a, b, c, s);
+    r1, z1, c1, s1 = OpenBlas::srotg(a, b, c, s);
     r2, z2, c2, s2 = srotg(a, b, c, s);
     
     return r1 == r2 && z1 == z2 && c1 == c2 && s1 == s2;
@@ -189,4 +189,4 @@ bool eq (float[d1:shp1] a, float[d2:shp2] b) {
 
 
 
-// sac2c -v0 -noprelude -cc ccrmod -o ./src/srotg.o ./src/srotg.c && sac2c -Xl -lopenblas Openblas.sac && sac2c  blas.sac  && ./a.out 
+// sac2c -v0 -noprelude -cc ccrmod -o ./src/srotg.o ./src/srotg.c && sac2c -Xl -lopenblas OpenBlas.sac && sac2c  blas.sac  && ./a.out 

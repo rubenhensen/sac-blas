@@ -1,6 +1,6 @@
 use StdIO: all;
 use Array: all;
-use Openblas: all;
+use OpenBlas: all;
 
 int main() {
     a, b, c, s = srotg(0.0f, 0.0f, 0.0f, 0.0f);

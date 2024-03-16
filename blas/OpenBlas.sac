@@ -57,11 +57,11 @@ external float sdot(int n, float[k] x, int incx, float[l] y, int incy);
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [0,1,2,3,4,5]
 
-// external double sdsdot(int n, float sb, float[k] sx, int incx, float[l] sy, int incy);
-    // #pragma linkname "SACsdsdot"
-    // #pragma linkobj "src/sdsdot.o"
-    // #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
-    // #pragma linksign []
+external float sdsdot(int n, float sb, float[k] sx, int incx, float[l] sy, int incy);
+    #pragma linkname "SACsdsdot"
+    #pragma linkobj "src/sdsdot.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [0,1,2,3,4,5,6]
 
 // external float snrm2(int n, float[k] x, int incx);
     // #pragma linkname "SACsnrm2"

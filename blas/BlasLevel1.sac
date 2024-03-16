@@ -268,9 +268,9 @@ float sdot(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >=
  * sdsdot
  */
 inline
-double sdsdot(int n, float sb, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+float sdsdot(int n, float sb, float[xn] sx, int incx, float[yn] sy, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
 {
-  return tod(sb) + sum( {iv -> tod(x[iv*incx]) * tod(y[iv*incy]) | [0] <= iv < [n] } );
+  return tof( tod(sb) + sum( {iv -> tod(sx[iv*incx]) * tod(sy[iv*incy]) | [0] <= iv < [n] }) );
 }
 
 /*

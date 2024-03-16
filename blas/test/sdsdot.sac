@@ -1,0 +1,28 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    compare(3, 1.0f, tof(iota(3)), 1, tof(iota(4)), 1);
+
+    return 0;
+}
+
+void compare(int n, float sb, float[xn] sx, int incx, float[yn] sy, int incy)
+{
+    f1 = OpenBlas::sdsdot(n, sb, sx, incx, sy, incy);
+
+    f2 = sdsdot(n, sb, sx, incx, sy, incy);
+    
+    if(!(f1==f2))
+    {
+        printf("Error in sgemv. n:%d, sb:%f, incx:%d, incy:%d", n, sb, incx, incy); 
+        print(sx);
+        print(sy);
+        print(f1);
+        print(f2);
+        printf("\n");
+    }
+}

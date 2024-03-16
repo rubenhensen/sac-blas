@@ -1,7 +1,6 @@
 #include <cblas.h>
 
-void SACsrotg(float *a, float *b, float *c, float *s)
+float SACsdsdot(const int n, const float sb, const float *sx, const int incx, const float *sy, const int incy)
 {
-    cblas_srotg(a, b, c, s);
+    return cblas_sdsdot(n, sb, sx, incx, sy, incy);
 }
-

@@ -1,7 +1,6 @@
 #include <cblas.h>
 
-void SACsrotg(float *a, float *b, float *c, float *s)
+float SACsasum(const int n, const float *x, const int incx)
 {
-    cblas_srotg(a, b, c, s);
+    return cblas_sasum(n, x, incx);
 }
-

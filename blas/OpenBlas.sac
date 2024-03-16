@@ -69,23 +69,20 @@ external float snrm2(int n, float[k] x, int incx);
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [0,1,2,3]
 
-// external float scnrm2(int n, complex[.] x, int incx);
-    // #pragma linkname "SACscnrm2"
-    // #pragma linkobj "src/scnrm2.o"
-    // #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
-    // #pragma linksign []
+external float sasum(int n, float[k] x, int incx);
+    #pragma linkname "SACsasum"
+    #pragma linkobj "src/sasum.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [0,1,2,3]
 
-// external float sasum(int n, float[k] sx, int incx);
-    // #pragma linkname "SACsasum"
-    // #pragma linkobj "src/saxpy.o"
-    // #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
-    // #pragma linksign []
 
 // external int isamax(int n, float[k] sx, int incx);
     // #pragma linkname "SACisamax"
-    // #pragma linkobj "src/saxpy.o"
+    // #pragma linkobj "src/sisamaxy.o"
     // #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     // #pragma linksign []
+
+// double
 
 // external double, double, double, double drotg(double a, double b)
 
@@ -115,6 +112,13 @@ external float snrm2(int n, float[k] x, int incx);
 
 // external int idamax(int n, double[k] X, int incx);
 
+
+// complex
+// external float scnrm2(int n, complex[.] x, int incx);
+//     #pragma linkname "SACscnrm2"
+//     #pragma linkobj "src/scnrm2.o"
+//     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+//     #pragma linksign []
 
 // Blas level 2
 external float[*] sgemv(char trans, int m, int n, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy);

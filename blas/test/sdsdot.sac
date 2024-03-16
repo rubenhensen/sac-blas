@@ -6,6 +6,13 @@ use Helper: all;
 
 int main() {
     compare(3, 1.0f, tof(iota(3)), 1, tof(iota(4)), 1);
+    compare(3, 1.0f, tof(iota(5)), 2, tof(iota(4)), 1);
+    compare(3, 1.0f, tof(iota(3)), 1, tof(iota(5)), 2);
+    compare(3, 1.0f, tof(iota(9)), 2, tof(iota(9)), 3);
+    compare(3, 2.0f, tof(iota(3)), 1, tof(iota(4)), 1);
+    compare(3, 1.220f, tof(iota(5)), 2, tof(iota(4)), 1);
+    compare(3, 1.330f, tof(iota(3)), 1, tof(iota(5)), 2);
+    compare(3, 99.0f, tof(iota(9)), 2, tof(iota(9)), 3);
 
     return 0;
 }

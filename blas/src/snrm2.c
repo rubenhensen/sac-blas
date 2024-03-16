@@ -1,7 +1,6 @@
 #include <cblas.h>
 
-void SACsrotg(float *a, float *b, float *c, float *s)
+void SACsnrm2(const int n, const float *x, const int incx)
 {
-    cblas_srotg(a, b, c, s);
+    cblas_snrm2(n, x, incx);
 }
-

@@ -1,0 +1,30 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    compare(3, tof(iota(3)), 1);
+    compare(3, tof(iota(5)), 2);
+    compare(3, tof(iota(9)), 2);
+    compare(1, tof(iota(1)), 1);
+
+    return 0;
+}
+
+void compare(int n, float[k] x, int incx)
+{
+    f1 = OpenBlas::snrm2(n, x, incx);
+
+    f2 = snrm2(n, x, incx);
+    
+    if(!(f1==f2))
+    {
+        printf("Error in sgemv. n:%d, incx:%d", n, incx); 
+        print(x);
+        print(f1);
+        print(f2);
+        printf("\n");
+    }
+}

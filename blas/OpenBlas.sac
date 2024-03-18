@@ -76,12 +76,13 @@ external float sasum(int n, float[k] x, int incx);
     #pragma linksign [0,1,2,3]
 
 
-// external int isamax(int n, float[k] sx, int incx);
-    // #pragma linkname "SACisamax"
-    // #pragma linkobj "src/sisamaxy.o"
-    // #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
-    // #pragma linksign []
+external int isamax(int n, float[k] x, int incx);
+    #pragma linkname "SACisamax"
+    #pragma linkobj "src/isamax.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [0,1,2,3]
 
+// long unsigned int SACisamax(const int n, const float *x, const int incx)
 // double
 
 // external double, double, double, double drotg(double a, double b)
@@ -121,8 +122,19 @@ external float sasum(int n, float[k] x, int incx);
 //     #pragma linksign []
 
 // Blas level 2
+// void SACsgbmv(char trans, int m, int n, int kl, int ku, float alpha, float* a, int lda, float* x, int incx, float beta, float* y, int incy)
+
+// void cblas_sgbmv (const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE trans, const MKL_INT m, const MKL_INT n, const MKL_INT kl, const MKL_INT ku, const float alpha, const float *a, const MKL_INT lda, const float *x, const MKL_INT incx, const float beta, float *y, const MKL_INT incy);
+
+external float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy);
+    #pragma linkname "SACsgbmv"
+    #pragma linkobj "src/sgbmv.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [12,1,2,3,4,5,6,7,8,9,10,11,12,13]
+
 external float[*] sgemv(char trans, int m, int n, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy);
     #pragma linkname "SACsgemv"
     #pragma linkobj "src/sgemv.o"
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]
+

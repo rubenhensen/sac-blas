@@ -1193,7 +1193,7 @@ void test_dscal(int n, double[.] as, double[.] xs, int[.] incxs) {
 
                 native = dscal(m, a, X, incx);
                 library = cblas_dscal(m, a, X, incx);`
-                if(any(abs(native - library) > MAX_ACC_LOSS)) {
+                if(any(abs(native - library) > MAX_ACC_LOSS)) { // Should not be a relative error margin https://floating-point-gui.de/errors/comparison/
                     printf("For a = %f, x = %f, incx = %i\n", a, X[0], incx);
                     printf("Native:\n");
                     show(take([10], native));

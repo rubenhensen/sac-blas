@@ -1,0 +1,54 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    // compare('n', 4, 3, 30, 30, 1.0f, tof(reshape([4,3], iota(12))), 3, tof([1,1,1]), 1, 0.0f, tof([1,1,1,1]), 1);
+    // compare('n', 4, 3, 30, 30, 2.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 0.0f, tof([1,1,1,1]), 1);
+    // compare('n', 4, 3, 30, 30, 2.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 0.0f, tof(iota(4)), 1);
+    // compare('n', 4, 3, 30, 30, 2.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 1.0f, tof([1,1,1,1]), 1);
+    // compare('n', 4, 3, 30, 30, 2.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 1.0f, tof(iota(7)), 2);
+    // compare('n', 4, 3, 30, 30, 2.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 0.0f, tof(iota(7)), 2);
+    // compare('n', 4, 3, 30, 30, 0.3235f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 0.0f, tof(iota(9)), 2);
+    // compare('n', 4, 3, 30, 30, 1.0f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 33.0f, tof(iota(7)), 2);
+    // compare('n', 4, 3, 30, 30, 2.34556f, tof(reshape([4,3], iota(12))), 3, tof(iota(5)), 2, 42.7f, tof(iota(9)), 2);
+    // compare('t', 3, 4, 30, 30, 1.0f, tof(reshape([3,4], iota(12))), 4, tof([1,1,1]), 1, 0.0f, tof([1,1,1,1]), 1);
+    // compare('t', 3, 4, 30, 30, 2.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 0.0f, tof([1,1,1,1]), 1);
+    // compare('t', 3, 4, 30, 30, 2.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 1.0f, tof([1,1,1,1]), 1);
+    // compare('t', 3, 4, 30, 30, 2.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 0.0f, tof(iota(4)), 1);
+    // compare('t', 3, 4, 30, 30, 2.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 1.0f, tof(iota(7)), 2);
+    // compare('t', 3, 4, 30, 30, 2.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 0.0f, tof(iota(7)), 2);
+    // compare('t', 3, 4, 30, 30, 0.3235f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 0.0f, tof(iota(9)), 2);
+    // compare('t', 3, 4, 30, 30, 1.0f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 33.0f, tof(iota(7)), 2);
+    // compare('t', 3, 4, 30, 30, 2.34556f, tof(reshape([3,4], iota(12))), 4, tof(iota(5)), 2, 42.7f, tof(iota(9)), 2);
+
+    print( OpenBlas::sgbmv('n', 3, 1, 0, 0, 1.0f, tof(reshape([3,1], iota(3))), 1, tof([1,1,1]), 1, 0.0f, tof([1,1,1]), 1) );
+    print( OpenBlas::sgbmv('n', 3, 3, 0, 0, 1.0f, tof(reshape([3,1], iota(3))), 1, tof([1,1,1]), 1, 0.0f, tof([1,1,1]), 1) );
+    a = reshape([4,3], iota(12));
+    a = modarray(a, [3,2], 0);
+    // print(a);
+
+    print( OpenBlas::sgbmv('n', 4, 4, 1, 1, 1.0f, tof(a), 3, tof(iota(4)+1), 1, 0.0f, tof([1,1,1,1]), 1) );
+    
+    return 0;
+}
+
+void compare(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy)
+{
+    y1 = OpenBlas::sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
+    // print(y1);
+
+    y2 = sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
+    // print(y2);
+    
+    if(!(eq(y1,y2)))
+    {
+        printf("Error in sgemv. trans:%c, m:%d, n:%d, kl:%d, ku:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d", trans, m, n, kl, ku, alpha, lda, incx, beta, incy); 
+        print(a);
+        print(x);
+        print(y);
+        printf("\n");
+    }
+}

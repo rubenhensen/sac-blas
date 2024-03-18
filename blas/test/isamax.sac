@@ -15,9 +15,9 @@ int main() {
 
 void compare(int n, float[k] x, int incx)
 {
-    f1 = OpenBlas::sasum(n, x, incx);
+    f1 = OpenBlas::isamax(n, x, incx);
 
-    f2 = sasum(n, x, incx);
+    f2 = isamax(n, x, incx);
     
     if(!(f1==f2))
     {

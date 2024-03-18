@@ -8,13 +8,16 @@ use Helper: all;
 export all;
 
 /*
-* sgemv
-* SGEMV  performs one of the matrix-vector operations
-*
-*    y := alpha*A*x + beta*y,   or   y := alpha*A**T*x + beta*y,
-*
-* where alpha and beta are scalars, x and y are vectors and A is an
-* m by n matrix.
+*  The ?gemv routines perform a matrix-vector operation defined as:
+*  y := alpha*A*x + beta*y,
+*  or
+*  y := alpha*A'*x + beta*y,
+*  or
+*  y := alpha*conjg(A')*x + beta*y,
+*  where:
+*    alpha and beta are scalars,
+*    x and y are vectors,
+*    A is an m-by-n matrix.
 */
 
 // lda >= max(1,n) because row major sac
@@ -31,7 +34,41 @@ float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, 
   }
 
   betaY =   BlasLevel1::sscal(leny, beta, y, incy);
-  alphaX =  {iv -> alpha * x[iv*incx]         | [0] <= iv < [lenx]};
+  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+  resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
+
+  return res;
+}
+
+/* 
+*  The ?gbmv routines perform a matrix-vector operation defined as
+*  y := alpha*A*x + beta*y,
+*  or
+*  y := alpha*A'*x + beta*y,
+*  or
+*  y := alpha *conjg(A')*x + beta*y,
+*  where:
+*    alpha and beta are scalars,
+*    x and y are vectors,
+*    A is an m-by-n band matrix, with kl sub-diagonals and ku super-diagonals.
+*    m and n are the matrix in full matrix band form
+*    A itself is in matrix band storage form
+*/
+
+float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0, kl >=0, ku >=  0, lda == kl + ku + 1
+{
+  if (trans == 'N' | trans == 'n') {
+    lenx = n;
+    leny = m;
+  } else {
+    lenx = m;
+    leny = n;
+    a = transpose(a);
+  }
+
+  betaY =   BlasLevel1::sscal(leny, beta, y, incy);
+  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
   resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
   res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
 
@@ -58,3 +95,12 @@ bool sgemvYdim(char trans, int m, int n, int incy, int yn)
   }
   return res;
 }
+
+// bool isBanded(float[am,an] a, int kl, int ku)
+// {
+//   // aij is 0 if j < i - kl of j > i + ku
+//   res = {[i,j] ->  (i-j > kl || j - i > ku) ? (a[i][j] == 0.0f) : (a[i][j] != 0.0f) | [i,j] < [am,an]};
+//   return all(res);
+//   // return res;
+// }
+

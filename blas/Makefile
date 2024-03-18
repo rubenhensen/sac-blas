@@ -59,6 +59,9 @@ test: $(TESTSACEXEC)
 # run: 
 # 	./blas
 
+Main: 
+	sac2c -o Main Main.sac
+
 clean: 
 	rm -rf tree/
 	rm -rf host/

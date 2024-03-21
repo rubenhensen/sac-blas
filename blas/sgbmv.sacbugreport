@@ -1,3 +1,26 @@
+/**********************************************************************
+ *
+ * SAC bug report: sgbmv.sacbugreport
+ *
+ **********************************************************************
+ *
+ * Automatically generated on Thu Mar 21 01:50:59 PM CET 2024
+ *
+ * using sac2c 1.3.3-MijasCosta-1175-g9b80b
+ * built 2024-03-10T08:59:28.
+ * by user  on host runner-qipqeg7c-project-39-concurrent-3.
+ *
+ * The compiler was called by
+ *  sac2c -check tc -o test/sgbmv.out test/sgbmv.sac
+ *
+ * The compiler crashed in
+ *  phase: cg (Generating Code)
+ *  sub phase: cpl (Creating intermediate code macros)
+ *
+ * What follows is the contents of test/sgbmv.sac.
+ *
+ **********************************************************************/
+
 use StdIO: all;
 use Array: all;
 use BlasLevel1: all;
@@ -131,8 +154,14 @@ bool sgemvYdim(char trans, int m, int n, int incy, int yn)
   return res;
 }
 
-float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n) | lda == kl+ku+1
+float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)| lda == kl+ku+1
 {
-  return [[1f]];
-  // return {[i,j] -> aOrZero(storage,i,kl,j) | [i,j] < [m,n]};
+  return {[i,j] -> aOrZero(storage,i,kl,j) | [i,j] < [m,n]};
 }
+
+/**********************************************************************
+ *
+ * End of bug report
+ *
+ **********************************************************************/
+

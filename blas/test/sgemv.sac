@@ -40,6 +40,8 @@ void compare(char trans, int m, int n, float alpha, float[am,an] a, int lda, flo
         print(a);
         print(x);
         print(y);
+        print(y1);
+        print(y2);
         printf("\n");
     }
 }

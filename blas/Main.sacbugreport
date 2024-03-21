@@ -1,0 +1,43 @@
+/**********************************************************************
+ *
+ * SAC bug report: Main.sacbugreport
+ *
+ **********************************************************************
+ *
+ * Automatically generated on Thu Mar 21 01:58:31 PM CET 2024
+ *
+ * using sac2c 1.3.3-MijasCosta-1175-g9b80b
+ * built 2024-03-10T08:59:28.
+ * by user  on host runner-qipqeg7c-project-39-concurrent-3.
+ *
+ * The compiler was called by
+ *  sac2c -o Main Main.sac
+ *
+ * The compiler crashed in
+ *  phase: cg (Generating Code)
+ *  sub phase: cpl (Creating intermediate code macros)
+ *
+ * What follows is the contents of Main.sac.
+ *
+ **********************************************************************/
+
+use StdIO: all;
+use Array: all;
+
+int main() {
+  print( foo(tof([1,1,1,1])) );
+  return 0;
+}
+
+float[*] foo(float[*] y) 
+{
+  print(y);
+  return y;
+}
+
+/**********************************************************************
+ *
+ * End of bug report
+ *
+ **********************************************************************/
+

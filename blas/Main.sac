@@ -1,29 +1,13 @@
 use StdIO: all;
 use Array: all;
-use BlasLevel1: all;
-use BlasLevel2: all;
-// use OpenBlas: all;
 
 int main() {
-
-    return 0;
+  print( foo(tof([1,1,1,1])) );
+  return 0;
 }
 
-float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0, kl >=0, ku >=  0, lda == kl + ku + 1
+float[*] foo(float[*] y) 
 {
-  if (trans == 'N' | trans == 'n') {
-    lenx = n;
-    leny = m;
-  } else {
-    lenx = m;
-    leny = n;
-    a = transpose(a);
-  }
-
-  betaY =   BlasLevel1::sscal(leny, beta, y, incy);
-  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
-  resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
-  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
-
-  return res;
+  print(y);
+  return y;
 }

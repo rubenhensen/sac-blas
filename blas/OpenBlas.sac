@@ -138,3 +138,8 @@ external float[*] sgemv(char trans, int m, int n, float alpha, float[*] a, int l
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]
 
+external float[m,n] sger(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda);
+    #pragma linkname "SACsger"
+    #pragma linkobj "src/sger.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [8,1,2,3,4,5,6,7,8,9]

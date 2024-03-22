@@ -1,0 +1,15 @@
+// use StdIO: all;
+// use Array: all;
+
+int main() {
+    return 0;
+}
+
+// void test() {
+//   print("way");
+// }
+
+// void compare(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda)
+// {
+//   print(m);
+// }

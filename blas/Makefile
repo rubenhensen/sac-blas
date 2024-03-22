@@ -9,6 +9,7 @@ SRC=$(wildcard src/*.c)
 OBJ=$(SRC:.c=.o)
 TESTSAC=$(wildcard ./test/*.sac)
 TESTSACEXEC=$(TESTSAC:.sac=.out)
+TESTSACEXECNOTC=$(TESTSAC:.sac=notc.out)
 SACLIBS=BlasLevel1.sac BlasLevel2 Blas
 
 Helper=./host/seq/libHelperMod.so ./tree/host/libHelperTree.so
@@ -34,18 +35,23 @@ OpenBlas=./host/seq/libOpenBlasMod.so ./tree/host/libOpenBlasTree.so
 ./host/seq/libHelperMod.so ./tree/host/libHelperTree.so &: Helper.sac
 	sac2c -check tc  Helper.sac
 
-# tree/host/lib%Tree.so: %.sac 
-# 	sac2c -check tc  $< 
-
 test: $(TESTSACEXEC) 
 	for x in test/*.out; do ./$$x; done
+
+notc: $(TESTSACEXECNOTC) 
+	for x in test/*notc.out; do ./$$x; done
+
+./test/%notc.out: ./test/%.sac $(BlasLevel1) $(BlasLevel2) $(OpenBlas) $(Helper)
+	sac2c -o $@ $< 
+	rm -rf test/*.i
+	rm -rf test/*.o
+	rm -rf test/*.c
 
 ./test/%.out: ./test/%.sac $(BlasLevel1) $(BlasLevel2) $(OpenBlas) $(Helper)
 	sac2c -check tc -o $@ $< 
 	rm -rf test/*.i
 	rm -rf test/*.o
 	rm -rf test/*.c
-
 # blas: Blas.sac host/seq/libOpenBlasMod.so host/seq/libBlasLevel1Mod.so host/seq/libBlasLevel2Mod.so tree/host/libOpenBlasTree.so tree/host/libBlasLevel1Tree.so tree/host/libBlasLevel2Tree.so
 # 	sac2c -check tc Blas.sac -o blas
 
@@ -59,8 +65,11 @@ test: $(TESTSACEXEC)
 # run: 
 # 	./blas
 
-Main: 
+Main: Main.sac
 	sac2c -o Main Main.sac
+	rm -rf Main.i
+	rm -rf Main.o
+	rm -rf Main.c
 
 clean: 
 	rm -rf tree/

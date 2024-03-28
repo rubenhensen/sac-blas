@@ -1,0 +1,9 @@
+module ComplexTensorBug;
+
+use Structures: all;
+
+// This does not work because the zero element is not correctly implemented for tensor comprehensions.
+complex[*] complex_equal(double[*] a) 
+{
+  return {iv -> toc(a[iv])};
+}

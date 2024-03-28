@@ -1,0 +1,29 @@
+module BlasLevel1original;
+
+use Structures: all;
+use Math: all;
+
+export all;
+
+/*
+ * dnrm2
+ */
+inline
+double dnrm2(int n, double[.] X, int incx)
+{
+  //expects n > 0, incx > 0
+  return sqrt(sum( {i -> X[i]*X[i] | [0] <= i < [n*incx] step [incx]} ));
+}
+
+
+// /*
+//  * dznrm2
+//  */
+// inline
+// double dznrm2(int n, complex[.] X, int incx)
+// {
+//   //expects n > 0, incx > 0
+//   X_prime = {i -> X[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
+//   return sqrt(sum(normSq(X_prime)));
+// }
+

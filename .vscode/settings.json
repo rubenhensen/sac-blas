@@ -27,6 +27,8 @@
         "string": "c",
         "system_error": "c",
         "typeinfo": "c",
-        "utility": "c"
+        "utility": "c",
+        "complex": "cpp",
+        "cmath": "cpp"
     }
 }

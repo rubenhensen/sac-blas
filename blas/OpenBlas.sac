@@ -1,5 +1,7 @@
 module OpenBlas;
 
+use Structures: {complex};
+
 export all;
 
 
@@ -124,7 +126,7 @@ external int isamax(int n, float[k] x, int incx);
 // Blas level 2
 // void SACsgbmv(char trans, int m, int n, int kl, int ku, float alpha, float* a, int lda, float* x, int incx, float beta, float* y, int incy)
 
-// void cblas_sgbmv (const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE trans, const MKL_INT m, const MKL_INT n, const MKL_INT kl, const MKL_INT ku, const float alpha, const float *a, const MKL_INT lda, const float *x, const MKL_INT incx, const float beta, float *y, const MKL_INT incy);
+// void cblas_sgbmv (const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE trans, const int m, const int n, const int kl, const int ku, const float alpha, const float *a, const int lda, const float *x, const int incx, const float beta, float *y, const int incy);
 
 external float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy);
     #pragma linkname "SACsgbmv"
@@ -143,3 +145,27 @@ external float[m,n] sger(int m, int n, float alpha, float[lenx] x, int incx, flo
     #pragma linkobj "src/sger.o"
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
+
+external float[*] ssymv(char uplo, int n, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy);
+    #pragma linkname "SACssymv"
+    #pragma linkobj "src/ssymv.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [9,1,2,3,4,5,6,7,8,9,10]
+
+external complex[*] zgerc(int m, int n, complex[*] alpha, complex[*] x, int incx, complex[*] y, int incy, complex[*] a, int lda);
+    #pragma linkname "SACzgerc"
+    #pragma linkobj "src/zgerc.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [8,1,2,3,4,5,6,7,8,9]
+
+external complex[*] zgeru(int m, int n, complex[*] alpha, complex[*] x, int incx, complex[*] y, int incy, complex[*] a, int lda);
+    #pragma linkname "SACzgeru"
+    #pragma linkobj "src/zgeru.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [8,1,2,3,4,5,6,7,8,9]
+
+complex[*] zhbmv(char uplo, int n, int k, complex alpha, complex[*] a, int lda, complex[*] x, int incx, complex beta, complex[*] y, int incy);
+    #pragma linkname "SACzhbmv"
+    #pragma linkobj "src/zhbmv.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]

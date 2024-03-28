@@ -1,0 +1,52 @@
+use StdIO: all;
+// use Array: all;
+// use BlasLevel1: all;
+// use BlasLevel2: all;
+// use Helper: all;
+use Structures: all;
+use Math: all;
+
+
+int main() {
+    // x = [[1.0,1.0],[2.0,2.0],[3.0,3.0]];
+    // x = with {
+    //     (. <= iv <= .): toc(x[iv]);
+    // }: genarray([shape(x)[0]], toc(0,0));
+    // print(x);
+    compare(1,1,toc(1,1),[toc(1,1)],1,[toc(1,1)],1,[[toc(1,1)]],1);
+    // compare(2,2,1f,tof(iota(2)),1,tof(iota(2)),1,reshape([2,2],tof(iota(4))),2);
+    // compare(3,2,1.333f,tof(iota(3)),1,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
+    // compare(3,2,1.333f,tof(iota(5)),2,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
+    // compare(3,2,1.333f,tof(iota(7)),3,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
+    // compare(3,2,1.333f,tof(iota(7)),3,tof(iota(8)),3,reshape([3,2],tof(iota(6))),2);
+    return 0;
+}
+
+void compare(int m, int n, complex[*] alpha, complex[*] x, int incx, complex[*] y, int incy, complex[*] a, int lda)
+{
+    // a1 = OpenBlas::zgerc(m, n, alpha, x, incx, y, incy, a, lda);
+
+    a2 = zgerc(m, n, alpha, x, incx, y, incy, a, lda);
+    // print(a2);
+    // if(!(all(a1 == a2) && all(shape(a1)==shape(a2)) && all(dim(a1)==dim(a2))))
+    // {
+    //     printf("Error in sger. m:%d, n:%d, alpha:%f, incx:%d, incy:%f, lda:%d", m, n, alpha, incx, incy, lda); 
+    //     print(a);
+    //     print(x);
+    //     print(y);
+    //     print(a1);
+    //     print(a2);
+    //     printf("\n");
+    // }
+}
+
+complex[*] zgerc(int m, int n, complex alpha, complex[.] x, int incx, complex[.] y, int incy, complex[*] a, int lda)
+{
+    y = with {
+        (. <= iv <= .): conj(x[iv]);
+    }: genarray(shape(y), toc(0,0));
+    // return with {
+    //     (. <= [i,j] < [m,n]): a[i,j] + alpha * x[i*incx] * y[j*incy];
+    // }: genarray([m,n], toc(0,0));
+    return a;
+}

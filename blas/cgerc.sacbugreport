@@ -1,0 +1,89 @@
+/**********************************************************************
+ *
+ * SAC bug report: cgerc.sacbugreport
+ *
+ **********************************************************************
+ *
+ * Automatically generated on Thu Mar 28 12:13:17 PM CET 2024
+ *
+ * using sac2c 1.3.3-MijasCosta-1165-g41c84
+ * built 2024-02-23T21:16:58.
+ * by user  on host runner-qipqeg7c-project-39-concurrent-3.
+ *
+ * The compiler was called by
+ *  sac2c -check tc -o test/cgerc.out test/cgerc.sac
+ *
+ * The compiler crashed in
+ *  phase: opt (Running SAC optimizations)
+ *  sub phase: saacyc (Symbolic array attribute cycle 2)
+ *  cycle phase: wlprop (Applying with-loop propagation)
+ *  cycle instance: 2
+ *
+ * What follows is the contents of test/cgerc.sac.
+ *
+ **********************************************************************/
+
+use StdIO: all;
+// use Array: all;
+// use BlasLevel1: all;
+// use BlasLevel2: all;
+// use Helper: all;
+use Structures: all;
+use Math: all;
+
+
+int main() {
+    // x = [[1.0,1.0],[2.0,2.0],[3.0,3.0]];
+    // x = with {
+    //     (. <= iv <= .): toc(x[iv]);
+    // }: genarray([shape(x)[0]], toc(0,0));
+    // print(x);
+    compare(1,1,toc(1,1),[toc(1,1)],1,[toc(1,1)],1,[[toc(1,1)]],1);
+    // compare(2,2,1f,tof(iota(2)),1,tof(iota(2)),1,reshape([2,2],tof(iota(4))),2);
+    // compare(3,2,1.333f,tof(iota(3)),1,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
+    // compare(3,2,1.333f,tof(iota(5)),2,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
+    // compare(3,2,1.333f,tof(iota(7)),3,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
+    // compare(3,2,1.333f,tof(iota(7)),3,tof(iota(8)),3,reshape([3,2],tof(iota(6))),2);
+    return 0;
+}
+
+void compare(int m, int n, complex[*] alpha, complex[*] x, int incx, complex[*] y, int incy, complex[*] a, int lda)
+{
+    // a1 = OpenBlas::cgerc(m, n, alpha, x, incx, y, incy, a, lda);
+
+    a2 = cgerc(m, n, alpha, x, incx, y, incy, a, lda);
+    print(a2);
+    // if(!(all(a1 == a2) && all(shape(a1)==shape(a2)) && all(dim(a1)==dim(a2))))
+    // {
+    //     printf("Error in sger. m:%d, n:%d, alpha:%f, incx:%d, incy:%f, lda:%d", m, n, alpha, incx, incy, lda); 
+    //     print(a);
+    //     print(x);
+    //     print(y);
+    //     print(a1);
+    //     print(a2);
+    //     printf("\n");
+    // }
+}
+
+complex[*] cgerc(int m, int n, complex alpha, complex[.] x, int incx, complex[.] y, int incy, complex[*] a, int lda)
+{
+    y = with {
+        (. <= iv <= .): conj(x[iv]);
+    }: genarray(shape(y), toc(0,0));
+    print(y);
+    print(x[0]);
+    print(alpha);
+    print(alpha * x[0]); // This does not work for some reason. And therefore I cannot check if the tensor comprehension works.
+    return a;
+    // return with {
+    //     (. <= [i,j] < [m,n]): a[i,j] + alpha * x[i*incx] * y[j*incy];
+    // }: genarray([m,n], toc(0,0));
+}
+
+
+/**********************************************************************
+ *
+ * End of bug report
+ *
+ **********************************************************************/
+

@@ -29,10 +29,8 @@ int main() {
 void compare(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy)
 {
     y1 = OpenBlas::sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
-    // print(y1);
 
     y2 = sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
-    // print(y2);
     
     if(!(eq(y1,y2)))
     {

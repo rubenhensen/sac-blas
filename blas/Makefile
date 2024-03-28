@@ -18,7 +18,7 @@ BlasLevel2=./host/seq/libBlasLevel2Mod.so ./tree/host/libBlasLevel2Tree.so
 OpenBlas=./host/seq/libOpenBlasMod.so ./tree/host/libOpenBlasTree.so
 
 
-.PHONY: all test dblas1
+.PHONY: all test dblas1 OpenBlasnotc BlasLevel1notc BlasLevel2notc Helpernotc
 
 %.o: %.c 
 	$(CC) -c -o $@ $< $(CFLAGS) $(LIBS)
@@ -35,13 +35,28 @@ OpenBlas=./host/seq/libOpenBlasMod.so ./tree/host/libOpenBlasTree.so
 ./host/seq/libHelperMod.so ./tree/host/libHelperTree.so &: Helper.sac
 	sac2c -check tc  Helper.sac
 
+OpenBlasnotc: OpenBlas.sac  $(OBJ)
+	sac2c -Xl -lopenblas OpenBlas.sac
+
+BlasLevel1notc : BlasLevel1.sac $(Helper)
+	sac2c BlasLevel1.sac
+
+BlasLevel2notc : BlasLevel2.sac $(BlasLevel1) $(Helper)
+	sac2c BlasLevel2.sac
+
+Helpernotc: Helper.sac
+	sac2c Helper.sac
+
 test: $(TESTSACEXEC) 
 	for x in test/*.out; do ./$$x; done
 
 notc: $(TESTSACEXECNOTC) 
+	for x in test/notc/*notc.out; do ./$$x; done
+
+notclib: BlasLevel1notc BlasLevel2notc OpenBlasnotc Helpernotc $(TESTSACEXECNOTC)
 	for x in test/*notc.out; do ./$$x; done
 
-./test/%notc.out: ./test/%.sac $(BlasLevel1) $(BlasLevel2) $(OpenBlas) $(Helper)
+./test/notc/%notc.out: ./test/%.sac 
 	sac2c -o $@ $< 
 	rm -rf test/*.i
 	rm -rf test/*.o
@@ -52,18 +67,6 @@ notc: $(TESTSACEXECNOTC)
 	rm -rf test/*.i
 	rm -rf test/*.o
 	rm -rf test/*.c
-# blas: Blas.sac host/seq/libOpenBlasMod.so host/seq/libBlasLevel1Mod.so host/seq/libBlasLevel2Mod.so tree/host/libOpenBlasTree.so tree/host/libBlasLevel1Tree.so tree/host/libBlasLevel2Tree.so
-# 	sac2c -check tc Blas.sac -o blas
-
-# blasnotc: Blas.sac host/seq/libOpenBlasMod.so host/seq/libBlasLevel1Mod.so host/seq/libBlasLevel2Mod.so tree/host/libOpenBlasTree.so tree/host/libBlasLevel1Tree.so tree/host/libBlasLevel2Tree.so
-# 	sac2c Blas.sac -o blasnotc
-
-# dblas1:
-# 	sed 's/float/double/g' BlasLevel1.sac > DBlasLevel1.sac
-# 	sed -i 's/s\(.*(\)/d\1/g' DBlasLevel1.sac
-
-# run: 
-# 	./blas
 
 Main: Main.sac
 	sac2c -o Main Main.sac

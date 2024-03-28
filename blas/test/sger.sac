@@ -1,13 +1,10 @@
 use StdIO: all;
 use Array: all;
 // use BlasLevel1: all;
-// use BlasLevel2: all;
+use BlasLevel2: all;
 use Helper: all;
 
 int main() {
-    // a = reshape([4,3], iota(12));
-    // a = tof(modarray(a, [3,2], 0));
-    // print(a);
     compare(1,1,1f,[1f],1,[1f],1,[[1f]],1);
     compare(2,2,1f,tof(iota(2)),1,tof(iota(2)),1,reshape([2,2],tof(iota(4))),2);
     compare(3,2,1.333f,tof(iota(3)),1,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
@@ -17,12 +14,8 @@ int main() {
     return 0;
 }
 
-float[m,n] sger(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda)
-{
-  return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
-}
-
-void compare(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda)
+// am == m and an == n not possible
+void compare(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[am,an] a, int lda)
 {
     a1 = OpenBlas::sger(m, n, alpha, x, incx, y, incy, a, lda);
 
@@ -38,7 +31,4 @@ void compare(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, 
         print(a2);
         printf("\n");
     }
-
 }
-
-

@@ -1,3 +1,28 @@
+/**********************************************************************
+ *
+ * SAC bug report: BlasLevel1.sacbugreport
+ *
+ **********************************************************************
+ *
+ * Automatically generated on Wed Mar 27 03:27:06 PM CET 2024
+ *
+ * using sac2c 1.3.3-MijasCosta-1165-g41c84
+ * built 2024-02-23T21:16:58.
+ * by user  on host runner-qipqeg7c-project-39-concurrent-3.
+ *
+ * The compiler was called by
+ *  sac2c -check tc BlasLevel1.sac
+ *
+ * The compiler crashed in
+ *  phase: opt (Running SAC optimizations)
+ *  sub phase: saacyc (Symbolic array attribute cycle 2)
+ *  cycle phase: wlprop (Applying with-loop propagation)
+ *  cycle instance: 2
+ *
+ * What follows is the contents of BlasLevel1.sac.
+ *
+ **********************************************************************/
+
 module BlasLevel1;
 
 use Structures: all;
@@ -287,12 +312,12 @@ float snrm2(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, in
 // /*
 //  * scnrm2
 //  */
-// inline
-// float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
-// {
-//   x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
-//   return sqrtf(tof(sum(normSq(x_prime))));
-// }
+inline
+float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
+{
+  x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
+  return sqrtf(tof(sum(normSq(x_prime))));
+}
 
 
 /*
@@ -324,4 +349,12 @@ int isamax(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, inc
 
   return max_i;
 }
+
+
+
+/**********************************************************************
+ *
+ * End of bug report
+ *
+ **********************************************************************/
 

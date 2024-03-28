@@ -1,0 +1,45 @@
+use StdIO: all;
+use Array: all;
+// use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    a = tof(reshape([3,3], iota(9)));
+    x = tof(iota(3));
+    y = tof([1,1,1]);
+    compare('u',3,1f,a,3,x,1, 1f, y,1);
+    compare('l',3,1f,a,3,x,1, 1f, y,1);
+
+    a = tof(reshape([4,4], iota(16)));
+    x = tof(iota(4));
+    y = tof(reverse(iota(4)));
+    compare('u',4,1f,a,4,x,1, 1f, y,1);
+    compare('l',4,1f,a,4,x,1, 1f, y,1);
+
+    a = tof(reshape([4,4], iota(16)));
+    x = tof(iota(7));
+    y = tof(reverse(iota(7)));
+    compare('u',4,1.1f,a,4,x,2, 1.33f, y,2);
+    compare('l',4,2.4f,a,4,x,2, 1.66f, y,2);
+
+    return 0;
+}
+
+void compare(char uplo, int n, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy)
+{
+    y1 = OpenBlas::ssymv(uplo, n, alpha, a, lda, x, incx, beta, y, incy);
+    y2 = ssymv(uplo, n, alpha, a, lda, x, incx, beta, y, incy);
+    
+    if(!(almost_eq(y1,y2)))
+    {
+        printf("Error in ssymv. uplo:%d, n:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d\n", uplo, n, alpha, lda, incx, beta, incy); 
+        print(a);
+        print(x);
+        print(y);
+        print(y1);
+        print(y2);
+        printf("\n");
+    }
+}
+

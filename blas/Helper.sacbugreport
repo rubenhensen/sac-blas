@@ -1,3 +1,28 @@
+/**********************************************************************
+ *
+ * SAC bug report: Helper.sacbugreport
+ *
+ **********************************************************************
+ *
+ * Automatically generated on Wed Mar 27 04:16:22 PM CET 2024
+ *
+ * using sac2c 1.3.3-MijasCosta-1165-g41c84
+ * built 2024-02-23T21:16:58.
+ * by user  on host runner-qipqeg7c-project-39-concurrent-3.
+ *
+ * The compiler was called by
+ *  sac2c -check tc Helper.sac
+ *
+ * The compiler crashed in
+ *  phase: opt (Running SAC optimizations)
+ *  sub phase: saacyc (Symbolic array attribute cycle 2)
+ *  cycle phase: wlprop (Applying with-loop propagation)
+ *  cycle instance: 2
+ *
+ * What follows is the contents of Helper.sac.
+ *
+ **********************************************************************/
+
 module Helper;
 
 use StdIO: all;
@@ -15,9 +40,9 @@ bool eq (float[d1:shp1] a, float[d2:shp2] b) {
     return all(a == b) && all(shp1==shp2) && all(d1==d2);
 }
 
-// bool eq (complex[d1:shp1] a, complex[d2:shp2] b) {
-//     return all(a == b) && all(shp1==shp2) && all(d1==d2);
-// }
+bool eq (complex[d1:shp1] a, complex[d2:shp2] b) {
+    return all(a == b) && all(shp1==shp2) && all(d1==d2);
+}
 
 // bool eq (float[*] a, float[*] b) {
 //     return all(a == b);
@@ -78,4 +103,10 @@ bool minArrLen(int n, int arrLength, int inc)
 {
     return arrLength  > (n-1)*inc;
 }
+
+/**********************************************************************
+ *
+ * End of bug report
+ *
+ **********************************************************************/
 

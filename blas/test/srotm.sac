@@ -21,7 +21,7 @@ void compare(int n, float[.] x, int incx, float[.] y, int incy, float[5] param)
     x1, y1 = OpenBlas::srotm(n, x, incx, y, incy, param);
     x2, y2 = srotm(n, x, incx, y, incy, param);
 
-    if(!(eq(x1,x2) && eq(y1,y2)))
+    if(!(almost_eq(x1,x2) && almost_eq(y1,y2)))
     {
         printf("Error in srotm. n:%d, incx:%d, incy:%d\nx:\n", n, incx, incy); 
         print(param);

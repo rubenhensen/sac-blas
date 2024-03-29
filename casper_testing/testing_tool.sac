@@ -1,6 +1,6 @@
 use Math: all;
 use StdIO: all;
-use Structures: all;
+use StructuresPlus: all;
 use Benchmarking: all;
 
 

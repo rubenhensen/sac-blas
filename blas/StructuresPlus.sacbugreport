@@ -1,41 +1,44 @@
 /**********************************************************************
  *
- * SAC bug report: ExportBug.sacbugreport
+ * SAC bug report: StructuresPlus.sacbugreport
  *
  **********************************************************************
  *
- * Automatically generated on Wed Mar 27 11:54:18 AM CET 2024
+ * Automatically generated on Fri Mar 29 10:45:49 PM CET 2024
  *
  * using sac2c 1.3.3-MijasCosta-1165-g41c84
  * built 2024-02-23T21:16:58.
  * by user  on host runner-qipqeg7c-project-39-concurrent-3.
  *
  * The compiler was called by
- *  sac2c -check tc ExportBug.sac
+ *  sac2c -check tc StructuresPlus.sac
  *
  * The compiler crashed in
  *  phase: opt (Running SAC optimizations)
- *  sub phase: saacyc (Symbolic array attribute cycle 2)
- *  cycle phase: wlprop (Applying with-loop propagation)
+ *  sub phase: cyc (Optimization cycle)
+ *  cycle phase: lur (Applying loop unrolling)
  *  cycle instance: 2
  *
- * What follows is the contents of ExportBug.sac.
+ * What follows is the contents of StructuresPlus.sac.
  *
  **********************************************************************/
 
-module ExportBug;
+module StructuresPlus;
 
-use Math: all;
-use StructuresPlus: all;
+import Structures: all;
 
+export all; 
 
-export all; // This breaks the compiler
-
-inline
-float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
+inline complex * (complex X1, double X2)
 {
-  x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
-  return sqrtf(tof(sum(normSq(x_prime))));
+  return((complex)[((double[2])X1)[[0]] ScalarArith::* X2,
+                    ((double[2])X1)[[1]] ScalarArith::* X2]);
+}
+
+inline complex * (double X1, complex X2)
+{
+  return((complex)[((double[2])X2)[[0]] ScalarArith::* X1,
+                    ((double[2])X2)[[1]] ScalarArith::* X1]);
 }
 
 /**********************************************************************

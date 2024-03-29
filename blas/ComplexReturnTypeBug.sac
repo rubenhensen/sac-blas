@@ -1,6 +1,6 @@
 module ComplexReturnTypeBug;
 
-use Structures: all;
+use StructuresPlus: all;
 
 // This works with -check c
 

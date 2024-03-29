@@ -3,7 +3,7 @@ module BlasLevel2;
 use StdIO: all;
 use Array: all;
 use Helper: all;
-// use Structures: all;
+// use StructuresPlus: all;
 // use Math: all;
 export all;
 

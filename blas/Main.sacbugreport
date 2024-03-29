@@ -29,7 +29,7 @@ use StdIO: all;
 // use BlasLevel2: all;
 // use Helper: all;
 use Math: all;
-use Structures: all;
+use StructuresPlus: all;
 
 int main() {
     a = [toc(1,1)];

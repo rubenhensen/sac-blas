@@ -4,7 +4,7 @@ use StdIO: all;
 // use BlasLevel2: all;
 // use Helper: all;
 use Math: all;
-use Structures: all;
+use StructuresPlus: all;
 
 // This breaks with -check c
 int main() {

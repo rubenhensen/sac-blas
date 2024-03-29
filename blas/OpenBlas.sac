@@ -164,8 +164,14 @@ external complex[*] zgeru(int m, int n, complex[*] alpha, complex[*] x, int incx
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
-complex[*] zhbmv(char uplo, int n, int k, complex alpha, complex[*] a, int lda, complex[*] x, int incx, complex beta, complex[*] y, int incy);
+external complex[*] zhbmv(char uplo, int n, int k, complex alpha, complex[*] a, int lda, complex[*] x, int incx, complex beta, complex[*] y, int incy);
     #pragma linkname "SACzhbmv"
     #pragma linkobj "src/zhbmv.o"
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]
+
+external complex[*] zher(char uplo, int n, double alpha, complex[.] x, int incx, complex[*] a, int lda);
+    #pragma linkname "SACzher"
+    #pragma linkobj "src/zher.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [6,1,2,3,4,5,6,7]

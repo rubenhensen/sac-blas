@@ -1,7 +1,7 @@
 module ExportBug;
 
 use Math: all;
-use Structures: all;
+use StructuresPlus: all;
 
 
 export all; // This breaks the compiler with -check c enabled

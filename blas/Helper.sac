@@ -1,11 +1,9 @@
 module Helper;
 
 use StdIO: all;
-use Math: all;
-use Structures: all;
+use Array: all;
 
 export all;
-
 
 // bool eq (int[d1:shp1] a, int[d2:shp2] b) {
 //     return all(a == b) && all(shp1==shp2) && all(d1==d2);

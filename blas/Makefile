@@ -27,32 +27,26 @@ StructuresPlus=./host/seq/libStructuresPlusMod.so ./tree/host/libStructuresPlusT
 ./host/seq/libOpenBlasMod.so ./tree/host/libOpenBlasTree.so &: OpenBlas.sac  $(OBJ)
 	sac2c -check tc -Xl -lopenblas OpenBlas.sac
 
-./host/seq/libBlasLevel1Mod.so ./tree/host/libBlasLevel1Tree.so &: BlasLevel1.sac $(Helper) $(StructuresPlus)
+./host/seq/libBlasLevel1Mod.so ./tree/host/libBlasLevel1Tree.so &: BlasLevel1.sac $(Helper) 
 	sac2c -check tc  BlasLevel1.sac
 
-./host/seq/libBlasLevel2Mod.so ./tree/host/libBlasLevel2Tree.so &: BlasLevel2.sac $(BlasLevel1) $(Helper) $(StructuresPlus)
+./host/seq/libBlasLevel2Mod.so ./tree/host/libBlasLevel2Tree.so &: BlasLevel2.sac $(BlasLevel1) $(Helper) 
 	sac2c -check tc  BlasLevel2.sac
 
 ./host/seq/libHelperMod.so ./tree/host/libHelperTree.so &: Helper.sac
 	sac2c -check tc  Helper.sac
 
-./host/seq/libStructuresPlusMod.so ./tree/host/libStructuresPlusTree.so &: StructuresPlus.sac
-	sac2c -check tc  StructuresPlus.sac
-
 OpenBlasnotc: OpenBlas.sac  $(OBJ)
 	sac2c -Xl -lopenblas OpenBlas.sac
 
-BlasLevel1notc : BlasLevel1.sac Helpernotc StructuresPlusnotc
+BlasLevel1notc : BlasLevel1.sac Helpernotc 
 	sac2c BlasLevel1.sac
 
-BlasLevel2notc : BlasLevel2.sac BlasLevel1notc Helpernotc StructuresPlusnotc
+BlasLevel2notc : BlasLevel2.sac BlasLevel1notc Helpernotc 
 	sac2c BlasLevel2.sac
 
 Helpernotc: Helper.sac
 	sac2c Helper.sac
-
-StructuresPlusnotc: StructuresPlus.sac
-	sac2c StructuresPlus.sac
 
 test: $(TESTSACEXEC) 
 	for x in test/*.out; do ./$$x; done
@@ -60,16 +54,16 @@ test: $(TESTSACEXEC)
 notc: $(TESTSACEXECNOTC) 
 	for x in test/*notc.out; do ./$$x; done
 
-notclib: BlasLevel1notc BlasLevel2notc OpenBlasnotc Helpernotc StructuresPlusnotc $(TESTSACEXECNOTC)
+notclib: BlasLevel1notc BlasLevel2notc OpenBlasnotc Helpernotc  $(TESTSACEXECNOTC)
 	for x in test/*notc.out; do ./$$x; done
 
-./test/%notc.out: ./test/%.sac  BlasLevel1notc BlasLevel2notc OpenBlasnotc Helpernotc StructuresPlusnotc
+./test/%notc.out: ./test/%.sac  BlasLevel1notc BlasLevel2notc OpenBlasnotc Helpernotc 
 	sac2c -o $@ $< 
 	rm -rf test/*.i
 	rm -rf test/*.o
 	rm -rf test/*.c
 
-./test/%.out: ./test/%.sac $(BlasLevel1) $(BlasLevel2) $(OpenBlas) $(Helper) $(StructuresPlus)
+./test/%.out: ./test/%.sac $(BlasLevel1) $(BlasLevel2) $(OpenBlas) $(Helper) 
 	sac2c -check tc -o $@ $< 
 	rm -rf test/*.i
 	rm -rf test/*.o

@@ -1,6 +1,6 @@
 module BlasLevel1;
 
-use StructuresPlus: all;
+use Structures: all;
 use Math: all;
 use Helper: all;
 

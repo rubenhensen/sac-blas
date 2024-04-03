@@ -9,8 +9,9 @@ int main() {
     a = tof(modarray(a, [3,2], 0));
     // b = transpose(a);
     // b = reshape([3,4], iota(12));
-    // // b = tof(modarray(a, [3,2], 0));
-    // compare('n', 4, 4, 1, 1, 1.0f,    a, 3, tof(iota(4)+1), 1, 0.0f, tof([1,1,1,1]), 1);
+    // b = tof(modarray(a, [3,2], 0));
+
+    compare('n', 4, 4, 1, 1, 1.0f,    a, 3, tof(iota(4)+1), 1, 0.0f, tof([1,1,1,1]), 1);
     // compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof([1,1,1,1]), 1);
     // compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof(iota(4)), 1);
     // compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 1.0f, tof([1,1,1,1]), 1);
@@ -46,14 +47,70 @@ int main() {
     return 0;
 }
 
+// void compare(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy)
+// {
+//     y1 = OpenBlas::sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
+//     // print(y1);
+
+//     y2 = sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
+//     // print(y2);
+    
+//     if(!(eq(y1,y2)))
+//     {
+//         printf("Error in sgbmv. trans:%c, m:%d, n:%d, kl:%d, ku:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d", trans, m, n, kl, ku, alpha, lda, incx, beta, incy); 
+//         print(a);
+//         print(x);
+//         print(y);
+//         print(y1);
+//         print(y2);
+//         printf("\n");
+//     }
+// }
+
+// // m and n are size of storage array a!
+// float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
+// {
+//   // This should become precondition
+//   if (trans == 'N' | trans == 'n') {
+//     lenx = n;
+//     leny = m;
+//   } else {
+//     lenx = m;
+//     leny = n;
+//     // storage to full -> transpose -> do gbmv
+//     a = transpose(a);
+//   }
+
+//   betaY =   BlasLevel1::sscal(leny, beta, y, incy);
+//   // print(betaY);
+//   alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+//   // print(alphaX);
+
+//   // for (i = 0; i < m; i++) {
+//   //     k = kl - i;
+//   //     for (j = max(0, i-kl); j < min(n, i+ku+1); j++) {
+//   //         a[(k+j) + i*lda] = matrix[j + i*ldm];
+//   //     }
+//   // }
+
+//   // make banded storage matrix to full matrix
+//   // a = { [i,j] -> i == j ? 42f : 1f  | [i,j] < [m-2,n-2];
+//   //       [i,j] -> i+j == 3 ? 43f : 3f  | [i,j] < [m,n];
+//   //       [i,j] -> 0f   | [i,j] < [m,n]};
+
+//   resA = { [i] -> sum({[k] -> aOrZero(a,i,kl,k) * alphaX[k] | [k] < [lenx]}) | [i] < [am]};
+//   res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
+  
+//   return res;
+// }
+
+
 void compare(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy)
 {
     y1 = OpenBlas::sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
-    // print(y1);
 
     y2 = sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
-    // print(y2);
-    
+
     if(!(eq(y1,y2)))
     {
         printf("Error in sgbmv. trans:%c, m:%d, n:%d, kl:%d, ku:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d", trans, m, n, kl, ku, alpha, lda, incx, beta, incy); 
@@ -81,83 +138,25 @@ float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,a
   }
 
   betaY =   BlasLevel1::sscal(leny, beta, y, incy);
-  // print(betaY);
-  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
-  // print(alphaX);
-
-  // for (i = 0; i < m; i++) {
-  //     k = kl - i;
-  //     for (j = max(0, i-kl); j < min(n, i+ku+1); j++) {
-  //         a[(k+j) + i*lda] = matrix[j + i*ldm];
-  //     }
-  // }
-
-  // make banded storage matrix to full matrix
-  // a = { [i,j] -> i == j ? 42f : 1f  | [i,j] < [m-2,n-2];
-  //       [i,j] -> i+j == 3 ? 43f : 3f  | [i,j] < [m,n];
-  //       [i,j] -> 0f   | [i,j] < [m,n]};
-
-  resA = { [i] -> sum({[k] -> aOrZero(a,i,kl,k) * alphaX[k] | [k] < [lenx]}) | [i] < [am]};
-  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
-  
-  return res;
-}
-
-
-void compare2(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy)
-{
-    y1 = OpenBlas::sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
-    // print(y1);
-
-    y2 = sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
-    // print(y2);
-    
-    if(!(eq(y1,y2)))
-    {
-        printf("Error in sgbmv. trans:%c, m:%d, n:%d, kl:%d, ku:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d", trans, m, n, kl, ku, alpha, lda, incx, beta, incy); 
-        print(a);
-        print(x);
-        print(y);
-        print(y1);
-        print(y2);
-        printf("\n");
-    }
-}
-
-// m and n are size of storage array a!
-float[*] sgbmv2(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
-{
-  // This should become precondition
-  if (trans == 'N' | trans == 'n') {
-    lenx = n;
-    leny = m;
-  } else {
-    lenx = m;
-    leny = n;
-    // storage to full -> transpose -> do gbmv
-    a = transpose(a);
-  }
-
-  betaY =   BlasLevel1::sscal(leny, beta, y, incy);
   alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
 
-  resA = { [i] -> sum(drop([1], a[0])   * take([3], alphaX))                  | [i] <= [1];
-           [i] -> sum(a[i]              * take([3], drop([i-1],alphaX)))      | [i] < [am] };
+  resA = { [i] -> sum(padVector(an,drop([1], a[0]))   * take([an], alphaX))    | [i] <= [kl];
+           [i] -> sum(a[i]              * take([an], drop([i-1],alphaX)))      | [i] < [am] };
 
   res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
   
   return res;
 }
 
-float aOrZero(float[am,an] a, int i, int kl, int k) {
-  idx = (i*-1) + k + kl;
-  if (idx < an && idx >= 0) {
-    res = a[i][idx];
-  } else {
-    res = 0f;
-  }
-  return res;
-}
+// float aOrZero(float[am,an] a, int i, int kl, int k) {
+//   idx = (i*-1) + k + kl;
+//   if (idx < an && idx >= 0) {
+//     res = a[i][idx];
+//   } else {
+//     res = 0f;
+//   }
+//   return res;
+// }
 
 // Checks max index of elements we go through is smaller than the length of x
 bool sgemvXdim(char trans, int m, int n, int incx, int xn)
@@ -180,30 +179,30 @@ bool sgemvYdim(char trans, int m, int n, int incy, int yn)
   return res;
 }
 
-float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n) | lda == kl+ku+1
-{
-  return {[i,j] -> aOrZero(storage,i,kl,j) | [i,j] < [m,n]};
-}
+// float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n) | lda == kl+ku+1
+// {
+//   return {[i,j] -> aOrZero(storage,i,kl,j) | [i,j] < [m,n]};
+// }
 
 
-float[am,lda] bandFullToStorage2(float[m,n] full, int kl, int ku) | lda == kl+ku+1
-{
-  return {[i,j] -> aOrZero2(full,i,j,kl) | [i,j] < [m,kl+ku+1]};
-}
+// float[am,lda] bandFullToStorage2(float[m,n] full, int kl, int ku) | lda == kl+ku+1
+// {
+//   return {[i,j] -> aOrZero2(full,i,j,kl) | [i,j] < [m,kl+ku+1]};
+// }
 
-float[am,lda] bandFullToStorage(float[am,an] full, int kl, int ku) | lda == kl+ku+1
-{
-  return {[i,j] -> i+j-kl < an && i+j-kl >= 0 ? full[i][i+j-kl] : 0f  | [i,j] < [am,kl+ku+1]};
-}
+// float[am,lda] bandFullToStorage(float[am,an] full, int kl, int ku) | lda == kl+ku+1
+// {
+//   return {[i,j] -> i+j-kl < an && i+j-kl >= 0 ? full[i][i+j-kl] : 0f  | [i,j] < [am,kl+ku+1]};
+// }
 
-float aOrZero2(float[am,an] a, int i, int j, int kl) 
-{
-  // a[0][-1]
-  idx = i - kl + j;
-  if (idx < an && idx >= 0) {
-    res = a[i][idx];
-  } else {
-    res = 0f;
-  }
-  return res;
-}
+// float aOrZero2(float[am,an] a, int i, int j, int kl) 
+// {
+//   // a[0][-1]
+//   idx = i - kl + j;
+//   if (idx < an && idx >= 0) {
+//     res = a[i][idx];
+//   } else {
+//     res = 0f;
+//   }
+//   return res;
+// }

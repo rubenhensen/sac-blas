@@ -77,3 +77,9 @@ bool minArrLen(int n, int arrLength, int inc)
     return arrLength  > (n-1)*inc;
 }
 
+float[m] padVector(int k, float[n] arr)
+{
+  return { iv -> arr[iv] | iv < shape(arr);
+           iv -> 0.0f  | iv < [k]       
+         };
+}

@@ -3,17 +3,19 @@ use StdIO: all;
 // use BlasLevel1: all;
 // use BlasLevel2: all;
 // use Helper: all;
-use StructuresPlus: all;
-use Math: all;
+import ComplexBasics: {zero, complex};
+import Structures: all;
+import Math: all;
 
 
+// too many problems with the complex type
 int main() {
     // x = [[1.0,1.0],[2.0,2.0],[3.0,3.0]];
     // x = with {
     //     (. <= iv <= .): toc(x[iv]);
     // }: genarray([shape(x)[0]], toc(0,0));
     // print(x);
-    compare('u',1,1.0,[toc(1,1)],1,[[toc(1,1)]],1);
+    // compare('u',1,1.0,[toc(1,1)],1,[[toc(1,1)]],1);
     // compare(2,2,1f,tof(iota(2)),1,tof(iota(2)),1,reshape([2,2],tof(iota(4))),2);
     // compare(3,2,1.333f,tof(iota(3)),1,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
     // compare(3,2,1.333f,tof(iota(5)),2,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
@@ -26,8 +28,8 @@ void compare(char uplo, int n, double alpha, complex[.] x, int incx, complex[*] 
 {
     // a1 = OpenBlas::zher(m, n, alpha, x, incx, y, incy, a, lda);
 
-    a2 = zher(uplo, n, alpha, x, incx, a, lda);
-    // print(a2);
+    // a2 = zher(uplo, n, alpha, x, incx, a, lda);
+    print(a);
     // if(!(all(a1 == a2) && all(shape(a1)==shape(a2)) && all(dim(a1)==dim(a2))))
     // {
     //     printf("Error in sger. m:%d, n:%d, alpha:%f, incx:%d, incy:%f, lda:%d", m, n, alpha, incx, incy, lda); 
@@ -40,17 +42,20 @@ void compare(char uplo, int n, double alpha, complex[.] x, int incx, complex[*] 
     // }
 }
 
-complex[*] zher(char uplo, int n, double alpha, complex[.] x, int incx, complex[*] a, int lda)
-{
-    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+// complex[*] zher(char uplo, int n, double alpha, complex[.] x, int incx, complex[*] a, int lda)
+// {
+//     // alphaX =  {iv -> multiply(alpha, x[iv*incx])         | iv < [n]};
+//     alphaX = with {
+//         (. <= iv < [n]): multiply(alpha, x[iv*incx]);
+//     }: genarray([n], toc(0,0));
 
-    if (uplo == 'u' || uplo == 'U') {
-        fullA =    {iv -> sum((conj(take(iv, transpose(a)[iv])) ++ drop(iv, a[iv]))) | iv < [n]};
-    } else {
-        fullA =    {iv -> sum((take(iv, a[iv]) ++ conj(drop(iv, transpose(a)[iv])))) | iv < [n]};
-    }
-    return fullA;
-}
+//     if (uplo == 'u' || uplo == 'U') {
+//         fullA =    {iv -> sum((conj(take(iv, transpose(a)[iv])) ++ drop(iv, a[iv]))) | iv < [n]};
+//     } else {
+//         fullA =    {iv -> sum((take(iv, a[iv]) ++ conj(drop(iv, transpose(a)[iv])))) | iv < [n]};
+//     }
+//     return fullA;
+// }
 
 //   return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
 
@@ -66,5 +71,40 @@ complex[*] zher(char uplo, int n, double alpha, complex[.] x, int incx, complex[
 //     res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(n-1)*incy+1] step [incy] ; iv -> y[iv]};
 
 //    return res;
+// }
+
+inline complex multiply (complex X1, double X2)
+{
+  return((complex)[((double[2])X1)[[0]] ScalarArith::* X2,
+                    ((double[2])X1)[[1]] ScalarArith::* X2]);
+}
+
+inline complex multiply (double X1, complex X2)
+{
+  return((complex)[((double[2])X2)[[0]] ScalarArith::* X1,
+                    ((double[2])X2)[[1]] ScalarArith::* X1]);
+}
+
+inline Structures::complex[*] transpose(Structures::complex[*] arr_a)
+{
+    return with {
+        ( . <= iv <= . ) : arr_a[ reverse( iv)];
+        } : genarray( reverse(shape(arr_a)), toc(0,0));
+}
+
+// inline Structures::complex[*] ++(Structures::complex[+] arr_a, Structures::complex arr_b)
+// {
+//     new_shp = _idx_modarray_AxSxS_( _shape_A_( arr_a), 0,                     
+//                         _add_SxS_( _sel_VxA_([0], _shape_A_( arr_a)), 1));  
+//     // return new_shp;
+//     res = with {                                                              
+//           ( . <= iv < shape(arr_a) ) : arr_a[iv];           
+//         } : genarray( new_shp, toc(0,0));                                       
+    // offset =  _idx_modarray_AxSxS_( _mul_SxV_( 0, new_shp), 0,                
+    //                     _sel_VxA_([0], _shape_A_( arr_a)) );               
+    // res = with {                                                              
+    //       ( offset <= iv <= . ) : arr_b;                                    
+    //     } : modarray( res );                                                
+//     return( res);                                                            
 // }
 

@@ -7,31 +7,74 @@ use Helper: all;
 int main() {
     a = reshape([4,3], iota(12));
     a = tof(modarray(a, [3,2], 0));
+    // print(a);
+    // print(padVectorFront(10, tof(iota(5)*2)));
     // b = transpose(a);
     // b = reshape([3,4], iota(12));
     // b = tof(modarray(a, [3,2], 0));
 
     compare('n', 4, 4, 1, 1, 1.0f,    a, 3, tof(iota(4)+1), 1, 0.0f, tof([1,1,1,1]), 1);
-    // compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof([1,1,1,1]), 1);
-    // compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof(iota(4)), 1);
-    // compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 1.0f, tof([1,1,1,1]), 1);
-    // compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 1.0f, tof(iota(7)), 2);
-    // compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof(iota(7)), 2);
-    // compare('n', 4, 4, 1, 1, 0.3235f, a, 3, tof(iota(7)), 2, 0.0f, tof(iota(9)), 2);
-    // compare('n', 4, 4, 1, 1, 1.0f,    a, 3, tof(iota(7)), 2, 33.0f, tof(iota(7)), 2);
-    // compare('n', 4, 4, 1, 1, 2.34556f,a, 3, tof(iota(7)), 2, 42.7f, tof(iota(9)), 2);
+    compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof([1,1,1,1]), 1);
+    compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof(iota(4)), 1);
+    compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 1.0f, tof([1,1,1,1]), 1);
+    compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 1.0f, tof(iota(7)), 2);
+    compare('n', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof(iota(7)), 2);
+    compare('n', 4, 4, 1, 1, 0.3235f, a, 3, tof(iota(7)), 2, 0.0f, tof(iota(9)), 2);
+    compare('n', 4, 4, 1, 1, 1.0f,    a, 3, tof(iota(7)), 2, 33.0f, tof(iota(7)), 2);
+    compare('n', 4, 4, 1, 1, 2.34556f,a, 3, tof(iota(7)), 2, 42.7f, tof(iota(9)), 2);
 
-    // print(bandStorageToFull(a, 1,1,4,4));
+    // band = a;
+    // print(bandStorageToFull(band, 1,4,4));
+    // full = bandStorageToFull(band, 1,4,4);
+    // print(fullStorageToBand(full, 1,1));
+
+    // full = tof([1,0,0,0,0,2,3,0,0,0,4,5,6,0,0,7,8,9,10,0,0,11,12,13,14]);
+    // full = reshape([5,5], full);
+    // print(full);
+    // band = fullStorageToBand(full,3,0,5,5);
+    // print(band);
+    // full = bandStorageToFull(band,3,0,5,5);
+    // print(full);
+
+    // full = tof([1,0,0,0,0,2,3,0,0,0,4,5,6,0,0,7,8,9,10,0,11,12,13,14,15]);
+    // full = reshape([5,5], full);
+    // print(full);
+    // band = fullStorageToBand(full,4,0,5,5);
+    // print(band);
+    // full = bandStorageToFull(band,4,0,5,5);
+    // print(full);
+
+    // full = tof([1,2,3,4,0,0,5,6,7,8,0,0,9,10,11,0,0,0,12,13,0,0,0,0,14]);
+    // full = reshape([5,5], full);
+    // print(full);
+    // band = fullStorageToBand(full,0,3,5,5);
+    // print(band);
+    // full = bandStorageToFull(band,0,3,5,5);
+    // print(full);
+
+    // full = tof([1,2,0,0,0,3,4,5,0,0,0,6,7,8,0,0,0,9,10,11,0,0,0,12,13]);
+    // full = reshape([5,5], full);
+    // print(full);
+    // band = fullStorageToBand(full,1,1,5,5);
+    // print(band);
+    // full = bandStorageToFull(band,1,1,5,5);
+    // print(full);
+
+
+
+
+    // print(fullStorageToBand(full, 3,0));
+
     // print(bandStorageToFull(a, 1,1,4,6));
     // print(bandFullToStorage( bandStorageToFull(a, 1,1,4,4) ,1,1));
     // print(bandFullToStorage( bandStorageToFull(a, 1,1,4,6) ,1,1));
     
-    // compare('t', 4, 4, 1, 1, 1.0f,    a, 3, tof([1,1,1,1]), 1, 0.0f, tof([1,1,1,1]), 1);
-    // compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 0.0f, tof([1,1,1,1]), 1);
-    // compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 1.0f, tof([1,1,1,1]), 1);
-    // compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 0.0f, tof(iota(4)), 1);
-    // compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 1.0f, tof(iota(7)), 2);
-    // compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 0.0f, tof(iota(7)), 2);
+    compare('t', 4, 4, 1, 1, 1.0f,    a, 3, tof([1,1,1,1]), 1, 0.0f, tof([1,1,1,1]), 1);
+    compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 0.0f, tof([1,1,1,1]), 1);
+    compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 1.0f, tof([1,1,1,1]), 1);
+    compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 0.0f, tof(iota(4)), 1);
+    compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 1.0f, tof(iota(7)), 2);
+    compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 0.0f, tof(iota(7)), 2);
     // compare('t', 3, 4, 1, 1, 0.3235f, a, 4, tof(iota(7)), 2, 0.0f, tof(iota(9)), 2);
     // compare('t', 3, 4, 1, 1, 1.0f,    a, 4, tof(iota(7)), 2, 33.0f, tof(iota(7)), 2);
     // compare('t', 3, 4, 1, 1, 2.34556f,a, 4, tof(iota(7)), 2, 42.7f, tof(iota(9)), 2);
@@ -47,64 +90,6 @@ int main() {
     return 0;
 }
 
-// void compare(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy)
-// {
-//     y1 = OpenBlas::sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
-//     // print(y1);
-
-//     y2 = sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
-//     // print(y2);
-    
-//     if(!(eq(y1,y2)))
-//     {
-//         printf("Error in sgbmv. trans:%c, m:%d, n:%d, kl:%d, ku:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d", trans, m, n, kl, ku, alpha, lda, incx, beta, incy); 
-//         print(a);
-//         print(x);
-//         print(y);
-//         print(y1);
-//         print(y2);
-//         printf("\n");
-//     }
-// }
-
-// // m and n are size of storage array a!
-// float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
-// {
-//   // This should become precondition
-//   if (trans == 'N' | trans == 'n') {
-//     lenx = n;
-//     leny = m;
-//   } else {
-//     lenx = m;
-//     leny = n;
-//     // storage to full -> transpose -> do gbmv
-//     a = transpose(a);
-//   }
-
-//   betaY =   BlasLevel1::sscal(leny, beta, y, incy);
-//   // print(betaY);
-//   alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
-//   // print(alphaX);
-
-//   // for (i = 0; i < m; i++) {
-//   //     k = kl - i;
-//   //     for (j = max(0, i-kl); j < min(n, i+ku+1); j++) {
-//   //         a[(k+j) + i*lda] = matrix[j + i*ldm];
-//   //     }
-//   // }
-
-//   // make banded storage matrix to full matrix
-//   // a = { [i,j] -> i == j ? 42f : 1f  | [i,j] < [m-2,n-2];
-//   //       [i,j] -> i+j == 3 ? 43f : 3f  | [i,j] < [m,n];
-//   //       [i,j] -> 0f   | [i,j] < [m,n]};
-
-//   resA = { [i] -> sum({[k] -> aOrZero(a,i,kl,k) * alphaX[k] | [k] < [lenx]}) | [i] < [am]};
-//   res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
-  
-//   return res;
-// }
-
-
 void compare(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy)
 {
     y1 = OpenBlas::sgbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
@@ -113,7 +98,7 @@ void compare(char trans, int m, int n, int kl, int ku, float alpha, float[am,an]
 
     if(!(eq(y1,y2)))
     {
-        printf("Error in sgbmv. trans:%c, m:%d, n:%d, kl:%d, ku:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d", trans, m, n, kl, ku, alpha, lda, incx, beta, incy); 
+        printf("Error in sgbmv. trans:%c, m:%d, n:%d, kl:%d, ku:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d\n", trans, m, n, kl, ku, alpha, lda, incx, beta, incy); 
         print(a);
         print(x);
         print(y);
@@ -134,29 +119,21 @@ float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,a
     lenx = m;
     leny = n;
     // storage to full -> transpose -> do gbmv
+    a = bandStorageToFull(a, kl, ku, m, n);
     a = transpose(a);
+    a = fullStorageToBand(a, ku, kl, n, m);
   }
 
   betaY =   BlasLevel1::sscal(leny, beta, y, incy);
   alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
 
-  resA = { [i] -> sum(padVector(an,drop([1], a[0]))   * take([an], alphaX))    | [i] <= [kl];
+  resA = { [i] -> sum(padVectorBack(an,drop([kl-i], a[i]))   * take([an], alphaX))    | [i] < [kl];
            [i] -> sum(a[i]              * take([an], drop([i-1],alphaX)))      | [i] < [am] };
 
   res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
   
   return res;
 }
-
-// float aOrZero(float[am,an] a, int i, int kl, int k) {
-//   idx = (i*-1) + k + kl;
-//   if (idx < an && idx >= 0) {
-//     res = a[i][idx];
-//   } else {
-//     res = 0f;
-//   }
-//   return res;
-// }
 
 // Checks max index of elements we go through is smaller than the length of x
 bool sgemvXdim(char trans, int m, int n, int incx, int xn)
@@ -179,30 +156,47 @@ bool sgemvYdim(char trans, int m, int n, int incy, int yn)
   return res;
 }
 
-// float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n) | lda == kl+ku+1
-// {
-//   return {[i,j] -> aOrZero(storage,i,kl,j) | [i,j] < [m,n]};
-// }
+// float[m,n]
+float[*] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
+{
+  lim = n-ku;
 
+  return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
+           [i] -> padVectorOffset(n, i-kl, storage[i])      | [i] < [lim];
+           [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
+}
 
-// float[am,lda] bandFullToStorage2(float[m,n] full, int kl, int ku) | lda == kl+ku+1
-// {
-//   return {[i,j] -> aOrZero2(full,i,j,kl) | [i,j] < [m,kl+ku+1]};
-// }
+// float[m,lda]
+float[*] fullStorageToBand(float[m,n] storage, int kl, int ku, int m, int n)
+{
+  lim = n-ku;
+  w = kl + ku + 1;
+  return {  [i] -> padVectorFront(w, take([i+ku+1], drop([max(0,i-kl)],storage[i])))  | [i] < [kl];
+            [i] -> take([w], drop([i-kl],storage[i]))                                 | [i] < [lim];
+            [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
+}
 
-// float[am,lda] bandFullToStorage(float[am,an] full, int kl, int ku) | lda == kl+ku+1
-// {
-//   return {[i,j] -> i+j-kl < an && i+j-kl >= 0 ? full[i][i+j-kl] : 0f  | [i,j] < [am,kl+ku+1]};
-// }
+// print(padVectorFront(10, tof(iota(5)*2)));
 
-// float aOrZero2(float[am,an] a, int i, int j, int kl) 
-// {
-//   // a[0][-1]
-//   idx = i - kl + j;
-//   if (idx < an && idx >= 0) {
-//     res = a[i][idx];
-//   } else {
-//     res = 0f;
-//   }
-//   return res;
-// }
+float[m] padVectorFront(int k, float[n] arr)
+{
+  zeros = [k-n];
+  return { iv -> 0.0f           | iv < zeros;
+           iv -> arr[iv-zeros]  | iv < [k]
+         };
+}
+
+float[m] padVectorBack(int k, float[n] arr)
+{
+  return { iv -> arr[iv]  | iv < [n];
+           iv -> 0.0f     | iv < [k]       
+         };
+}
+
+float[m] padVectorOffset(int k, int offset, float[n] arr)
+{
+  return { iv -> 0.0f     | iv < [offset];  
+           iv -> arr[iv-offset]  | iv < [offset+n];
+           iv -> 0.0f     | iv < [k]       
+         };
+}

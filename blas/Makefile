@@ -1,6 +1,7 @@
 LIBS  = -lopenblas
 CFLAGS = -Wall
 CC=gcc
+CHECKFLAG= -check tc
 
 
 # Should be equivalent to your list of .o files, if you don't build selectively
@@ -25,52 +26,28 @@ StructuresPlus=./host/seq/libStructuresPlusMod.so ./tree/host/libStructuresPlusT
 	$(CC) -c -o $@ $< $(CFLAGS) $(LIBS)
 
 ./host/seq/libOpenBlasMod.so ./tree/host/libOpenBlasTree.so &: OpenBlas.sac  $(OBJ)
-	sac2c -check tc -Xl -lopenblas OpenBlas.sac
+	sac2c $(CHECKFLAG) -Xl -lopenblas OpenBlas.sac
 
 ./host/seq/libBlasLevel1Mod.so ./tree/host/libBlasLevel1Tree.so &: BlasLevel1.sac $(Helper) 
-	sac2c -check tc  BlasLevel1.sac
+	sac2c $(CHECKFLAG) BlasLevel1.sac
 
 ./host/seq/libBlasLevel2Mod.so ./tree/host/libBlasLevel2Tree.so &: BlasLevel2.sac $(BlasLevel1) $(Helper) 
-	sac2c -check tc  BlasLevel2.sac
+	sac2c $(CHECKFLAG) BlasLevel2.sac
 
 ./host/seq/libHelperMod.so ./tree/host/libHelperTree.so &: Helper.sac
-	sac2c -check tc  Helper.sac
-
-OpenBlasnotc: OpenBlas.sac  $(OBJ)
-	sac2c -Xl -lopenblas OpenBlas.sac
-
-BlasLevel1notc : BlasLevel1.sac Helpernotc 
-	sac2c BlasLevel1.sac
-
-BlasLevel2notc : BlasLevel2.sac BlasLevel1notc Helpernotc 
-	sac2c BlasLevel2.sac
-
-Helpernotc: Helper.sac
-	sac2c Helper.sac
+	sac2c $(CHECKFLAG) Helper.sac
 
 test: $(TESTSACEXEC) 
-	for x in test/*.out; do ./$$x; done
-
-notc: $(TESTSACEXECNOTC) 
-	for x in test/*notc.out; do ./$$x; done
-
-notclib: BlasLevel1notc BlasLevel2notc OpenBlasnotc Helpernotc  $(TESTSACEXECNOTC)
-	for x in test/*notc.out; do ./$$x; done
-
-./test/%notc.out: ./test/%.sac  BlasLevel1notc BlasLevel2notc OpenBlasnotc Helpernotc 
-	sac2c -o $@ $< 
-	rm -rf test/*.i
-	rm -rf test/*.o
-	rm -rf test/*.c
+	for x in test/*.out; do echo $$x; ./$$x; done
 
 ./test/%.out: ./test/%.sac $(BlasLevel1) $(BlasLevel2) $(OpenBlas) $(Helper) 
-	sac2c -check tc -o $@ $< 
+	sac2c $(CHECKFLAG) -o $@ $< 
 	rm -rf test/*.i
 	rm -rf test/*.o
 	rm -rf test/*.c
 
 Main: Main.sac
-	sac2c -o Main Main.sac
+	sac2c $(CHECKFLAG) -o Main Main.sac
 	rm -rf Main.i
 	rm -rf Main.o
 	rm -rf Main.c

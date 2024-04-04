@@ -1,15 +1,22 @@
 use StdIO: all;
 // use Array: all;
-// use BlasLevel1: all;
+use BlasLevel1: all;
 // use BlasLevel2: all;
 // use Helper: all;
 use Math: all;
-use StructuresPlus: all;
+use Structures: all;
+// use StructuresPlus: all;
 
 // This breaks with -check c
 int main() {
-    a = [toc(1,1)];
-    b = toc(1,1);
-    print(a[0] * b);
+    print(padVectorFront(10, tof(iota(5)*2)));
     return 0;
+}
+
+float[m] padVectorFront(int k, float[n] arr)
+{
+  zeros = [k-n];
+  return { iv -> 0.0f                | iv < zeros;
+           iv -> arr[iv-zeros]  | iv < [k]
+         };
 }

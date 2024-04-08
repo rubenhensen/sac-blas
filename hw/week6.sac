@@ -85,7 +85,7 @@ void bar() {
 // of numerical constraints.
 void foobar() {
     x = 'a';
-    if (x = x) {
+    if (x == x) {
         // something
     } else {
         // something else
@@ -97,8 +97,11 @@ void foobar() {
 }
 
 // Task 3: Concurrency Pattern
+See picture matmul3322, and matmul22
 
 // Task4: Concurrency
+The problem would just be too many fork/joins. With loop scalarizations could probably help, eliminating the inside with-loop
+form matmul[2,2] and from matmul[3,3,2,2], (or in this case matmul[20,20] and matmul[30,30,20,20]).
 
 
 

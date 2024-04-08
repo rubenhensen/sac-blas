@@ -1,0 +1,9 @@
+int main() {
+    return 0;
+}
+
+// This does not work, the error is "expected at least one return value" which is not correct.
+void compare(int m, float[m] a)
+{
+    m = 10;
+}

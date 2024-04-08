@@ -1,0 +1,10 @@
+use StdIO: {print};
+use Structures: {*, toc, sel};
+
+// This breaks with -check c
+int main() {
+    a = [toc(1,1)];
+    b = toc(1,1);
+    print(a[0] * b);
+    return 0;
+}

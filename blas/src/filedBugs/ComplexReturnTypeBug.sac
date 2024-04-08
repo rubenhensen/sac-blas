@@ -1,0 +1,20 @@
+module ComplexReturnTypeBug;
+
+use Structures: {complex};
+
+// This works with -check c
+// complex[*] complex_equal(complex[*] a) 
+// {
+//   return a;
+// }
+
+// These does not work with -check c
+// complex[*] complex_equal(complex[d1:shp1] a) 
+// {
+//   return a;
+// }
+
+complex[d1:shp1] complex_equal(complex[*] a) 
+{
+  return a;
+}

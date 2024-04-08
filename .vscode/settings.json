@@ -29,6 +29,10 @@
         "typeinfo": "c",
         "utility": "c",
         "complex": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "chrono": "cpp",
+        "bitset": "cpp",
+        "ranges": "cpp",
+        "__locale": "cpp"
     }
 }

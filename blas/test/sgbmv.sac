@@ -182,21 +182,21 @@ float[m] padVectorFront(int k, float[n] arr)
 {
   zeros = [k-n];
   return { iv -> 0.0f           | iv < zeros;
-           iv -> arr[iv-zeros]  | iv < [k]
+           iv -> arr[iv-zeros]  | zeros <= iv < [k]
          };
 }
 
 float[m] padVectorBack(int k, float[n] arr)
 {
   return { iv -> arr[iv]  | iv < [n];
-           iv -> 0.0f     | iv < [k]       
+           iv -> 0.0f     | [n] <= iv < [k]       
          };
 }
 
 float[m] padVectorOffset(int k, int offset, float[n] arr)
 {
   return { iv -> 0.0f     | iv < [offset];  
-           iv -> arr[iv-offset]  | iv < [offset+n];
-           iv -> 0.0f     | iv < [k]       
+           iv -> arr[iv-offset]  | [offset] <= iv < [offset+n];
+           iv -> 0.0f     | [offset+n] <= iv < [k]       
          };
 }

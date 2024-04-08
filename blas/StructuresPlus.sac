@@ -4,14 +4,14 @@ import Structures: all;
 
 export all; 
 
-inline complex * (complex X1, double X2)
-{
-  return((complex)[((double[2])X1)[[0]] ScalarArith::* X2,
-                    ((double[2])X1)[[1]] ScalarArith::* X2]);
-}
+// inline complex * (complex X1, double X2)
+// {
+//   return((complex)[((double[2])X1)[[0]] ScalarArith::* X2,
+//                     ((double[2])X1)[[1]] ScalarArith::* X2]);
+// }
 
-inline complex * (double X1, complex X2)
-{
-  return((complex)[((double[2])X2)[[0]] ScalarArith::* X1,
-                    ((double[2])X2)[[1]] ScalarArith::* X1]);
-}
+// inline complex * (double X1, complex X2)
+// {
+//   return((complex)[((double[2])X2)[[0]] ScalarArith::* X1,
+//                     ((double[2])X2)[[1]] ScalarArith::* X1]);
+// }

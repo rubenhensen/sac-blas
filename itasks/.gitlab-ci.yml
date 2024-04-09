@@ -1,0 +1,75 @@
+variables:
+  NITRILE_VERSION: "0.4.20"
+
+.linux:
+  image: cleanlang/ci:latest
+
+linux-x64:
+  extends: .linux
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  interruptible: true
+  before_script:
+    - nitrile update
+    - nitrile fetch
+  script:
+    - nitrile build --parallel-jobs=1
+    - nitrile test --parallel-jobs=1
+    - nitrile package
+  artifacts:
+    paths:
+      - itasks-template-*.tar.gz
+
+linux-x86:
+  extends: .linux
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  interruptible: true
+  before_script:
+    - nitrile update
+    - nitrile --arch=x86 fetch
+  script:
+    - nitrile --arch=x86 build --parallel-jobs=1
+    - nitrile --arch=x86 test --parallel-jobs=1
+    - nitrile --arch=x86 package
+  artifacts:
+    paths:
+      - itasks-template-*.tar.gz
+
+windows-x64:
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  interruptible: true
+  tags: [windows]
+  before_script:
+    # Install nitrile
+    - Set-ExecutionPolicy ByPass -Scope Process -Force
+    - $Env:NitrileVersion = $NITRILE_VERSION
+    - (New-Object System.Net.WebClient).DownloadString('https://clean-lang.org/install.ps1') | powershell -Command -
+    - $Env:PATH += ";${Env:APPDATA}\Nitrile\bin"
+    - nitrile update
+    - nitrile fetch
+  script:
+    - nitrile build --parallel-jobs=1
+    - nitrile test --parallel-jobs=1
+    - nitrile package
+  artifacts:
+    paths:
+      - itasks-template-*.tar.gz
+
+# This can be uncommented if you wish to publish the iTasks application to the nitrile registry.
+#publish:
+#  needs:
+#    - linux-x64
+#    - linux-x86
+#    - windows-x64
+#  rules:
+#    - if: $CI_COMMIT_TAG
+#  script:
+#    - nitrile publish --targets=linux-x64,linux-x86,windows-x64

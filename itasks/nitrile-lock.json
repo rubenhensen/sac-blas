@@ -1,0 +1,142 @@
+{
+  "packages": {
+    "linux-x64": [
+      {
+        "name": "abc-interpreter",
+        "version": "1.5.0"
+      },
+      {
+        "name": "asyncio",
+        "version": "3.3.1"
+      },
+      {
+        "name": "base",
+        "version": "2.1.0"
+      },
+      {
+        "name": "base-clm",
+        "version": "1.5.2"
+      },
+      {
+        "name": "base-code-generator",
+        "version": "2.2.0"
+      },
+      {
+        "name": "base-compiler",
+        "version": "3.1.1"
+      },
+      {
+        "name": "base-lib",
+        "version": "2.7.0"
+      },
+      {
+        "name": "base-rts",
+        "version": "3.0.2"
+      },
+      {
+        "name": "base-stdenv",
+        "version": "2.1.1"
+      },
+      {
+        "name": "base64",
+        "version": "1.0.2"
+      },
+      {
+        "name": "category-theory",
+        "version": "1.1.0"
+      },
+      {
+        "name": "containers",
+        "version": "2.0.0"
+      },
+      {
+        "name": "csv",
+        "version": "1.0.1"
+      },
+      {
+        "name": "gast",
+        "version": "0.4.13"
+      },
+      {
+        "name": "generic-hash",
+        "version": "1.0.2"
+      },
+      {
+        "name": "generic-print",
+        "version": "3.1.1"
+      },
+      {
+        "name": "getopt",
+        "version": "1.0.1"
+      },
+      {
+        "name": "graph-copy",
+        "version": "3.0.3"
+      },
+      {
+        "name": "hash",
+        "version": "1.0.1"
+      },
+      {
+        "name": "html",
+        "version": "2.0.2"
+      },
+      {
+        "name": "http",
+        "version": "1.0.1"
+      },
+      {
+        "name": "integer",
+        "version": "1.0.2"
+      },
+      {
+        "name": "itasks",
+        "version": "0.13.10"
+      },
+      {
+        "name": "json",
+        "version": "3.0.0"
+      },
+      {
+        "name": "language",
+        "version": "1.0.1"
+      },
+      {
+        "name": "linux",
+        "version": "1.0.1"
+      },
+      {
+        "name": "options",
+        "version": "1.0.2"
+      },
+      {
+        "name": "parser-combinators",
+        "version": "1.1.0"
+      },
+      {
+        "name": "posix",
+        "version": "1.1.2"
+      },
+      {
+        "name": "random",
+        "version": "1.0.0"
+      },
+      {
+        "name": "syscall",
+        "version": "1.0.2"
+      },
+      {
+        "name": "system",
+        "version": "2.1.0"
+      },
+      {
+        "name": "test",
+        "version": "1.0.3"
+      },
+      {
+        "name": "text",
+        "version": "2.0.0"
+      }
+    ]
+  }
+}

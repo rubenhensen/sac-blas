@@ -60,9 +60,6 @@ int main() {
     // full = bandStorageToFull(band,1,1,5,5);
     // print(full);
 
-
-
-
     // print(fullStorageToBand(full, 3,0));
 
     // print(bandStorageToFull(a, 1,1,4,6));
@@ -70,14 +67,14 @@ int main() {
     // print(bandFullToStorage( bandStorageToFull(a, 1,1,4,6) ,1,1));
     
     compare('t', 4, 4, 1, 1, 1.0f,    a, 3, tof([1,1,1,1]), 1, 0.0f, tof([1,1,1,1]), 1);
-    compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 0.0f, tof([1,1,1,1]), 1);
-    compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 1.0f, tof([1,1,1,1]), 1);
-    compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 0.0f, tof(iota(4)), 1);
-    compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 1.0f, tof(iota(7)), 2);
-    compare('t', 3, 4, 1, 1, 2.0f,    a, 4, tof(iota(7)), 2, 0.0f, tof(iota(7)), 2);
-    // compare('t', 3, 4, 1, 1, 0.3235f, a, 4, tof(iota(7)), 2, 0.0f, tof(iota(9)), 2);
-    // compare('t', 3, 4, 1, 1, 1.0f,    a, 4, tof(iota(7)), 2, 33.0f, tof(iota(7)), 2);
-    // compare('t', 3, 4, 1, 1, 2.34556f,a, 4, tof(iota(7)), 2, 42.7f, tof(iota(9)), 2);
+    compare('t', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof([1,1,1,1]), 1);
+    compare('t', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 1.0f, tof([1,1,1,1]), 1);
+    compare('t', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof(iota(4)), 1);
+    compare('t', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 1.0f, tof(iota(7)), 2);
+    compare('t', 4, 4, 1, 1, 2.0f,    a, 3, tof(iota(7)), 2, 0.0f, tof(iota(7)), 2);
+    compare('t', 4, 4, 1, 1, 0.3235f, a, 3, tof(iota(7)), 2, 0.0f, tof(iota(9)), 2);
+    compare('t', 4, 4, 1, 1, 1.0f,    a, 3, tof(iota(7)), 2, 33.0f, tof(iota(7)), 2);
+    compare('t', 4, 4, 1, 1, 2.34556f,a, 3, tof(iota(7)), 2, 42.7f, tof(iota(9)), 2);
 
     // print( OpenBlas::sgbmv('n', 3, 1, 0, 0, 1.0f, tof(reshape([3,1], iota(3))), 1, tof([1,1,1]), 1, 0.0f, tof([1,1,1]), 1) );
     // print( OpenBlas::sgbmv('n', 3, 3, 0, 0, 1.0f, tof(reshape([3,1], iota(3))), 1, tof([1,1,1]), 1, 0.0f, tof([1,1,1]), 1) );
@@ -109,7 +106,8 @@ void compare(char trans, int m, int n, int kl, int ku, float alpha, float[am,an]
 }
 
 // m and n are size of storage array a!
-float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
+// m and n are the size of the full array a....?
+float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >= 0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
 {
   // This should become precondition
   if (trans == 'N' | trans == 'n') {
@@ -120,8 +118,11 @@ float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,a
     leny = n;
     // storage to full -> transpose -> do gbmv
     a = bandStorageToFull(a, kl, ku, m, n);
+    // print(a);
     a = transpose(a);
+    // print(a);
     a = fullStorageToBand(a, ku, kl, n, m);
+    // print(a);
   }
 
   betaY =   BlasLevel1::sscal(leny, beta, y, incy);
@@ -157,17 +158,17 @@ bool sgemvYdim(char trans, int m, int n, int incy, int yn)
 }
 
 // float[m,n]
-float[*] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
+float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
 {
   lim = n-ku;
 
   return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
-           [i] -> padVectorOffset(n, i-kl, storage[i])      | [i] < [lim];
+           [i] -> padVectorOffset(n, i-kl, storage[i])      | [kl] <= [i] < [lim];
            [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
 }
 
 // float[m,lda]
-float[*] fullStorageToBand(float[m,n] storage, int kl, int ku, int m, int n)
+float[m,lda] fullStorageToBand(float[m,n] storage, int kl, int ku, int m, int n)
 {
   lim = n-ku;
   w = kl + ku + 1;
@@ -193,10 +194,10 @@ float[m] padVectorBack(int k, float[n] arr)
          };
 }
 
-float[m] padVectorOffset(int k, int offset, float[n] arr)
+float[m] padVectorOffset(int k, int offset, float[n] arr) | offset >= 0
 {
-  return { iv -> 0.0f     | iv < [offset];  
-           iv -> arr[iv-offset]  | [offset] <= iv < [offset+n];
-           iv -> 0.0f     | [offset+n] <= iv < [k]       
+  return { iv -> 0.0f             | iv < [offset];  
+           iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
+           iv -> 0.0f             | [offset+n] <= iv < [k]       
          };
 }

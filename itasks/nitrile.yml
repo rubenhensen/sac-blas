@@ -24,9 +24,9 @@ build:
   application:
     script:
       - clm:
-          src: [src]
-          main: HelloWorld
-          target: bin/HelloWorld
+          src: [src/week1]
+          main: LetExpr
+          target: bin/LetExpr
           bytecode: prelinked
           heap: 20m
           generate_descriptors: true

@@ -5,10 +5,10 @@
  */
 
 #ifndef SAC_DO_CHECK
-#define SAC_DO_CHECK                             0
+#define SAC_DO_CHECK                             1
 #endif
 #ifndef SAC_DO_CHECK_TYPE
-#define SAC_DO_CHECK_TYPE                        0
+#define SAC_DO_CHECK_TYPE                        1
 #endif
 #ifndef SAC_DO_CHECK_GPU
 #define SAC_DO_CHECK_GPU                         0
@@ -300,7 +300,7 @@
 #endif
 
 /*
- *  SAC-Program NumRetsBug.sac :
+ *  SAC-Program ParamAsTypeBug.sac :
  */
 
 
@@ -1129,28 +1129,28 @@ SAC_ND_DEF_FUN_BEGIN2( SACwf__MAIN__main, void,  SAC_ND_PARAM_out( (SAC_arg_1, (
 
   { 
     /*
-     * ND_DECL( (SACp_cwc_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
+     * ND_DECL( (SACp_cwc_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
      */
-    SAC_ND_DECL__DATA( (SACp_cwc_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, )
-    SAC_ND_DECL__DESC( (SACp_cwc_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
+    SAC_ND_DECL__DATA( (SACp_cwc_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, )
+    SAC_ND_DECL__DESC( (SACp_cwc_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), )
     SAC_NOTHING()
 
 
     SAC_INIT_LOCAL_MEM()
     /*
-     * ND_FUN_AP( SACf__MAIN__main, , 1, out, int, SAC_SET_NT_USG( FAG, (SACp_cwc_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))))
+     * ND_FUN_AP( SACf__MAIN__main, , 1, out, int, SAC_SET_NT_USG( FAG, (SACp_cwc_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))))
      */
-    SAC_ND_FUNAP2( SACf__MAIN__main,  SAC_ND_ARG_out( SAC_SET_NT_USG( FAG, (SACp_cwc_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))), int))
+    SAC_ND_FUNAP2( SACf__MAIN__main,  SAC_ND_ARG_out( SAC_SET_NT_USG( FAG, (SACp_cwc_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, ))))))))))), int))
 
     /*
-     * ND_REFRESH__MIRROR( (SACp_cwc_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0)
+     * ND_REFRESH__MIRROR( (SACp_cwc_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), 0)
      */
     SAC_NOOP()
 
     /*
-     * ND_FUN_RET( , 1, out, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_cwc_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
+     * ND_FUN_RET( , 1, out, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_cwc_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
      */
-    SAC_ND_RET_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_cwc_5, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
+    SAC_ND_RET_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_cwc_4, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
     return;
     SAC_CLEANUP_LOCAL_MEM()
   }
@@ -1174,13 +1174,13 @@ SAC_ND_DEF_FUN_BEGIN2( SACf__MAIN__main, void,  SAC_ND_PARAM_out( (SAC_arg_1, (S
   SAC_MT_DEFINE_ST_SELF()
 
   { 
-    SAC_ND_DECL_CONST__DATA((SACp_emal_2562__flat_3, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
+    SAC_ND_DECL_CONST__DATA((SACp_emal_5084__flat_2, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))), int, 0)
 
     SAC_INIT_LOCAL_MEM()
     /*
-     * ND_FUN_RET( , 1, out, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_emal_2562__flat_3, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
+     * ND_FUN_RET( , 1, out, (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_emal_5084__flat_2, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
      */
-    SAC_ND_RET_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_emal_2562__flat_3, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
+    SAC_ND_RET_out( (SAC_arg_1, (SCL, (NHD, (NUQ, (INT, (GLO, (FPM, (NOT, (NDI, (INT, )))))))))), (SACp_emal_5084__flat_2, (SCL, (NHD, (NUQ, (INT, (GLO, (NON, (NOT, (NDI, (INT, )))))))))))
     return;
     SAC_CLEANUP_LOCAL_MEM()
   }
@@ -1205,7 +1205,7 @@ int main( int __argc, char *__argv[])
   SAC_NOTHING()
   SAC_HWLOC_SETUP();
   SAC_MT_SETUP_INITIAL();
-  SAC_RTSPEC_SETUP_INITIAL(2, " ./src/filedBugs/NumRetsBug.sac", "sac2c_p");
+  SAC_RTSPEC_SETUP_INITIAL(2, " -check tc filedBugs/ParamAsTypeBug.sac", "sac2c");
   SAC_PF_SETUP();
   SAC_HM_SETUP();
   SAC_MT_SETUP();

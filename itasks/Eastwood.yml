@@ -1,6 +1,7 @@
 compiler: cocl
 paths:
   - src
+  - src/week1
   - nitrile-packages/linux-x64/abc-interpreter/lib
   - nitrile-packages/linux-x64/base64/lib
   - nitrile-packages/linux-x64/base-stdenv/lib

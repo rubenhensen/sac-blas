@@ -33,6 +33,7 @@
         "chrono": "cpp",
         "bitset": "cpp",
         "ranges": "cpp",
-        "__locale": "cpp"
+        "__locale": "cpp",
+        "algorithm": "cpp"
     }
 }

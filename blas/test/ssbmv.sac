@@ -52,7 +52,7 @@ float[*] ssbmv(char uplo, int n, int k, float alpha, float[*] a, int lda, float[
     } else {
         resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
     }
-    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(n-1)*incy+1] step [incy] ; iv -> y[iv]};
+    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 
     return res;
 }

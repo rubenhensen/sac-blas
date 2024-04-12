@@ -1,0 +1,4 @@
+- https://www.ibm.com/docs/en/essl/6.2?topic=matrices-triangular-matrix
+- https://www.netlib.org/lapack/explore-html/d6/d9f/group__tbmv_ga6f3fad3e45c4506a0ee0278d95edd6a3.html#ga6f3fad3e45c4506a0ee0278d95edd6a3
+- https://www.intel.com/content/www/us/en/docs/onemkl/developer-reference-c/2024-0/cblas-tbmv.html
+- https://spec.oneapi.io/versions/latest/elements/oneMKL/source/domains/blas/gerc.html#onemkl-blas-gerc

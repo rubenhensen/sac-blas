@@ -1,0 +1,44 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+// use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    ap = tof(iota(10)+1);
+    compare('u','n','n', 4, ap, tof(iota(4)+1), 1);
+    // compare('u','t','n', 4, ap, tof(iota(4)+1), 1);
+
+    return 0;
+}
+
+
+void compare(char uplo, char trans, char diag, int n, float[an] ap, float[xn] x, int incx)
+{
+    y1 = OpenBlas::stpmv(uplo, trans, diag, n, ap, x, incx);
+
+    y2 = stpmv(uplo, trans, diag, n, ap, x, incx);
+    if(!(eq(y1,y2)))
+    {
+        printf("Error in stpmv. uplo:%c, trans:%c, diag:%c, n:%d, incx:%d\n", uplo, trans, diag, n, incx); 
+        print(ap);
+        print(x);
+        print(y1);
+        print(y2);
+        printf("\n");
+    }
+}
+
+float[xn] stpmv(char uplo, char trans, char diag, int n, float[an] ap, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0, an >= n*(n+1)/2,  incx != 0
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+  res = { [iv] -> sum(take([n-iv],drop([idx(n, iv)], ap)) * drop([iv/incx], xt)) | [iv] <= [(xn-1)*incx] step [incx]; 
+          [iv] -> x[iv]};
+
+  return res;
+}
+
+int idx(int n, int i) 
+{
+  return n * i - (i * (i - 1)) / 2;
+}

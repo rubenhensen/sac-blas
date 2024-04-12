@@ -131,7 +131,7 @@ float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,a
   resA = { [i] -> sum(padVectorBack(an,drop([kl-i], a[i]))   * take([an], alphaX))    | [i] < [kl];
            [i] -> sum(a[i]              * take([an], drop([i-1],alphaX)))      | [i] < [am] };
 
-  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
   
   return res;
 }

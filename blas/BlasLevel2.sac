@@ -36,7 +36,7 @@ float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, 
   betaY =   BlasLevel1::sscal(leny, beta, y, incy);
   alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
   resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
-  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
 
   return res;
 }
@@ -70,7 +70,7 @@ float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,a
   betaY =   BlasLevel1::sscal(leny, beta, y, incy);
   alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
   resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
-  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(leny-1)*incy+1] step [incy] ; iv -> y[iv]};
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
 
   return res;
 }
@@ -111,7 +111,7 @@ float[leny] ssymv(char uplo, int n, float alpha, float[d:shp] a, int lda, float[
     } else {
         resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
     }
-    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv < [(n-1)*incy+1] step [incy] ; iv -> y[iv]};
+    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 
    return res;
 }

@@ -1,0 +1,109 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+// use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+  // upper
+  a = reshape([4,4],tof([1,2,3,4,0,5,6,7,0,0,8,9,0,0,0,10]));
+  compare('u','n','n', 4, a, 4, tof(iota(4)+1), 1);
+
+  a = reshape([3,3],tof([1,2,3,0,4,5,0,0,6]));
+  compare('u','n','n', 3, a, 3, tof(iota(3)+1), 1);
+
+  // lower
+  a = reshape([4,4],tof([1,0,0,0,2,3,0,0,4,5,6,0,7,8,9,10]));
+  compare('l','n','n', 4, a, 4, tof(iota(4)+1), 1);
+
+  // upper-unit
+  a = reshape([4,4],tof([1,2,3,4,0,5,6,7,0,0,8,9,0,0,0,10]));
+  compare('u','n','u', 4, a, 4, tof(iota(4)+1), 1);
+
+  // lower unit
+  a = reshape([4,4],tof([1,0,0,0,2,3,0,0,4,5,6,0,7,8,9,10]));
+  compare('l','n','u', 4, a, 4, tof(iota(4)+1), 1);
+
+
+  // upper T
+  a = reshape([4,4],tof([1,2,3,4,0,5,6,7,0,0,8,9,0,0,0,10]));
+  compare('u','t','n', 4, a, 4, tof(iota(4)+1), 1);
+
+  a = reshape([3,3],tof([1,2,3,0,4,5,0,0,6]));
+  compare('u','t','n', 3, a, 3, tof(iota(3)+1), 1);
+
+  // lower T
+  a = reshape([4,4],tof([1,0,0,0,2,3,0,0,4,5,6,0,7,8,9,10]));
+  compare('l','t','n', 4, a, 4, tof(iota(4)+1), 1);
+
+  // upper-unit T
+  a = reshape([4,4],tof([1,2,3,4,0,5,6,7,0,0,8,9,0,0,0,10]));
+  compare('u','t','u', 4, a, 4, tof(iota(4)+1), 1);
+
+  // lower unit T
+  a = reshape([4,4],tof([1,0,0,0,2,3,0,0,4,5,6,0,7,8,9,10]));
+  compare('l','t','u', 4, a, 4, tof(iota(4)+1), 1);
+
+
+
+
+  return 0;
+}
+
+
+void compare(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx)
+{
+    y1 = OpenBlas::strmv(uplo, trans, diag, n, a, lda,  x, incx);
+    y2 = strmv(uplo, trans, diag, n, a, lda, x, incx);
+
+    if(!(eq(y1,y2)))
+    {
+        printf("Error in strmv. uplo:%c, trans:%c, diag:%c, n:%d, lda:%d, incx:%d\n", uplo, trans, diag, n, lda, incx); 
+        print(a);
+        print(x);
+        print(y1);
+        print(y2);
+        printf("\n");
+    }
+}
+
+float[xn] strmv(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx) //| ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda >= max(1,n)
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+  if (trans != 'N' && trans != 'n') {
+    a = transpose(a);
+    if (uplo == 'U' || uplo == 'u') {
+      uplo = 'l';
+    } else {
+      uplo = 'u';
+    }
+  }
+
+  inter = [1.0f];
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+    // upper
+    inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+  } 
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+    // upper unit
+    inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+  } 
+
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+    // lower
+    inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+  } 
+  
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+    // lower unit
+    inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+  } 
+
+  res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+          [iv] -> x[iv]};
+
+  return res;
+}

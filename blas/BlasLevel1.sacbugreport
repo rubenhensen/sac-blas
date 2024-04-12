@@ -195,7 +195,7 @@ float[xn], float[yn] srot(int n, float[xn] x, int incx, float[yn] y, int incy, f
 {
   return (
     {iv -> c*x[iv] + s*y[(iv*incy)/incx] | [0] <= iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]},
-    {iv -> c*y[iv] - s*x[(iv*incx)/incy] | [0] <= iv < [(n-1)*incy+1] step [incy] ; iv -> y[iv]}
+    {iv -> c*y[iv] - s*x[(iv*incx)/incy] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
   );
 }
 
@@ -217,13 +217,13 @@ float[xn], float[yn] srotm(int n, float[xn] x, int incx, float[yn] y, int incy, 
     y_prime = y;
   } else if(sflag < 0f) {
     x_prime = {iv -> x[iv]*sh11 + y[(iv*incy)/incx]*sh12 | [0] <= iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]};
-    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv]*sh22 | [0] <= iv < [(n-1)*incy+1] step [incy] ; iv -> y[iv]};
+    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
   } else if(sflag == 0f) {
     x_prime = {iv -> x[iv] + y[(iv*incy)/incx]*sh12 | [0] <= iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]};
-    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv] | [0] <= iv < [(n-1)*incy+1] step [incy] ; iv -> y[iv]};
+    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
   } else {
     x_prime = {iv ->  x[iv]*sh11 + y[(iv*incy)/incx] | [0] <= iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]};
-    y_prime = {iv -> -x[(iv*incx)/incy] + y[iv]*sh22 | [0] <= iv < [(n-1)*incy+1] step [incy] ; iv -> y[iv]};
+    y_prime = {iv -> -x[(iv*incx)/incy] + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
   }
   
   return (x_prime, y_prime);
@@ -239,7 +239,7 @@ float[xn], float[yn] sswap(int n, float[xn] x, int incx, float[yn] y, int incy) 
 {
   return (
     {iv -> y[(iv/incx)*incy] | [0] <= iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]},
-    {iv -> x[(iv/incy)*incx] | [0] <= iv < [(n-1)*incy+1] step [incy] ; iv -> y[iv]}
+    {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
   );
 }
 
@@ -260,7 +260,7 @@ float[xn] sscal(int n, float a, float[xn] x, int incx) | n > 0, incx > 0, minArr
 inline
 float[yn] scopy(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
 {
-  return {iv -> x[(iv/incy)*incx] | [0] <= iv < [(n-1)*incy+1] step [incy] ; iv -> y[iv]};
+  return {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 }
 
 
@@ -273,7 +273,7 @@ float[yn] saxpy(int n, float a, float[xn] x, int incx, float[yn] y, int incy) | 
   if(a == 0f) {
     result = y;
   } else {
-    result = {iv -> a * x[(iv/incy)*incx] + y[iv] | [0] <= iv < [(n-1)*incy+1] step [incy] ; iv -> y[iv]};
+    result = {iv -> a * x[(iv/incy)*incx] + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
   }
   return result;
 }

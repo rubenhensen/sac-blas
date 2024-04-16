@@ -1,0 +1,45 @@
+// This main function does NOT work
+int main() {
+  a = [[1,2],[3,4]];
+  StdIO::print(a);
+  a = transpose(a);
+  StdIO::print(a);          // this incorrectly prints Dimension: 2 Shape: <0,0>    <>
+  StdIO::print(a[[0,1]]);   // This correctly prints 3
+  return a[[0,1]];
+}
+
+// This main function DOES work, with the only salient difference that the array 'a' was made using reshape.
+// int main() {
+//   a = reshape([2,2], [1,2,3,4]);
+//   StdIO::print(a);
+//   a = transpose(a);
+//   StdIO::print(a);         // This correctly prints Dimension:2  Shape: <2,2>  | 1  3 || 2  4 | 
+//   StdIO::print(a[[0,1]]);  // This correctly prints 3
+//   return a[[0,1]];
+// }
+
+
+int[n,m] transpose(int[m,n] a) 
+{
+  a = {[i,j] -> a[[j,i]] | [i,j] < [n,m]};
+  return a;
+}
+
+inline // Changing this to noinline fixes the problem.
+int[*] sel( int[.] idx, int[*] array)                                    
+{                                                                        
+  new_shape = _drop_SxV_( _sel_VxA_( [0], _shape_A_(idx)),               
+                          _shape_A_(array));                             
+  res = with {                                                           
+          ( . <= iv <= . ) {                                             
+            new_idx = _cat_VxV_( idx, iv);                               
+          } : _sel_VxA_(new_idx, array);                                 
+        } : genarray( new_shape, 0);                                  
+  return( res);                                                          
+}
+
+inline 
+int[*] reshape( int[.] shp, int[*] A)        
+{                                            
+  return( _reshape_VxA_( shp, A));           
+}

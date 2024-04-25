@@ -26,7 +26,7 @@ StructuresPlus=./host/seq/libStructuresPlusMod.so ./tree/host/libStructuresPlusT
 	$(CC) -c -o $@ $< $(CFLAGS) $(LIBS)
 
 ./host/seq/libOpenBlasMod.so ./tree/host/libOpenBlasTree.so &: OpenBlas.sac  $(OBJ)
-	sac2c $(CHECKFLAG) -Xl -lopenblas OpenBlas.sac
+	sac2c $(CHECKFLAG) -Xl -lopenblas64 OpenBlas.sac
 
 ./host/seq/libBlasLevel1Mod.so ./tree/host/libBlasLevel1Tree.so &: BlasLevel1.sac $(Helper) 
 	sac2c $(CHECKFLAG) BlasLevel1.sac

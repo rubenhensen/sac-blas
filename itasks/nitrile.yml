@@ -12,6 +12,7 @@ src:
 dependencies:
   base: ^2
   itasks: ^0.14.0
+  geometry: ^1.0.0
 package:
   extra_files:
     - CHANGELOG.md
@@ -24,9 +25,9 @@ build:
   application:
     script:
       - clm:
-          src: [src/week1]
-          main: LetExpr
-          target: bin/LetExpr
+          src: [src/week3]
+          main: crane
+          target: bin/crane
           bytecode: prelinked
           heap: 20m
           generate_descriptors: true

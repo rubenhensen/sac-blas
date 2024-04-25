@@ -206,12 +206,6 @@ external float[*] ssbmv(char uplo, int n, int k, float alpha, float[*] a, int ld
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]
 
-external float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx);
-    #pragma linkname "SACstbmv"
-    #pragma linkobj "src/stbmv.o"
-    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
-    #pragma linksign [8,1,2,3,4,5,6,7,8,9]
-
 external float[xn] stpmv(char uplo, char trans, char diag, int n, float[an] ap, float[xn] x, int incx);
     #pragma linkname "SACstpmv"
     #pragma linkobj "src/stpmv.o"
@@ -223,3 +217,23 @@ external float[xn] strmv(char uplo, char trans, char diag, int n, float[an,am] a
     #pragma linkobj "src/strmv.o"
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [7,1,2,3,4,5,6,7,8]
+
+external float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx);
+    #pragma linkname "SACstbmv"
+    #pragma linkobj "src/stbmv.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [8,1,2,3,4,5,6,7,8,9]
+
+external float[xn] stbsv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx);
+    #pragma linkname "SACstbsv"
+    #pragma linkobj "src/stbsv.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [8,1,2,3,4,5,6,7,8,9]
+
+external float[xn] strsv(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx);
+    #pragma linkname "SACstrsv"
+    #pragma linkobj "src/strsv.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [7,1,2,3,4,5,6,7,8]
+    
+    

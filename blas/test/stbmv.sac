@@ -1,107 +1,139 @@
-use StdIO: all;
-use Array: all;
-use BlasLevel1: all;
-// use BlasLevel2: all;
-use Helper: all;
-
-int main() {
-    a = reshape([4,3], iota(12));
-    a = tof(modarray(a, [3,2], 0));
-
-    // compare('n', 4, 4, 1, 1, 1.0f,    a, 3, tof(iota(4)+1), 1, 0.0f, tof([1,1,1,1]), 1);
-
-    return 0;
+int main(){
+  return 0;
 }
 
+// use StdIO: all;
+// use Array: all;
+// use BlasLevel1: all;
+// // use BlasLevel2: all;
+// // use Helper: all;
 
-void compare(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx)
-{
-    y1 = OpenBlas::stbmv(uplo, trans, diag, n, k, a, lda, x, incx);
+// int main() {
+//   // // lower
+//   a = reshape([4,4],tof([1,0,0,0,2,3,0,0,4,5,6,0,0,7,8,9]));
+//   // print(a);
+//   a = lowerTriangleBandFullToStorage(a,2);
+//   print(a);
+//   compare('l','n','n', 4, 2, a, 3, tof(iota(4)+1), 1);
 
-    y2 = stbmv(uplo, trans, diag, n, k, a, lda, x, incx);
+//   // // upper band
+//   // a = reshape([2,2],tof([1,2,0,3]));
+//   // print(a);
+//   // a = upperTriangleBandFullToStorage(a,1);
+//   // print(a);
+//   // compare('u','n','n', 2, 1, a, 2, tof(iota(2)+1), 1);
 
-    if(!(eq(y1,y2)))
-    {
-        printf("Error in stbmv. uplo:%c, trans:%c, diag:%c, n:%d, k:%d, lda:%d, incx:%d\n", uplo, trans, diag, n, k, a, lda, x, incx); 
-        print(a);
-        print(x);
-        print(y1);
-        print(y2);
-        printf("\n");
-    }
-}
+//   // upper band
+//   // a = reshape([7,7],tof([1,1,1,1,0,0,0,0,2,2,2,2,0,0,0,0,3,3,3,3,0,0,0,0,4,4,4,4,0,0,0,0,5,5,5,0,0,0,0,0,6,6,0,0,0,0,0,0,7]));
+//   // print(a);
+//   // a = upperTriangleBandFullToStorage(a,3);
+//   // print(a);
+//   // a = upperTriangleBandStorageToFull(a,3);
+//   // print(a);
 
-float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx)
-{
-  // This should become precondition
-  // if (trans == 'N' | trans == 'n') {
-    // lenx = n;
-    // leny = m;
-  // } else {
-  //   lenx = m;
-  //   leny = n;
-    // // storage to full -> transpose -> do gbmv
-    // a = bandStorageToFull(a, kl, ku, m, n);
-    // // print(a);
-    // a = transpose(a);
-    // // print(a);
-    // a = fullStorageToBand(a, ku, kl, n, m);
-    // // print(a);
-  // }
+//   // a = reshape([7,7],tof([1,0,0,0,0,0,0,2,2,0,0,0,0,0,3,3,3,0,0,0,0,4,4,4,4,0,0,0,0,5,5,5,5,0,0,0,0,6,6,6,6,0,0,0,0,7,7,7,7]));
+//   // print(a);
+//   // a = lowerTriangleBandFullToStorage(a,3);
+//   // print(a);
+//   // a = lowerTriangleBandStorageToFull(a,3);
+//   // print(a);
 
-  // betaY =   BlasLevel1::sscal(leny, beta, y, incy);
-  // alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
 
-  // resA = { [i] -> sum(padVectorBack(an,drop([kl-i], a[i]))   * take([an], alphaX))    | [i] < [kl];
-  //          [i] -> sum(a[i]              * take([an], drop([i-1],alphaX)))      | [i] < [am] };
+//   // a = {[i] -> a[i] | [i] < take([1],shape(a))};
+//   // print(a);
+//   // compare('u','n','n', 7, 3, a, 4, tof(iota(7)+1), 1);
 
-  // res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
-  
-  return x;
-}
+//   // a = reshape([7,4],tof([1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,0,6,6,0,0,7,0,0,0]));
+//   // print(a);
+//   // a = {[i] -> a[i] | [i] < take([1],shape(a))};
+//   // print(a);
+//   // compare('u','n','n', 7, 3, a, 4, tof(iota(7)+1), 1);
+//   // print(OpenBlas::stbmv('u','n','n', 7, 3, a, 4, tof(iota(7)+1), 1));
+//   // a = reshape([7,7],tof([1,0,0,0,0,0,0,2,2,0,0,0,0,0,3,3,3,0,0,0,0,4,4,4,4,0,0,0,0,5,5,5,5,0,0,0,0,6,6,6,6,0,0,0,0,7,7,7,7]));
+//   // print(a);
+//   // a = lowerTriangleBandFullToStorage(a,3);
+//   // print(a);
+//   // a = lowerTriangleBandStorageToFull(a,3);
+//   // print(a);
 
-// // Checks max index of elements we go through is smaller than the length of x
-// bool sgemvXdim(char trans, int m, int n, int incx, int xn)
-// {
-//   if (trans == 'N' || trans == 'n') {
-//     res = minArrLen(n, xn, incx);
-//   } else {
-//     res = minArrLen(m, xn, incx);
-//   }
-//   return res;
+
+//   // // upper band
+//   // a = reshape([4,4],tof([1,2,0,0,0,3,4,0,0,0,5,6,0,0,0,7]));
+//   // a = upperTriangleBandFullToStorage(a,1);
+//   // print(a);
+//   // compare('u','n','n', 4, 1, a, 2, tof(iota(4)+1), 1);
+
+//   // // lower band
+//   // a = reshape([4,4],tof([1,0,0,0,2,3,0,0,4,5,6,0,7,8,9,10]));
+//   // compare('l','n','u', 4, a, 4, tof(iota(4)+1), 1);
+
+
+//   // // upper T
+//   // a = reshape([4,4],tof([1,2,3,4,0,5,6,7,0,0,8,9,0,0,0,10]));
+//   // compare('u','t','n', 4, a, 4, tof(iota(4)+1), 1);
+
+//   // a = reshape([3,3],tof([1,2,3,0,4,5,0,0,6]));
+//   // compare('u','t','n', 3, a, 3, tof(iota(3)+1), 1);
+
+//   // // lower T
+//   // a = reshape([4,4],tof([1,0,0,0,2,3,0,0,4,5,6,0,7,8,9,10]));
+//   // compare('l','t','n', 4, a, 4, tof(iota(4)+1), 1);
+
+//   // // upper band T
+//   // a = reshape([4,4],tof([1,2,3,4,0,5,6,7,0,0,8,9,0,0,0,10]));
+//   // compare('u','t','u', 4, a, 4, tof(iota(4)+1), 1);
+
+//   // // lower band T
+//   // a = reshape([4,4],tof([1,0,0,0,2,3,0,0,4,5,6,0,7,8,9,10]));
+//   // compare('l','t','u', 4, a, 4, tof(iota(4)+1), 1);
+
+//   return 0;
 // }
 
-// bool sgemvYdim(char trans, int m, int n, int incy, int yn)
+
+
+// void compare(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx)
 // {
-//   if (trans == 'N' || trans == 'n') {
-//     res = minArrLen(m, yn, incy);
-//   } else {
-//     res = minArrLen(n, yn, incy);
-//   }
-//   return res;
+//     y1 = OpenBlas::stbmv(uplo, trans, diag, n, k, a, lda, x, incx);
+//     y2 =           stbmv(uplo, trans, diag, n, k, a, lda, x, incx);
+
+//     if(!(eq(y1,y2)))
+//     {
+//         printf("Error in stbmv. uplo:%c, trans:%c, diag:%c, n:%d, k:%d, lda:%d, incx:%d\n", uplo, trans, diag, n, k, lda, incx); 
+//         print(a);
+//         print(x);
+//         print(y1);
+//         print(y2);
+//         printf("\n");
+//     }
+// }
+
+// float[m,m] lowerTriangleBandStorageToFull(float[m,n] a, int k)
+// {
+//   a = {iv -> padVectorOffset(m, max(0,iv[0]-k), a[iv]) | iv < [m]};
+//   return a;
 // }
 
 // // float[m,n]
-// float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
+// float[*]  lowerTriangleBandFullToStorage(float[m,m] a, int k) //| (n-k-1 == am)
 // {
-//   lim = n-ku;
-
-//   return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
-//            [i] -> padVectorOffset(n, i-kl, storage[i])      | [kl] <= [i] < [lim];
-//            [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
+//   a = {iv -> drop(max([0],iv-k),a[iv])  | iv < [m]};
+//   a = {iv -> take([1+k],a[iv])          | iv < [m]};
+//   return a;
 // }
 
-// // float[m,lda]
-// float[m,lda] fullStorageToBand(float[m,n] storage, int kl, int ku, int m, int n)
+// float[m,m] upperTriangleBandStorageToFull(float[m,n] a, int k)
 // {
-//   lim = n-ku;
-//   w = kl + ku + 1;
-//   return {  [i] -> padVectorFront(w, take([i+ku+1], drop([max(0,i-kl)],storage[i])))  | [i] < [kl];
-//             [i] -> take([w], drop([i-kl],storage[i]))                                 | [i] < [lim];
-//             [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
+//   a = {iv -> padVectorOffset(m, iv[0], drop(min([0],[k]-iv),a[iv])) | iv < [m]};
+//   return a;
 // }
 
-// // print(padVectorFront(10, tof(iota(5)*2)));
+// float[m,n]  upperTriangleBandFullToStorage(float[m,m] a, int k) //| (n-k-1 == am)
+// {
+//   a = {iv -> drop(iv,a[iv])     | iv < [m]};
+//   a = {iv -> take([1+k],a[iv])  | iv < [m]};
+//   return a;
+// }
 
 // float[m] padVectorFront(int k, float[n] arr)
 // {
@@ -111,17 +143,124 @@ float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[an,am] a, 
 //          };
 // }
 
-// float[m] padVectorBack(int k, float[n] arr)
+// float[m] padVectorBack(int k, float[n] arr) | (k >= n)
 // {
 //   return { iv -> arr[iv]  | iv < [n];
 //            iv -> 0.0f     | [n] <= iv < [k]       
 //          };
 // }
 
-// float[m] padVectorOffset(int k, int offset, float[n] arr) | offset >= 0
+// float[m] padVectorFrontFixed(int k, float[n] arr)
+// {
+//   return { iv -> 0.0f           | iv < [k];
+//            iv -> arr[iv-k]  | [k] <= iv < [k+n]
+//          };
+// }
+
+// float[m] padVectorBackFixed(int k, float[n] arr)
+// {
+//   return { iv -> arr[iv]  | iv < [n];
+//            iv -> 0.0f     | [n] <= iv < [n+k]       
+//          };
+// }
+
+// float[m] padVectorOffset(int m, int offset, float[n] arr) | (offset >= 0)
 // {
 //   return { iv -> 0.0f             | iv < [offset];  
 //            iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
-//            iv -> 0.0f             | [offset+n] <= iv < [k]       
+//            iv -> 0.0f             | [offset+n] <= iv < [m]       
 //          };
+// }
+
+// bool ismember(char c, char[n] ca)
+// {
+//   b = false;
+//   for(i=0; i<n;i++) {
+//     if (ca[i] == c) b = true;
+//   }
+//   return b;
+// }
+
+// bool eq (float[d1:shp1] a, float[d2:shp2] b) {
+//     return all(a == b) && all(shp1==shp2) && all(d1==d2);
+// }
+
+// float[n,n] lowerTriangleBandStorageToFullCOLMAJ(float[m,n] storage, int k)
+// {
+//   a = transpose(storage);
+//   a = {iv -> padVectorOffset(n, min(n-m,iv[0]), a[iv]) | iv < [n]};
+//   a = transpose(a);
+//   return a;
+// }
+
+// float[am,n]  lowerTriangleBandFullToStorageCOLMAJ(float[n,n] full, int k) //| (n-k-1 == am)
+// {
+//   a = transpose(full);
+//   a = {iv -> take([-1-k],drop(min([0],[-n+k+1]+iv),a[iv])) | iv < [n]};
+//   a = transpose(a);
+//   return a;
+// }
+
+// float[n,n] upperTriangleBandStorageToFullCOLMAJ(float[m,n] storage, int k)
+// {
+//   a = transpose(storage);
+//   a = {iv -> padVectorBack(1+k,take([1+k],drop([max(0,k-iv[0])],a[iv]))) | iv < [n]};
+//   a = {iv -> padVectorOffset(n, max(0,iv[0]-(k)), a[iv]) | iv < [n]};
+//   a = transpose(a);
+//   return a;
+// }
+
+// float[am,n]  upperTriangleBandFullToStorageCOLMAJ(float[n,n] full, int k) //| (n-k-1 == am)
+// {
+//   a = transpose(full);
+//   a = {iv -> take([1+k],drop(max([0],iv-[k]),a[iv])) | iv < [n]};
+//   a = {iv -> padVectorFront(1+k,take(min([1+k],iv+1),a[iv])) | iv < [n]};
+//   a = transpose(a);
+//   return a;
+// }
+
+// float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// {
+//   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+//   if (trans != 'N' && trans != 'n') {
+//     a = transpose(a);
+//     if (uplo == 'U' || uplo == 'u') {
+//       uplo = 'l';
+//     } else {
+//       uplo = 'u';
+//     }
+//   }
+
+//   inter = [1.0f];
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+//     // upper
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+//   } 
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+//     // upper unit
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+//   } 
+
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+//     // lower
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+//   } 
+  
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+//     // lower unit
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+//   } 
+
+
+//   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+//           [iv] -> x[iv]};
+
+//   return res;
 // }

@@ -34,6 +34,10 @@
         "bitset": "cpp",
         "ranges": "cpp",
         "__locale": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "semaphore": "cpp",
+        "__tuple": "cpp",
+        "__string": "cpp",
+        "filesystem": "cpp"
     }
 }

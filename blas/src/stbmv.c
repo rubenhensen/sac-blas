@@ -9,7 +9,6 @@ void SACstbmv(const char uplo, const char trans, const char diag, const int n, c
         cblasUplo =  CblasLower;
     }
 
-
     CBLAS_TRANSPOSE cblasTrans;
     if (trans == 'N' || trans == 'n') {
         cblasTrans = CblasNoTrans;
@@ -18,12 +17,11 @@ void SACstbmv(const char uplo, const char trans, const char diag, const int n, c
     }
 
     CBLAS_DIAG cblasDiag;
-    if (uplo == 'u' || uplo == 'U') {
+    if (diag == 'u' || diag == 'U') {
         cblasDiag =  CblasUnit;
     } else {
         cblasDiag =  CblasNonUnit;
     }
-
 
     cblas_stbmv(CblasRowMajor, cblasUplo, cblasTrans, cblasDiag, n, k, a, lda, x, incx);
 }

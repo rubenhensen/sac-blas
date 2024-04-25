@@ -4,11 +4,11 @@
  *
  **********************************************************************
  *
- * Automatically generated on Wed Mar 27 03:27:06 PM CET 2024
+ * Automatically generated on Mon Apr 22 05:29:55 PM CEST 2024
  *
- * using sac2c 1.3.3-MijasCosta-1165-g41c84
- * built 2024-02-23T21:16:58.
- * by user  on host runner-qipqeg7c-project-39-concurrent-3.
+ * using sac2c 1.3.3-MijasCosta-1193-g0a867
+ * built 2024-04-22T16:28:31.
+ * by user rubenhensen on host pop-os.
  *
  * The compiler was called by
  *  sac2c -check tc BlasLevel1.sac
@@ -25,7 +25,7 @@
 
 module BlasLevel1;
 
-use StructuresPlus: all;
+use Structures: all;
 use Math: all;
 use Helper: all;
 
@@ -194,7 +194,7 @@ inline
 float[xn], float[yn] srot(int n, float[xn] x, int incx, float[yn] y, int incy, float c, float s) | n > 0, incx > 0, incy > 0
 {
   return (
-    {iv -> c*x[iv] + s*y[(iv*incy)/incx] | [0] <= iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]},
+    {iv -> c*x[iv] + s*y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
     {iv -> c*y[iv] - s*x[(iv*incx)/incy] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
   );
 }
@@ -216,13 +216,13 @@ float[xn], float[yn] srotm(int n, float[xn] x, int incx, float[yn] y, int incy, 
     x_prime = x;
     y_prime = y;
   } else if(sflag < 0f) {
-    x_prime = {iv -> x[iv]*sh11 + y[(iv*incy)/incx]*sh12 | [0] <= iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]};
+    x_prime = {iv -> x[iv]*sh11 + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
     y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
   } else if(sflag == 0f) {
-    x_prime = {iv -> x[iv] + y[(iv*incy)/incx]*sh12 | [0] <= iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]};
+    x_prime = {iv -> x[iv] + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
     y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
   } else {
-    x_prime = {iv ->  x[iv]*sh11 + y[(iv*incy)/incx] | [0] <= iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]};
+    x_prime = {iv ->  x[iv]*sh11 + y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
     y_prime = {iv -> -x[(iv*incx)/incy] + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
   }
   
@@ -238,7 +238,7 @@ inline
 float[xn], float[yn] sswap(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx > 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
 {
   return (
-    {iv -> y[(iv/incx)*incy] | [0] <= iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]},
+    {iv -> y[(iv/incx)*incy] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
     {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
   );
 }
@@ -250,7 +250,7 @@ float[xn], float[yn] sswap(int n, float[xn] x, int incx, float[yn] y, int incy) 
 inline
 float[xn] sscal(int n, float a, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
 {
-  return {iv -> a * x[iv] | iv < [(n-1)*incx+1] step [incx] ; iv -> x[iv]};
+  return {iv -> a * x[iv] | iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
 }
 
 
@@ -304,7 +304,7 @@ float sdsdot(int n, float sb, float[xn] sx, int incx, float[yn] sy, int incy) | 
 inline
 float snrm2(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
 {
-  return sqrtf(sum( {iv -> x[iv]*x[iv] | [0] <= iv < [(n-1)*incx+1] step [incx]} ));
+  return sqrtf(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
 }
 
 
@@ -326,7 +326,7 @@ float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
 inline
 float sasum(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
 {
-  return sum( {iv -> abs(x[iv]) | [0] <= iv < [(n-1)*incx+1] step [incx]} );
+  return sum( {iv -> abs(x[iv]) | [0] <= iv <= [(n-1)*incx] step [incx]} );
 }
 
 

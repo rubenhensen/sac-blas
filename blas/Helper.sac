@@ -9,6 +9,7 @@ export all;
 //     return all(a == b) && all(shp1==shp2) && all(d1==d2);
 // }
 
+// inline
 bool eq (float[d1:shp1] a, float[d2:shp2] b) {
     return all(a == b) && all(shp1==shp2) && all(d1==d2);
 }
@@ -29,13 +30,14 @@ bool eq (float[d1:shp1] a, float[d2:shp2] b) {
 //     return all(a == b) && all(shp1==shp2) && all(d1==d2);
 // }
 
-
+// inline
 bool almost_eq (float[d1:shp1] a, float[d2:shp2] b) {
     MAX_ACC_LOSS = 0.0001f;
 
     return all(abs(a - b) < MAX_ACC_LOSS) && all(shp1==shp2) && all(d1==d2);
 }
 
+// inline
 bool ismember(char c, char[n] ca)
 {
   b = false;
@@ -45,6 +47,7 @@ bool ismember(char c, char[n] ca)
   return b;
 }
 
+// inline
 bool ismember(float c, float[n] ca)
 {
   b = false;
@@ -54,6 +57,7 @@ bool ismember(float c, float[n] ca)
   return b;
 }
 
+// inline
 bool ismember(int c, int[n] ca)
 {
   b = false;
@@ -63,6 +67,7 @@ bool ismember(int c, int[n] ca)
   return b;
 }
 
+// inline
 bool ismember(double c, double[n] ca)
 {
   b = false;
@@ -72,9 +77,112 @@ bool ismember(double c, double[n] ca)
   return b;
 }
 
+// inline
 bool minArrLen(int n, int arrLength, int inc)
 {
     return arrLength  > (n-1)*inc;
 }
 
+// Checks max index of elements we go through is smaller than the length of x
+// inline
+bool sgemvXdim(char trans, int m, int n, int incx, int xn)
+{
+  if (trans == 'N' || trans == 'n') {
+    res = minArrLen(n, xn, incx);
+  } else {
+    res = minArrLen(m, xn, incx);
+  }
+  return res;
+}
 
+// inline
+bool sgemvYdim(char trans, int m, int n, int incy, int yn)
+{
+  if (trans == 'N' || trans == 'n') {
+    res = minArrLen(m, yn, incy);
+  } else {
+    res = minArrLen(n, yn, incy);
+  }
+  return res;
+}
+
+// float[m,n]
+// inline
+float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
+{
+  lim = n-ku;
+
+  return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
+           [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
+           [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
+}
+
+// float[m,lda]
+inline
+float[m,lda] fullStorageToBand(float[m,n] storage, int kl, int ku, int m, int n)
+{
+  lim = n-ku;
+  w = kl + ku + 1;
+  return {  [i] -> padVectorFront(w, take([i+ku+1], drop([max(0,i-kl)],storage[i])))  | [i] < [kl];
+            [i] -> take([w], drop([i-kl],storage[i]))                                 | [i] < [lim];
+            [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
+}
+
+// print(padVectorFront(10, tof(iota(5)*2)));
+// inline
+float[m] padVectorFront(int k, float[n] arr)
+{
+  zeros = [k-n];
+  return { iv -> 0.0f           | iv < zeros;
+           iv -> arr[iv-zeros]  | zeros <= iv < [k]
+         };
+}
+
+// inline
+float[m] padVectorBack(int k, float[n] arr) | (k >= n)
+{
+  return { iv -> arr[iv]  | iv < [n];
+           iv -> 0.0f     | [n] <= iv < [k]       
+         };
+}
+
+// inline
+float[m] padVectorOffset(int m, int offset, float[n] arr) | (offset >= 0)
+{
+  return { iv -> 0.0f             | iv < [offset];  
+           iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
+           iv -> 0.0f             | [offset+n] <= iv < [m]       
+         };
+}
+
+// float[m,n] bandUpperTriangleStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
+// {
+//   return { [i,j] -> storage[i - (k+1-j)] | [k+1-j, 0] <= [i,j] < [max(1+k+1-j,(j-k)+k+1-j),n] }
+//   // lim = n-ku;
+
+//   // return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
+//   //          [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
+//   //          [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
+// }
+
+// inline
+float[am,n] fullUpperTriangleStorageToBand(float[m,n] full, int k) | (n-k-1 == am)
+{
+  a = transpose(full);
+  a = {iv -> take([1+k],drop(iv-[k],a[iv])) | iv < [n]};
+  a = {iv -> padVectorFront(1+k,take(min([1+k],iv+1),a[iv])) | iv < [n]};
+  a = transpose(a);
+  return a;
+}
+
+// inline
+float[n,m] rotateCW(float[m,n] a) 
+{
+  return {[i,j] -> a[n-j-1][i] | [i,j] < [n,m]};
+}
+
+// inline
+float[n,m] rotateCCW(float[m,n] a) 
+{
+  return {[i,j] -> a[j][n-i-1] | [i,j] < [n,m]};
+}

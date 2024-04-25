@@ -1,0 +1,52 @@
+use Array: {sel};
+int main() {
+    a = [[1,2],[3,4]];
+    a = {[i] -> [0,0] | [i] < ArrayArith::-(take([1],[2,2]),1)};
+    return sel([0,0], a);
+}
+
+int[*] take( int[.] v, int[*] array)
+{
+  vext = _cat_VxV_( v, _drop_SxV_( _sel_VxA_( [0],_shape_A_( v)),_shape_A_( array)));
+  start = ArrayTransform::where( ArrayArith::<( vext, 0),
+            ArrayArith::max( ArrayArith::-( _add_VxV_( _shape_A_(array), vext)),0),
+            0);
+  stop = ArrayTransform::where( ArrayArith::<(vext, 0),
+           ArrayArith::abs(vext),
+           ArrayArith::min( ArrayArith::abs(vext), _shape_A_(array)));
+  offset = ArrayTransform::where( ArrayArith::<( vext, 0),
+             _add_VxV_( _shape_A_(array), vext),
+             0);
+  res = with {
+          ( start <= iv < stop ) : _sel_VxA_( _add_VxV_( offset, iv), array);
+        } : genarray( ArrayArith::abs(vext), 0 );
+  return( res);
+}
+
+// int[*] sel( int[.] idx, int[*] array)
+// {
+//   new_shape = _drop_SxV_( _sel_VxA_( [0], _shape_A_(idx)),
+//                           _shape_A_(array));
+//   res = with {
+//           ( . <= iv <= . ) {
+//             new_idx = _cat_VxV_( idx, iv);
+//           } : _sel_VxA_(new_idx, array);
+//         } : genarray( new_shape, 0);
+//   return( res);
+// }
+
+
+
+
+
+// original bug
+// use StdIO: all;
+// use Array: all;
+
+// int main() {
+//   a = [[1,2],[3,4]];
+//   a = {[i] -> a[i] | [i] < take([1],shape(a));
+//        [i] -> [0,0] | take([1],shape(a)) <= [i] < take([1],shape(a))+1};
+//   print(a);
+//   return 0;
+// }

@@ -1,0 +1,87 @@
+use StdIO: all;
+use Array: all;
+// use BlasLevel1: all;
+// use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+  a = reshape([4,4], [1,0,0,0,1,1,0,0,2,3,1,0,3,4,3,1]);
+  a = tof(a);
+  x = tof([1, 3, 11, 24]);
+  // print(a);
+  compare('l','n','u', 4, a, 4, x, 1);
+
+  a = reshape([4,4], [1,2,3,2,0,2,2,5,0,0,3,3,0,0,0,1]);
+  a = tof(a);
+  x = tof([5,18,32,41]);
+  compare('u','t','n', 4, a, 4, x, 1);
+
+
+  return 0;
+}
+
+void compare(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx)
+{
+    x1 = OpenBlas::strsv(uplo, trans, diag, n, a, lda, x, incx);
+    print(x1);
+    x2 =           strsv(uplo, trans, diag, n, a, lda, x, incx);
+    print(x2);
+
+    if(!(eq(x1,x2)))
+    {
+        printf("Error in strsv. uplo:%c, trans:%c, diag:%c, n:%d, lda:%d, incx:%d\n", uplo, trans, diag, n, lda, incx); 
+        print(a);
+        print(x);
+        print(x1);
+        print(x2);
+        printf("\n");
+    }
+}
+
+float[xn] strsv(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+  if (trans != 'N' && trans != 'n') {
+    a = transpose(a);
+    if (uplo == 'U' || uplo == 'u') {
+      uplo = 'l';
+    } else {
+      uplo = 'u';
+    }
+  }
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([i], a[i]) * take([i], x));
+      x[i] = (x[i]-subtract) / a[i][i];
+    } 
+
+  } 
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([i], a[i]) * take([i], x));
+      x[i] = (x[i]-subtract);
+    } 
+
+  } 
+
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([-i], a[xn-i]) * take([i], x));
+      x[i] = (x[i]-subtract);
+    } 
+  } 
+  
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+//     // lower unit
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+//   } 
+
+
+//   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+//           [iv] -> x[iv]};
+  return x;
+}

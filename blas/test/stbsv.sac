@@ -1,0 +1,183 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+// // use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+
+  return 0;
+}
+
+void compare(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx)
+{
+    y1 = OpenBlas::stbsv(uplo, trans, diag, n, k, a, lda, x, incx);
+    y2 =           stbsv(uplo, trans, diag, n, k, a, lda, x, incx);
+
+    if(!(eq(y1,y2)))
+    {
+        printf("Error in stbmv. uplo:%c, trans:%c, diag:%c, n:%d, k:%d, lda:%d, incx:%d\n", uplo, trans, diag, n, k, lda, incx); 
+        print(a);
+        print(x);
+        print(y1);
+        print(y2);
+        printf("\n");
+    }
+}
+
+// float[m,m] lowerTriangleBandStorageToFull(float[m,n] a, int k)
+// {
+//   a = {iv -> padVectorOffset(m, max(0,iv[0]-k), a[iv]) | iv < [m]};
+//   return a;
+// }
+
+// // float[m,n]
+// float[*]  lowerTriangleBandFullToStorage(float[m,m] a, int k) //| (n-k-1 == am)
+// {
+//   a = {iv -> drop(max([0],iv-k),a[iv])  | iv < [m]};
+//   a = {iv -> take([1+k],a[iv])          | iv < [m]};
+//   return a;
+// }
+
+// float[m,m] upperTriangleBandStorageToFull(float[m,n] a, int k)
+// {
+//   a = {iv -> padVectorOffset(m, iv[0], drop(min([0],[k]-iv),a[iv])) | iv < [m]};
+//   return a;
+// }
+
+// float[m,n]  upperTriangleBandFullToStorage(float[m,m] a, int k) //| (n-k-1 == am)
+// {
+//   a = {iv -> drop(iv,a[iv])     | iv < [m]};
+//   a = {iv -> take([1+k],a[iv])  | iv < [m]};
+//   return a;
+// }
+
+// float[m] padVectorFront(int k, float[n] arr)
+// {
+//   zeros = [k-n];
+//   return { iv -> 0.0f           | iv < zeros;
+//            iv -> arr[iv-zeros]  | zeros <= iv < [k]
+//          };
+// }
+
+// float[m] padVectorBack(int k, float[n] arr) | (k >= n)
+// {
+//   return { iv -> arr[iv]  | iv < [n];
+//            iv -> 0.0f     | [n] <= iv < [k]       
+//          };
+// }
+
+// float[m] padVectorFrontFixed(int k, float[n] arr)
+// {
+//   return { iv -> 0.0f           | iv < [k];
+//            iv -> arr[iv-k]  | [k] <= iv < [k+n]
+//          };
+// }
+
+// float[m] padVectorBackFixed(int k, float[n] arr)
+// {
+//   return { iv -> arr[iv]  | iv < [n];
+//            iv -> 0.0f     | [n] <= iv < [n+k]       
+//          };
+// }
+
+// float[m] padVectorOffset(int m, int offset, float[n] arr) | (offset >= 0)
+// {
+//   return { iv -> 0.0f             | iv < [offset];  
+//            iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
+//            iv -> 0.0f             | [offset+n] <= iv < [m]       
+//          };
+// }
+
+// bool ismember(char c, char[n] ca)
+// {
+//   b = false;
+//   for(i=0; i<n;i++) {
+//     if (ca[i] == c) b = true;
+//   }
+//   return b;
+// }
+
+// bool eq (float[d1:shp1] a, float[d2:shp2] b) {
+//     return all(a == b) && all(shp1==shp2) && all(d1==d2);
+// }
+
+// float[n,n] lowerTriangleBandStorageToFullCOLMAJ(float[m,n] storage, int k)
+// {
+//   a = transpose(storage);
+//   a = {iv -> padVectorOffset(n, min(n-m,iv[0]), a[iv]) | iv < [n]};
+//   a = transpose(a);
+//   return a;
+// }
+
+// float[am,n]  lowerTriangleBandFullToStorageCOLMAJ(float[n,n] full, int k) //| (n-k-1 == am)
+// {
+//   a = transpose(full);
+//   a = {iv -> take([-1-k],drop(min([0],[-n+k+1]+iv),a[iv])) | iv < [n]};
+//   a = transpose(a);
+//   return a;
+// }
+
+// float[n,n] upperTriangleBandStorageToFullCOLMAJ(float[m,n] storage, int k)
+// {
+//   a = transpose(storage);
+//   a = {iv -> padVectorBack(1+k,take([1+k],drop([max(0,k-iv[0])],a[iv]))) | iv < [n]};
+//   a = {iv -> padVectorOffset(n, max(0,iv[0]-(k)), a[iv]) | iv < [n]};
+//   a = transpose(a);
+//   return a;
+// }
+
+// float[am,n]  upperTriangleBandFullToStorageCOLMAJ(float[n,n] full, int k) //| (n-k-1 == am)
+// {
+//   a = transpose(full);
+//   a = {iv -> take([1+k],drop(max([0],iv-[k]),a[iv])) | iv < [n]};
+//   a = {iv -> padVectorFront(1+k,take(min([1+k],iv+1),a[iv])) | iv < [n]};
+//   a = transpose(a);
+//   return a;
+// }
+
+float[xn] stbsv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+{
+//   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+//   if (trans != 'N' && trans != 'n') {
+//     a = transpose(a);
+//     if (uplo == 'U' || uplo == 'u') {
+//       uplo = 'l';
+//     } else {
+//       uplo = 'u';
+//     }
+//   }
+
+//   inter = [1.0f];
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+//     // upper
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+//   } 
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+//     // upper unit
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+//   } 
+
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+//     // lower
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+//   } 
+  
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+//     // lower unit
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+//   } 
+
+
+//   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+//           [iv] -> x[iv]};
+
+  return x;
+}

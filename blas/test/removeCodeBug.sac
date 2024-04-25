@@ -1,0 +1,54 @@
+
+use StdIO: all;
+use Array: all;
+
+int main() {
+//   // // lower
+//   a = reshape([4,4],tof([1,0,0,0,2,3,0,0,4,5,6,0,0,7,8,9]));
+// //   print(a);
+//   a = lowerTriangleBandFullToStorage(a,2);
+//   print(a);
+// //   compare('l','n','n', 4, 2, a, 3, tof(iota(4)+1), 1);
+
+  return 0;
+}
+
+float[m,m] lowerTriangleBandStorageToFull(float[m,n] a, int k)
+{
+  a = {iv -> padVectorOffset(m, max(0,iv[0]-k), a[iv]) | iv < [m]};
+  return a;
+}
+
+// float[m,n]
+float[*]  lowerTriangleBandFullToStorage(float[m,m] a, int k) //| (n-k-1 == am)
+{
+  a = {iv -> drop(max([0],iv-k),a[iv])  | iv < [m]};
+  a = {iv -> take([1+k],a[iv])          | iv < [m]};
+  return a;
+}
+
+float[m] padVectorOffset(int m, int offset, float[n] arr) | (offset >= 0)
+{
+  return { iv -> 0.0f             | iv < [offset];  
+           iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
+           iv -> 0.0f             | [offset+n] <= iv < [m]       
+         };
+}
+
+
+float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx) {
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+  inter = [1.0f];
+
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+    // lower
+    a = lowerTriangleBandStorageToFull(a, k);
+    inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+  } 
+
+  res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+          [iv] -> x[iv]};
+
+  return res;
+}

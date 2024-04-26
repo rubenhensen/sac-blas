@@ -1,0 +1,109 @@
+module BlasLevel2Bug;
+
+use StdIO: all;
+use Array: all;
+export all;
+
+
+float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
+{
+  if (trans == 'N' | trans == 'n') {
+    lenx = n;
+    leny = m;
+  } else {
+    lenx = m;
+    leny = n;
+    a = transpose(a);
+  }
+
+  betaY =   sscal(leny, beta, y, incy);
+  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+  resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
+
+  return res;
+}
+
+
+float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0, kl >=0, ku >=  0, lda == kl + ku + 1
+{
+  if (trans == 'N' | trans == 'n') {
+    lenx = n;
+    leny = m;
+  } else {
+    lenx = m;
+    leny = n;
+    a = transpose(a);
+  }
+
+  betaY =   sscal(leny, beta, y, incy);
+  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+  resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
+
+  return res;
+}
+
+float[m,n] sger(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda)
+{
+  return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
+}
+
+float[leny] ssymv(char uplo, int n, float alpha, float[d:shp] a, int lda, float[lenx] x, int incx, float beta, float[leny] y, int incy) | ismember(uplo, ['u', 'U', 'l', 'L'])
+{
+    betaY =   sscal(n, beta, y, incy);
+    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+    if (uplo == 'u' || uplo == 'U') {
+        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+    } else {
+        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+    }
+    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+
+   return res;
+}
+
+
+float[xn] sscal(int n, float a, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  return {iv -> a * x[iv] | iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+}
+
+// inline
+bool minArrLen(int n, int arrLength, int inc)
+{
+    return arrLength  > (n-1)*inc;
+}
+
+// Checks max index of elements we go through is smaller than the length of x
+// inline
+bool sgemvXdim(char trans, int m, int n, int incx, int xn)
+{
+  if (trans == 'N' || trans == 'n') {
+    res = minArrLen(n, xn, incx);
+  } else {
+    res = minArrLen(m, xn, incx);
+  }
+  return res;
+}
+
+// inline
+bool sgemvYdim(char trans, int m, int n, int incy, int yn)
+{
+  if (trans == 'N' || trans == 'n') {
+    res = minArrLen(m, yn, incy);
+  } else {
+    res = minArrLen(n, yn, incy);
+  }
+  return res;
+}
+
+
+bool ismember(char c, char[n] ca)
+{
+  b = false;
+  for(i=0; i<n;i++) {
+    if (ca[i] == c) b = true;
+  }
+  return b;
+}

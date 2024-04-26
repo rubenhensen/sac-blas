@@ -1,0 +1,29 @@
+module sgemv
+export all;
+
+inline
+double measure_sgemv(int version) {
+    interval = getInterval("interval", 7, 1);
+    d1 = id(3d);
+    d2 = id(5d);
+    x1 = id(7d);
+    y1 = id(11d);
+    
+    if(version == NATIVE) {
+        start(interval);
+        d1, d2, x1, param = drotmg(d1, d2, x1, y1);
+        end(interval);
+    } else {
+        start(interval);
+        d1, d2, x1, param = cblas_drotmg(d1, d2, x1, y1);
+        end(interval);
+    }
+
+    printf("d1: %f\nd2: %f\nx1: %f\n", id(d1), id(d2), id(x1));
+    printf("param: ");
+    show(take([5], id(param)));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}

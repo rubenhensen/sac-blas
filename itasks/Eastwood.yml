@@ -8,6 +8,7 @@ paths:
   - nitrile-packages/linux-x64/base64/lib
   - nitrile-packages/linux-x64/base-lib/lib
   - nitrile-packages/linux-x64/base-stdenv/lib
+  - nitrile-packages/linux-x64/category-theory/lib
   - nitrile-packages/linux-x64/containers/lib
   - nitrile-packages/linux-x64/gast/lib
   - nitrile-packages/linux-x64/geometry/lib

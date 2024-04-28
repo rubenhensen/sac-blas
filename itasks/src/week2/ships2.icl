@@ -57,7 +57,7 @@ eval :: Gen -> [Val]
 eval gen = evalGen gen emptyState
 
 evalGen :: Gen State -> [Val]
-evalGen (Ship v gen) s = flatten [evalGen gen ((v |-> (Sh x)) s) \\ x <- ships]
+evalGen (Ship v gen) s = flatten [evalGen gen ((v |-> x) s) \\ x <- ships]
 evalGen (Farm v gen) s = flatten [evalGen gen ((v |-> (Fa x)) s) \\ x <- farms]
 evalGen (Port v gen) s = flatten [evalGen gen ((v |-> (Po x)) s) \\ x <- ports]
 evalGen (Cond c gen) s = case evalCond c s of

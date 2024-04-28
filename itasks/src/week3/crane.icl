@@ -1,6 +1,7 @@
 module crane
 import StdEnv
-
+import Data.Functor
+ 
 // Start = MoveDown :. Lock :. MoveUp :. Unlock
 // Start = MoveDown :. Lock //:. MoveUp :. MoveToShip :. MoveDown :. Unlock
 Start = moveDown :. lock
@@ -8,7 +9,7 @@ Start = moveDown :. lock
 t1 :: (Action High Low)
 t1 = moveDown :. lock
 
-:: Action a b
+:: Action a b 
 	= MoveToShip 			(BM a High) (BM b High)		// move the crane to the ship
 	| MoveToQuay 			(BM a High) (BM b High)		// move the crane to the quay
 	| MoveUp 				(BM a Low)  (BM b High)		// moves the crane up
@@ -34,6 +35,60 @@ lock 				= Lock bm bm
 unlock 				= Unlock bm bm
 wait 				= Wait bm
 whileContainerBelow = WhileContainerBelow bm
+
+
+:: ErrorOk s = Error String | Ok s
+
+:: State highLow
+	= {
+		onShip :: [Container]
+		, onQuay :: [Container]
+		, craneOnQuay :: Bool
+		, locked :: ? Container
+	}
+
+:: Container :== String
+
+state0 :: State High
+state0
+	= {
+		onShip = []
+		, onQuay = ["apples","beer","cheese"]
+		, craneOnQuay = True
+		, locked = ?None
+	}
+
+:: Step i f :== (ErrorOk (State i)) -> ErrorOk (State f)
+
+// functor
+instance Functor (Step i f)
+		// fmap :: (a -> b) (f a) -> f b
+	where fmap f s = \st -> case s st of
+						Error str = Error str
+						Ok step = Ok (f step)
+
+
+// // applicative
+// instance 
+// pure f :: a -> f a
+// <*> :: (f (a -> b)) (f a) -> f b
+
+// // monad
+// bind :: (m a) (a -> m b) -> m b
+
+
+// eval :: (Action i f) -> Step i f
+// eval (MoveToShip bm1 bm2) = \s -> case s of
+// 	(Error s) = Error s
+// 	(Ok i) = Ok {i & craneOnQuay = False}
+// eval (MoveToQuay bm bm) = 
+// eval (MoveUp bm bm)	= 
+// eval (MoveDown bm bm) = 
+// eval (Lock bm bm) = 
+// eval (Unlock bm bm) = 
+// eval (Wait bm) = 
+// eval (a1 :. a2) = 
+// eval (WhileContainerBelow bm bm)
 
 // loadShip
 // 	= WhileContainerBelow (

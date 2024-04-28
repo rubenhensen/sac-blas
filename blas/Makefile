@@ -51,6 +51,14 @@ Main: Main.sac
 	rm -rf Main.i
 	rm -rf Main.o
 	rm -rf Main.c
+	./Main
+
+Measure: Measure.sac
+	sac2c $(CHECKFLAG) -o Measure Measure.sac
+	rm -rf Measure.i
+	rm -rf Measure.o
+	rm -rf Measure.c
+	./Measure
 
 clean: 
 	rm -rf tree/

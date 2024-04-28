@@ -1,0 +1,25 @@
+- [x] cblas_?gbmv
+- [x] cblas_?gemv
+- [x] cblas_?ger
+- [-] cblas_?gerc
+- [-] cblas_?geru
+- [-] cblas_?hbmv
+- [-] cblas_?hemv
+- [-] cblas_?her
+- [-] cblas_?her2
+- [-] cblas_?hpmv
+- [-] cblas_?hpr
+- [-] cblas_?hpr2
+- [ ] cblas_?sbmv
+- [ ] cblas_?spmv
+- [ ] cblas_?spr
+- [ ] cblas_?spr2
+- [ ] cblas_?symv
+- [ ] cblas_?syr
+- [ ] cblas_?syr2
+- [ ] cblas_?tbmv
+- [ ] cblas_?tbsv
+- [ ] cblas_?tpmv
+- [ ] cblas_?tpsv
+- [ ] cblas_?trmv
+- [ ] cblas_?trsv 

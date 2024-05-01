@@ -10,7 +10,7 @@
 - [-] cblas_?hpmv
 - [-] cblas_?hpr
 - [-] cblas_?hpr2
-- [ ] cblas_?sbmv
+- [-] cblas_?sbmv
 - [ ] cblas_?spmv
 - [ ] cblas_?spr
 - [ ] cblas_?spr2

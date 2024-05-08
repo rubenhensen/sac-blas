@@ -1,29 +1,74 @@
-module sgemv
-export all;
+// module sgemv
+use Benchmarking: all;
+use Array: all;
+use StdIO: all;
+//versions
+#define NATIVE  1
+#define LIBRARY 2
+// export all;
+
+int main() {
+    printf("Time:%f\n", measure_sgemv(2));
+    // show(tof(reshape([2,3],iota(6))));
+
+    return 0;
+}
 
 inline
 double measure_sgemv(int version) {
-    interval = getInterval("interval", 7, 1);
-    d1 = id(3d);
-    d2 = id(5d);
-    x1 = id(7d);
-    y1 = id(11d);
+    interval = getInterval(1);
     
+    trans = 'n';
+    m = 4;
+    n = 3;
+    alpha = 1.0f;
+    a = tof(reshape([4,3], iota(12)));
+    lda = 3;
+    x = tof([1,1,1]);
+    incx = 1;
+    beta = 1.0f;
+    y = tof([1,1,1,1]);
+    incy = 1;
+
     if(version == NATIVE) {
         start(interval);
-        d1, d2, x1, param = drotmg(d1, d2, x1, y1);
+        y = sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
         end(interval);
     } else {
         start(interval);
-        d1, d2, x1, param = cblas_drotmg(d1, d2, x1, y1);
+        y = OpenBlas::sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
         end(interval);
     }
 
-    printf("d1: %f\nd2: %f\nx1: %f\n", id(d1), id(d2), id(x1));
-    printf("param: ");
-    show(take([5], id(param)));
+    printf("trans:%c, m:%d, n:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d\n", trans, m, n, alpha, lda, incx, beta, incy);
+    printf("a: \n");
+    show(a);
+    printf("x: \n");
+    show(x);
+    printf("y: \n");
+    show(y);
+    printf("\n");
 
     time, unit = returnResultUnit(interval);
 
     return time;
+}
+
+float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
+{
+  if (trans == 'N' | trans == 'n') {
+    lenx = n;
+    leny = m;
+  } else {
+    lenx = m;
+    leny = n;
+    a = transpose(a);
+  }
+
+  betaY =   BlasLevel1::sscal(leny, beta, y, incy);
+  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+  resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
+
+  return res;
 }

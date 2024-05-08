@@ -1,0 +1,1462 @@
+use Math: all;
+use StdIO: all;
+use Structures: all;
+use Benchmarking: all;
+
+
+#ifndef N
+#define N 10000000
+#endif
+#ifndef INCX
+#define INCX 1
+#endif
+#ifndef INCY
+#define INCY 1
+#endif
+
+#ifndef SAMPLE_RATE
+#define SAMPLE_RATE 100
+#endif
+
+#define MAX_ACC_LOSS 0.001
+
+
+#ifndef MODE
+#define MODE ST
+#endif
+
+#ifndef TYPE
+#define TYPE INPUT_SIZE
+#endif
+
+//types
+#define INPUT_SIZE   1
+#define THREAD_COUNT 2
+
+//modes
+#define ST 1
+#define MT  2
+
+#ifndef THREADS
+#define THREADS 1
+#endif
+
+//versions
+#define NATIVE  1
+#define LIBRARY 2
+
+//routines
+#define DROTG   1
+#define DROTMG  2
+#define DROT    3
+#define DROTM   4
+#define DSWAP   5
+#define DSCAL   6
+#define DCOPY   7
+#define DAXPY   8
+#define DDOT    9
+#define DSDOT  10
+#define DNRM2  11
+#define DZNRM2 12
+#define DASUM  13
+#define IDAMAX 14
+
+#define TEST    0
+
+
+
+/*
+ * ROUTINE DEFINITIONS
+ */
+inline
+double, double, double, double drotg(double a, double b)
+{
+  if(b == 0d) {
+    r = a;
+    z = 0d;
+    c = 1d;
+    s = 0d;
+  } else if(a == 0d) {
+    r = b;
+    z = 1d;
+    c = 0d;
+    s = 1d;
+  } else {
+    sigma = tod(abs(a) > abs(b) ? sign(a) : sign(b));
+    r = sigma * sqrt(a*a + b*b);
+    c = a/r;
+    s = b/r;
+    z = abs(a) > abs(b) ? s : c == 0d ? 1d : 1d/c;
+  }
+  return (r, z, c, s);
+}
+external
+double, double, double, double cblas_drotg(double a, double b);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [1,2,3,4, 1,2]
+
+
+
+inline
+double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1)
+{
+  //A very literal translation from Fortran
+  gam    = 4096d;
+  gamsq  = 16777216d;
+  rgamsq = 5.9604645e-8d;
+
+  flag = 0d;
+  h11  = 0d;
+  h21  = 0d;
+  h12  = 0d;
+  h22  = 0d;
+
+  if(d1 < 0d) {
+    flag = -1d;
+    
+    d1 = 0d;
+    d2 = 0d;
+    x1 = 0d;
+  } else if(d2*y1 < 0d) {
+    flag = -2d;
+  } else {
+    p1 = d1*x1;
+    p2 = d2*y1;
+    q1 = p1*x1;
+    q2 = p2*y1;
+
+    if(abs(q1) > abs(q2)) {
+        h21 = (-y1)/x1;
+        h12 = p2/p1;
+
+        u = 1d - h12*h21;
+        if(u > 0d) {
+            flag = 0d;
+            d1 /= u;
+            d2 /= u;
+            x1 /= u;
+        } else {
+            flag = -1d;
+            d1 = 0d;
+            d2 = 0d;
+            x1 = 0d;
+        }
+    } else {
+        if(q2 < 0d) {
+            flag = -1d;
+            d1 = 0d;
+            d2 = 0d;
+            x1 = 0d;
+        } else {
+            flag = 1d;
+            h11 = p1/p2;
+            h22 = x1/y1;
+            u = 1d + h11*h22;
+            temp = d2/u;
+            d2 = d1/u;
+            d1 = temp;
+            x1 = y1*u;
+        }
+    }
+
+    if(d1 != 0d) {
+        while(d1 < rgamsq || d1 > gamsq) {
+            if(flag == 0d) {
+                h11 = 1d;
+                h22 = 1d;
+                flag = -1d;
+            } else {
+                h21 = -1d;
+                h12 = 1d;
+                flag = -1d;
+            }
+            if(d1 < rgamsq) {
+                d1 *= gam*gam;
+                x1 /= gam;
+                h11 /= gam;
+                h12 /= gam;
+            } else {
+                d1 /= gam*gam;
+                x1 *= gam;
+                h11 *= gam;
+                h12 *= gam;
+            }
+        }
+    }
+
+    if(d2 != 0d) {
+        while(abs(d2) < rgamsq || abs(d2) > gamsq) {
+            if(flag == 0d) {
+                h11 = 1d;
+                h22 = 1d;
+                flag = -1d;
+            } else {
+                h21 = -1d;
+                h12 = 1d;
+                flag = -1d;
+            }
+            if(abs(d2) < rgamsq) {
+                d2 *= gam*gam;
+                h21 /= gam;
+                h22 /= gam;
+            } else {
+                d2 /= gam*gam;
+                h21 *= gam;
+                h22 *= gam;
+            }
+        }
+    }
+  }
+
+  return (d1, d2, x1, [flag, h11, h21, h12, h22]);
+}
+external
+double, double, double, double[5] cblas_drotmg(double d1, double d2, double x1, double y1);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [1,2,3,5, 1,2,3,4]
+
+
+
+inline
+double[.], double[.] drot(int n, double[.] X, int incx, double[.] Y, int incy, double c, double s)
+{
+  //expects n > 0, incx > 0, incy > 0
+  return (
+    {i -> c*X[i] + s*Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
+    {i -> c*Y[i] - s*X[(i*incx)/incy] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]}
+  );
+}
+external
+double[.], double[.] cblas_drot(int n, double[.] X, int incx, double[.] Y, int incy, double c, double s);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [2,4, 1,2,3,4,5,6,7]
+
+
+
+inline
+double[.], double[.] drotm(int n, double[.] X, int incx, double[.] Y, int incy, double[5] param)
+{
+  //expects n > 0, -2 <= param[0] <= 1 
+  flag = param[0];
+  h11  = param[1];
+  h21  = param[2];
+  h12  = param[3];
+  h22  = param[4];
+  
+  if(n < 1 || flag == -2d) {
+    X_prime = X;
+    Y_prime = Y;
+  } else if(flag < 0d) {
+    X_prime = {i -> X[i]*h11 + Y[(i*incy)/incx]*h12 | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
+    Y_prime = {i -> X[(i*incx)/incy]*h21 + Y[i]*h22 | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
+  } else if(flag == 0d) {
+    X_prime = {i -> X[i] + Y[(i*incy)/incx]*h12 | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
+    Y_prime = {i -> X[(i*incx)/incy]*h21 + Y[i] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
+  } else {
+    X_prime = {i ->  X[i]*h11 + Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
+    Y_prime = {i -> -X[(i*incx)/incy] + Y[i]*h22 | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
+  }
+  
+  return (X_prime, Y_prime);
+}
+external
+double[.], double[.] cblas_drotm(int n, double[.] X, int incx, double[.] Y, int incy, double[5] param);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [2,4, 1,2,3,4,5,6]
+
+
+
+inline
+double[.], double[.] dswap(int n, double[.] X, int incx, double[.] Y, int incy)
+{
+  //expects n > 0, incx > 0, incy > 0
+  return (
+    {i -> Y[(i/incx)*incy] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
+    {i -> X[(i/incy)*incx] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]}
+  );
+}
+external
+double[.], double[.] cblas_dswap(int n, double[.] X, int incx, double[.] Y, int incy);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [2,4, 1,2,3,4,5]
+
+
+
+inline
+double[.] dscal(int n, double a, double[.] X, int incx)
+{
+  //expects n > 0, incx > 0
+  return {i -> a * X[i] | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
+}
+external
+double[.] cblas_dscal(int n, double a, double[.] X, int incx);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [3,1,2,3,4]
+
+
+
+inline
+double[.] dcopy(int n, double[.] X, int incx, double[.] Y, int incy)
+{
+  //expects n > 0, incx >= 0, incy > 0
+  return {i -> X[(i/incy)*incx] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
+}
+external
+double[.] cblas_dcopy(int n, double[.] X, int incx, double[.] Y, int incy);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [4, 1,2,3,4,5]
+
+
+
+inline
+double[.] daxpy(int n, double a, double[.] X, int incx, double[.] Y, int incy)
+{
+  //expects n > 0, incx >= 0, incy > 0
+  if(a == 0d) {
+    result = Y;
+  } else {
+    result = {i -> a * X[(i/incy)*incx] + Y[i] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
+  }
+  return result;
+}
+external
+double[.] cblas_daxpy(int n, double a, double[.] X, int incx, double[.] Y, int incy);
+#pragma linkobj "/home/casper/AOCL-BLIS-mt/lib/libblis-mt.a"
+#pragma linksign [5, 1,2,3,4,5,6]
+
+
+
+inline
+double ddot(int n, double[.] X, int incx, double[.] Y, int incy)
+{
+  //expects n > 0, incx >= 0, incy >= 0
+  return sum( {i -> X[i*incx] * Y[i*incy] | [0] <= i < [n]} );
+}
+external
+double cblas_ddot(int n, double[.] X, int incx, double[.] Y, int incy);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [0, 1,2,3,4,5]
+
+
+
+inline
+double dsdot(int n, float[.] X, int incx, float[.] Y, int incy)
+{
+  //expects n > 0, incx >= 0, incy >= 0
+  return sum( {i -> tod(X[i*incx]) * tod(Y[i*incy]) | [0] <= i < [n] } );
+}
+external
+double cblas_dsdot(int n, float[.] X, int incx, float[.] Y, int incy);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [0, 1,2,3,4,5]
+
+
+
+inline
+double dnrm2(int n, double[.] X, int incx)
+{
+  //expects n > 0, incx > 0
+    return sqrt(sum( {i -> X[i]*X[i] | [0] <= i < [n*incx] step [incx]} ));
+}
+external
+double cblas_dnrm2(int n, double[.] X, int incx);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [0, 1,2,3]
+
+
+
+//in the cblas implementation the complex list is a void pointer...
+inline
+double dznrm2(int n, complex[.] X, int incx)
+{
+  //expects n > 0, incx > 0
+  X_prime = {i -> X[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
+  return sqrt(sum(normSq(X_prime)));
+}
+external
+double cblas_dznrm2(int n, complex[.] X, int incx);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [0, 1,2,3]
+
+
+
+inline
+double dasum(int n, double[.] X, int incx)
+{
+  //expects n > 0, incx > 0
+  return sum( {i -> abs(X[i]) | [0] <= i < [n*incx] step [incx]} );
+}
+external
+double cblas_dasum(int n, double[.] X, int incx);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [0,1,2,3]
+
+
+
+inline
+int idamax(int n, double[.] X, int incx)
+{
+  //expects n > 0, incx > 0
+  max_i = 0;
+  max_v = 0d;
+  ix = 0;
+  for(i = 0; i < n; i++) {
+    current_v = abs(X[ix]);
+    if(current_v > max_v) {
+      max_i = i;
+      max_v = current_v;
+    }
+    ix += incx;
+  }
+
+  return max_i;
+}
+external
+int cblas_idamax(int n, double[.] X, int incx);
+#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+#pragma linksign [0,1,2,3]
+
+/*
+ * HELPER FUNCTIONS
+ */
+noinline float[.] id(float[.] v) {
+    return v;
+}
+noinline double[.] id(double[.] v) {
+    return v;
+}
+noinline complex[.] id(complex[.] c) {
+    return c;
+}
+noinline float id(float f) {
+    return f;
+}
+noinline double id(double f) {
+    return f;
+}
+noinline int id(int i) {
+    return i;
+}
+
+noinline int cap_n(int n, int incx, int incy) {
+    return incx > incy ? n/incx : n/incy;
+}
+noinline int cap_n(int n, int incx) {
+    return n/incx;
+}
+
+string routine_id_to_name(int routine) {
+    if(routine == DROTG) {
+        result = "drotg";
+    } else if(routine == DROTMG) {
+        result = "drotmg";
+    } else if(routine == DROT) {
+        result = "drot";
+    } else if(routine == DROTM) {
+        result = "drotm";
+    } else if(routine == DSWAP) {
+        result = "dswap";
+    } else if(routine == DSCAL) {
+        result = "dscal";
+    } else if(routine == DCOPY) {
+        result = "dcopy";
+    } else if(routine == DAXPY) {
+        result = "daxpy";
+    } else if(routine == DDOT) {
+        result = "ddot";
+    } else if(routine == DSDOT) {
+        result = "dsdot";
+    } else if(routine == DNRM2) {
+        result = "dnrm2";
+    } else if(routine == DZNRM2) {
+        result = "dznrm2";
+    } else if(routine == DASUM) {
+        result = "dasum";
+    } else if(routine == IDAMAX) {
+        result = "idamax";
+    } else {
+        result = "unknown";
+    }
+    return result;
+}
+
+noinline
+void log_datapoint(string destination_path, int x_axis_value, double[*] y_axis_values) {
+    err, file = fopen(destination_path, "a");
+    fprintf(file, "%i,", x_axis_value);
+    for(i = 0; i < shape(y_axis_values)[0]; i++) {
+        fprintf(file, "%f,", y_axis_values[i]);
+    }
+    fprintf(file, "\n");
+    fclose(file);
+}
+
+void print_test_status(string routine, int mistakes) {
+    if(mistakes == 0) {
+        printf("%s: PASSED all tests.\n", routine);
+    } else {
+        printf("%s: FAILED %i test(s).\n", routine, mistakes);
+    }
+}
+
+double[*] permutations(double[.] as, double[.] bs) {
+    perms = { [i,j] -> [as[i], bs[j]] };
+
+    return reshape([shape(as)[0]*shape(bs)[0], 2], perms);
+}
+float[*] permutations(float[.] as, float[.] bs) {
+    perms = { [i,j] -> [as[i], bs[j]] };
+
+    return reshape([shape(as)[0]*shape(bs)[0], 2], perms);
+}
+int[*] permutations(int[.] as, int[.] bs) {
+    perms = { [i,j] -> [as[i], bs[j]] };
+
+    return reshape([shape(as)[0]*shape(bs)[0], 2], perms);
+}
+double[*] permutations(double[.] as, double[.] bs, double[.] cs) {
+    perms = { [i,j,k] -> [as[i], bs[j], cs[k]]};
+
+    return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0], 3], perms);
+}
+double[*] permutations(double[.] as, double[.] bs, double[.] cs, double[.] ds) {
+    perms = { [i,j,k,l] -> [as[i], bs[j], cs[k], ds[l]] };
+
+    return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0], 4], perms);
+}
+double[*] permutations(double[.] as, double[.] bs, double[.] cs, double[.] ds, double[.] es) {
+    perms = { [i,j,k,l,m] -> [as[i], bs[j], cs[k], ds[l], es[m]] };
+
+    return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0]*shape(es)[0], 5], perms);
+}
+
+
+
+/*
+ * MEASURE FUNCTIONS
+ */
+inline
+double measure_drotg(int version) {
+    interval = getInterval("interval", 7, 1);
+    a = id(7d);
+    b = id(4d);
+    
+    if(version == NATIVE) {
+        start(interval);
+        r, z, c, s = drotg(a, b);
+        end(interval);
+    } else {
+        start(interval);
+        r, z, c, s = cblas_drotg(a, b);
+        end(interval);
+    }
+
+    printf("r: %f\nz: %f\nc: %f\ns: %f\n", id(r), id(z), id(c), id(s));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_drotmg(int version) {
+    interval = getInterval("interval", 7, 1);
+    d1 = id(3d);
+    d2 = id(5d);
+    x1 = id(7d);
+    y1 = id(11d);
+    
+    if(version == NATIVE) {
+        start(interval);
+        d1, d2, x1, param = drotmg(d1, d2, x1, y1);
+        end(interval);
+    } else {
+        start(interval);
+        d1, d2, x1, param = cblas_drotmg(d1, d2, x1, y1);
+        end(interval);
+    }
+
+    printf("d1: %f\nd2: %f\nx1: %f\n", id(d1), id(d2), id(x1));
+    printf("param: ");
+    show(take([5], id(param)));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_drot(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7d));
+    Y = id(genarray([n], 4d));
+    c = id(5d);
+    s = id(11d);
+
+    m = cap_n(n, INCX, INCY);
+    
+    if(version == NATIVE) {
+        start(interval);
+        X, Y = drot(n, X, INCX, Y, INCY, c, s);
+        end(interval);
+    } else {
+        start(interval);
+        X, Y = cblas_drot(n, X, INCX, Y, INCY, c, s);
+        end(interval);
+    }
+
+    printf("X: ");
+    show(take([10], id(X)));
+    printf("Y: ");
+    show(take([10], id(Y)));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_drotm(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7d));
+    Y = id(genarray([n], 4d));
+    param = id([-1d, 2d, 3d, 4d, 5d]);
+
+    m = cap_n(n, INCX, INCY);
+    
+    if(version == NATIVE) {
+        start(interval);
+        X, Y = drotm(m, X, INCX, Y, INCY, param);
+        end(interval);
+    } else {
+        start(interval);
+        X, Y = cblas_drotm(m, X, INCX, Y, INCY, param);
+        end(interval);
+    }
+
+    printf("X: ");
+    show(take([10], id(X)));
+    printf("Y: ");
+    show(take([10], id(Y)));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_dswap(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7d));
+    Y = id(genarray([n], 4d));
+
+    m = cap_n(n, INCX, INCY);
+    
+    if(version == NATIVE) {
+        start(interval);
+        X, Y = dswap(m, X, INCX, Y, INCY);
+        end(interval);
+    } else {
+        start(interval);
+        X, Y = cblas_dswap(m, X, INCX, Y, INCY);
+        end(interval);
+    }
+
+    printf("X: ");
+    show(take([10], id(X)));
+    printf("Y: ");
+    show(take([10], id(Y)));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_dscal(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7d));
+    a = id(5d);
+
+    m = cap_n(n, INCX);
+    
+    if(version == NATIVE) {
+        start(interval);
+        X = dscal(m, a, X, INCX);
+        end(interval);
+    } else {
+        start(interval);
+        X = cblas_dscal(m, a, X, INCX);
+        end(interval);
+    }
+
+    printf("X: ");
+    show(take([10], id(X)));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_dcopy(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7d));
+    Y = id(genarray([n], 4d));
+
+    m = cap_n(n, INCX, INCY);
+    
+    if(version == NATIVE) {
+        start(interval);
+        Y = dcopy(m, X, INCX, Y, INCY);
+        end(interval);
+    } else {
+        start(interval);
+        Y = cblas_dcopy(m, X, INCX, Y, INCY);
+        end(interval);
+    }
+
+    printf("Y: ");
+    show(take([10], id(Y)));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_daxpy(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7d));
+    Y = id(genarray([n], 4d));
+    a = id(5d);
+
+    m = cap_n(n, INCX, INCY);
+
+    if(version == NATIVE) {
+        start(interval);
+        Y = daxpy(m, a, X, INCX, Y, INCY);
+        end(interval);
+    } else {
+        start(interval);
+        Y = cblas_daxpy(m, a, X, INCX, Y, INCY);
+        end(interval);
+    }
+
+    printf("Y: ");
+    show(take([10], id(Y)));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_ddot(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7d));
+    Y = id(genarray([n], 4d));
+
+    m = cap_n(n, INCX, INCY);
+    
+    if(version == NATIVE) {
+        start(interval);
+        result = ddot(m, X, INCX, Y, INCY);
+        end(interval);
+    } else {
+        start(interval);
+        result = cblas_ddot(m, X, INCX, Y, INCY);
+        end(interval);
+    }
+
+    printf("result: %f\n", id(result));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_dsdot(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7f));
+    Y = id(genarray([n], 4f));
+
+    m = cap_n(n, INCX, INCY);
+    
+    if(version == NATIVE) {
+        start(interval);
+        result = dsdot(m, X, INCX, Y, INCY);
+        end(interval);
+    } else {
+        start(interval);
+        result = cblas_dsdot(m, X, INCX, Y, INCY);
+        end(interval);
+    }
+
+    printf("result: %f\n", id(result));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_dnrm2(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7d));
+
+    m = cap_n(n, INCX);
+
+    if(version == NATIVE) {
+        start(interval);
+        result = dnrm2(m, X, INCX);
+        end(interval);
+    } else {
+        start(interval);
+        result = cblas_dnrm2(m, X, INCX);
+        end(interval);
+    }
+
+    printf("result: %f\n", id(result));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_dznrm2(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], toc(7d, 4d)));
+    
+    m = cap_n(n, INCX);
+    
+    if(version == NATIVE) {
+        start(interval);
+        result = dznrm2(m, X, INCX);
+        end(interval);
+    } else {
+        start(interval);
+        result = cblas_dznrm2(m, X, INCX);
+        end(interval);
+    }
+
+    printf("result: %f\n", id(result));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_dasum(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7d));
+    
+    m = cap_n(n, INCX);
+
+    if(version == NATIVE) {
+        start(interval);
+        result = dasum(m, X, INCX);
+        end(interval);
+    } else {
+        start(interval);
+        result = cblas_dasum(m, X, INCX);
+        end(interval);
+    }
+
+    printf("result: %f\n", id(result));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+inline
+double measure_idamax(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    X = id(genarray([n], 7d));
+
+    m = cap_n(n, INCX);
+    
+    if(version == NATIVE) {
+        start(interval);
+        result = idamax(m, X, INCX);
+        end(interval);
+    } else {
+        start(interval);
+        result = cblas_idamax(m, X, INCX);
+        end(interval);
+    }
+
+    printf("result: %i\n", id(result));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
+double[*] run(int routine, int version, int n, int sample_rate) {
+    m = cap_n(n, INCX, INCY);
+    times = genarray([sample_rate], 0.0);
+    
+    for(i = 0; i < sample_rate; i++) {
+        //X = id(genarray([n], tod(i)+7d));
+        //Y = id(genarray([n], tod(i)+4d));
+        //param = id([-1d, 2d, 3d, 4d, 5d]);
+        //a = id(2d);
+        //b = id(3d);
+        //c = id(4d);
+        //d = id(5d);
+
+        if(routine == DROTG) {
+            time = measure_drotg(version);
+        } else if(routine == DROTMG) {
+            time = measure_drotmg(version);
+        } else if(routine == DROT) {
+            time = measure_drot(version, n);
+        } else if(routine == DROTM) {
+            time = measure_drotm(version, n);
+        } else if(routine == DSWAP) {
+            time = measure_dswap(version, n);
+        } else if(routine == DSCAL) {
+            time = measure_dscal(version, n);
+        } else if(routine == DCOPY) {
+            time = measure_dcopy(version, n);
+        } else if(routine == DAXPY) {
+            time = measure_daxpy(version, n);
+        } else if(routine == DDOT) {
+            time = measure_ddot(version, n);
+        } else if(routine == DSDOT) {
+            time = measure_dsdot(version, n);
+        } else if(routine == DNRM2) {
+            time = measure_dnrm2(version, n);
+        } else if(routine == DZNRM2) {
+            time = measure_dznrm2(version, n);
+        } else if(routine == DASUM) {
+            time = measure_dasum(version, n);
+        } else if(routine == IDAMAX) {
+            time = measure_idamax(version, n);
+        } else {
+            time = 0.0;
+        }
+        
+        times[i] = time;
+    }
+
+    return times;
+}
+
+void measure_input_size(int mode, int routine) {
+    output_path = "../../graphs/data/" + routine_id_to_name(routine) + ".out";
+    
+    if(mode == ST) {
+        //clear the output file now, since the log_data function only appends new data
+        err, file = fopen(output_path, "w");
+        //write some additional info at the top of the file
+        fprintf(file, "%i,%i\n", INCX, INCY);
+        fclose(file);
+
+        err, file = fopen(output_path, "a");
+        fprintf(file, "%s\n", "nat_st");
+        fclose(file);
+        for(n = 10; n <= N; n = toi(tod(n) * 1.1d)) {
+            printf("\nn = %i\n", n);
+            m = cap_n(n, INCX, INCY);
+            
+            printf("-Native-\n");
+            times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
+            log_datapoint(output_path, n, times_nat);
+        }
+
+        err, file = fopen(output_path, "a");
+        fprintf(file, "%s\n", "lib");
+        fclose(file);
+        for(n = 10; n <= N; n = toi(tod(n) * 1.1d)) {
+            printf("\nn = %i\n", n);
+            m = cap_n(n, INCX, INCY);
+            
+            printf("-Library-\n");
+            times_lib = run(routine, LIBRARY, n, SAMPLE_RATE);
+            log_datapoint(output_path, n, times_lib);
+        }
+    } else {
+        err, file = fopen(output_path, "a");
+        fprintf(file, "%s\n", "nat_mt");
+        fclose(file);
+        for(n = 10; n <= N; n = toi(tod(n) * 1.1d)) {
+            printf("\nn = %i\n", n);
+            m = cap_n(n, INCX, INCY);
+            
+            printf("-Native (multi-threaded)-\n");
+            times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
+            log_datapoint(output_path, n, times_nat);
+        }
+    }
+}
+
+void measure_thread_count(int thread_count, int routine) {
+    output_path = "../../graphs/data/" + routine_id_to_name(routine) + ".out";
+
+    //define n as smaller than N, because we want everything to stay within L3 cache for this measurement.
+    n = 1000000;
+
+    if(thread_count == 1) {
+        //clear the output file now, since the log_data function only appends new data
+        err, file = fopen(output_path, "w");
+        //write some additional info at the top of the file
+        fprintf(file, "%i,%i,%i\n", n, INCX, INCY);
+        fclose(file);
+
+        times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
+        log_datapoint(output_path, thread_count, times_nat);
+    }
+
+    times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
+    log_datapoint(output_path, thread_count, times_nat);
+}
+
+
+
+/*
+ * TEST FUNCTIONS
+ */
+void test_drotg(double[.] as, double[.] bs) {
+    mistakes = 0;
+    perms = permutations(as, bs);
+    for(i = 0; i < shape(perms)[0]; i++) {
+        params = perms[i];
+        a = params[0]; b = params[1];
+
+        native = genarray([4], 0d);
+        library = genarray([4], 0d);
+        native1, native2, native3, native4 = drotg(a, b);
+        library1, library2, library3, library4 = cblas_drotg(a, b);
+        native[0] = native1; native[1] = native2; native[2] = native3; native[3] = native4;
+        library[0] = library1; library[1] = library2; library[2] = library3; library[3] = library4;
+
+        if(any(abs(native - library) > MAX_ACC_LOSS)) {
+            printf("For a = %f, b = %f\n", a, b);
+            printf("Native: ");
+            show(native);
+            printf("Library:");
+            show(library);
+            mistakes++;
+        }
+    }
+    print_test_status("drotg", mistakes);
+}
+
+void test_drotmg(double[.] d1s, double[.] d2s, double[.] x1s, double[.] y1s) {
+    mistakes = 0;
+    perms = permutations(d1s, d2s, x1s, y1s);
+    for(i = 0; i < shape(perms)[0]; i++) {
+        params = perms[i];
+        d1 = params[0]; d2 = params[1];
+        x1 = params[2]; y1 = params[3];
+
+        native = genarray([8], 0d);
+        library = genarray([8], 0d);
+        native1, native2, native3, native4 = drotmg(d1, d2, x1, y1);
+        library1, library2, library3, library4 = cblas_drotmg(d1, d2, x1, y1);
+        native[0] = native1; native[1] = native2; native[2] = native3; native[3] = native4[0];
+        native[4] = native4[1]; native[5] = native4[2]; native[6] = native4[3]; native[7] = native4[4];
+        library[0] = library1; library[1] = library2; library[2] = library3; library[3] = library4[0];
+        library[4] = library4[1]; library[5] = library4[2]; library[6] = library4[3]; library[7] = library4[4];
+
+        if(any(abs(native - library) > MAX_ACC_LOSS)) {
+            printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
+            printf("Native: ");
+            show(native);
+            printf("Library:");
+            show(library);
+            mistakes++;
+        }
+    }
+    print_test_status("drotmg", mistakes);
+}
+
+void test_drot(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys, double[.] cs, double[.] ss) {
+    mistakes = 0;
+    perms_v = permutations(xs, ys);
+    perms_i = permutations(incxs, incys);
+    perms_d = permutations(cs, ss);
+    for(i = 0; i < shape(perms_v)[0]; i++) {
+        params = perms_v[i];
+        X = genarray([n], params[0]);
+        Y = genarray([n], params[1]);
+        for(j = 0; j < shape(perms_i)[0]; j++) {
+            params = perms_i[j];
+            incx = params[0]; incy = params[1];
+            for(k = 0; k < shape(perms_d)[0]; k++) {
+                params = perms_d[k];
+                c = params[0]; s = params[0];
+
+                m = cap_n(n, incx, incy);
+
+                native_X, native_Y = drot(m, X, incx, Y, incy, c, s);
+                library_X, library_Y = cblas_drot(m, X, incx, Y, incy, c, s);
+                if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
+                    printf("For x = %f, incx = %i, y = %f, incy = %i, c = %f, s = %f\n", X[0], incx, Y[0], incy, c, s);
+                    printf("Native: ");
+                    show(take([10], native_X));
+                    show(take([10], native_Y));
+                    printf("Library:");
+                    show(take([10], library_X));
+                    show(take([10], library_Y));
+                    mistakes++;
+                }
+            }
+        }
+    }
+    print_test_status("drot", mistakes);
+}
+
+void test_drotm(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys, double[.] flags, double[.] h_params) {
+    mistakes = 0;
+    perms_v = permutations(xs, ys);
+    perms_i = permutations(incxs, incys);
+    perms_p = permutations(flags, h_params, h_params, h_params, h_params);
+    for(i = 0; i < shape(perms_v)[0]; i++) {
+        params = perms_v[i];
+        X = genarray([n], params[0]);
+        Y = genarray([n], params[1]);
+        for(j = 0; j < shape(perms_i)[0]; j++) {
+            params = perms_i[j];
+            incx = params[0]; incy = params[1];
+            for(k = 0; k < shape(perms_p)[0]; k++) {
+                params = perms_p[k];
+
+                m = cap_n(n, incx, incy);
+
+                native_X, native_Y = drotm(m, X, incx, Y, incy, params);
+                library_X, library_Y = cblas_drotm(m, X, incx, Y, incy, params);
+                if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
+                    printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
+                    printf("    param = "); show(params);
+                    printf("Native: ");
+                    show(take([10], native_X));
+                    show(take([10], native_Y));
+                    printf("Library:");
+                    show(take([10], library_X));
+                    show(take([10], library_Y));
+                    mistakes++;
+                }
+            }
+        }
+    }
+    print_test_status("drotm", mistakes);
+}
+
+void test_dswap(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
+    mistakes = 0;
+    perms_v = permutations(xs, ys);
+    perms_i = permutations(incxs, incys);
+    for(i = 0; i < shape(perms_v)[0]; i++) {
+        params = perms_v[i];
+        X = genarray([n], params[0]);
+        Y = genarray([n], params[1]);
+        for(j = 0; j < shape(perms_i)[0]; j++) {
+            params = perms_i[j];
+            incx = params[0]; incy = params[1];
+
+            m = cap_n(n, incx, incy);
+
+            native_X, native_Y = dswap(m, X, incx, Y, incy);
+            library_X, library_Y = cblas_dswap(m, X, incx, Y, incy);
+            if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
+                printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
+                printf("Native: ");
+                show(take([10], native_X));
+                show(take([10], native_Y));
+                printf("Library:");
+                show(take([10], library_X));
+                show(take([10], library_Y));
+                mistakes++;
+            }
+        }
+    }
+    print_test_status("dswap", mistakes);
+}
+
+void test_dscal(int n, double[.] as, double[.] xs, int[.] incxs) {
+    mistakes = 0;
+    for(i = 0; i < shape(xs)[0]; i++) {
+        X = genarray([n], xs[0]);
+        for(j = 0; j < shape(as)[0]; j++) {
+            a = as[j];
+            for(k = 0; k < shape(incxs)[0]; k++) {
+                incx = incxs[k];
+
+                m = cap_n(n, incx); // This should n should probably be len(X)
+
+                native = dscal(m, a, X, incx);
+                library = cblas_dscal(m, a, X, incx);`
+                if(any(abs(native - library) > MAX_ACC_LOSS)) { // Should not be a relative error margin https://floating-point-gui.de/errors/comparison/
+                    printf("For a = %f, x = %f, incx = %i\n", a, X[0], incx);
+                    printf("Native:\n");
+                    show(take([10], native));
+                    printf("Library:\n");
+                    show(take([10], library));
+                    mistakes++;
+                }
+            }
+        }
+    }
+    print_test_status("dscal", mistakes);
+}
+
+void test_dcopy(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
+    mistakes = 0;
+    perms_v = permutations(xs, ys);
+    perms_i = permutations(incxs, incys);
+    for(i = 0; i < shape(perms_v)[0]; i++) {
+        params = perms_v[i];
+        X = genarray([n], params[0]);
+        Y = genarray([n], params[1]);
+        for(j = 0; j < shape(perms_i)[0]; j++) {
+            params = perms_i[j];
+            incx = params[0]; incy = params[1];
+
+            m = cap_n(n, incx, incy);
+
+            native = dcopy(m, X, incx, Y, incy);
+            library = cblas_dcopy(m, X, incx, Y, incy);
+            if(any(abs(native - library) > MAX_ACC_LOSS)) {
+                printf("For x = %f, incx = %i, incy = %i\n", X[0], incx, incy);
+                printf("Native:\n");
+                show(take([10], native));
+                printf("Library:\n");
+                show(take([10], library));
+                mistakes++;
+            }
+        }
+    }
+    print_test_status("dcopy", mistakes);
+}
+
+void test_daxpy(int n, double[.] as, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
+    mistakes = 0;
+    mistakes = 0;
+    perms_v = permutations(xs, ys);
+    perms_i = permutations(incxs, incys);
+    for(i = 0; i < shape(perms_v)[0]; i++) {
+        params = perms_v[i];
+        X = genarray([n], params[0]);
+        Y = genarray([n], params[1]);
+        for(j = 0; j < shape(as)[0]; j++) {
+            a = as[j];
+            for(k = 0; k < shape(perms_i)[0]; k++) {
+                params = perms_i[k];
+                incx = params[0]; incy = params[1];
+
+                m = cap_n(n, incx, incy);
+
+                native = daxpy(m, a, X, incx, Y, incy);
+                library = cblas_daxpy(m, a, X, incx, Y, incy);
+                if(any(abs(native - library) > MAX_ACC_LOSS)) {
+                    printf("For a = %f, x = %f, incx = %i, y = %f, incy = %i\n", a, X[0], incx, Y[0], incy);
+                    printf("Native:\n");
+                    show(take([10], native));
+                    printf("Library:\n");
+                    show(take([10], library));
+                    mistakes++;
+                }
+            }
+        }
+    }
+    print_test_status("daxpy", mistakes);
+}
+
+void test_ddot(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
+    mistakes = 0;
+    perms_v = permutations(xs, ys);
+    perms_i = permutations(incxs, incys);
+    for(i = 0; i < shape(perms_v)[0]; i++) {
+        params = perms_v[i];
+        X = genarray([n], params[0]);
+        Y = genarray([n], params[1]);
+        for(j = 0; j < shape(perms_i)[0]; j++) {
+            params = perms_i[j];
+            incx = params[0]; incy = params[1];
+
+            m = cap_n(n, incx, incy);
+
+            native = ddot(m, X, incx, Y, incy);
+            library = cblas_ddot(m, X, incx, Y, incy);
+            if(abs(native - library) > MAX_ACC_LOSS) {
+                printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
+                printf("Native:  %f\n", native);
+                printf("Library: %f\n", library);
+                mistakes++;
+            }
+        }
+    }
+    print_test_status("ddot", mistakes);
+}
+
+void test_dsdot(int n, float[.] xs, int[.] incxs, float[.] ys, int[.] incys) {
+    mistakes = 0;
+    perms_v = permutations(xs, ys);
+    perms_i = permutations(incxs, incys);
+    for(i = 0; i < shape(perms_v)[0]; i++) {
+        params = perms_v[i];
+        X = genarray([n], params[0]);
+        Y = genarray([n], params[1]);
+        for(j = 0; j < shape(perms_i)[0]; j++) {
+            params = perms_i[j];
+            incx = params[0]; incy = params[1];
+
+            m = cap_n(n, incx, incy);
+
+            native = dsdot(m, X, incx, Y, incy);
+            library = cblas_dsdot(m, X, incx, Y, incy);
+            if(abs(native - library) > MAX_ACC_LOSS) {
+                printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
+                printf("Native:  %f\n", native);
+                printf("Library: %f\n", library);
+                mistakes++;
+            }
+        }
+    }
+    print_test_status("dsdot", mistakes);
+}
+
+void test_dnrm2(int n, double[.] xs, int[.] incxs) {
+    mistakes = 0;
+    for(i = 0; i < shape(xs)[0]; i++) {
+        X = genarray([n], xs[i]);
+        for(j = 0; j < shape(incxs)[0]; j++) {
+            incx = incxs[j];
+
+            m = cap_n(n, incx);
+
+            native = dnrm2(m, X, incx);
+            library = cblas_dnrm2(m, X, incx);
+            if(abs(native - library) > MAX_ACC_LOSS) {
+                printf("For x = %f, incx = %i\n", X[0], incx);
+                printf("Native:  %f\n", native);
+                printf("Library: %f\n", library);
+                mistakes++;
+            }
+        }
+    }
+    print_test_status("dnrm2", mistakes);
+}
+
+void test_dznrm2(int n, complex[.] xs, int[.] incxs) {
+    mistakes = 0;
+    for(i = 0; i < shape(xs)[0]; i++) {
+        X = genarray([n], xs[i]);
+        for(j = 0; j < shape(incxs)[0]; j++) {
+            incx = incxs[j];
+
+            m = cap_n(n, incx);
+
+            native = dznrm2(m, X, incx);
+            library = cblas_dznrm2(m, X, incx);
+            if(abs(native - library) > MAX_ACC_LOSS) {
+                printf("For x = %f, incx = %i\n", X[0], incx);
+                printf("Native:  %f\n", native);
+                printf("Library: %f\n", library);
+                mistakes++;
+            }
+        }
+    }
+    print_test_status("dznrm2", mistakes);
+}
+
+void test_dasum(int n, double[.] xs, int[.] incxs) {
+    mistakes = 0;
+    for(i = 0; i < shape(xs)[0]; i++) {
+        X = genarray([n], xs[i]);
+        for(j = 0; j < shape(incxs)[0]; j++) {
+            incx = incxs[j];
+
+            m = cap_n(n, incx);
+
+            native = dasum(m, X, incx);
+            library = cblas_dasum(m, X, incx);
+            if(abs(native - library) > MAX_ACC_LOSS) {
+                printf("For x = %f, incx = %i\n", X[0], incx);
+                printf("Native:  %f\n", native);
+                printf("Library: %f\n", library);
+                mistakes++;
+            }
+        }
+    }
+    print_test_status("dasum", mistakes);
+}
+
+void test_idamax(int n, double[.] xs, int[.] incxs) {
+    mistakes = 0;
+    for(i = 0; i < shape(xs)[0]; i++) {
+        X = genarray([n], xs[i]);
+        for(j = 0; j < shape(incxs)[0]; j++) {
+            incx = incxs[j];
+
+            m = cap_n(n, incx);
+
+            native = idamax(m, X, incx);
+            library = cblas_idamax(m, X, incx);
+            if(native != library) {
+                printf("For x = %f, incx = %i\n", X[0], incx);
+                printf("Native:  %f\n", native);
+                printf("Library: %f\n", library);
+                mistakes++;
+            }
+        }
+    }
+    print_test_status("idamax", mistakes);
+}
+
+
+void test() {
+    n = 1000;
+    ds = [0.0, 7.0, 3.2, -4.6, -10.0, 0.00000000003, -0.00000000004, 700000.0, -4375.3];
+    fs = tof(ds);
+    //cs = {i -> toc(ds[i], ds[i])};
+    cs = [toc(7.4, 7.4)];
+    incs = [1,2,3];
+    flags = [-1d, 0d, 1d, 2d];
+
+    test_drotg(ds, ds);
+    //drotmg lib version doesn't work
+    //test_drotmg(ds, ds, ds, ds);
+    test_drot(n, ds, incs, ds, incs, ds, ds);
+    test_drotm(n, ds, incs, ds, incs, flags, ds);
+    test_dswap(n, ds, incs, ds, incs);
+    test_dscal(n, ds, ds, incs);
+    test_dcopy(n, ds, incs, ds, incs);
+    test_daxpy(n, ds, ds, incs, ds, incs);
+    test_ddot(n, ds, incs, ds, incs);
+    test_dsdot(n, fs, incs, fs, incs);
+    test_dnrm2(n, ds, incs);
+    test_dznrm2(n, cs, incs);
+    test_dasum(n, ds, incs);
+    test_idamax(n, ds, incs);
+}
+
+/*
+ * MAIN
+ */
+int main() {
+    #ifndef ROUTINE
+        printf("To generate measurements for a given routine:\n");
+        printf("$ sac2c testing_tool.sac -D ROUTINE=<routine name (CAPS)> && ./a.out > /dev/null 2>&1\n");
+        printf("\nTo test correctness of all routines:\n");
+        printf("$ sac2c testing_tool.sac -D ROUTINE=TEST && ./a.out\n");
+    #endif
+
+    #ifdef ROUTINE
+    if(ROUTINE == TEST) {
+        test();
+    } else if(TYPE == THREAD_COUNT) {
+        measure_thread_count(THREADS, ROUTINE);
+    } else {
+        measure_input_size(MODE, ROUTINE);
+    }
+    #endif
+    return 0;
+}

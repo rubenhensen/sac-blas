@@ -11,15 +11,15 @@
 - [-] cblas_?hpr
 - [-] cblas_?hpr2
 - [-] cblas_?sbmv
-- [ ] cblas_?spmv
+- [-] cblas_?spmv
 - [ ] cblas_?spr
 - [ ] cblas_?spr2
-- [ ] cblas_?symv
+- [x] cblas_?symv
 - [ ] cblas_?syr
 - [ ] cblas_?syr2
-- [ ] cblas_?tbmv
-- [ ] cblas_?tbsv
-- [ ] cblas_?tpmv
+- [-] cblas_?tbmv
+- [-] cblas_?tbsv
+- [-] cblas_?tpmv
 - [ ] cblas_?tpsv
-- [ ] cblas_?trmv
-- [ ] cblas_?trsv 
+- [x] cblas_?trmv
+- [x] cblas_?trsv 

@@ -241,3 +241,9 @@ external float[yn] sspmv(char uplo, int n, float alpha, float[am,an] ap, float[x
     #pragma linkobj "src/sspmv.o"
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
+
+external float[yn] sspr(char uplo, int n, float alpha, float[*] x, int incx, float[*] ap);
+    #pragma linkname "SACsspr"
+    #pragma linkobj "src/sspr.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [6,1,2,3,4,5,6]

@@ -1,6 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
+        "*.embeddedhtml": "html",
         "*.sac": "cpp",
         "random": "cpp",
         "numeric": "cpp",
@@ -38,6 +39,7 @@
         "semaphore": "cpp",
         "__tuple": "cpp",
         "__string": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "thread": "cpp"
     }
 }

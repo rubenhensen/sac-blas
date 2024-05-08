@@ -1,23 +1,45 @@
 use StdIO: all;
 use Array: all;
 // use BlasLevel1: all;
-use BlasLevel2: all;
+// use BlasLevel2: all;
 use Helper: all;
 
 int main() {
+    // compare('u', n, alpha, ap, x, incx, beta, y, incy);
+    // upper = tof([[1,2,3],[0,1,2],[0,0,1]]);
+    // print(upper);
+    // upper = trttps('u', upper);
+    // print(upper);
+    // upper = trttrs('u', upper, 3);
+    // print(upper);
+
+    // lower = tof([[1,0,0],[2,1,0],[3,2,1]]);
+    // print(lower);
+    // lower = trttps('l', lower);
+    // print(lower);
+    // lower = trttrs('l', lower, 3);
+    // print(lower);
+
+    upper = tof([[1,2,3],[0,1,2],[0,0,1]]);
+    print(upper);
+    upper = trttps('u', upper);
+    print(upper);
+
+    compare('u', 3, 1.0f, upper, tof(iota(3)), 1, 1.0f, tof(iota(3)), 1);
+
 
     return 0;
 }
 
-void compare(char uplo, int n, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy)
+void compare(char uplo, int n, float alpha, float[am,an] ap, float[xn] x, int incx, float beta, float[yn] y, int incy)
 {
-    y1 = OpenBlas::ssymv(uplo, n, alpha, a, lda, x, incx, beta, y, incy);
-    y2 = ssymv(uplo, n, alpha, a, lda, x, incx, beta, y, incy);
+    y1 = OpenBlas::sspmv(uplo, n, alpha, ap, x, incx, beta, y, incy);
+    y2 = sspmv(uplo, n, alpha, ap, x, incx, beta, y, incy);
     
     if(!(almost_eq(y1,y2)))
     {
-        printf("Error in ssymv. uplo:%d, n:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d\n", uplo, n, alpha, lda, incx, beta, incy); 
-        print(a);
+        printf("Error in sspmv. uplo:%d, n:%d, alpha:%f, incx:%d, beta:%f, incy:%d\n", uplo, n, alpha, incx, beta, incy); 
+        print(ap);
         print(x);
         print(y);
         print(y1);
@@ -26,8 +48,9 @@ void compare(char uplo, int n, float alpha, float[*] a, int lda, float[*] x, int
     }
 }
 
-float[leny] sspmv(char uplo, int n, float alpha, float[d:shp] a, int lda, float[lenx] x, int incx, float beta, float[leny] y, int incy) | ismember(uplo, ['u', 'U', 'l', 'L'])
+float[yn] sspmv(char uplo, int n, float alpha, float[am,an] ap, float[xn] x, int incx, float beta, float[yn] y, int incy)
 {
+    a = trttrs('u', ap, n);
     betaY =   BlasLevel1::sscal(n, beta, y, incy);
     alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
     if (uplo == 'u' || uplo == 'U') {
@@ -37,5 +60,78 @@ float[leny] sspmv(char uplo, int n, float alpha, float[d:shp] a, int lda, float[
     }
     res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 
-   return res;
+   return y;
+}
+
+
+// trttp: triangular matrix, full (tr) to packed (tp)
+float[m] trttps(char uplo, float[n,n] a)
+{
+    len = (n*(n+1)/2);
+    arr = genarray([len], 0.0f);
+    return trttp(uplo, n, a, n, arr, 0);
+}   
+
+// trttp: triangular matrix, full (tr) to packed (tp)
+float[m] trttp(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (j=0; j<n; j++)
+        {
+            for (i=j; i<n; i++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k+1;
+            }
+        }
+    } else {
+        for (j=0; j<n; j++)
+        {
+            for (i=0; i<=j; i++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k+1;
+            }
+        }
+    }
+
+    return ap;
+}   
+
+// triangular matrix, packed (tp) to full (tr)
+float[n,n] trttrs(char uplo, float[m] ap, int n)
+{
+    arr = genarray([n,n], 0.0f);
+    return tpttr(uplo, n, ap, n, arr, 0);
+}   
+
+// triangular matrix, packed (tp) to full (tr)
+float[n,n] tpttr(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (j=0; j<n; j++)
+        {
+            for (i=j; i<n; i++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k+1;
+            }
+        }
+    } else {
+        for (j=0; j<n; j++)
+        {
+            for (i=0; i<=j; i++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k+1;
+            }
+        }
+    }
+
+
+    return a;
 }

@@ -1,0 +1,65 @@
+int main() {
+    a = [[1.0f,2.0f,3.0f],[2.0f,1.0f,2.0f],[3.0f,2.0f,1.0f]];
+    b = foo( a, [0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f]);
+    return _toi_S_(b[[0]]);
+}
+
+float[m] foo(float[n,n] a, float[m] ap)
+{
+    k = 0;
+    for (j=0; _lt_SxS_(j,n); j = _add_SxS_(j,1))
+    {
+        for (i=j; _lt_SxS_(i,n); i = _add_SxS_(i,1))
+        {
+            ap = _modarray_AxVxS_(ap, [k],a[[i,j]]);
+            k = _add_SxS_(k,1);
+        }  
+    }
+
+    return ap;
+}   
+
+float[*] sel( int[.] idx, float[*] array)                                    
+{                                                                        
+  new_shape = _drop_SxV_( _sel_VxA_( [0], _shape_A_(idx)),               
+                          _shape_A_(array));                             
+  res = with {                                                           
+          ( . <= iv <= . ) {                                             
+            new_idx = _cat_VxV_( idx, iv);                               
+          } : _sel_VxA_(new_idx, array);                                 
+        } : genarray( new_shape, 0.0f);                                  
+  return( res);                                                          
+}
+
+// int main() {
+//     a = [[1.0f,2.0f,3.0f],[2.0f,1.0f,2.0f],[3.0f,2.0f,1.0f]];
+//     b = foo( 3, a, [0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f]);
+//     return _toi_S_(b[[0]]);
+// }
+
+// float[m] foo(int n, float[n,n] a, float[m] ap)
+// {
+//     k = 0;
+//     for (j=0; _lt_SxS_(j,n); j = _add_SxS_(j,1))
+//     {
+//         for (i=j; _lt_SxS_(i,n); i = _add_SxS_(i,1))
+//         {
+//             ap = _modarray_AxVxS_(ap, [k],a[[i,j]]);
+//             k = _add_SxS_(k,1);
+//         }  
+//     }
+
+//     return ap;
+// }   
+
+// float[*] sel( int[.] idx, float[*] array)                                    
+// {                                                                        
+//   new_shape = _drop_SxV_( _sel_VxA_( [0], _shape_A_(idx)),               
+//                           _shape_A_(array));                             
+//   res = with {                                                           
+//           ( . <= iv <= . ) {                                             
+//             new_idx = _cat_VxV_( idx, iv);                               
+//           } : _sel_VxA_(new_idx, array);                                 
+//         } : genarray( new_shape, 0.0f);                                  
+//   return( res);                                                          
+// }

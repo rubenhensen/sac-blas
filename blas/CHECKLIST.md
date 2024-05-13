@@ -23,3 +23,5 @@
 - [ ] cblas_?tpsv
 - [x] cblas_?trmv
 - [x] cblas_?trsv 
+
+IMPLEMENT MISSING FUNCS

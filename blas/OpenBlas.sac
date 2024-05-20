@@ -236,14 +236,20 @@ external float[xn] strsv(char uplo, char trans, char diag, int n, float[am,an] a
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [7,1,2,3,4,5,6,7,8]
     
-external float[yn] sspmv(char uplo, int n, float alpha, float[am,an] ap, float[xn] x, int incx, float beta, float[yn] y, int incy);
+external float[yn] sspmv(char uplo, int n, float alpha, float[.] ap, float[xn] x, int incx, float beta, float[yn] y, int incy);
     #pragma linkname "SACsspmv"
     #pragma linkobj "src/sspmv.o"
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
-external float[yn] sspr(char uplo, int n, float alpha, float[*] x, int incx, float[*] ap);
+external float[*] sspr(char uplo, int n, float alpha, float[*] x, int incx, float[*] ap);
     #pragma linkname "SACsspr"
     #pragma linkobj "src/sspr.o"
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [6,1,2,3,4,5,6]
+
+external float[apn] sspr2(char uplo, int n, float alpha, float[*] x, int incx, float[*] y, int incy, float[apn] ap);
+    #pragma linkname "SACsspr2"
+    #pragma linkobj "src/sspr2.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [8,1,2,3,4,5,6,7,8]

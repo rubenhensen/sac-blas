@@ -1,10 +1,10 @@
 
-int main() {
+string main() {
   a = [[1,0,0,0],[2,3,0,0],[4,5,6,0],[0,7,8,9]];
   // StdIO::print(a); 
   a = foo(a,2);
   StdIO::print(a);
-  return 0; 
+  return "abc"; 
 }
 
 int[*]  foo(int[m,m] a, int k)

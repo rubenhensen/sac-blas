@@ -21,24 +21,22 @@ int main() {
     // print(lower);
 
     upper = tof([[1,2,3],[0,1,2],[0,0,1]]);
-    print(upper);
     upper = trttps('u', upper);
-    print(upper);
 
-    compare('u', 3, 1.0f, upper, tof(iota(3)), 1, 1.0f, tof(iota(3)), 1);
+    compare('u', 3, 1.0f, upper, tof(iota(3)), 1, 1.0f, tof(iota(3)+1), 1);
 
 
     return 0;
 }
 
-void compare(char uplo, int n, float alpha, float[am,an] ap, float[xn] x, int incx, float beta, float[yn] y, int incy)
+void compare(char uplo, int n, float alpha, float[.] ap, float[xn] x, int incx, float beta, float[yn] y, int incy)
 {
     y1 = OpenBlas::sspmv(uplo, n, alpha, ap, x, incx, beta, y, incy);
     y2 = sspmv(uplo, n, alpha, ap, x, incx, beta, y, incy);
     
     if(!(almost_eq(y1,y2)))
     {
-        printf("Error in sspmv. uplo:%d, n:%d, alpha:%f, incx:%d, beta:%f, incy:%d\n", uplo, n, alpha, incx, beta, incy); 
+        printf("Error in sspmv. uplo:%c, n:%d, alpha:%f, incx:%d, beta:%f, incy:%d\n", uplo, n, alpha, incx, beta, incy); 
         print(ap);
         print(x);
         print(y);
@@ -48,7 +46,7 @@ void compare(char uplo, int n, float alpha, float[am,an] ap, float[xn] x, int in
     }
 }
 
-float[yn] sspmv(char uplo, int n, float alpha, float[am,an] ap, float[xn] x, int incx, float beta, float[yn] y, int incy)
+float[yn] sspmv(char uplo, int n, float alpha, float[.] ap, float[xn] x, int incx, float beta, float[yn] y, int incy)
 {
     a = trttrs('u', ap, n);
     betaY =   BlasLevel1::sscal(n, beta, y, incy);
@@ -60,78 +58,5 @@ float[yn] sspmv(char uplo, int n, float alpha, float[am,an] ap, float[xn] x, int
     }
     res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 
-   return y;
-}
-
-
-// trttp: triangular matrix, full (tr) to packed (tp)
-float[m] trttps(char uplo, float[n,n] a)
-{
-    len = (n*(n+1)/2);
-    arr = genarray([len], 0.0f);
-    return trttp(uplo, n, a, n, arr, 0);
-}   
-
-// trttp: triangular matrix, full (tr) to packed (tp)
-float[m] trttp(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
-{
-    k = 0;
-    if (uplo == 'L' || uplo == 'l') 
-    {
-        for (j=0; j<n; j++)
-        {
-            for (i=j; i<n; i++)
-            {
-                ap[[k]] = a[[i,j]];
-                k = k+1;
-            }
-        }
-    } else {
-        for (j=0; j<n; j++)
-        {
-            for (i=0; i<=j; i++)
-            {
-                ap[[k]] = a[[i,j]];
-                k = k+1;
-            }
-        }
-    }
-
-    return ap;
-}   
-
-// triangular matrix, packed (tp) to full (tr)
-float[n,n] trttrs(char uplo, float[m] ap, int n)
-{
-    arr = genarray([n,n], 0.0f);
-    return tpttr(uplo, n, ap, n, arr, 0);
-}   
-
-// triangular matrix, packed (tp) to full (tr)
-float[n,n] tpttr(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
-{
-    k = 0;
-    if (uplo == 'L' || uplo == 'l') 
-    {
-        for (j=0; j<n; j++)
-        {
-            for (i=j; i<n; i++)
-            {
-                a[[i,j]] = ap[[k]];
-                k = k+1;
-            }
-        }
-    } else {
-        for (j=0; j<n; j++)
-        {
-            for (i=0; i<=j; i++)
-            {
-                a[[i,j]] = ap[[k]];
-                k = k+1;
-            }
-        }
-    }
-
-
-    return a;
+   return res;
 }

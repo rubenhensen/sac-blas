@@ -186,3 +186,142 @@ float[n,m] rotateCCW(float[m,n] a)
 {
   return {[i,j] -> a[j][n-i-1] | [i,j] < [n,m]};
 }
+
+// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+float[m] trttpsCOL(char uplo, float[n,n] a)
+{
+    len = (n*(n+1)/2);
+    arr = genarray([len], 0.0f);
+    return trttpCOL(uplo, n, a, n, arr, 0);
+}   
+
+// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+float[m] trttpCOL(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (j=0; j<n; j++)
+        {
+            for (i=j; i<n; i++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k+1;
+            }
+        }
+    } else {
+        for (j=0; j<n; j++)
+        {
+            for (i=0; i<=j; i++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k+1;
+            }
+        }
+    }
+    return ap;
+}   
+
+// triangular matrix, packed (tp) to full (tr) COLMAJ
+float[n,n] trttrsCOL(char uplo, float[m] ap, int n)
+{
+    arr = genarray([n,n], 0.0f);
+    return tpttrCOL(uplo, n, ap, n, arr, 0);
+}   
+
+// triangular matrix, packed (tp) to full (tr) COLMAJ
+float[n,n] tpttrCOL(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (j=0; j<n; j++)
+        {
+            for (i=j; i<n; i++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k+1;
+            }
+        }
+    } else {
+        for (j=0; j<n; j++)
+        {
+            for (i=0; i<=j; i++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k+1;
+            }
+        }
+    }
+    return a;
+}
+
+
+// triangular matrix, packed (tp) to full (tr)  RowMAJ
+float[n,n] trttrs(char uplo, float[m] ap, int n)
+{
+    arr = genarray([n,n], 0.0f);
+    return tpttr(uplo, n, ap, n, arr, 0);
+}   
+
+// triangular matrix, packed (tp) to full (tr) RowMAJ
+float[n,n] tpttr(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j <= i; j++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k + 1;
+            }
+        }
+    } else {
+        for (i = 0; i < n; i++)
+        {
+            for (j = i; j < n; j++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k + 1;
+            }
+        }
+    }
+    return a;
+}
+
+// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+float[m] trttps(char uplo, float[n,n] a)
+{
+    len = (n*(n+1)/2);
+    arr = genarray([len], 0.0f);
+    return trttp(uplo, n, a, n, arr, 0);
+}   
+
+// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+float[m] trttp(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j <= i; j++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k + 1;
+            }
+        }
+    } else {
+        for (i = 0; i < n; i++)
+        {
+            for (j = i; j < n; j++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k + 1;
+            }
+        }
+    }
+    return ap;
+}

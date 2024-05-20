@@ -11,9 +11,9 @@
 - [-] cblas_?hpr
 - [-] cblas_?hpr2
 - [-] cblas_?sbmv
-- [-] cblas_?spmv
-- [ ] cblas_?spr
-- [ ] cblas_?spr2
+- [X] cblas_?spmv
+- [X] cblas_?spr
+- [X] cblas_?spr2
 - [x] cblas_?symv
 - [ ] cblas_?syr
 - [ ] cblas_?syr2
@@ -25,3 +25,8 @@
 - [x] cblas_?trsv 
 
 IMPLEMENT MISSING FUNCS
+
+- Werkt de padding, lda
+- Wordt ongebruikte values daadwerkelijk niet gebruikt. eg sym
+- Werkt de stapgrote correct
+- Check type guards

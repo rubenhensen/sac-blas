@@ -1,0 +1,46 @@
+use StdIO: all;
+use Array: all;
+// use BlasLevel1: all;
+// use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    a = tof([[1,2,3],[99,1,2],[99,99,1]]);
+    compare('u', 3, 1.0f, tof([1,2,3]), 1, tof([1,2,3]), 1, a, 3);
+
+    a = tof([[1,2,3],[99,1,2],[99,99,1]]);
+    compare('l', 3, 1.0f, tof([1,2,3]), 1, tof([1,2,3]), 1, a, 3);
+
+    return 0;
+}
+
+void compare(char uplo, int n, float alpha, float[*] x, int incx, float[*] y, int incy, float[am,an] a, int lda)
+{
+    a1 = OpenBlas::ssyr2(uplo, n, alpha, x, incx, y, incy, a, lda); 
+
+    a2 = ssyr2(uplo, n, alpha, x, incx, y, incy, a, lda);
+
+    if(!(eq(a1,a2)))
+    {
+        printf("Error in ssyr2. uplo: %c, n: %d, alpha: %f, incx: %d\n", uplo, n, alpha, incx, incy); 
+        print(x);
+        print(y);
+        print(a);
+        print(a1);
+        print(a2);
+    
+        printf("\n");
+    }
+}
+
+float[am,an] ssyr2(char uplo, int n, float alpha, float[*] x, int incx, float[*] y, int incy, float[am,an] a, int lda)
+{
+    xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
+    yMat = {[i,j] -> alpha * y[i*incx] * x[j*incy] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv]) + drop(iv, yMat[iv])) | iv < [n]};
+    } else {
+        res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv]) + take(iv+1, yMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+    }
+    return res;
+}

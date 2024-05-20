@@ -253,3 +253,9 @@ external float[apn] sspr2(char uplo, int n, float alpha, float[*] x, int incx, f
     #pragma linkobj "src/sspr2.o"
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8]
+
+external float[am,an] ssyr(char uplo, int n, float alpha, float[*] x, int incx, float[am,an] a, int lda);
+    #pragma linkname "SACssyr"
+    #pragma linkobj "src/ssyr.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [6,1,2,3,4,5,6,7]

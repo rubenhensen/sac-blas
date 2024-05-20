@@ -11,12 +11,12 @@
 - [-] cblas_?hpr
 - [-] cblas_?hpr2
 - [-] cblas_?sbmv
-- [X] cblas_?spmv
-- [X] cblas_?spr
-- [X] cblas_?spr2
+- [x] cblas_?spmv
+- [x] cblas_?spr
+- [x] cblas_?spr2
 - [x] cblas_?symv
-- [ ] cblas_?syr
-- [ ] cblas_?syr2
+- [x] cblas_?syr
+- [x] cblas_?syr2
 - [-] cblas_?tbmv
 - [-] cblas_?tbsv
 - [-] cblas_?tpmv

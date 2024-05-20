@@ -265,3 +265,9 @@ external float[am,an] ssyr2(char uplo, int n, float alpha, float[*] x, int incx,
     #pragma linkobj "src/ssyr2.o"
     #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
+
+external float[xn] stpsv(char uplo, char trans, char diag, int n, float[apn] ap, float[xn] x, int incx);
+    #pragma linkname "SACstpsv"
+    #pragma linkobj "src/stpsv.o"
+    #pragma header  "/usr/include/x86_64-linux-gnu/cblas.h"
+    #pragma linksign [6,1,2,3,4,5,6,7]

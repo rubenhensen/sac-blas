@@ -25,9 +25,9 @@ build:
   application:
     script:
       - clm:
-          src: [src/week3]
-          main: crane
-          target: bin/crane
+          src: [src/week4]
+          main: shallow
+          target: bin/shallow
           bytecode: prelinked
           heap: 20m
           generate_descriptors: true

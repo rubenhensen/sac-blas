@@ -2,7 +2,7 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "*.embeddedhtml": "html",
-        "*.sac": "cpp",
+        "*.sac": "c",
         "random": "cpp",
         "numeric": "cpp",
         "limits": "cpp",
@@ -40,6 +40,8 @@
         "__tuple": "cpp",
         "__string": "cpp",
         "filesystem": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "queue": "c",
+        "stack": "c"
     }
 }

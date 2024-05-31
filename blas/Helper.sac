@@ -14,27 +14,18 @@ bool eq (float[d1:shp1] a, float[d2:shp2] b) {
     return all(a == b) && all(shp1==shp2) && all(d1==d2);
 }
 
-// bool eq (complex[d1:shp1] a, complex[d2:shp2] b) {
-//     return all(a == b) && all(shp1==shp2) && all(d1==d2);
-// }
-
-// bool eq (float[*] a, float[*] b) {
-//     return all(a == b);
-// }
-
-// bool eq (complex[*] a, complex[*] b) {
-//     return all(a == b); //&& all(shp1==shp2) && all(d1==d2);
-// }
-
-// bool eq (complex[d1:shp1] a, complex[d2:shp2] b) {
-//     return all(a == b) && all(shp1==shp2) && all(d1==d2);
-// }
+bool eq (double[d1:shp1] a, double[d2:shp2] b) {
+    return all(a == b) && all(shp1==shp2) && all(d1==d2);
+}
 
 // inline
-bool almost_eq (float[d1:shp1] a, float[d2:shp2] b) {
-    MAX_ACC_LOSS = 0.0001f;
+bool almost_eq (float[d1:shp1] a, float[d2:shp2] b, float loss) {
+    return all(abs(a - b) < loss) && all(shp1==shp2) && all(d1==d2);
+}
 
-    return all(abs(a - b) < MAX_ACC_LOSS) && all(shp1==shp2) && all(d1==d2);
+// inline
+bool almost_eq (double[d1:shp1] a, double[d2:shp2] b, double loss) {
+    return all(abs(a - b) < loss) && all(shp1==shp2) && all(d1==d2);
 }
 
 // inline
@@ -106,7 +97,6 @@ bool sgemvYdim(char trans, int m, int n, int incy, int yn)
   return res;
 }
 
-// float[m,n]
 // inline
 float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
 {
@@ -117,7 +107,16 @@ float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
            [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
 }
 
-// float[m,lda]
+// inline
+double[m,n] bandStorageToFull(double[m,lda] storage, int kl, int ku, int m, int n)
+{
+  lim = n-ku;
+
+  return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
+           [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
+           [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
+}
+
 inline
 float[m,lda] fullStorageToBand(float[m,n] storage, int kl, int ku, int m, int n)
 {
@@ -128,12 +127,30 @@ float[m,lda] fullStorageToBand(float[m,n] storage, int kl, int ku, int m, int n)
             [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
 }
 
-// print(padVectorFront(10, tof(iota(5)*2)));
+inline
+double[m,lda] fullStorageToBand(double[m,n] storage, int kl, int ku, int m, int n)
+{
+  lim = n-ku;
+  w = kl + ku + 1;
+  return {  [i] -> padVectorFront(w, take([i+ku+1], drop([max(0,i-kl)],storage[i])))  | [i] < [kl];
+            [i] -> take([w], drop([i-kl],storage[i]))                                 | [i] < [lim];
+            [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
+}
+
 // inline
 float[m] padVectorFront(int k, float[n] arr)
 {
   zeros = [k-n];
   return { iv -> 0.0f           | iv < zeros;
+           iv -> arr[iv-zeros]  | zeros <= iv < [k]
+         };
+}
+
+// inline
+double[m] padVectorFront(int k, double[n] arr)
+{
+  zeros = [k-n];
+  return { iv -> 0.0d           | iv < zeros;
            iv -> arr[iv-zeros]  | zeros <= iv < [k]
          };
 }
@@ -147,11 +164,28 @@ float[m] padVectorBack(int k, float[n] arr) | (k >= n)
 }
 
 // inline
+double[m] padVectorBack(int k, double[n] arr) | (k >= n)
+{
+  return { iv -> arr[iv]  | iv < [n];
+           iv -> 0.0d     | [n] <= iv < [k]       
+         };
+}
+
+// inline
 float[m] padVectorOffset(int m, int offset, float[n] arr) | (offset >= 0)
 {
   return { iv -> 0.0f             | iv < [offset];  
            iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
            iv -> 0.0f             | [offset+n] <= iv < [m]       
+         };
+}
+
+// inline
+double[m] padVectorOffset(int m, int offset, double[n] arr) | (offset >= 0)
+{
+  return { iv -> 0.0d             | iv < [offset];  
+           iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
+           iv -> 0.0d             | [offset+n] <= iv < [m]       
          };
 }
 
@@ -176,7 +210,23 @@ float[am,n] fullUpperTriangleStorageToBand(float[m,n] full, int k) | (n-k-1 == a
 }
 
 // inline
+double[am,n] fullUpperTriangleStorageToBand(double[m,n] full, int k) | (n-k-1 == am)
+{
+  a = transpose(full);
+  a = {iv -> take([1+k],drop(iv-[k],a[iv])) | iv < [n]};
+  a = {iv -> padVectorFront(1+k,take(min([1+k],iv+1),a[iv])) | iv < [n]};
+  a = transpose(a);
+  return a;
+}
+
+// inline
 float[n,m] rotateCW(float[m,n] a) 
+{
+  return {[i,j] -> a[n-j-1][i] | [i,j] < [n,m]};
+}
+
+// inline
+double[n,m] rotateCW(double[m,n] a) 
 {
   return {[i,j] -> a[n-j-1][i] | [i,j] < [n,m]};
 }
@@ -187,11 +237,25 @@ float[n,m] rotateCCW(float[m,n] a)
   return {[i,j] -> a[j][n-i-1] | [i,j] < [n,m]};
 }
 
+// inline
+double[n,m] rotateCCW(double[m,n] a) 
+{
+  return {[i,j] -> a[j][n-i-1] | [i,j] < [n,m]};
+}
+
 // trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
 float[m] trttpsCOL(char uplo, float[n,n] a)
 {
     len = (n*(n+1)/2);
     arr = genarray([len], 0.0f);
+    return trttpCOL(uplo, n, a, n, arr, 0);
+}   
+
+// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+double[m] trttpsCOL(char uplo, double[n,n] a)
+{
+    len = (n*(n+1)/2);
+    arr = genarray([len], 0.0d);
     return trttpCOL(uplo, n, a, n, arr, 0);
 }   
 
@@ -222,10 +286,45 @@ float[m] trttpCOL(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int in
     return ap;
 }   
 
+// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+double[m] trttpCOL(char uplo, int n, double[lda,n] a, int lda, double[m] ap, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (j=0; j<n; j++)
+        {
+            for (i=j; i<n; i++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k+1;
+            }
+        }
+    } else {
+        for (j=0; j<n; j++)
+        {
+            for (i=0; i<=j; i++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k+1;
+            }
+        }
+    }
+    return ap;
+}   
+
+
 // triangular matrix, packed (tp) to full (tr) COLMAJ
 float[n,n] trttrsCOL(char uplo, float[m] ap, int n)
 {
     arr = genarray([n,n], 0.0f);
+    return tpttrCOL(uplo, n, ap, n, arr, 0);
+}   
+
+// triangular matrix, packed (tp) to full (tr) COLMAJ
+double[n,n] trttrsCOL(char uplo, double[m] ap, int n)
+{
+    arr = genarray([n,n], 0.0d);
     return tpttrCOL(uplo, n, ap, n, arr, 0);
 }   
 
@@ -256,15 +355,53 @@ float[n,n] tpttrCOL(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int 
     return a;
 }
 
+// triangular matrix, packed (tp) to full (tr) COLMAJ
+double[n,n] tpttrCOL(char uplo, int n, double[m] ap, int lda, double[lda,n] a, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (j=0; j<n; j++)
+        {
+            for (i=j; i<n; i++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k+1;
+            }
+        }
+    } else {
+        for (j=0; j<n; j++)
+        {
+            for (i=0; i<=j; i++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k+1;
+            }
+        }
+    }
+    return a;
+}
+
 
 // triangular matrix, packed (tp) to full (tr)  RowMAJ
+inline
 float[n,n] trttrs(char uplo, float[m] ap, int n)
 {
     arr = genarray([n,n], 0.0f);
     return tpttr(uplo, n, ap, n, arr, 0);
 }   
 
+// triangular matrix, packed (tp) to full (tr)  RowMAJ
+inline
+double[n,n] trttrs(char uplo, double[m] ap, int n)
+{
+    arr = genarray([n,n], 0.0d);
+    return tpttr(uplo, n, ap, n, arr, 0);
+}   
+
+
 // triangular matrix, packed (tp) to full (tr) RowMAJ
+inline
 float[n,n] tpttr(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
 {
     k = 0;
@@ -291,7 +428,37 @@ float[n,n] tpttr(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int inf
     return a;
 }
 
+// triangular matrix, packed (tp) to full (tr) RowMAJ
+inline
+double[n,n] tpttr(char uplo, int n, double[m] ap, int lda, double[lda,n] a, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j <= i; j++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k + 1;
+            }
+        }
+    } else {
+        for (i = 0; i < n; i++)
+        {
+            for (j = i; j < n; j++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k + 1;
+            }
+        }
+    }
+    return a;
+}
+
+
 // trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+inline
 float[m] trttps(char uplo, float[n,n] a)
 {
     len = (n*(n+1)/2);
@@ -300,6 +467,16 @@ float[m] trttps(char uplo, float[n,n] a)
 }   
 
 // trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+inline
+double[m] trttps(char uplo, double[n,n] a)
+{
+    len = (n*(n+1)/2);
+    arr = genarray([len], 0.0d);
+    return trttp(uplo, n, a, n, arr, 0);
+}   
+
+// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+inline
 float[m] trttp(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
 {
     k = 0;
@@ -324,4 +501,39 @@ float[m] trttp(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
         }
     }
     return ap;
+}
+
+
+// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+inline
+double[m] trttp(char uplo, int n, double[lda,n] a, int lda, double[m] ap, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j <= i; j++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k + 1;
+            }
+        }
+    } else {
+        for (i = 0; i < n; i++)
+        {
+            for (j = i; j < n; j++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k + 1;
+            }
+        }
+    }
+    return ap;
+}
+
+
+int idx(int n, int i) 
+{
+  return n * i - (i * (i - 1)) / 2;
 }

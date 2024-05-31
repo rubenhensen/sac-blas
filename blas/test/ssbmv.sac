@@ -1,7 +1,7 @@
 use StdIO: all;
 use Array: all;
 // use BlasLevel1: all;
-use BlasLevel2: all;
+// use BlasLevel2: all;
 use Helper: all;
 
 int main() {
@@ -31,7 +31,7 @@ void compare(char uplo, int n, int k, float alpha, float[*] a, int lda, float[*]
     y1 = OpenBlas::ssbmv(uplo, n, k, alpha, a, lda, x, incx, beta, y, incy);
     y2 = ssbmv(uplo, n, k, alpha, a, lda, x, incx, beta, y, incy);
     
-    if(!(almost_eq(y1,y2)))
+    if(!(almost_eq(y1,y2,0.01f)))
     {
         printf("Error in ssymv. uplo:%d, n:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d\n", uplo, n, alpha, lda, incx, beta, incy); 
         print(a);

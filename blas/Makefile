@@ -60,6 +60,10 @@ Measure: Measure.sac
 	@rm -rf Measure.c
 	./Measure
 
+sgemv: test/sgemv.sac $(BlasLevel2) $(BlasLevel1) $(Helper) $(OpenBlas)
+	sac2c -D MODE=TEST -check tc -o sgemv test/sgemv.sac && ./sgemv
+
+
 clean: 
 	rm -rf tree/
 	rm -rf host/

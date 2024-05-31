@@ -1,7 +1,7 @@
 use StdIO: all;
 use Array: all;
 // use BlasLevel1: all;
-// use BlasLevel2: all;
+use BlasLevel2: all;
 use Helper: all;
 
 int main() {
@@ -32,13 +32,14 @@ void compare(char uplo, int n, float alpha, float[*] x, int incx, float[am,an] a
     }
 }
 
-float[am,an] ssyr(char uplo, int n, float alpha, float[*] x, int incx, float[am,an] a, int lda)
-{
-    xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
-    if (uplo == 'U' || uplo == 'u') {
-        res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv])) | iv < [n]};
-    } else {
-        res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
-    }
-    return res;
-}
+// inline
+// float[am,an] ssyr(char uplo, int n, float alpha, float[*] x, int incx, float[am,an] a, int lda)
+// {
+//     xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+//     if (uplo == 'U' || uplo == 'u') {
+//         res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv])) | iv < [n]};
+//     } else {
+//         res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+//     }
+//     return res;
+// }

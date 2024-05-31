@@ -30,3 +30,12 @@ IMPLEMENT MISSING FUNCS
 - Wordt ongebruikte values daadwerkelijk niet gebruikt. eg sym
 - Werkt de stapgrote correct
 - Check type guards
+
+
+bugs:
+inline / noinline bug ttrs(constraint violation)
+wrong type bug, displays int instead of float
+can't read from char array bug.
+Doesn't do loop bug when using nested loops
+Crashes when reading float in matrix
+displays <> dim 0 instead of actual number

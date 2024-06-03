@@ -1411,16 +1411,54 @@ void test_idamax(int n, double[.] xs, int[.] incxs) {
     print_test_status("idamax", mistakes);
 }
 
+// float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
+// {
+void test_sgemv(char trans, int ns, int ms, double alphas, double[.] as, int ldas, double[.] xs, int[.] incxs, double betas, double[.] ys, int[.] incys) {
+    mistakes = 0;
+    perms_v = permutations(xs, ys);
+    perms_i = permutations(incxs, incys);
+    for(i = 0; i < shape(perms_v)[0]; i++) {
+        params = perms_v[i];
+        X = genarray([n], params[0]);
+        Y = genarray([n], params[1]);
+        for(j = 0; j < shape(as)[0]; j++) {
+            a = as[j];
+            for(k = 0; k < shape(perms_i)[0]; k++) {
+                params = perms_i[k];
+                incx = params[0]; incy = params[1];
+
+                m = cap_n(n, incx, incy);
+
+                native = daxpy(m, a, X, incx, Y, incy);
+                library = cblas_daxpy(m, a, X, incx, Y, incy);
+                if(any(abs(native - library) > MAX_ACC_LOSS)) {
+                    printf("For a = %f, x = %f, incx = %i, y = %f, incy = %i\n", a, X[0], incx, Y[0], incy);
+                    printf("Native:\n");
+                    show(take([10], native));
+                    printf("Library:\n");
+                    show(take([10], library));
+                    mistakes++;
+                }
+            }
+        }
+    }
+    print_test_status("daxpy", mistakes);
+}
+
+
 
 void test() {
     n = 1000;
+    nms = [1,2,3,4,10,100,1000];
     ds = [0.0, 7.0, 3.2, -4.6, -10.0, 0.00000000003, -0.00000000004, 700000.0, -4375.3];
     fs = tof(ds);
     //cs = {i -> toc(ds[i], ds[i])};
     cs = [toc(7.4, 7.4)];
-    incs = [1,2,3];
-    flags = [-1d, 0d, 1d, 2d];
+    incs = [1,2,3]; // Add illegal values
+    flags = [-1d, 0d, 1d, 2d]; // Add illegal values
+    chars = ['n', 'N', 't', 'T', 'c', 'C']; // Add illegal values
 
+    // BLAS L1 
     test_drotg(ds, ds);
     //drotmg lib version doesn't work
     //test_drotmg(ds, ds, ds, ds);
@@ -1436,6 +1474,9 @@ void test() {
     test_dznrm2(n, cs, incs);
     test_dasum(n, ds, incs);
     test_idamax(n, ds, incs);
+
+    // BLAS L2
+    test_sgemv(n, ds, incs);
 }
 
 /*

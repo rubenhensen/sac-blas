@@ -1,39 +1,42 @@
 use StdIO: all;
 use Array: all;
 // use BlasLevel1: all;
-use BlasLevel2: all;
+// use BlasLevel2: all;
 use Helper: all;
 
 int main() {
-    compare(1,1,1f,[1f],1,[1f],1,[[1f]],1);
-    compare(2,2,1f,tof(iota(2)),1,tof(iota(2)),1,reshape([2,2],tof(iota(4))),2);
-    compare(3,2,1.333f,tof(iota(3)),1,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
-    compare(3,2,1.333f,tof(iota(5)),2,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
-    compare(3,2,1.333f,tof(iota(7)),3,tof(iota(2)),1,reshape([3,2],tof(iota(6))),2);
-    compare(3,2,1.333f,tof(iota(7)),3,tof(iota(8)),3,reshape([3,2],tof(iota(6))),2);
+    ap = trttps('u', tof([[0,1,2],[99,0,1],[99,99,0]]));
+    compare('u', 3, 1.0f, tof([1,2,3]), 1, ap);
     return 0;
 }
 
-// am == m and an == n not possible
-void compare(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[am,an] a, int lda)
+void compare(char uplo, int n, float alpha, float[*] x, int incx, float[*] ap)
 {
-    a1 = OpenBlas::sspr(m, n, alpha, x, incx, y, incy, a, lda);
+    a1 = OpenBlas::sspr(uplo, n, alpha, x, incx, ap); 
 
-    a2 = sspr(m, n, alpha, x, incx, y, incy, a, lda);
-    
+    a2 = sspr(uplo, n, alpha, x, incx, ap);
+
     if(!(eq(a1,a2)))
     {
-        printf("Error in sspr. m:%d, n:%d, alpha:%f, incx:%d, incy:%f, lda:%d", m, n, alpha, incx, incy, lda); 
-        print(a);
+        printf("Error in sspr. uplo: %c, n: %d, alpha: %f, incx: %d\n", uplo, n, alpha, incx); 
         print(x);
-        print(y);
+        print(ap);
         print(a1);
         print(a2);
+    
         printf("\n");
     }
 }
 
-float[m,n] sspr(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda)
+float[apn] sspr(char uplo, int n, float alpha, float[xn] x, int incx, float[apn] ap)
 {
-  return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
+    full = trttrs(uplo, ap, n);
+    xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv]) | iv < [n]};
+    } else {
+        inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv]) | iv < [n]};
+    }
+    res = trttps(uplo, inter);
+    return res;
 }

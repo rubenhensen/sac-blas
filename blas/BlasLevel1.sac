@@ -7,7 +7,7 @@ use Helper: all;
 export all;
 
 /*
- * srotg
+ * ?rotg
  */
 inline
 float, float, float, float srotg(float a, float b, float c, float s)
@@ -32,9 +32,31 @@ float, float, float, float srotg(float a, float b, float c, float s)
   return (r, z, c, s);
 }
 
+inline
+double, double, double, double drotg(double a, double b, double c, double s)
+{
+  if(b == 0d) {
+    r = a;
+    z = 0d;
+    c = 1d;
+    s = 0d;
+  } else if(a == 0d) {
+    r = b;
+    z = 1d;
+    c = 0d;
+    s = 1d;
+  } else {
+    sigma = tod(abs(a) > abs(b) ? sign(a) : sign(b));
+    r = sigma * sqrt(a*a + b*b);
+    c = a/r;
+    s = b/r;
+    z = abs(a) > abs(b) ? s : c == 0d ? 1d : 1d/c;
+  }
+  return (r, z, c, s);
+}
 
 /*
- * srotmg
+ * ?rotmg
  */
 inline
 float, float, float, float[5] srotmg(float d1, float d2, float x1, float y1)
@@ -159,9 +181,131 @@ float, float, float, float[5] srotmg(float d1, float d2, float x1, float y1)
   return (d1, d2, x1, [sflag, sh11, sh21, sh12, sh22]);
 }
 
+inline
+double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1)
+{
+  //A very literal translation from Fortran
+  gam    = 4096d;
+  gamsq  = 1.67772e7d;
+  rgamsq = 5.96046e-8d;
+
+  sflag = 0d;
+  sh11 = 0d;
+  sh21 = 0d;
+  sh12 = 0d;
+  sh22 = 0d;
+
+  if(d1 < 0d) {
+    sflag = -1d;
+    d1 = 0d;
+    d2 = 0d;
+    x1 = 0d;
+  } else if(d2*y1 == 0d) {
+    sflag = -2d;
+  } else {
+    sp2 = d2*y1;
+    sp1 = d1*x1;
+    sq2 = sp2*y1;
+    sq1 = sp1*x1;
+
+    if(abs(sq1) > abs(sq2)) {
+      sh21 = -y1/x1;
+      sh12 = sp2/sp1;
+      su = 1d - sh12*sh21;
+
+      if(su > 0d) {
+        sflag = 0d;
+        d1 /= su;
+        d2 /= su;
+        x1 *= su;
+      } else {
+        sflag = -1d;
+        sh11 = 0d;
+        sh21 = 0d;
+        sh12 = 0d;
+        sh22 = 0d;
+        d1 = 0d;
+        d2 = 0d;
+        x1 = 0d;
+      }
+    } else {
+      if(sq2 < 0d) {
+        sflag = -1d;
+        sh11 = 0d;
+        sh21 = 0d;
+        sh12 = 0d;
+        sh22 = 0d;
+        d1 = 0d;
+        d2 = 0d;
+        x1 = 0d;
+      } else {
+        sflag = 1d;
+        sh11 = sp1/sp2;
+        sh22 = x1/y1;
+        su = 1d + sh11*sh22;
+        stemp = d2/su;
+        d2 = d1/su;
+        d1 = stemp;
+        x1 = y1*su;
+      }
+    }
+
+    if(d1 != 0d) {
+      while((d1 < rgamsq) || (d1 > gamsq)) {
+        if(sflag == 0d) {
+          sh11 = 1d;
+          sh22 = 1d;
+        } else {
+          sh21 = -1d;
+          sh12 = 1d;
+        }
+
+        sflag = -1d;
+
+        if(d1 < rgamsq) {
+          d1 *= gam * gam;
+          x1 /= gam;
+          sh11 /= gam;
+          sh12 /= gam;
+        } else {
+          d1 /= gam*gam;
+          x1 *= gam;
+          sh11 *= gam;
+          sh12 *= gam;
+        }
+      }
+    }
+
+    if(d2 != 0d) {
+      while((abs(d2) < rgamsq) || (abs(d2) > gamsq)) {
+        if(sflag == 0d) {
+          sh11 = 1d;
+          sh22 = 1d;
+        } else {
+          sh21 = -1d;
+          sh12 = 1d;
+        }
+
+        sflag = -1d;
+
+        if(abs(d2) < rgamsq) {
+          d2 *= gam * gam;
+          sh21 /= gam;
+          sh22 /= gam;
+        } else {
+          d2 /= gam*gam;
+          sh21 *= gam;
+          sh22 *= gam;
+        }
+      }
+    }
+  }
+
+  return (d1, d2, x1, [sflag, sh11, sh21, sh12, sh22]);
+}
 
 /*
- * srot
+ * ?rot
  * incx and incy do not have to be > 0 but inverse matrix is not implemented
  * 
  */
@@ -174,9 +318,17 @@ float[xn], float[yn] srot(int n, float[xn] x, int incx, float[yn] y, int incy, f
   );
 }
 
+inline
+double[xn], double[yn] drot(int n, double[xn] x, int incx, double[yn] y, int incy, double c, double s) | n > 0, incx > 0, incy > 0
+{
+  return (
+    {iv -> c*x[iv] + s*y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
+    {iv -> c*y[iv] - s*x[(iv*incx)/incy] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
+  );
+}
 
 /*
- * srotm
+ * ?rotm
  */
 inline
 float[xn], float[yn] srotm(int n, float[xn] x, int incx, float[yn] y, int incy, float[5] param) | n > 0, ismember(param[0], [1.0f, 0.0f, -1.0f, -2.0f]), minArrLen(n, xn, incx), minArrLen(n, yn, incy)
@@ -204,9 +356,35 @@ float[xn], float[yn] srotm(int n, float[xn] x, int incx, float[yn] y, int incy, 
   return (x_prime, y_prime);
 }
 
+inline
+double[xn], double[yn] srotm(int n, double[xn] x, int incx, double[yn] y, int incy, double[5] param) | n > 0, ismember(param[0], [1.0d, 0.0d, -1.0d, -2.0d]), minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  sflag = param[0];
+  sh11  = param[1];
+  sh21  = param[2];
+  sh12  = param[3];
+  sh22  = param[4];
+  
+  if(n < 1 || sflag == -2d) {
+    x_prime = x;
+    y_prime = y;
+  } else if(sflag < 0d) {
+    x_prime = {iv -> x[iv]*sh11 + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  } else if(sflag == 0d) {
+    x_prime = {iv -> x[iv] + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  } else {
+    x_prime = {iv ->  x[iv]*sh11 + y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+    y_prime = {iv -> -x[(iv*incx)/incy] + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  }
+  
+  return (x_prime, y_prime);
+}
+
 
 /*
- * sswap
+ * ?swap
  */
 // Does this work for swapping things with the same indices?
 inline
@@ -218,9 +396,17 @@ float[xn], float[yn] sswap(int n, float[xn] x, int incx, float[yn] y, int incy) 
   );
 }
 
+inline
+double[xn], double[yn] sswap(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx > 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return (
+    {iv -> y[(iv/incx)*incy] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
+    {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
+  );
+}
 
 /*
- * sscal
+ * ?scal
  */
 inline
 float[xn] sscal(int n, float a, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
@@ -228,9 +414,14 @@ float[xn] sscal(int n, float a, float[xn] x, int incx) | n > 0, incx > 0, minArr
   return {iv -> a * x[iv] | iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
 }
 
+inline
+double[xn] dscal(int n, double a, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  return {iv -> a * x[iv] | iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+}
 
 /*
- * scopy
+ * ?copy
  */
 inline
 float[yn] scopy(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
@@ -238,9 +429,16 @@ float[yn] scopy(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, in
   return {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 }
 
+inline
+double[yn] dcopy(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+}
+
+
 
 /*
- * saxpy
+ * ?axpy
  */
 inline
 float[yn] saxpy(int n, float a, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
@@ -254,8 +452,19 @@ float[yn] saxpy(int n, float a, float[xn] x, int incx, float[yn] y, int incy) | 
 }
 
 
+inline
+double[yn] daxpy(int n, double a, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  if(a == 0d) {
+    result = y;
+  } else {
+    result = {iv -> a * x[(iv/incy)*incx] + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  }
+  return result;
+}
+
 /*
- * sdot
+ * ?dot
  */
 inline
 float sdot(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
@@ -264,8 +473,14 @@ float sdot(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >=
 }
 
 
+inline
+double ddot(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return sum( {iv -> x[iv*incx] * y[iv*incy] | [0] <= iv < [n]} );
+}
+
 /*
- * sdsdot
+ * ?dsdot
  */
 inline
 float sdsdot(int n, float sb, float[xn] sx, int incx, float[yn] sy, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
@@ -273,8 +488,14 @@ float sdsdot(int n, float sb, float[xn] sx, int incx, float[yn] sy, int incy) | 
   return tof( tod(sb) + sum( {iv -> tod(sx[iv*incx]) * tod(sy[iv*incy]) | [0] <= iv < [n] }) );
 }
 
+inline
+double dsdot(int n, float sb, float[xn] sx, int incx, float[yn] sy, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return tod(sb) + sum( {iv -> tod(sx[iv*incx]) * tod(sy[iv*incy]) | [0] <= iv < [n] });
+}
+
 /*
- * snrm2
+ * ?nrm2
  */
 inline
 float snrm2(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
@@ -282,21 +503,23 @@ float snrm2(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, in
   return sqrtf(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
 }
 
+inline
+double dnrm2(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  return sqrt(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
+}
 
 // Creates compiler core dump error with check tc
-// /*
-//  * scnrm2
-//  */
-// inline
-// float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
-// {
-//   x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
-//   return sqrtf(tof(sum(normSq(x_prime))));
-// }
+inline
+float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
+{
+  x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
+  return sqrtf(tof(sum(normSq(x_prime))));
+}
 
 
 /*
- * sasum
+ * ?asum
  */
 inline
 float sasum(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
@@ -305,8 +528,14 @@ float sasum(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, in
 }
 
 
+inline
+double dasum(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  return sum( {iv -> abs(x[iv]) | [0] <= iv <= [(n-1)*incx] step [incx]} );
+}
+
 /*
- * isamax
+ * i?amax
  */
 inline
 int isamax(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
@@ -325,3 +554,19 @@ int isamax(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, inc
   return max_i;
 }
 
+inline
+int idamax(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  max_i = 0;
+  max_v = 0d;
+  ix = 0;
+  for(i = 0; i < n; i++) {
+    if(abs(x[ix]) > max_v) {
+      max_i = i;
+      max_v = abs(x[ix]);
+    }
+    ix += incx;
+  }
+
+  return max_i;
+}

@@ -42,23 +42,27 @@ test: $(TESTSACEXEC)
 
 ./test/%.out: ./test/%.sac $(BlasLevel1) $(BlasLevel2) $(OpenBlas) $(Helper) 
 	sac2c $(CHECKFLAG) -o $@ $< 
-	rm -rf test/*.i
-	rm -rf test/*.o
-	rm -rf test/*.c
+	@rm -rf test/*.i
+	@rm -rf test/*.o
+	@rm -rf test/*.c
 
 Main: Main.sac
 	sac2c $(CHECKFLAG) -o Main Main.sac
-	rm -rf Main.i
-	rm -rf Main.o
-	rm -rf Main.c
+	@rm -rf Main.i
+	@rm -rf Main.o
+	@rm -rf Main.c
 	./Main
 
 Measure: Measure.sac
 	sac2c $(CHECKFLAG) -o Measure Measure.sac
-	rm -rf Measure.i
-	rm -rf Measure.o
-	rm -rf Measure.c
+	@rm -rf Measure.i
+	@rm -rf Measure.o
+	@rm -rf Measure.c
 	./Measure
+
+sgemv: test/sgemv.sac $(BlasLevel2) $(BlasLevel1) $(Helper) $(OpenBlas)
+	sac2c -D MODE=TEST -check tc -o sgemv test/sgemv.sac && ./sgemv
+
 
 clean: 
 	rm -rf tree/

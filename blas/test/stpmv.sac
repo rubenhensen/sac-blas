@@ -113,7 +113,3 @@ float[xn] stpmv(char uplo, char trans, char diag, int n, float[an] ap, float[xn]
   return res;
 }
 
-int idx(int n, int i) 
-{
-  return n * i - (i * (i - 1)) / 2;
-}

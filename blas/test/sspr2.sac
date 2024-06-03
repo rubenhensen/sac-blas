@@ -1,0 +1,46 @@
+use StdIO: all;
+use Array: all;
+// use BlasLevel1: all;
+// use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    ap = trttps('u', tof([[0,1,2],[99,0,1],[99,99,0]]));
+    compare('u', 3, 1.0f, tof([1,2,3]), 1, tof([1,2,3]), 1, ap);
+
+    ap = trttps('l', tof([[0,1,2],[99,0,1],[99,99,0]]));
+    compare('l', 3, 1.0f, tof([1,2,3]), 1, tof([1,2,3]), 1, ap);
+    return 0;
+}
+
+void compare(char uplo, int n, float alpha, float[*] x, int incx, float[*] y, int incy, float[*] ap)
+{
+    a1 = OpenBlas::sspr2(uplo, n, alpha, x, incx, y, incy, ap); 
+
+    a2 = sspr2(uplo, n, alpha, x, incx, y, incy, ap);
+
+    if(!(eq(a1,a2)))
+    {
+        printf("Error in sspr2. uplo: %c, n: %d, alpha: %f, incx: %d, incy: %d\n", uplo, n, alpha, incx, incy); 
+        print(x);
+        print(ap);
+        print(a1);
+        print(a2);
+    
+        printf("\n");
+    }
+}
+
+float[apn] sspr2(char uplo, int n, float alpha, float[xn] x, int incx, float[yn] y, int incy, float[apn] ap)
+{
+    full = trttrs(uplo, ap, n);
+    xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
+    yMat = {[i,j] -> alpha * y[j*incy] * x[i*incx] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
+    } else {
+        inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
+    }
+    res = trttps(uplo, inter);
+    return res;
+}

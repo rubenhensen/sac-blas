@@ -1,0 +1,45 @@
+use StdIO: all;
+use Array: all;
+// use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+
+int main() {
+    a = tof([[1,2,3],[99,1,2],[99,99,1]]);
+    compare('u', 3, 1.0f, tof([1,2,3]), 1, a, 3);
+
+    a = tof([[1,2,3],[99,1,2],[99,99,1]]);
+    compare('l', 3, 1.0f, tof([1,2,3]), 1, a, 3);
+
+    return 0;
+}
+
+void compare(char uplo, int n, float alpha, float[*] x, int incx, float[am,an] a, int lda)
+{
+    a1 = OpenBlas::ssyr(uplo, n, alpha, x, incx, a, lda); 
+
+    a2 = ssyr(uplo, n, alpha, x, incx, a, lda);
+
+    if(!(eq(a1,a2)))
+    {
+        printf("Error in ssyr. uplo: %c, n: %d, alpha: %f, incx: %d\n", uplo, n, alpha, incx); 
+        print(x);
+        print(a);
+        print(a1);
+        print(a2);
+    
+        printf("\n");
+    }
+}
+
+// inline
+// float[am,an] ssyr(char uplo, int n, float alpha, float[*] x, int incx, float[am,an] a, int lda)
+// {
+//     xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+//     if (uplo == 'U' || uplo == 'u') {
+//         res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv])) | iv < [n]};
+//     } else {
+//         res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+//     }
+//     return res;
+// }

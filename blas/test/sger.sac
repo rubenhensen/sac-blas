@@ -1,7 +1,7 @@
 use StdIO: all;
 use Array: all;
 // use BlasLevel1: all;
-use BlasLevel2: all;
+// use BlasLevel2: all;
 use Helper: all;
 
 int main() {

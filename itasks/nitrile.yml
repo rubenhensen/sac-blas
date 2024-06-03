@@ -13,6 +13,7 @@ dependencies:
   base: ^2
   itasks: ^0.14.0
   geometry: ^1.0.0
+  lib-compiler: ^3.2.0
 package:
   extra_files:
     - CHANGELOG.md
@@ -25,9 +26,9 @@ build:
   application:
     script:
       - clm:
-          src: [src/week4]
-          main: shallow
-          target: bin/shallow
+          src: [src/week6]
+          main: TOP1
+          target: bin/TOP1
           bytecode: prelinked
           heap: 20m
           generate_descriptors: true

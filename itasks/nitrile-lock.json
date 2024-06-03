@@ -6,6 +6,10 @@
         "version": "1.5.0"
       },
       {
+        "name": "argenv",
+        "version": "1.0.3"
+      },
+      {
         "name": "asyncio",
         "version": "3.3.1"
       },
@@ -39,7 +43,7 @@
       },
       {
         "name": "base64",
-        "version": "1.0.3"
+        "version": "1.0.4"
       },
       {
         "name": "category-theory",
@@ -104,6 +108,10 @@
       {
         "name": "language",
         "version": "1.0.1"
+      },
+      {
+        "name": "lib-compiler",
+        "version": "3.2.0"
       },
       {
         "name": "linux",

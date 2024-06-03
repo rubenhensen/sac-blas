@@ -1,4 +1,4 @@
-module shallow
+module shallow2
 
 import StdEnv, StdArray, Data.Maybe
 import Data.Functor, Control.Applicative, Control.Monad
@@ -38,24 +38,22 @@ listIntGram
     | DEF Name Tree Tree
     | VAR Name
 
+// def :: ((Parse a) -> In (Parse a) (Parse b)) -> Parse b
 listIntGramParser :: Parse Tree
-listIntGramParser = def "list" (alt [lit "[]",
+listIntGramParser = def \list -> (alt [lit "[]",
                                     seq [
                                         lit "[",
                                         int,
                                         lit ":",
-                                        var "list",
+                                        list,
                                         lit "]"
-                                    ]])
-                                (seq [idn, lit "=", var "list"])
+                                    ]]) In
+                                (seq [idn, lit "=", list])
 
-listIntInput = {i = ["mylist", "=", "[", "7", ":", "[", "42", ":", "[]", "]", "]"], 
-                env = newMap}
+listIntInput = ["mylist", "=", "[", "7", ":", "[", "42", ":", "[]", "]", "]"] 
 
-
-:: Input = {i :: [String], env :: Env}
+:: Input :== [String]
 :: Parse a = P (Input -> ?(a, Input))
-:: Env :== Map String (Parse Tree)
 
 output :: (?(a, Input)) -> a
 output ?None = undef
@@ -100,26 +98,26 @@ instance Monad Parse
                 (P pb) = pb i
             ?None = ?None
 
-read :: String -> Parse Tree
-read v = P \s -> case get v s.env of
-    ?Just (P pt) = pt s
-    ?None = ?None
+// read :: String -> Parse Tree
+// read v = P \s -> case get v s.env of
+//     ?Just (P pt) = pt s
+//     ?None = ?None
 
-write :: String (Parse Tree) -> Parse (Parse Tree)
-write v x = P \s = ?Just (x, {s & env = put v x s.env})
+// write :: String (Parse Tree) -> Parse (Parse Tree)
+// write v x = P \s = ?Just (x, {s & env = put v x s.env})
 
 lit :: String -> Parse Tree
-lit str = P \s -> if (hd s.i == str)
-                        (?Just (LIT str, {s & i = tl s.i}))
+lit str = P \s -> if (hd s == str)
+                        (?Just (LIT str, tl s))
                         (?None)
 
 idn :: Parse Tree
-idn = P \s -> if (isalpha s.i)
-                        (?Just (IDN (hd s.i), {s & i = tl s.i}))
+idn = P \s -> if (isalpha s)
+                        (?Just (IDN (hd s), tl s))
                         (?None)
 
 int :: Parse Tree
-int = P \s -> if (isNum (hd s.i)) ((?Just (INT (toInt (hd s.i)), {s & i = tl s.i}))) (?None)
+int = P \s -> if (isNum (hd s)) ((?Just (INT (toInt (hd s)), tl s))) (?None)
 
 // ---- This seems very cumbersome to me, is there a cleaner way of programming this? ----
 seq :: [Parse Tree] -> Parse Tree
@@ -151,11 +149,15 @@ alt l = P \input -> (runParser (foldl (<|>) empty l)) input
 alternative :: (Parse Tree) (Parse Tree) ->  Parse Tree
 alternative p1 p2 = p1 <|> p2
 
-var :: String -> Parse Tree
-var str =  P \s -> (runParser (read str)) s
+// var :: String -> Parse Tree
+// var str =  P \s -> (runParser (read str)) s
 
-def :: String (Parse Tree) (Parse Tree) -> Parse Tree
-def str pt1 pt2 = write str pt1 >>| pt2
+// :: Parse a = P (Input -> ?(a, Input))
+
+def :: ((Parse a) -> In (Parse a) (Parse b)) -> Parse b
+def fb = let (a In b) = fb a in b
+
+:: In a b = In infix 0 a b
 
 isalpha :: [String] -> Bool
 isalpha input = isAlpha (hd (stringToCharList (hd input)))

@@ -5,6 +5,8 @@ paths:
   - src/week2
   - src/week3
   - src/week4
+  - src/week5
+  - src/week6
   - nitrile-packages/linux-x64/abc-interpreter/lib
   - nitrile-packages/linux-x64/base64/lib
   - nitrile-packages/linux-x64/base-lib/lib
@@ -20,6 +22,7 @@ paths:
   - nitrile-packages/linux-x64/itasks/lib
   - nitrile-packages/linux-x64/json/lib
   - nitrile-packages/linux-x64/language/lib
+  - nitrile-packages/linux-x64/lib-compiler/lib
   - nitrile-packages/linux-x64/linux/lib
   - nitrile-packages/linux-x64/options/lib
   - nitrile-packages/linux-x64/parser-combinators/lib

@@ -1,4 +1,4 @@
-#include <cblas.h>
+#include </opt/OpenBLAS/include/cblas.h>
 #include <stdio.h>
 
 void main()

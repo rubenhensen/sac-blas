@@ -7,6 +7,7 @@ paths:
   - src/week4
   - src/week5
   - src/week6
+  - src/week7
   - nitrile-packages/linux-x64/abc-interpreter/lib
   - nitrile-packages/linux-x64/base64/lib
   - nitrile-packages/linux-x64/base-lib/lib

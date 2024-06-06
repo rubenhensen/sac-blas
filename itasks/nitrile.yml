@@ -26,9 +26,9 @@ build:
   application:
     script:
       - clm:
-          src: [src/week6]
-          main: TOP1
-          target: bin/TOP1
+          src: [src/week7]
+          main: TOP2
+          target: bin/TOP2
           bytecode: prelinked
           heap: 20m
           generate_descriptors: true

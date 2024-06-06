@@ -1,4 +1,4 @@
-#include <cblas.h>
+#include </opt/OpenBLAS/include/cblas.h>
 
 void SACzhpr(const CBLAS_UPLO uplo, const int n, const double alpha, const void *x, const int incx, void *ap)
 {

@@ -1,4 +1,4 @@
-#include <cblas.h>
+#include </opt/OpenBLAS/include/cblas.h>
 
 void SACsswap(const int n, float *x, const int incx, float *y, const int incy)
 {

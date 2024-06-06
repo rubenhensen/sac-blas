@@ -1,4 +1,4 @@
-#include <cblas.h>
+#include </opt/OpenBLAS/include/cblas.h>
 
 void SACsgbmv(char trans, int m, int n, int kl, int ku, float alpha, float* a, int lda, float* x, int incx, float beta, float* y, int incy)
 {

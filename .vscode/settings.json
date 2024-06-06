@@ -42,6 +42,7 @@
         "filesystem": "cpp",
         "thread": "cpp",
         "queue": "c",
-        "stack": "c"
+        "stack": "c",
+        "cblas.h": "c"
     }
 }

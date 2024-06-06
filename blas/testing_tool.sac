@@ -1476,7 +1476,7 @@ void test() {
     test_idamax(n, ds, incs);
 
     // BLAS L2
-    test_sgemv(n, ds, incs);
+    test_sgemv(chars, nms, nms, , ds, incs);
 }
 
 /*

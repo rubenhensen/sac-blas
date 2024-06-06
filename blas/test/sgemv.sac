@@ -8,147 +8,86 @@ use Structures: all;
 
 // With this test method
 // Watch out for overfitting with the check guards. If the guard is wrong we might be skipping certain valid testcases.
-// Because sgemv is multiplication. Bigger numbers and bigger arrays/matrices all result in a larger errror. Making comparisons hard to do properly.
+// Because sgemv is multiplication. Bigger numbers and bigger arrays/matrices all result in a larger error. Making comparisons hard to do properly.
 // modes
-
-#define TEST 0
-#define NATIVE  1
-#define LIBRARY 2
-#define TIME 4
-
-#define MT 0
-#define ST 1
-
-#ifndef N
-#define N 10000000
-#endif
-#ifndef INCX
-#define INCX 1
-#endif
-#ifndef INCY
-#define INCY 1
-#endif
-
-#ifndef SAMPLE_RATE
-#define SAMPLE_RATE 100
-#endif
-
-#define MAX_ACC_LOSS 0.1f
-
-
-// #ifndef MODE
-// #define MODE ST
-// #endif
-
-#ifndef TYPE
-#define TYPE INPUT_SIZE
-#endif
-
-//types
-#define INPUT_SIZE   1
-#define THREAD_COUNT 2
-
-//modes
-#define ST 1
-#define MT  2
-
-#ifndef THREADS
-#define THREADS 1
-#endif
-
-//routines
-// #define DROTG   1
-// #define DROTMG  2
-// #define DROT    3
-// #define DROTM   4
-// #define DSWAP   5
-// #define DSCAL   6
-// #define DCOPY   7
-// #define DAXPY   8
-// #define DDOT    9
-// #define DSDOT  10
-// #define DNRM2  11
-// #define DZNRM2 12
-// #define DASUM  13
-// #define IDAMAX 14
-
 
 
 int main() {
-    #ifndef MODE
-        printf("To generate measurements for a given routine:\n");
-        printf("$ sac2c testing_tool.sac -D MODE=<routine name (CAPS)> && ./a.out > /dev/null 2>&1\n");
-        printf("\nTo test correctness of all routines:\n");
-        printf("$ sac2c testing_tool.sac -D MODE=TEST && ./a.out\n");
-    #endif
+  manual();
+    // #ifndef MODE
+    //     printf("To generate measurements for a given routine:\n");
+    //     printf("$ sac2c testing_tool.sac -D MODE=<routine name (CAPS)> && ./a.out > /dev/null 2>&1\n");
+    //     printf("\nTo test correctness of all routines:\n");
+    //     printf("$ sac2c testing_tool.sac -D MODE=TEST && ./a.out\n");
+    // #endif
 
-    trans = ['n', 'N', 't', 'T', 'c', 'C', 'x', 'X'];
+    // trans = ['n', 'N', 't', 'T', 'c', 'C', 'x', 'X'];
 
-    nm = [1,2,3,4];
+    // nm = [1,2,3,4];
 
-    perms_nm = {[i,j,k] -> [nm[i], nm[j], nm[k] >= nm[j] ? nm[k] : nm[j]]};
-    perms_nm = reshape([shape(nm)[0]*shape(nm)[0]*shape(nm)[0], 3], perms_nm);
-    // print(perms_nm);
+    // perms_nm = {[i,j,k] -> [nm[i], nm[j], nm[k] >= nm[j] ? nm[k] : nm[j]]};
+    // perms_nm = reshape([shape(nm)[0]*shape(nm)[0]*shape(nm)[0], 3], perms_nm);
+    // // print(perms_nm);
 
-    incs = [1,2,3,4];
-    perms_incs = {[i,j] -> [incs[i], incs[j]]};
-    perms_incs = reshape([shape(incs)[0]*shape(incs)[0], 2], perms_incs);
-    // print(perms_incs);
+    // incs = [1,2,3,4];
+    // perms_incs = {[i,j] -> [incs[i], incs[j]]};
+    // perms_incs = reshape([shape(incs)[0]*shape(incs)[0], 2], perms_incs);
+    // // print(perms_incs);
 
-    scalars = [0.0f, 1.0f, 0.01f, 9.2f, -1.0f, -0.1f, -99.2f];
-    perms_scalars = {[i,j] -> [scalars[i], scalars[j]]};
-    perms_scalars = reshape([shape(scalars)[0]*shape(scalars)[0], 2], perms_scalars);
-    // print(perms_scalars);
+    // scalars = [0.0f, 1.0f, 0.01f, 9.2f, -1.0f, -0.1f, -99.2f];
+    // perms_scalars = {[i,j] -> [scalars[i], scalars[j]]};
+    // perms_scalars = reshape([shape(scalars)[0]*shape(scalars)[0], 2], perms_scalars);
+    // // print(perms_scalars);
 
-    fs = [0.0f, 7.0f, 3.2f, -4.6f, -10.0f, 0.03f, -0.04f, 70.0f, -43.3f];
-    perms_fs = { [i,j,k] -> [fs[i], fs[j], fs[k]] };
-    perms_fs = reshape([shape(fs)[0]*shape(fs)[0]*shape(fs)[0], 3], perms_fs);
-    // print(perms_fs);
+    // fs = [0.0f, 7.0f, 3.2f, -4.6f, -10.0f, 0.03f, -0.04f, 70.0f, -43.3f];
+    // perms_fs = { [i,j,k] -> [fs[i], fs[j], fs[k]] };
+    // perms_fs = reshape([shape(fs)[0]*shape(fs)[0]*shape(fs)[0], 3], perms_fs);
+    // // print(perms_fs);
     
-    #ifdef MODE
-    if(MODE == TEST) {
-      // print("inside mode test");
-      check(trans, perms_nm, perms_incs, perms_scalars, perms_fs, 10, MODE);
-    } 
-    //}
-    //else if(TYPE == THREAD_COUNT) {
-        // measure_thread_count(THREADS, ROUTINE);
-    else if (MODE == TIME) {
-      measure()
-    }
-    #endif
+    // #ifdef MODE
+    // if(MODE == TEST) {
+    //   // print("inside mode test");
+    //   check(trans, perms_nm, perms_incs, perms_scalars, perms_fs, 10, MODE);
+    // } 
+    // //}
+    // //else if(TYPE == THREAD_COUNT) {
+    //     // measure_thread_count(THREADS, ROUTINE);
+    // else if (MODE == TIME) {
+    //   measure()
+    // }
+    // #endif
 
     return 0;
 }
 
-void check(char[*] trans_arr, int[*] perms_nm, int[*] perms_incs, float[*] perms_scalars, float[*] perms_fs, int sample_rate, int mode) {
-  for (i = 0; i < shape(perms_nm)[0]; i++) {
-    for (j = 0; j < shape(perms_incs)[0]; j++) {
-      for (k = 0; k < shape(perms_scalars)[0]; k++) {
-        for (l = 0; l < shape(perms_fs)[0]; l++) {
-          for (p = 0; p < shape(trans_arr)[0]; p++) {
-            // printf("i:%d j:%d k:%d l:%d, p:%d\n", i, j, k, l, p);
-            trans = trans_arr[p];
-            m = perms_nm[i][0];
-            n = perms_nm[i][1];
-            incx = perms_incs[j][0];
-            incy = perms_incs[j][1];
-            lda = perms_nm[i][2];
-            alpha = perms_scalars[k][0];
-            beta = perms_scalars[k][1];
-            a = genarray([m, lda], perms_fs[l][0]);
-            x = genarray([1+(m-1)*incx], perms_fs[l][1]);
-            y = genarray([1+(n-1)*incy], perms_fs[l][2]);
+// void check(char[*] trans_arr, int[*] perms_nm, int[*] perms_incs, float[*] perms_scalars, float[*] perms_fs, int sample_rate, int mode) {
+//   for (i = 0; i < shape(perms_nm)[0]; i++) {
+//     for (j = 0; j < shape(perms_incs)[0]; j++) {
+//       for (k = 0; k < shape(perms_scalars)[0]; k++) {
+//         for (l = 0; l < shape(perms_fs)[0]; l++) {
+//           for (p = 0; p < shape(trans_arr)[0]; p++) {
+//             // printf("i:%d j:%d k:%d l:%d, p:%d\n", i, j, k, l, p);
+//             trans = trans_arr[p];
+//             m = perms_nm[i][0];
+//             n = perms_nm[i][1];
+//             incx = perms_incs[j][0];
+//             incy = perms_incs[j][1];
+//             lda = perms_nm[i][2];
+//             alpha = perms_scalars[k][0];
+//             beta = perms_scalars[k][1];
+//             a = genarray([m, lda], perms_fs[l][0]);
+//             x = genarray([1+(m-1)*incx], perms_fs[l][1]);
+//             y = genarray([1+(n-1)*incy], perms_fs[l][2]);
 
-            if (ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']) && m >= 0 && n >=0 && lda >= max(1,n) && sgemvXdim('n', m, n, incx, shape(x)[0]) && incx != 0 && sgemvYdim('n', m, n, incy, shape(y)[0]) && incy != 0)
-            compare(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+//             if (ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']) && m >= 0 && n >=0 && lda >= max(1,n) && sgemvXdim('n', m, n, incx, shape(x)[0]) && incx != 0 && sgemvYdim('n', m, n, incy, shape(y)[0]) && incy != 0)
+//             compare(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
 
-          }
-        }
-      }
-    }
-  }
-}
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
 
 void compare(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy)
@@ -156,7 +95,7 @@ void compare(char trans, int m, int n, float alpha, float[am,an] a, int lda, flo
     y1 = OpenBlas::sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
     y2 = sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
     
-    if(!(almost_eq(y1,y2, MAX_ACC_LOSS)))
+    if(!(almost_eq(y1,y2, 0.01f)))
     {
         printf("Error in sgemv. trans:%c, m:%d, n:%d, alpha:%f, lda:%d, incx:%d, beta:%f, incy:%d\n", trans, m, n, alpha, lda, incx, beta, incy); 
         printf("a:\n");

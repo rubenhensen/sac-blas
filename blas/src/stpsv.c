@@ -1,4 +1,4 @@
-#include <cblas.h>
+#include </opt/OpenBLAS/include/cblas.h>
 
 void SACstpsv(const char uplo, const char trans, const char diag, const int n, const float *ap, float *x, const int incx)
 {

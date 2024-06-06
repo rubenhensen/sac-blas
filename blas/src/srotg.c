@@ -1,4 +1,4 @@
-#include <cblas.h>
+#include </opt/OpenBLAS/include/cblas.h>
 
 void SACsrotg(float *a, float *b, float *c, float *s)
 {

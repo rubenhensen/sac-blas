@@ -23,10 +23,10 @@ StructuresPlus=./host/seq/libStructuresPlusMod.so ./tree/host/libStructuresPlusT
 .PHONY: all test dblas1 OpenBlasnotc BlasLevel1notc BlasLevel2notc Helpernotc StructuresPlusnotc
 
 %.o: %.c 
-	$(CC) -c -o $@ $< $(CFLAGS) $(LIBS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 ./host/seq/libOpenBlasMod.so ./tree/host/libOpenBlasTree.so &: OpenBlas.sac  $(OBJ)
-	sac2c $(CHECKFLAG) -Xl -lopenblas64 OpenBlas.sac
+	sac2c $(CHECKFLAG) -Xl $(LIBS) OpenBlas.sac
 
 ./host/seq/libBlasLevel1Mod.so ./tree/host/libBlasLevel1Tree.so &: BlasLevel1.sac $(Helper) 
 	sac2c $(CHECKFLAG) BlasLevel1.sac

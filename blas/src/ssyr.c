@@ -1,4 +1,4 @@
-#include <cblas.h>
+#include </opt/OpenBLAS/include/cblas.h>
 
 void SACssyr(const char uplo, const int n, const float alpha, const float *x, const int incx, float *a, const int lda)
 {

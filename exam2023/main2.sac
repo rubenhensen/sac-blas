@@ -1,0 +1,81 @@
+use Array: all except {sum};
+use StdIO: all;
+
+int main() {
+    // fold-with-loop
+    // a = reshape([3,3], iota(9));
+    // b = with {
+    //         ([0,0] <= [i,j] < [3,3]) : a[i,j];
+    //     } : fold(+, 0);
+    //     b = with {
+    //         ([0] <= [i] < [3]) : a[i];
+    //     } : fold(+, 0);
+    // print(b);
+
+    print( sum(iota(5)+1)                   );
+    print( sum([])                          );
+    print( sum(reshape([2,3], iota(6)+1))   );
+    print( sum([[]])                        );
+    a = iota(8);
+    print( sum(reshape([2,2,2], a))         );
+
+    return 0;
+}
+
+// int sum (int[.] v) {
+//     result = 0;
+//     for (i=0;i<shape(v)[0];i++) {
+//         result += v[i];
+//     }
+//     return result;
+// }
+
+int sum(int[n] v) {
+    result = 0;
+    for (i = 0; i < n; i++) {
+        result += v[i];
+    }
+    return result;
+}
+
+// int sum (int[m,n] mat) {
+//    return with {
+//     ([0] <= [i] < [m]) : sum(mat[i]);
+//    } : fold(+, 0);
+// }
+
+int sum(int[m,n] mat) {
+   a = {[i] -> sum(mat[i])};
+   return sum(a);
+}
+
+// int sum(int[+] mat) {
+//     a = {[i] -> sum(mat[i])};
+//     return sum(a);
+// }
+
+int sum(int[+] mat) {
+    a = {[i,j] -> sum(mat[i,j]) };
+    return sum(a);
+}
+
+
+int foo (int [10000] a)
+{
+    INC_RC(a, 2);
+    val = a[0]; // Scalar, nothing to track
+    DEC_RC_FREE(a);
+    if (val < 10) {
+        x = a[1];
+        DEC_RC_FREE(a);
+        b = a;
+        b[0] = val + 1; 
+        c = b;
+        c[1] = x + 1; // in place
+    } else {
+        DEC_RC_FREE(a);
+        c = a;
+        c[1] = 0; // in place
+    }
+    return c;
+}

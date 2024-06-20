@@ -2,6 +2,9 @@ use Math: all;
 use StdIO: all;
 use Structures: all;
 use Benchmarking: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
 
 
 #ifndef N
@@ -19,6 +22,7 @@ use Benchmarking: all;
 #endif
 
 #define MAX_ACC_LOSS 0.001
+#define MAX_ACC_LOSSF 0.001f
 
 
 #ifndef MODE
@@ -57,9 +61,10 @@ use Benchmarking: all;
 #define DDOT    9
 #define DSDOT  10
 #define DNRM2  11
-#define DZNRM2 12
+// #define DZNRM2 12
 #define DASUM  13
 #define IDAMAX 14
+#define SGEMV  15
 
 #define TEST    0
 
@@ -68,353 +73,351 @@ use Benchmarking: all;
 /*
  * ROUTINE DEFINITIONS
  */
-inline
-double, double, double, double drotg(double a, double b)
-{
-  if(b == 0d) {
-    r = a;
-    z = 0d;
-    c = 1d;
-    s = 0d;
-  } else if(a == 0d) {
-    r = b;
-    z = 1d;
-    c = 0d;
-    s = 1d;
-  } else {
-    sigma = tod(abs(a) > abs(b) ? sign(a) : sign(b));
-    r = sigma * sqrt(a*a + b*b);
-    c = a/r;
-    s = b/r;
-    z = abs(a) > abs(b) ? s : c == 0d ? 1d : 1d/c;
-  }
-  return (r, z, c, s);
-}
-external
-double, double, double, double cblas_drotg(double a, double b);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [1,2,3,4, 1,2]
+// inline
+// double, double, double, double drotg(double a, double b)
+// {
+//   if(b == 0d) {
+//     r = a;
+//     z = 0d;
+//     c = 1d;
+//     s = 0d;
+//   } else if(a == 0d) {
+//     r = b;
+//     z = 1d;
+//     c = 0d;
+//     s = 1d;
+//   } else {
+//     sigma = tod(abs(a) > abs(b) ? sign(a) : sign(b));
+//     r = sigma * sqrt(a*a + b*b);
+//     c = a/r;
+//     s = b/r;
+//     z = abs(a) > abs(b) ? s : c == 0d ? 1d : 1d/c;
+//   }
+//   return (r, z, c, s);
+// }
+////external
+////double, double, double, double cblas_drotg(double a, double b);
+////#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+////#pragma linksign [1,2,3,4, 1,2]
 
 
 
-inline
-double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1)
-{
-  //A very literal translation from Fortran
-  gam    = 4096d;
-  gamsq  = 16777216d;
-  rgamsq = 5.9604645e-8d;
+// inline
+// double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1)
+// {
+//   //A very literal translation from Fortran
+//   gam    = 4096d;
+//   gamsq  = 16777216d;
+//   rgamsq = 5.9604645e-8d;
 
-  flag = 0d;
-  h11  = 0d;
-  h21  = 0d;
-  h12  = 0d;
-  h22  = 0d;
+//   flag = 0d;
+//   h11  = 0d;
+//   h21  = 0d;
+//   h12  = 0d;
+//   h22  = 0d;
 
-  if(d1 < 0d) {
-    flag = -1d;
+//   if(d1 < 0d) {
+//     flag = -1d;
     
-    d1 = 0d;
-    d2 = 0d;
-    x1 = 0d;
-  } else if(d2*y1 < 0d) {
-    flag = -2d;
-  } else {
-    p1 = d1*x1;
-    p2 = d2*y1;
-    q1 = p1*x1;
-    q2 = p2*y1;
+//     d1 = 0d;
+//     d2 = 0d;
+//     x1 = 0d;
+//   } else if(d2*y1 < 0d) {
+//     flag = -2d;
+//   } else {
+//     p1 = d1*x1;
+//     p2 = d2*y1;
+//     q1 = p1*x1;
+//     q2 = p2*y1;
 
-    if(abs(q1) > abs(q2)) {
-        h21 = (-y1)/x1;
-        h12 = p2/p1;
+//     if(abs(q1) > abs(q2)) {
+//         h21 = (-y1)/x1;
+//         h12 = p2/p1;
 
-        u = 1d - h12*h21;
-        if(u > 0d) {
-            flag = 0d;
-            d1 /= u;
-            d2 /= u;
-            x1 /= u;
-        } else {
-            flag = -1d;
-            d1 = 0d;
-            d2 = 0d;
-            x1 = 0d;
-        }
-    } else {
-        if(q2 < 0d) {
-            flag = -1d;
-            d1 = 0d;
-            d2 = 0d;
-            x1 = 0d;
-        } else {
-            flag = 1d;
-            h11 = p1/p2;
-            h22 = x1/y1;
-            u = 1d + h11*h22;
-            temp = d2/u;
-            d2 = d1/u;
-            d1 = temp;
-            x1 = y1*u;
-        }
-    }
+//         u = 1d - h12*h21;
+//         if(u > 0d) {
+//             flag = 0d;
+//             d1 /= u;
+//             d2 /= u;
+//             x1 /= u;
+//         } else {
+//             flag = -1d;
+//             d1 = 0d;
+//             d2 = 0d;
+//             x1 = 0d;
+//         }
+//     } else {
+//         if(q2 < 0d) {
+//             flag = -1d;
+//             d1 = 0d;
+//             d2 = 0d;
+//             x1 = 0d;
+//         } else {
+//             flag = 1d;
+//             h11 = p1/p2;
+//             h22 = x1/y1;
+//             u = 1d + h11*h22;
+//             temp = d2/u;
+//             d2 = d1/u;
+//             d1 = temp;
+//             x1 = y1*u;
+//         }
+//     }
 
-    if(d1 != 0d) {
-        while(d1 < rgamsq || d1 > gamsq) {
-            if(flag == 0d) {
-                h11 = 1d;
-                h22 = 1d;
-                flag = -1d;
-            } else {
-                h21 = -1d;
-                h12 = 1d;
-                flag = -1d;
-            }
-            if(d1 < rgamsq) {
-                d1 *= gam*gam;
-                x1 /= gam;
-                h11 /= gam;
-                h12 /= gam;
-            } else {
-                d1 /= gam*gam;
-                x1 *= gam;
-                h11 *= gam;
-                h12 *= gam;
-            }
-        }
-    }
+//     if(d1 != 0d) {
+//         while(d1 < rgamsq || d1 > gamsq) {
+//             if(flag == 0d) {
+//                 h11 = 1d;
+//                 h22 = 1d;
+//                 flag = -1d;
+//             } else {
+//                 h21 = -1d;
+//                 h12 = 1d;
+//                 flag = -1d;
+//             }
+//             if(d1 < rgamsq) {
+//                 d1 *= gam*gam;
+//                 x1 /= gam;
+//                 h11 /= gam;
+//                 h12 /= gam;
+//             } else {
+//                 d1 /= gam*gam;
+//                 x1 *= gam;
+//                 h11 *= gam;
+//                 h12 *= gam;
+//             }
+//         }
+//     }
 
-    if(d2 != 0d) {
-        while(abs(d2) < rgamsq || abs(d2) > gamsq) {
-            if(flag == 0d) {
-                h11 = 1d;
-                h22 = 1d;
-                flag = -1d;
-            } else {
-                h21 = -1d;
-                h12 = 1d;
-                flag = -1d;
-            }
-            if(abs(d2) < rgamsq) {
-                d2 *= gam*gam;
-                h21 /= gam;
-                h22 /= gam;
-            } else {
-                d2 /= gam*gam;
-                h21 *= gam;
-                h22 *= gam;
-            }
-        }
-    }
-  }
+//     if(d2 != 0d) {
+//         while(abs(d2) < rgamsq || abs(d2) > gamsq) {
+//             if(flag == 0d) {
+//                 h11 = 1d;
+//                 h22 = 1d;
+//                 flag = -1d;
+//             } else {
+//                 h21 = -1d;
+//                 h12 = 1d;
+//                 flag = -1d;
+//             }
+//             if(abs(d2) < rgamsq) {
+//                 d2 *= gam*gam;
+//                 h21 /= gam;
+//                 h22 /= gam;
+//             } else {
+//                 d2 /= gam*gam;
+//                 h21 *= gam;
+//                 h22 *= gam;
+//             }
+//         }
+//     }
+//   }
 
-  return (d1, d2, x1, [flag, h11, h21, h12, h22]);
-}
-external
-double, double, double, double[5] cblas_drotmg(double d1, double d2, double x1, double y1);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [1,2,3,5, 1,2,3,4]
-
-
-
-inline
-double[.], double[.] drot(int n, double[.] X, int incx, double[.] Y, int incy, double c, double s)
-{
-  //expects n > 0, incx > 0, incy > 0
-  return (
-    {i -> c*X[i] + s*Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
-    {i -> c*Y[i] - s*X[(i*incx)/incy] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]}
-  );
-}
-external
-double[.], double[.] cblas_drot(int n, double[.] X, int incx, double[.] Y, int incy, double c, double s);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [2,4, 1,2,3,4,5,6,7]
+//   return (d1, d2, x1, [flag, h11, h21, h12, h22]);
+// }
+//external
+//double, double, double, double[5] cblas_drotmg(double d1, double d2, double x1, double y1);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [1,2,3,5, 1,2,3,4]
 
 
 
-inline
-double[.], double[.] drotm(int n, double[.] X, int incx, double[.] Y, int incy, double[5] param)
-{
-  //expects n > 0, -2 <= param[0] <= 1 
-  flag = param[0];
-  h11  = param[1];
-  h21  = param[2];
-  h12  = param[3];
-  h22  = param[4];
+// inline
+// double[.], double[.] drot(int n, double[.] X, int incx, double[.] Y, int incy, double c, double s)
+// {
+//   //expects n > 0, incx > 0, incy > 0
+//   return (
+//     {i -> c*X[i] + s*Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
+//     {i -> c*Y[i] - s*X[(i*incx)/incy] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]}
+//   );
+// }
+//external
+//double[.], double[.] cblas_drot(int n, double[.] X, int incx, double[.] Y, int incy, double c, double s);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [2,4, 1,2,3,4,5,6,7]
+
+
+
+// inline
+// double[.], double[.] drotm(int n, double[.] X, int incx, double[.] Y, int incy, double[5] param)
+// {
+//   //expects n > 0, -2 <= param[0] <= 1 
+//   flag = param[0];
+//   h11  = param[1];
+//   h21  = param[2];
+//   h12  = param[3];
+//   h22  = param[4];
   
-  if(n < 1 || flag == -2d) {
-    X_prime = X;
-    Y_prime = Y;
-  } else if(flag < 0d) {
-    X_prime = {i -> X[i]*h11 + Y[(i*incy)/incx]*h12 | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
-    Y_prime = {i -> X[(i*incx)/incy]*h21 + Y[i]*h22 | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
-  } else if(flag == 0d) {
-    X_prime = {i -> X[i] + Y[(i*incy)/incx]*h12 | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
-    Y_prime = {i -> X[(i*incx)/incy]*h21 + Y[i] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
-  } else {
-    X_prime = {i ->  X[i]*h11 + Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
-    Y_prime = {i -> -X[(i*incx)/incy] + Y[i]*h22 | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
-  }
+//   if(n < 1 || flag == -2d) {
+//     X_prime = X;
+//     Y_prime = Y;
+//   } else if(flag < 0d) {
+//     X_prime = {i -> X[i]*h11 + Y[(i*incy)/incx]*h12 | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
+//     Y_prime = {i -> X[(i*incx)/incy]*h21 + Y[i]*h22 | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
+//   } else if(flag == 0d) {
+//     X_prime = {i -> X[i] + Y[(i*incy)/incx]*h12 | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
+//     Y_prime = {i -> X[(i*incx)/incy]*h21 + Y[i] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
+//   } else {
+//     X_prime = {i ->  X[i]*h11 + Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
+//     Y_prime = {i -> -X[(i*incx)/incy] + Y[i]*h22 | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
+//   }
   
-  return (X_prime, Y_prime);
-}
-external
-double[.], double[.] cblas_drotm(int n, double[.] X, int incx, double[.] Y, int incy, double[5] param);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [2,4, 1,2,3,4,5,6]
+//   return (X_prime, Y_prime);
+// }
+//external
+//double[.], double[.] cblas_drotm(int n, double[.] X, int incx, double[.] Y, int incy, double[5] param);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [2,4, 1,2,3,4,5,6]
 
 
 
-inline
-double[.], double[.] dswap(int n, double[.] X, int incx, double[.] Y, int incy)
-{
-  //expects n > 0, incx > 0, incy > 0
-  return (
-    {i -> Y[(i/incx)*incy] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
-    {i -> X[(i/incy)*incx] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]}
-  );
-}
-external
-double[.], double[.] cblas_dswap(int n, double[.] X, int incx, double[.] Y, int incy);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [2,4, 1,2,3,4,5]
+// inline
+// double[.], double[.] dswap(int n, double[.] X, int incx, double[.] Y, int incy)
+// {
+//   //expects n > 0, incx > 0, incy > 0
+//   return (
+//     {i -> Y[(i/incx)*incy] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
+//     {i -> X[(i/incy)*incx] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]}
+//   );
+// }
+//external
+//double[.], double[.] cblas_dswap(int n, double[.] X, int incx, double[.] Y, int incy);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [2,4, 1,2,3,4,5]
 
 
 
-inline
-double[.] dscal(int n, double a, double[.] X, int incx)
-{
-  //expects n > 0, incx > 0
-  return {i -> a * X[i] | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
-}
-external
-double[.] cblas_dscal(int n, double a, double[.] X, int incx);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [3,1,2,3,4]
+// inline
+// double[.] dscal(int n, double a, double[.] X, int incx)
+// {
+//   //expects n > 0, incx > 0
+//   return {i -> a * X[i] | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
+// }
+//external
+//double[.] cblas_dscal(int n, double a, double[.] X, int incx);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [3,1,2,3,4]
 
 
 
-inline
-double[.] dcopy(int n, double[.] X, int incx, double[.] Y, int incy)
-{
-  //expects n > 0, incx >= 0, incy > 0
-  return {i -> X[(i/incy)*incx] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
-}
-external
-double[.] cblas_dcopy(int n, double[.] X, int incx, double[.] Y, int incy);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [4, 1,2,3,4,5]
+// inline
+// double[.] dcopy(int n, double[.] X, int incx, double[.] Y, int incy)
+// {
+//   //expects n > 0, incx >= 0, incy > 0
+//   return {i -> X[(i/incy)*incx] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
+// }
+//external
+//double[.] cblas_dcopy(int n, double[.] X, int incx, double[.] Y, int incy);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [4, 1,2,3,4,5]
 
 
 
-inline
-double[.] daxpy(int n, double a, double[.] X, int incx, double[.] Y, int incy)
-{
-  //expects n > 0, incx >= 0, incy > 0
-  if(a == 0d) {
-    result = Y;
-  } else {
-    result = {i -> a * X[(i/incy)*incx] + Y[i] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
-  }
-  return result;
-}
-external
-double[.] cblas_daxpy(int n, double a, double[.] X, int incx, double[.] Y, int incy);
-#pragma linkobj "/home/casper/AOCL-BLIS-mt/lib/libblis-mt.a"
-#pragma linksign [5, 1,2,3,4,5,6]
+// inline
+// double[.] daxpy(int n, double a, double[.] X, int incx, double[.] Y, int incy)
+// {
+//   //expects n > 0, incx >= 0, incy > 0
+//   if(a == 0d) {
+//     result = Y;
+//   } else {
+//     result = {i -> a * X[(i/incy)*incx] + Y[i] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
+//   }
+//   return result;
+// }
+//external
+//double[.] cblas_daxpy(int n, double a, double[.] X, int incx, double[.] Y, int incy);
+//#pragma linkobj "/home/casper/AOCL-BLIS-mt/lib/libblis-mt.a"
+//#pragma linksign [5, 1,2,3,4,5,6]
 
 
 
-inline
-double ddot(int n, double[.] X, int incx, double[.] Y, int incy)
-{
-  //expects n > 0, incx >= 0, incy >= 0
-  return sum( {i -> X[i*incx] * Y[i*incy] | [0] <= i < [n]} );
-}
-external
-double cblas_ddot(int n, double[.] X, int incx, double[.] Y, int incy);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [0, 1,2,3,4,5]
+// inline
+// double ddot(int n, double[.] X, int incx, double[.] Y, int incy)
+// {
+//   //expects n > 0, incx >= 0, incy >= 0
+//   return sum( {i -> X[i*incx] * Y[i*incy] | [0] <= i < [n]} );
+// }
+//external
+//double cblas_ddot(int n, double[.] X, int incx, double[.] Y, int incy);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [0, 1,2,3,4,5]
 
 
 
-inline
-double dsdot(int n, float[.] X, int incx, float[.] Y, int incy)
-{
-  //expects n > 0, incx >= 0, incy >= 0
-  return sum( {i -> tod(X[i*incx]) * tod(Y[i*incy]) | [0] <= i < [n] } );
-}
-external
-double cblas_dsdot(int n, float[.] X, int incx, float[.] Y, int incy);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [0, 1,2,3,4,5]
+// inline
+// double dsdot(int n, float[.] X, int incx, float[.] Y, int incy)
+// {
+//   //expects n > 0, incx >= 0, incy >= 0
+//   return sum( {i -> tod(X[i*incx]) * tod(Y[i*incy]) | [0] <= i < [n] } );
+// }
+//external
+//double cblas_dsdot(int n, float[.] X, int incx, float[.] Y, int incy);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [0, 1,2,3,4,5]
 
-
-
-inline
-double dnrm2(int n, double[.] X, int incx)
-{
-  //expects n > 0, incx > 0
-    return sqrt(sum( {i -> X[i]*X[i] | [0] <= i < [n*incx] step [incx]} ));
-}
-external
-double cblas_dnrm2(int n, double[.] X, int incx);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [0, 1,2,3]
+// inline
+// double dnrm2(int n, double[.] X, int incx)
+// {
+//   //expects n > 0, incx > 0
+//     return sqrt(sum( {i -> X[i]*X[i] | [0] <= i < [n*incx] step [incx]} ));
+// }
+//external
+//double cblas_dnrm2(int n, double[.] X, int incx);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [0, 1,2,3]
 
 
 
 //in the cblas implementation the complex list is a void pointer...
-inline
-double dznrm2(int n, complex[.] X, int incx)
-{
-  //expects n > 0, incx > 0
-  X_prime = {i -> X[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
-  return sqrt(sum(normSq(X_prime)));
-}
-external
-double cblas_dznrm2(int n, complex[.] X, int incx);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [0, 1,2,3]
+// inline
+// double dznrm2(int n, complex[.] X, int incx)
+// {
+//   //expects n > 0, incx > 0
+//   X_prime = {i -> X[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
+//   return sqrt(sum(normSq(X_prime)));
+// }
+//external
+//double cblas_dznrm2(int n, complex[.] X, int incx);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [0, 1,2,3]
 
 
 
-inline
-double dasum(int n, double[.] X, int incx)
-{
-  //expects n > 0, incx > 0
-  return sum( {i -> abs(X[i]) | [0] <= i < [n*incx] step [incx]} );
-}
-external
-double cblas_dasum(int n, double[.] X, int incx);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [0,1,2,3]
+// inline
+// double dasum(int n, double[.] X, int incx)
+// {
+//   //expects n > 0, incx > 0
+//   return sum( {i -> abs(X[i]) | [0] <= i < [n*incx] step [incx]} );
+// }
+//external
+//double cblas_dasum(int n, double[.] X, int incx);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [0,1,2,3]
 
 
 
-inline
-int idamax(int n, double[.] X, int incx)
-{
-  //expects n > 0, incx > 0
-  max_i = 0;
-  max_v = 0d;
-  ix = 0;
-  for(i = 0; i < n; i++) {
-    current_v = abs(X[ix]);
-    if(current_v > max_v) {
-      max_i = i;
-      max_v = current_v;
-    }
-    ix += incx;
-  }
+// inline
+// int idamax(int n, double[.] X, int incx)
+// {
+//   //expects n > 0, incx > 0
+//   max_i = 0;
+//   max_v = 0d;
+//   ix = 0;
+//   for(i = 0; i < n; i++) {
+//     current_v = abs(X[ix]);
+//     if(current_v > max_v) {
+//       max_i = i;
+//       max_v = current_v;
+//     }
+//     ix += incx;
+//   }
 
-  return max_i;
-}
-external
-int cblas_idamax(int n, double[.] X, int incx);
-#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-#pragma linksign [0,1,2,3]
+//   return max_i;
+// }
+//external
+//int cblas_idamax(int n, double[.] X, int incx);
+//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
+//#pragma linksign [0,1,2,3]
 
 /*
  * HELPER FUNCTIONS
@@ -468,12 +471,14 @@ string routine_id_to_name(int routine) {
         result = "dsdot";
     } else if(routine == DNRM2) {
         result = "dnrm2";
-    } else if(routine == DZNRM2) {
-        result = "dznrm2";
+    // } else if(routine == DZNRM2) {
+    //     result = "dznrm2";
     } else if(routine == DASUM) {
         result = "dasum";
     } else if(routine == IDAMAX) {
         result = "idamax";
+    } else if(routine == SGEMV) {
+        result = "sgemv";
     } else {
         result = "unknown";
     }
@@ -519,12 +524,42 @@ double[*] permutations(double[.] as, double[.] bs, double[.] cs) {
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0], 3], perms);
 }
+float[*] permutations(float[.] as, float[.] bs, float[.] cs) {
+    perms = { [i,j,k] -> [as[i], bs[j], cs[k]]};
+
+    return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0], 3], perms);
+}
+int[*] permutations(int[.] as, int[.] bs, int[.] cs) {
+    perms = { [i,j,k] -> [as[i], bs[j], cs[k]]};
+
+    return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0], 3], perms);
+}
 double[*] permutations(double[.] as, double[.] bs, double[.] cs, double[.] ds) {
     perms = { [i,j,k,l] -> [as[i], bs[j], cs[k], ds[l]] };
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0], 4], perms);
 }
+float[*] permutations(float[.] as, float[.] bs, float[.] cs, float[.] ds) {
+    perms = { [i,j,k,l] -> [as[i], bs[j], cs[k], ds[l]] };
+
+    return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0], 4], perms);
+}
+int[*] permutations(int[.] as, int[.] bs, int[.] cs, int[.] ds) {
+    perms = { [i,j,k,l] -> [as[i], bs[j], cs[k], ds[l]] };
+
+    return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0], 4], perms);
+}
 double[*] permutations(double[.] as, double[.] bs, double[.] cs, double[.] ds, double[.] es) {
+    perms = { [i,j,k,l,m] -> [as[i], bs[j], cs[k], ds[l], es[m]] };
+
+    return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0]*shape(es)[0], 5], perms);
+}
+float[*] permutations(float[.] as, float[.] bs, float[.] cs, float[.] ds, float[.] es) {
+    perms = { [i,j,k,l,m] -> [as[i], bs[j], cs[k], ds[l], es[m]] };
+
+    return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0]*shape(es)[0], 5], perms);
+}
+int[*] permutations(int[.] as, int[.] bs, int[.] cs, int[.] ds, int[.] es) {
     perms = { [i,j,k,l,m] -> [as[i], bs[j], cs[k], ds[l], es[m]] };
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0]*shape(es)[0], 5], perms);
@@ -543,11 +578,11 @@ double measure_drotg(int version) {
     
     if(version == NATIVE) {
         start(interval);
-        r, z, c, s = drotg(a, b);
+        r, z, c, s = drotg(a, b, a, b);
         end(interval);
     } else {
         start(interval);
-        r, z, c, s = cblas_drotg(a, b);
+        r, z, c, s = OpenBlas::drotg(a, b, a, b);
         end(interval);
     }
 
@@ -572,7 +607,7 @@ double measure_drotmg(int version) {
         end(interval);
     } else {
         start(interval);
-        d1, d2, x1, param = cblas_drotmg(d1, d2, x1, y1);
+        d1, d2, x1, param = OpenBlas::drotmg(d1, d2, x1, y1);
         end(interval);
     }
 
@@ -601,7 +636,7 @@ double measure_drot(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        X, Y = cblas_drot(n, X, INCX, Y, INCY, c, s);
+        X, Y = OpenBlas::drot(n, X, INCX, Y, INCY, c, s);
         end(interval);
     }
 
@@ -630,7 +665,7 @@ double measure_drotm(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        X, Y = cblas_drotm(m, X, INCX, Y, INCY, param);
+        X, Y = OpenBlas::drotm(m, X, INCX, Y, INCY, param);
         end(interval);
     }
 
@@ -658,7 +693,7 @@ double measure_dswap(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        X, Y = cblas_dswap(m, X, INCX, Y, INCY);
+        X, Y = OpenBlas::dswap(m, X, INCX, Y, INCY);
         end(interval);
     }
 
@@ -686,7 +721,7 @@ double measure_dscal(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        X = cblas_dscal(m, a, X, INCX);
+        X = OpenBlas::dscal(m, a, X, INCX);
         end(interval);
     }
 
@@ -712,7 +747,7 @@ double measure_dcopy(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        Y = cblas_dcopy(m, X, INCX, Y, INCY);
+        Y = OpenBlas::dcopy(m, X, INCX, Y, INCY);
         end(interval);
     }
 
@@ -739,7 +774,7 @@ double measure_daxpy(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        Y = cblas_daxpy(m, a, X, INCX, Y, INCY);
+        Y = OpenBlas::daxpy(m, a, X, INCX, Y, INCY);
         end(interval);
     }
 
@@ -765,7 +800,7 @@ double measure_ddot(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        result = cblas_ddot(m, X, INCX, Y, INCY);
+        result = OpenBlas::ddot(m, X, INCX, Y, INCY);
         end(interval);
     }
 
@@ -790,7 +825,7 @@ double measure_dsdot(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        result = cblas_dsdot(m, X, INCX, Y, INCY);
+        result = OpenBlas::dsdot(m, X, INCX, Y, INCY);
         end(interval);
     }
 
@@ -814,7 +849,7 @@ double measure_dnrm2(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        result = cblas_dnrm2(m, X, INCX);
+        result = OpenBlas::dnrm2(m, X, INCX);
         end(interval);
     }
 
@@ -825,29 +860,29 @@ double measure_dnrm2(int version, int n) {
     return time;
 }
 
-inline
-double measure_dznrm2(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], toc(7d, 4d)));
+// inline
+// double measure_dznrm2(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], toc(7d, 4d)));
     
-    m = cap_n(n, INCX);
+//     m = cap_n(n, INCX);
     
-    if(version == NATIVE) {
-        start(interval);
-        result = dznrm2(m, X, INCX);
-        end(interval);
-    } else {
-        start(interval);
-        result = cblas_dznrm2(m, X, INCX);
-        end(interval);
-    }
+//     if(version == NATIVE) {
+//         start(interval);
+//         result = dznrm2(m, X, INCX);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         result = OpenBlas::dznrm2(m, X, INCX);
+//         end(interval);
+//     }
 
-    printf("result: %f\n", id(result));
+//     printf("result: %f\n", id(result));
 
-    time, unit = returnResultUnit(interval);
+//     time, unit = returnResultUnit(interval);
 
-    return time;
-}
+//     return time;
+// }
 
 inline
 double measure_dasum(int version, int n) {
@@ -862,7 +897,7 @@ double measure_dasum(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        result = cblas_dasum(m, X, INCX);
+        result = OpenBlas::dasum(m, X, INCX);
         end(interval);
     }
 
@@ -886,7 +921,7 @@ double measure_idamax(int version, int n) {
         end(interval);
     } else {
         start(interval);
-        result = cblas_idamax(m, X, INCX);
+        result = OpenBlas::idamax(m, X, INCX);
         end(interval);
     }
 
@@ -896,6 +931,41 @@ double measure_idamax(int version, int n) {
 
     return time;
 }
+
+inline
+double measure_sgemv(int version, int n) {
+    interval = getInterval("interval", 7, 1);
+    x = id(genarray([n], 7f));
+    y = id(genarray([n], 4f));
+    a = genarray([n,n], 3f);
+    lda = n;
+    alpha = 6f;
+    beta = 8f;
+    t = 'n';
+    m = n;
+
+    // m = cap_n(n, INCX, INCY);
+    
+    if(version == NATIVE) {
+        start(interval);
+        Y = sgemv(t, m, n, alpha, a, lda, x, INCX, beta, y, INCY);
+        end(interval);
+    } else {
+        start(interval);
+        Y = OpenBlas::sgemv(t, m, n, alpha, a, lda, x, INCX, beta, y, INCY);
+        end(interval);
+    }
+
+    // printf("x: ");
+    // show(take([10], id(x)));
+    // printf("y: ");
+    // show(take([10], id(Y)));
+
+    time, unit = returnResultUnit(interval);
+
+    return time;
+}
+
 
 double[*] run(int routine, int version, int n, int sample_rate) {
     m = cap_n(n, INCX, INCY);
@@ -932,12 +1002,14 @@ double[*] run(int routine, int version, int n, int sample_rate) {
             time = measure_dsdot(version, n);
         } else if(routine == DNRM2) {
             time = measure_dnrm2(version, n);
-        } else if(routine == DZNRM2) {
-            time = measure_dznrm2(version, n);
+        // } else if(routine == DZNRM2) {
+        //     time = measure_dznrm2(version, n);
         } else if(routine == DASUM) {
             time = measure_dasum(version, n);
         } else if(routine == IDAMAX) {
             time = measure_idamax(version, n);
+        } else if(routine == SGEMV) {
+            time = measure_sgemv(version, n);
         } else {
             time = 0.0;
         }
@@ -949,7 +1021,7 @@ double[*] run(int routine, int version, int n, int sample_rate) {
 }
 
 void measure_input_size(int mode, int routine) {
-    output_path = "../../graphs/data/" + routine_id_to_name(routine) + ".out";
+    output_path = "./graphs/data/" + routine_id_to_name(routine) + ".out";
     
     if(mode == ST) {
         //clear the output file now, since the log_data function only appends new data
@@ -1031,8 +1103,8 @@ void test_drotg(double[.] as, double[.] bs) {
 
         native = genarray([4], 0d);
         library = genarray([4], 0d);
-        native1, native2, native3, native4 = drotg(a, b);
-        library1, library2, library3, library4 = cblas_drotg(a, b);
+        native1, native2, native3, native4 = drotg(a, b, a, b);
+        library1, library2, library3, library4 = OpenBlas::drotg(a, b, a, b);
         native[0] = native1; native[1] = native2; native[2] = native3; native[3] = native4;
         library[0] = library1; library[1] = library2; library[2] = library3; library[3] = library4;
 
@@ -1059,7 +1131,7 @@ void test_drotmg(double[.] d1s, double[.] d2s, double[.] x1s, double[.] y1s) {
         native = genarray([8], 0d);
         library = genarray([8], 0d);
         native1, native2, native3, native4 = drotmg(d1, d2, x1, y1);
-        library1, library2, library3, library4 = cblas_drotmg(d1, d2, x1, y1);
+        library1, library2, library3, library4 = OpenBlas::drotmg(d1, d2, x1, y1);
         native[0] = native1; native[1] = native2; native[2] = native3; native[3] = native4[0];
         native[4] = native4[1]; native[5] = native4[2]; native[6] = native4[3]; native[7] = native4[4];
         library[0] = library1; library[1] = library2; library[2] = library3; library[3] = library4[0];
@@ -1096,7 +1168,7 @@ void test_drot(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys, do
                 m = cap_n(n, incx, incy);
 
                 native_X, native_Y = drot(m, X, incx, Y, incy, c, s);
-                library_X, library_Y = cblas_drot(m, X, incx, Y, incy, c, s);
+                library_X, library_Y = OpenBlas::drot(m, X, incx, Y, incy, c, s);
                 if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
                     printf("For x = %f, incx = %i, y = %f, incy = %i, c = %f, s = %f\n", X[0], incx, Y[0], incy, c, s);
                     printf("Native: ");
@@ -1124,25 +1196,29 @@ void test_drotm(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys, d
         Y = genarray([n], params[1]);
         for(j = 0; j < shape(perms_i)[0]; j++) {
             params = perms_i[j];
-            incx = params[0]; incy = params[1];
+            incx = params[0]; 
+            incy = params[1];
             for(k = 0; k < shape(perms_p)[0]; k++) {
                 params = perms_p[k];
 
                 m = cap_n(n, incx, incy);
+                if (m > 0 && ismember(params[0], [1.0d, 0.0d, -1.0d, -2.0d]) && minArrLen(m, shape(X)[0], incx) && minArrLen(m, shape(Y)[0], incy)) {
+                    native_X, native_Y = drotm(m, X, incx, Y, incy, params);
+                    library_X, library_Y = OpenBlas::drotm(m, X, incx, Y, incy, params);
 
-                native_X, native_Y = drotm(m, X, incx, Y, incy, params);
-                library_X, library_Y = cblas_drotm(m, X, incx, Y, incy, params);
-                if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
-                    printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
-                    printf("    param = "); show(params);
-                    printf("Native: ");
-                    show(take([10], native_X));
-                    show(take([10], native_Y));
-                    printf("Library:");
-                    show(take([10], library_X));
-                    show(take([10], library_Y));
-                    mistakes++;
+                    if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
+                        printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
+                        printf("    param = "); show(params);
+                        printf("Native: ");
+                        show(take([10], native_X));
+                        show(take([10], native_Y));
+                        printf("Library:");
+                        show(take([10], library_X));
+                        show(take([10], library_Y));
+                        mistakes++;
+                    }
                 }
+
             }
         }
     }
@@ -1164,7 +1240,7 @@ void test_dswap(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
             m = cap_n(n, incx, incy);
 
             native_X, native_Y = dswap(m, X, incx, Y, incy);
-            library_X, library_Y = cblas_dswap(m, X, incx, Y, incy);
+            library_X, library_Y = OpenBlas::dswap(m, X, incx, Y, incy);
             if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
                 printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
                 printf("Native: ");
@@ -1192,7 +1268,7 @@ void test_dscal(int n, double[.] as, double[.] xs, int[.] incxs) {
                 m = cap_n(n, incx); // This should n should probably be len(X)
 
                 native = dscal(m, a, X, incx);
-                library = cblas_dscal(m, a, X, incx);`
+                library = OpenBlas::dscal(m, a, X, incx);
                 if(any(abs(native - library) > MAX_ACC_LOSS)) { // Should not be a relative error margin https://floating-point-gui.de/errors/comparison/
                     printf("For a = %f, x = %f, incx = %i\n", a, X[0], incx);
                     printf("Native:\n");
@@ -1222,7 +1298,7 @@ void test_dcopy(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
             m = cap_n(n, incx, incy);
 
             native = dcopy(m, X, incx, Y, incy);
-            library = cblas_dcopy(m, X, incx, Y, incy);
+            library = OpenBlas::dcopy(m, X, incx, Y, incy);
             if(any(abs(native - library) > MAX_ACC_LOSS)) {
                 printf("For x = %f, incx = %i, incy = %i\n", X[0], incx, incy);
                 printf("Native:\n");
@@ -1254,7 +1330,7 @@ void test_daxpy(int n, double[.] as, double[.] xs, int[.] incxs, double[.] ys, i
                 m = cap_n(n, incx, incy);
 
                 native = daxpy(m, a, X, incx, Y, incy);
-                library = cblas_daxpy(m, a, X, incx, Y, incy);
+                library = OpenBlas::daxpy(m, a, X, incx, Y, incy);
                 if(any(abs(native - library) > MAX_ACC_LOSS)) {
                     printf("For a = %f, x = %f, incx = %i, y = %f, incy = %i\n", a, X[0], incx, Y[0], incy);
                     printf("Native:\n");
@@ -1284,7 +1360,7 @@ void test_ddot(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
             m = cap_n(n, incx, incy);
 
             native = ddot(m, X, incx, Y, incy);
-            library = cblas_ddot(m, X, incx, Y, incy);
+            library = OpenBlas::ddot(m, X, incx, Y, incy);
             if(abs(native - library) > MAX_ACC_LOSS) {
                 printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
                 printf("Native:  %f\n", native);
@@ -1311,7 +1387,7 @@ void test_dsdot(int n, float[.] xs, int[.] incxs, float[.] ys, int[.] incys) {
             m = cap_n(n, incx, incy);
 
             native = dsdot(m, X, incx, Y, incy);
-            library = cblas_dsdot(m, X, incx, Y, incy);
+            library = OpenBlas::dsdot(m, X, incx, Y, incy);
             if(abs(native - library) > MAX_ACC_LOSS) {
                 printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
                 printf("Native:  %f\n", native);
@@ -1333,7 +1409,7 @@ void test_dnrm2(int n, double[.] xs, int[.] incxs) {
             m = cap_n(n, incx);
 
             native = dnrm2(m, X, incx);
-            library = cblas_dnrm2(m, X, incx);
+            library = OpenBlas::dnrm2(m, X, incx);
             if(abs(native - library) > MAX_ACC_LOSS) {
                 printf("For x = %f, incx = %i\n", X[0], incx);
                 printf("Native:  %f\n", native);
@@ -1345,27 +1421,27 @@ void test_dnrm2(int n, double[.] xs, int[.] incxs) {
     print_test_status("dnrm2", mistakes);
 }
 
-void test_dznrm2(int n, complex[.] xs, int[.] incxs) {
-    mistakes = 0;
-    for(i = 0; i < shape(xs)[0]; i++) {
-        X = genarray([n], xs[i]);
-        for(j = 0; j < shape(incxs)[0]; j++) {
-            incx = incxs[j];
+// void test_dznrm2(int n, complex[.] xs, int[.] incxs) {
+//     mistakes = 0;
+//     for(i = 0; i < shape(xs)[0]; i++) {
+//         X = genarray([n], xs[i]);
+//         for(j = 0; j < shape(incxs)[0]; j++) {
+//             incx = incxs[j];
 
-            m = cap_n(n, incx);
+//             m = cap_n(n, incx);
 
-            native = dznrm2(m, X, incx);
-            library = cblas_dznrm2(m, X, incx);
-            if(abs(native - library) > MAX_ACC_LOSS) {
-                printf("For x = %f, incx = %i\n", X[0], incx);
-                printf("Native:  %f\n", native);
-                printf("Library: %f\n", library);
-                mistakes++;
-            }
-        }
-    }
-    print_test_status("dznrm2", mistakes);
-}
+//             native = dznrm2(m, X, incx);
+//             library = OpenBlas::dznrm2(m, X, incx);
+//             if(abs(native - library) > MAX_ACC_LOSS) {
+//                 printf("For x = %f, incx = %i\n", X[0], incx);
+//                 printf("Native:  %f\n", native);
+//                 printf("Library: %f\n", library);
+//                 mistakes++;
+//             }
+//         }
+//     }
+//     print_test_status("dznrm2", mistakes);
+// }
 
 void test_dasum(int n, double[.] xs, int[.] incxs) {
     mistakes = 0;
@@ -1377,7 +1453,7 @@ void test_dasum(int n, double[.] xs, int[.] incxs) {
             m = cap_n(n, incx);
 
             native = dasum(m, X, incx);
-            library = cblas_dasum(m, X, incx);
+            library = OpenBlas::dasum(m, X, incx);
             if(abs(native - library) > MAX_ACC_LOSS) {
                 printf("For x = %f, incx = %i\n", X[0], incx);
                 printf("Native:  %f\n", native);
@@ -1399,7 +1475,7 @@ void test_idamax(int n, double[.] xs, int[.] incxs) {
             m = cap_n(n, incx);
 
             native = idamax(m, X, incx);
-            library = cblas_idamax(m, X, incx);
+            library = OpenBlas::idamax(m, X, incx);
             if(native != library) {
                 printf("For x = %f, incx = %i\n", X[0], incx);
                 printf("Native:  %f\n", native);
@@ -1411,38 +1487,49 @@ void test_idamax(int n, double[.] xs, int[.] incxs) {
     print_test_status("idamax", mistakes);
 }
 
-// float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
-// {
-void test_sgemv(char trans, int ns, int ms, double alphas, double[.] as, int ldas, double[.] xs, int[.] incxs, double betas, double[.] ys, int[.] incys) {
+void test_sgemv(int n, char[.] trans, int[.] ms, int[.] ns, float[.] alphas, float[.] as, int[.] ldas, float[.] xs, int[.] incxs, float[.] betas, float[.] ys, int[.] incys) {
     mistakes = 0;
-    perms_v = permutations(xs, ys);
+    perms_v = permutations(xs, ys, as, alphas, betas);
     perms_i = permutations(incxs, incys);
+    perms_mn = permutations(ms,ns,ldas);
     for(i = 0; i < shape(perms_v)[0]; i++) {
-        params = perms_v[i];
-        X = genarray([n], params[0]);
-        Y = genarray([n], params[1]);
-        for(j = 0; j < shape(as)[0]; j++) {
-            a = as[j];
-            for(k = 0; k < shape(perms_i)[0]; k++) {
-                params = perms_i[k];
-                incx = params[0]; incy = params[1];
+        for(l = 0; l < shape(perms_mn)[0]; l++) {
+            param_mn = perms_mn[l];
+            m = param_mn[0];
+            n = param_mn[1];
+            lda = param_mn[2];
 
-                m = cap_n(n, incx, incy);
+            param_v = perms_v[i];
+            x = genarray([n], param_v[0]);
+            y = genarray([m], param_v[1]);
+            a = genarray([lda,n], param_v[2]);
+            alpha = param_v[3];
+            beta = param_v[4];
 
-                native = daxpy(m, a, X, incx, Y, incy);
-                library = cblas_daxpy(m, a, X, incx, Y, incy);
-                if(any(abs(native - library) > MAX_ACC_LOSS)) {
-                    printf("For a = %f, x = %f, incx = %i, y = %f, incy = %i\n", a, X[0], incx, Y[0], incy);
-                    printf("Native:\n");
-                    show(take([10], native));
-                    printf("Library:\n");
-                    show(take([10], library));
-                    mistakes++;
+            for(j = 0; j < shape(trans)[0]; j++) {
+                t = trans[j];
+                for(k = 0; k < shape(perms_i)[0]; k++) {
+                    params = perms_i[k];
+                    incx = params[0]; incy = params[1];
+                    
+                        
+                    m = cap_n(n, incx, incy);
+
+                    native = sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
+                    library = OpenBlas::sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
+                    if(any(abs(native - library) > MAX_ACC_LOSSF)) {
+                        printf("For a = %f, x = %f, incx = %i, y = %f, incy = %i\n", a, x[0], incx, y[0], incy);
+                        printf("Native:\n");
+                        show(take([10], native));
+                        printf("Library:\n");
+                        show(take([10], library));
+                        mistakes++;
+                    }
                 }
             }
         }
     }
-    print_test_status("daxpy", mistakes);
+    print_test_status("sgemv", mistakes);
 }
 
 
@@ -1471,12 +1558,12 @@ void test() {
     test_ddot(n, ds, incs, ds, incs);
     test_dsdot(n, fs, incs, fs, incs);
     test_dnrm2(n, ds, incs);
-    test_dznrm2(n, cs, incs);
+    // test_dznrm2(n, cs, incs);
     test_dasum(n, ds, incs);
     test_idamax(n, ds, incs);
 
     // BLAS L2
-    test_sgemv(chars, nms, nms, , ds, incs);
+    test_sgemv(n, chars, nms, nms, fs, fs, nms, fs, incs, fs, fs, incs);
 }
 
 /*

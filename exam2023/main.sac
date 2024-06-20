@@ -1,0 +1,35 @@
+use Array: all;
+use StdIO: all;
+
+int main() {
+    print( concat([1,2,3], [4,5]) );
+    print( concat([], [1,2,3]) );
+    print( concat ([[1,2,3],[4,5,6]], [[7,8,9]]) );
+    print( [[1,2,3],[4,5,6],[7,8,9]] );
+    print( concat ([[[1,2],[3,4]]], [[[1,2],[3,4]], [[1,2],[3,4]]]) );
+    print( [[[1,2],[3,4]]] );
+    print( [[[1,2],[3,4]], [[1,2],[3,4]]] );
+    print( [[[1,2],[3,4]], [[1,2],[3,4]], [[1,2],[3,4]]] );
+
+    print( all( concat([1,2,3], [4,5]) == [1,2,3,4,5] ));
+    print( all( concat([], [1,2,3]) == [1,2,3] ));
+    print( all( concat ([[1,2,3],[4,5,6]], [[7,8,9]]) == [[1,2,3],[4,5,6],[7,8,9]] ));
+    print( all( concat ([[[1,2],[3,4]]], [[[1,2],[3,4]], [[1,2],[3,4]]])
+    == [[[1,2],[3,4]], [[1,2],[3,4]], [[1,2],[3,4]]] ));
+
+    return 0;
+}
+
+int[.] concat(int[.] a, int[.] b) {
+    return {iv -> a[iv] | iv < shape(a);
+            iv -> b[iv-shape(a)] | shape(a) <= iv < shape(a) + shape(b)};
+}
+
+int[+] concat(int[+] a, int[+] b) {
+    return {iv -> a[iv] | iv < [shape(a)[0]];
+            iv -> b[iv-shape(a)[0]] | [shape(a)[0]] <= iv < [shape(a)[0] + shape(b)[0]]};
+}
+
+bool concatSuitable (int[+] a, int[+] b) {
+    return dim(a) == dim(b) && all(drop([1], shape(a)) == drop([1], shape(b)));
+}

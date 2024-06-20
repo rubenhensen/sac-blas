@@ -84,36 +84,84 @@ external int isamax(int n, float[k] x, int incx);
     #pragma header  "/opt/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3]
 
-// long unsigned int SACisamax(const int n, const float *x, const int incx)
-// double
+external double, double, double, double drotg(double a, double b, double c, double s);
+    #pragma linkname "SACdrotg"
+    #pragma linkobj "src/drotg.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [1,2,3,4,1,2,3,4]
 
-// external double, double, double, double drotg(double a, double b)
+external double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1);
+    #pragma linkname "SACdrotmg"
+    #pragma linkobj "src/drotmg.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [1,2,3,5,1,2,3,4]
 
-// external double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1)
+external double[k], double[l] drot(int n, double[k] x, int incx, double[l] y, int incy, double c, double s); 
+    #pragma linkname "SACdrot"
+    #pragma linkobj "src/drot.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [2,4,1,2,3,4,5,6,7]
 
-// external double[k], double[l] drot(int n, double[k] X, int incx, double[l] Y, int incy, double c, double s);
+external double[.], double[.] drotm(int n, double[.] x, int incx, double[.] y, int incy, double[5] param);
+    #pragma linkname "SACdrotm"
+    #pragma linkobj "src/drotm.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [2,4,1,2,3,4,5,6]
 
-// external double[.], double[.] drotm(int n, double[.] X, int incx, double[.] Y, int incy, double[5] param);
+external double[k], double[l] dswap(int n, double[k] x, int incx, double[l] y, int incy);
+    #pragma linkname "SACdswap"
+    #pragma linkobj "src/dswap.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [2,4,1,2,3,4,5]
 
-// external double[k], double[l] dswap(int n, double[k] X, int incx, double[l] Y, int incy);
+external double[k] dscal(int n, double a, double[k] x, int incx);
+    #pragma linkname "SACdscal"
+    #pragma linkobj "src/dscal.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [3,1,2,3,4]
 
-// external double[k] dscal(int n, double a, double[k] X, int incx);
+external double[l] dcopy(int n, double[k] x, int incx, double[l] y, int incy);
+    #pragma linkname "SACdcopy"
+    #pragma linkobj "src/dcopy.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [4,1,2,3,4,5]
 
-// external double[l] dcopy(int n, double[k] X, int incx, double[l] Y, int incy);
+external double[l] daxpy(int n, double a, double[k] x, int incx, double[l] y, int incy);
+    #pragma linkname "SACdaxpy"
+    #pragma linkobj "src/daxpy.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [5,1,2,3,4,5,6]
 
-// external double[l] daxpy(int n, double a, double[k] X, int incx, double[l] Y, int incy);
+external double ddot(int n, double[k] x, int incx, double[l] y, int incy);
+    #pragma linkname "SACddot"
+    #pragma linkobj "src/ddot.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [0,1,2,3,4,5]
 
-// external double ddot(int n, double[k] X, int incx, double[l] Y, int incy);
+external double dsdot(int n, float[k] sx, int incx, float[l] sy, int incy);
+    #pragma linkname "SACdsdot"
+    #pragma linkobj "src/dsdot.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [0,1,2,3,4,5]
 
-// external double dsdot(int n, float[k] X, int incx, float[l] Y, int incy);
+external double dnrm2(int n, double[k] x, int incx);
+    #pragma linkname "SACdnrm2"
+    #pragma linkobj "src/dnrm2.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [0,1,2,3]
 
-// external double dnrm2(int n, double[k] X, int incx);
+external double dasum(int n, double[k] x, int incx);
+    #pragma linkname "SACdasum"
+    #pragma linkobj "src/dasum.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [0,1,2,3]
 
-// external double dznrm2(int n, complex[.] X, int incx);
 
-// external double dasum(int n, double[k] X, int incx);
-
-// external int idamax(int n, double[k] X, int incx);
+external int idamax(int n, double[k] x, int incx);
+    #pragma linkname "SACidamax"
+    #pragma linkobj "src/idamax.o"
+    #pragma header  "/opt/OpenBLAS/include/cblas.h"
+    #pragma linksign [0,1,2,3]
 
 
 // complex

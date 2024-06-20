@@ -26,9 +26,9 @@ build:
   application:
     script:
       - clm:
-          src: [src/week7]
-          main: TOP2
-          target: bin/TOP2
+          src: [src/oldexam]
+          main: bidding
+          target: bin/bidding
           bytecode: prelinked
           heap: 20m
           generate_descriptors: true

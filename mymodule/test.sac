@@ -1,8 +1,0 @@
-use StdIO: all;
-use Array: all;
-use Mymodule: all;
-
-int main() {
-    print(plus(iota(3), iota(3)));
-    return 0;
-}

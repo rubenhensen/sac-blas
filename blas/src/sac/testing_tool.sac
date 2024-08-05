@@ -1514,17 +1514,27 @@ void test_sgemv(int n, char[.] trans, int[.] ms, int[.] ns, float[.] alphas, flo
                     
                         
                     m = cap_n(n, incx, incy);
-
-                    native = sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
-                    library = OpenBlas::sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
-                    if(any(abs(native - library) > MAX_ACC_LOSSF)) {
-                        printf("For a = %f, x = %f, incx = %i, y = %f, incy = %i\n", a, x[0], incx, y[0], incy);
-                        printf("Native:\n");
-                        show(take([10], native));
-                        printf("Library:\n");
-                        show(take([10], library));
-                        mistakes++;
-                    }
+                    // sgemv guard
+                    // | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
+                    // sscal guard
+                    // n > 0, incx > 0, minArrLen(n, xn, incx)
+                    if (ismember(trans && ['n', 'N', 't', 'T', 'c', 'C']) && m >= 0 && n >=0 && lda >= max(1,n) && sgemvXdim(trans, m, n, incx, xn) && incx != 0 && sgemvYdim(trans, m, n, incy, yn) && incy != 0) // sgemv guard
+                        {
+                            if (n > 0 && incx > 0 && minArrLen(n, xn, incx))
+                            {
+                                native = sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
+                                library = OpenBlas::sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
+                                if(any(abs(native - library) > MAX_ACC_LOSSF)) {
+                                    printf("For a = %f, x = %f, incx = %i, y = %f, incy = %i\n", a, x[0], incx, y[0], incy);
+                                    printf("Native:\n");
+                                    show(take([10], native));
+                                    printf("Library:\n");
+                                    show(take([10], library));
+                                    mistakes++;
+                                }
+                            }
+                        }
+                    
                 }
             }
         }

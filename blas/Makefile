@@ -61,8 +61,8 @@ host/mt-pth/libBlasLevel2Mod.so: src/sac/BlasLevel2.sac $(BlasLevel1)  $(Helper)
 	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth src/sac/BlasLevel2.sac
 bin/sac/mt-pth/testing_tool.out: src/sac/testing_tool.sac $(BlasLevel1) $(BlasLevel2) $(OpenBlas) $(Helper) 
 	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth -D ROUTINE=$(ROUTINE) -o $@ $<
-	
-bin/sac/seq/%.out: src/sac/%.sac
+
+bin/sac/seq/%.out: src/sac/%.sac $(BlasLevel1_seq) $(BlasLevel2_seq) $(Helper_seq) 
 	sac2c $(CHECKFLAG) $(LIBS) -o $@ $< 
 	@rm -rf bin/sac/*.i
 	@rm -rf bin/sac/*.o

@@ -49,7 +49,6 @@ float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, 
   return res;
 }
 
-
 float[m,n] sger(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda)
 {
   return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};

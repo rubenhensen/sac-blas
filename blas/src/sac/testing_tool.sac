@@ -1518,9 +1518,9 @@ void test_sgemv(int n, char[.] trans, int[.] ms, int[.] ns, float[.] alphas, flo
                     // | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
                     // sscal guard
                     // n > 0, incx > 0, minArrLen(n, xn, incx)
-                    if (ismember(trans && ['n', 'N', 't', 'T', 'c', 'C']) && m >= 0 && n >=0 && lda >= max(1,n) && sgemvXdim(trans, m, n, incx, xn) && incx != 0 && sgemvYdim(trans, m, n, incy, yn) && incy != 0) // sgemv guard
+                    if (ismember(t, ['n', 'N', 't', 'T', 'c', 'C']) && m >= 0 && n >=0 && lda >= max(1,n) && sgemvXdim(trans, m, n, incx, shape(x)[0]) && incx != 0 && sgemvYdim(trans, m, n, incy, shape(y)[0]) && incy != 0) // sgemv guard
                         {
-                            if (n > 0 && incx > 0 && minArrLen(n, xn, incx))
+                            if (n > 0 && incx > 0 && minArrLen(n, shape(x)[0], incx))
                             {
                                 native = sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
                                 library = OpenBlas::sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
@@ -1556,23 +1556,36 @@ void test() {
     chars = ['n', 'N', 't', 'T', 'c', 'C']; // Add illegal values
 
     // BLAS L1 
+    print("Testing drotg");
     test_drotg(ds, ds);
     //drotmg lib version doesn't work
     //test_drotmg(ds, ds, ds, ds);
+    print("Testing drot");
     test_drot(n, ds, incs, ds, incs, ds, ds);
+    print("Testing drotm");
     test_drotm(n, ds, incs, ds, incs, flags, ds);
+    print("Testing dswap");
     test_dswap(n, ds, incs, ds, incs);
+    print("Testing dscal");
     test_dscal(n, ds, ds, incs);
+    print("Testing dcopy");
     test_dcopy(n, ds, incs, ds, incs);
+    print("Testing daxpy");
     test_daxpy(n, ds, ds, incs, ds, incs);
+    print("Testing ddot");
     test_ddot(n, ds, incs, ds, incs);
+    print("Testing dsdot");
     test_dsdot(n, fs, incs, fs, incs);
+    print("Testing dnrm2");
     test_dnrm2(n, ds, incs);
     // test_dznrm2(n, cs, incs);
+    print("Testing dasum");
     test_dasum(n, ds, incs);
+    print("Testing idamax");
     test_idamax(n, ds, incs);
 
     // BLAS L2
+    print("Testing sgemv");
     test_sgemv(n, chars, nms, nms, fs, fs, nms, fs, incs, fs, fs, incs);
 }
 

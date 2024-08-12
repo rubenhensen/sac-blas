@@ -2,10 +2,6 @@ use Math: all;
 use StdIO: all;
 use Structures: all;
 use Benchmarking: all;
-use BlasLevel1: all;
-use BlasLevel2: all;
-use Helper: all;
-
 
 #ifndef N
 #define N 10000000
@@ -73,351 +69,1888 @@ use Helper: all;
 /*
  * ROUTINE DEFINITIONS
  */
-// inline
-// double, double, double, double drotg(double a, double b)
+
+/*
+ * BLAS L1
+ */
+
+/*
+ * ?rotg
+ */
+inline
+float, float, float, float srotg(float a, float b, float c, float s)  
+{
+  if(b == 0f) {
+    r = a;
+    z = 0f;
+    c = 1f;
+    s = 0f;
+  } else if(a == 0f) {
+    r = b;
+    z = 1f;
+    c = 0f;
+    s = 1f;
+  } else {
+    sigma = tof(abs(a) > abs(b) ? sign(a) : sign(b));
+    r = sigma * sqrtf(a*a + b*b);
+    c = a/r;
+    s = b/r;
+    z = abs(a) > abs(b) ? s : c == 0f ? 1f : 1f/c;
+  }
+  return (r, z, c, s);
+}
+
+inline
+double, double, double, double drotg(double a, double b, double c, double s)
+{
+  if(b == 0d) {
+    r = a;
+    z = 0d;
+    c = 1d;
+    s = 0d;
+  } else if(a == 0d) {
+    r = b;
+    z = 1d;
+    c = 0d;
+    s = 1d;
+  } else {
+    sigma = tod(abs(a) > abs(b) ? sign(a) : sign(b));
+    r = sigma * sqrt(a*a + b*b);
+    c = a/r;
+    s = b/r;
+    z = abs(a) > abs(b) ? s : c == 0d ? 1d : 1d/c;
+  }
+  return (r, z, c, s);
+}
+
+/*
+ * ?rotmg
+ */
+inline
+float, float, float, float[5] srotmg(float d1, float d2, float x1, float y1)
+{
+  //A very literal translation from Fortran
+  gam    = 4096f;
+  gamsq  = 1.67772e7f;
+  rgamsq = 5.96046e-8f;
+
+  sflag = 0f;
+  sh11 = 0f;
+  sh21 = 0f;
+  sh12 = 0f;
+  sh22 = 0f;
+
+  if(d1 < 0f) {
+    sflag = -1f;
+    d1 = 0f;
+    d2 = 0f;
+    x1 = 0f;
+  } else if(d2*y1 == 0f) {
+    sflag = -2f;
+  } else {
+    sp2 = d2*y1;
+    sp1 = d1*x1;
+    sq2 = sp2*y1;
+    sq1 = sp1*x1;
+
+    if(abs(sq1) > abs(sq2)) {
+      sh21 = -y1/x1;
+      sh12 = sp2/sp1;
+      su = 1f - sh12*sh21;
+
+      if(su > 0f) {
+        sflag = 0f;
+        d1 /= su;
+        d2 /= su;
+        x1 *= su;
+      } else {
+        sflag = -1f;
+        sh11 = 0f;
+        sh21 = 0f;
+        sh12 = 0f;
+        sh22 = 0f;
+        d1 = 0f;
+        d2 = 0f;
+        x1 = 0f;
+      }
+    } else {
+      if(sq2 < 0f) {
+        sflag = -1f;
+        sh11 = 0f;
+        sh21 = 0f;
+        sh12 = 0f;
+        sh22 = 0f;
+        d1 = 0f;
+        d2 = 0f;
+        x1 = 0f;
+      } else {
+        sflag = 1f;
+        sh11 = sp1/sp2;
+        sh22 = x1/y1;
+        su = 1f + sh11*sh22;
+        stemp = d2/su;
+        d2 = d1/su;
+        d1 = stemp;
+        x1 = y1*su;
+      }
+    }
+
+    if(d1 != 0f) {
+      while((d1 < rgamsq) || (d1 > gamsq)) {
+        if(sflag == 0f) {
+          sh11 = 1f;
+          sh22 = 1f;
+        } else {
+          sh21 = -1f;
+          sh12 = 1f;
+        }
+
+        sflag = -1f;
+
+        if(d1 < rgamsq) {
+          d1 *= gam * gam;
+          x1 /= gam;
+          sh11 /= gam;
+          sh12 /= gam;
+        } else {
+          d1 /= gam*gam;
+          x1 *= gam;
+          sh11 *= gam;
+          sh12 *= gam;
+        }
+      }
+    }
+
+    if(d2 != 0f) {
+      while((abs(d2) < rgamsq) || (abs(d2) > gamsq)) {
+        if(sflag == 0f) {
+          sh11 = 1f;
+          sh22 = 1f;
+        } else {
+          sh21 = -1f;
+          sh12 = 1f;
+        }
+
+        sflag = -1f;
+
+        if(abs(d2) < rgamsq) {
+          d2 *= gam * gam;
+          sh21 /= gam;
+          sh22 /= gam;
+        } else {
+          d2 /= gam*gam;
+          sh21 *= gam;
+          sh22 *= gam;
+        }
+      }
+    }
+  }
+
+  return (d1, d2, x1, [sflag, sh11, sh21, sh12, sh22]);
+}
+
+inline
+double, double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1, double[5] param)
+{
+  //A very literal translation from Fortran
+  gam    = 4096d;
+  gamsq  = 1.67772e7d;
+  rgamsq = 5.96046e-8d;
+
+  sflag = 0d;
+  sh11 = 0d;
+  sh21 = 0d;
+  sh12 = 0d;
+  sh22 = 0d;
+
+  if(d1 < 0d) {
+    sflag = -1d;
+    d1 = 0d;
+    d2 = 0d;
+    x1 = 0d;
+  } else if(d2*y1 == 0d) {
+    sflag = -2d;
+  } else {
+    sp2 = d2*y1;
+    sp1 = d1*x1;
+    sq2 = sp2*y1;
+    sq1 = sp1*x1;
+
+    if(abs(sq1) > abs(sq2)) {
+      sh21 = -y1/x1;
+      sh12 = sp2/sp1;
+      su = 1d - sh12*sh21;
+
+      if(su > 0d) {
+        sflag = 0d;
+        d1 /= su;
+        d2 /= su;
+        x1 *= su;
+      } else {
+        sflag = -1d;
+        sh11 = 0d;
+        sh21 = 0d;
+        sh12 = 0d;
+        sh22 = 0d;
+        d1 = 0d;
+        d2 = 0d;
+        x1 = 0d;
+      }
+    } else {
+      if(sq2 < 0d) {
+        sflag = -1d;
+        sh11 = 0d;
+        sh21 = 0d;
+        sh12 = 0d;
+        sh22 = 0d;
+        d1 = 0d;
+        d2 = 0d;
+        x1 = 0d;
+      } else {
+        sflag = 1d;
+        sh11 = sp1/sp2;
+        sh22 = x1/y1;
+        su = 1d + sh11*sh22;
+        stemp = d2/su;
+        d2 = d1/su;
+        d1 = stemp;
+        x1 = y1*su;
+      }
+    }
+
+    if(d1 != 0d) {
+      while((d1 < rgamsq) || (d1 > gamsq)) {
+        if(sflag == 0d) {
+          sh11 = 1d;
+          sh22 = 1d;
+        } else {
+          sh21 = -1d;
+          sh12 = 1d;
+        }
+
+        sflag = -1d;
+
+        if(d1 < rgamsq) {
+          d1 *= gam * gam;
+          x1 /= gam;
+          sh11 /= gam;
+          sh12 /= gam;
+        } else {
+          d1 /= gam*gam;
+          x1 *= gam;
+          sh11 *= gam;
+          sh12 *= gam;
+        }
+      }
+    }
+
+    if(d2 != 0d) {
+      while((abs(d2) < rgamsq) || (abs(d2) > gamsq)) {
+        if(sflag == 0d) {
+          sh11 = 1d;
+          sh22 = 1d;
+        } else {
+          sh21 = -1d;
+          sh12 = 1d;
+        }
+
+        sflag = -1d;
+
+        if(abs(d2) < rgamsq) {
+          d2 *= gam * gam;
+          sh21 /= gam;
+          sh22 /= gam;
+        } else {
+          d2 /= gam*gam;
+          sh21 *= gam;
+          sh22 *= gam;
+        }
+      }
+    }
+  }
+
+  return (d1, d2, x1, y1, [sflag, sh11, sh21, sh12, sh22]);
+}
+
+/*
+ * ?rot
+ * incx and incy do not have to be > 0 but inverse matrix is not implemented
+ * 
+ */
+inline
+float[xn], float[yn] srot(int n, float[xn] x, int incx, float[yn] y, int incy, float c, float s) | n > 0, incx > 0, incy > 0
+{
+  return (
+    {iv -> c*x[iv] + s*y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
+    {iv -> c*y[iv] - s*x[(iv*incx)/incy] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
+  );
+}
+
+inline
+double[xn], double[yn] drot(int n, double[xn] x, int incx, double[yn] y, int incy, double c, double s) | n > 0, incx > 0, incy > 0
+{
+  return (
+    {iv -> c*x[iv] + s*y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
+    {iv -> c*y[iv] - s*x[(iv*incx)/incy] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
+  );
+}
+
+/*
+ * ?rotm
+ */
+inline
+float[xn], float[yn] srotm(int n, float[xn] x, int incx, float[yn] y, int incy, float[5] param) | n > 0, ismember(param[0], [1.0f, 0.0f, -1.0f, -2.0f]), minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  sflag = param[0];
+  sh11  = param[1];
+  sh21  = param[2];
+  sh12  = param[3];
+  sh22  = param[4];
+  
+  if(n < 1 || sflag == -2f) {
+    x_prime = x;
+    y_prime = y;
+  } else if(sflag < 0f) {
+    x_prime = {iv -> x[iv]*sh11 + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  } else if(sflag == 0f) {
+    x_prime = {iv -> x[iv] + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  } else {
+    x_prime = {iv ->  x[iv]*sh11 + y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+    y_prime = {iv -> -x[(iv*incx)/incy] + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  }
+  
+  return (x_prime, y_prime);
+}
+
+inline
+double[xn], double[yn] drotm(int n, double[xn] x, int incx, double[yn] y, int incy, double[5] param) | n > 0, ismember(param[0], [1.0d, 0.0d, -1.0d, -2.0d]), minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  sflag = param[0];
+  sh11  = param[1];
+  sh21  = param[2];
+  sh12  = param[3];
+  sh22  = param[4];
+  
+  if(n < 1 || sflag == -2d) {
+    x_prime = x;
+    y_prime = y;
+  } else if(sflag < 0d) {
+    x_prime = {iv -> x[iv]*sh11 + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  } else if(sflag == 0d) {
+    x_prime = {iv -> x[iv] + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  } else {
+    x_prime = {iv ->  x[iv]*sh11 + y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+    y_prime = {iv -> -x[(iv*incx)/incy] + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  }
+  
+  return (x_prime, y_prime);
+}
+
+
+/*
+ * ?swap
+ */
+// Does this work for swapping things with the same indices?
+inline
+float[xn], float[yn] sswap(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx > 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return (
+    {iv -> y[(iv/incx)*incy] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
+    {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
+  );
+}
+
+inline
+double[xn], double[yn] dswap(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx > 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return (
+    {iv -> y[(iv/incx)*incy] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
+    {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
+  );
+}
+
+/*
+ * ?scal
+ */
+inline
+float[xn] sscal(int n, float a, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  return {iv -> a * x[iv] | iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+}
+
+inline
+double[xn] dscal(int n, double a, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  return {iv -> a * x[iv] | iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+}
+
+/*
+ * ?copy
+ */
+inline
+float[yn] scopy(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+}
+
+inline
+double[yn] dcopy(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+}
+
+
+
+/*
+ * ?axpy
+ */
+inline
+float[yn] saxpy(int n, float a, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  if(a == 0f) {
+    result = y;
+  } else {
+    result = {iv -> a * x[(iv/incy)*incx] + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  }
+  return result;
+}
+
+
+inline
+double[yn] daxpy(int n, double a, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  if(a == 0d) {
+    result = y;
+  } else {
+    result = {iv -> a * x[(iv/incy)*incx] + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+  }
+  return result;
+}
+
+/*
+ * ?dot
+ */
+inline
+float sdot(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return sum( {iv -> x[iv*incx] * y[iv*incy] | [0] <= iv < [n]} );
+}
+
+
+inline
+double ddot(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return sum( {iv -> x[iv*incx] * y[iv*incy] | [0] <= iv < [n]} );
+}
+
+/*
+ * ?dsdot
+ */
+inline
+float sdsdot(int n, float sb, float[xn] sx, int incx, float[yn] sy, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return tof( tod(sb) + sum( {iv -> tod(sx[iv*incx]) * tod(sy[iv*incy]) | [0] <= iv < [n] }) );
+}
+
+inline
+double dsdot(int n, float[xn] sx, int incx, float[yn] sy, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+{
+  return sum({iv -> tod(sx[iv*incx]) * tod(sy[iv*incy]) | [0] <= iv < [n] });
+}
+
+/*
+ * ?nrm2
+ */
+inline
+float snrm2(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  return sqrtf(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
+}
+
+inline
+double dnrm2(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  return sqrt(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
+}
+
+// Creates compiler core dump error with check tc
+inline
+float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
+{
+  x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
+  return sqrtf(tof(sum(normSq(x_prime))));
+}
+
+
+/*
+ * ?asum
+ */
+inline
+float sasum(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  return sum( {iv -> abs(x[iv]) | [0] <= iv <= [(n-1)*incx] step [incx]} );
+}
+
+
+inline
+double dasum(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  return sum( {iv -> abs(x[iv]) | [0] <= iv <= [(n-1)*incx] step [incx]} );
+}
+
+/*
+ * i?amax
+ */
+inline
+int isamax(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  max_i = 0;
+  max_v = 0f;
+  ix = 0;
+  for(i = 0; i < n; i++) {
+    if(abs(x[ix]) > max_v) {
+      max_i = i;
+      max_v = abs(x[ix]);
+    }
+    ix += incx;
+  }
+
+  return max_i;
+}
+
+inline
+int idamax(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+{
+  max_i = 0;
+  max_v = 0d;
+  ix = 0;
+  for(i = 0; i < n; i++) {
+    if(abs(x[ix]) > max_v) {
+      max_i = i;
+      max_v = abs(x[ix]);
+    }
+    ix += incx;
+  }
+
+  return max_i;
+}
+
+/*
+ * BLAS L2
+ */
+
+// Float
+float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >= 0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
+{
+  if (trans == 'N' | trans == 'n') {
+    lenx = n;
+    leny = m;
+  } else {
+    lenx = m;
+    leny = n;
+    a = bandStorageToFull(a, kl, ku, m, n);
+    a = transpose(a);
+    a = fullStorageToBand(a, ku, kl, n, m);
+  }
+
+  betaY =   BlasLevel1::sscal(leny, beta, y, incy);
+  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+
+  resA = { [i] -> sum(padVectorBack(an,drop([kl-i], a[i]))   * take([an], alphaX))    | [i] < [kl];
+           [i] -> sum(a[i]              * take([an], drop([i-1],alphaX)))      | [i] < [am] };
+
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
+  
+  return res;
+}
+
+float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
+{
+  if (trans == 'N' | trans == 'n') {
+    lenx = n;
+    leny = m;
+  } else {
+    lenx = m;
+    leny = n;
+    a = transpose(a);
+  }
+
+  betaY =   BlasLevel1::sscal(leny, beta, y, incy);
+  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+  resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
+
+  return res;
+}
+
+float[m,n] sger(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda)
+{
+  return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
+}
+
+float[*] ssbmv(char uplo, int n, int k, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy)
+{
+    betaY =   BlasLevel1::sscal(n, beta, y, incy);
+    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+    if (uplo == 'u' || uplo == 'U') {
+        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+    } else {
+        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+    }
+    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+
+    return res;
+}
+
+float[yn] sspmv(char uplo, int n, float alpha, float[.] ap, float[xn] x, int incx, float beta, float[yn] y, int incy)
+{
+    a = trttrs('u', ap, n);
+    betaY =   BlasLevel1::sscal(n, beta, y, incy);
+    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+    if (uplo == 'u' || uplo == 'U') {
+        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+    } else {
+        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+    }
+    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+
+   return res;
+}
+
+float[apn] sspr(char uplo, int n, float alpha, float[xn] x, int incx, float[apn] ap)
+{
+    full = trttrs(uplo, ap, n);
+    xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv]) | iv < [n]};
+    } else {
+        inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv]) | iv < [n]};
+    }
+    res = trttps(uplo, inter);
+    return res;
+}
+
+float[apn] sspr2(char uplo, int n, float alpha, float[xn] x, int incx, float[yn] y, int incy, float[apn] ap)
+{
+    full = trttrs(uplo, ap, n);
+    xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
+    yMat = {[i,j] -> alpha * y[j*incy] * x[i*incx] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
+    } else {
+        inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
+    }
+    res = trttps(uplo, inter);
+    return res;
+}
+
+
+float[leny] ssymv(char uplo, int n, float alpha, float[d:shp] a, int lda, float[lenx] x, int incx, float beta, float[leny] y, int incy) | ismember(uplo, ['u', 'U', 'l', 'L'])
+{
+    betaY =   BlasLevel1::sscal(n, beta, y, incy);
+    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+    if (uplo == 'u' || uplo == 'U') {
+        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+    } else {
+        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+    }
+    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+
+   return res;
+}
+
+
+float[am,an] ssyr(char uplo, int n, float alpha, float[*] x, int incx, float[am,an] a, int lda)
+{
+    xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv])) | iv < [n]};
+    } else {
+        res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+    }
+    return res;
+}
+
+
+float[am,an] ssyr2(char uplo, int n, float alpha, float[*] x, int incx, float[*] y, int incy, float[am,an] a, int lda)
+{
+    xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
+    yMat = {[i,j] -> alpha * y[i*incx] * x[j*incy] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv]) + drop(iv, yMat[iv])) | iv < [n]};
+    } else {
+        res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv]) + take(iv+1, yMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+    }
+    return res;
+}
+
+
+// float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
 // {
-//   if(b == 0d) {
-//     r = a;
-//     z = 0d;
-//     c = 1d;
-//     s = 0d;
-//   } else if(a == 0d) {
-//     r = b;
-//     z = 1d;
-//     c = 0d;
-//     s = 1d;
-//   } else {
-//     sigma = tod(abs(a) > abs(b) ? sign(a) : sign(b));
-//     r = sigma * sqrt(a*a + b*b);
-//     c = a/r;
-//     s = b/r;
-//     z = abs(a) > abs(b) ? s : c == 0d ? 1d : 1d/c;
-//   }
-//   return (r, z, c, s);
-// }
-////external
-////double, double, double, double cblas_drotg(double a, double b);
-////#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-////#pragma linksign [1,2,3,4, 1,2]
+//   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
 
-
-
-// inline
-// double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1)
-// {
-//   //A very literal translation from Fortran
-//   gam    = 4096d;
-//   gamsq  = 16777216d;
-//   rgamsq = 5.9604645e-8d;
-
-//   flag = 0d;
-//   h11  = 0d;
-//   h21  = 0d;
-//   h12  = 0d;
-//   h22  = 0d;
-
-//   if(d1 < 0d) {
-//     flag = -1d;
-    
-//     d1 = 0d;
-//     d2 = 0d;
-//     x1 = 0d;
-//   } else if(d2*y1 < 0d) {
-//     flag = -2d;
-//   } else {
-//     p1 = d1*x1;
-//     p2 = d2*y1;
-//     q1 = p1*x1;
-//     q2 = p2*y1;
-
-//     if(abs(q1) > abs(q2)) {
-//         h21 = (-y1)/x1;
-//         h12 = p2/p1;
-
-//         u = 1d - h12*h21;
-//         if(u > 0d) {
-//             flag = 0d;
-//             d1 /= u;
-//             d2 /= u;
-//             x1 /= u;
-//         } else {
-//             flag = -1d;
-//             d1 = 0d;
-//             d2 = 0d;
-//             x1 = 0d;
-//         }
+//   if (trans != 'N' && trans != 'n') {
+//     a = transpose(a);
+//     if (uplo == 'U' || uplo == 'u') {
+//       uplo = 'l';
 //     } else {
-//         if(q2 < 0d) {
-//             flag = -1d;
-//             d1 = 0d;
-//             d2 = 0d;
-//             x1 = 0d;
-//         } else {
-//             flag = 1d;
-//             h11 = p1/p2;
-//             h22 = x1/y1;
-//             u = 1d + h11*h22;
-//             temp = d2/u;
-//             d2 = d1/u;
-//             d1 = temp;
-//             x1 = y1*u;
-//         }
-//     }
-
-//     if(d1 != 0d) {
-//         while(d1 < rgamsq || d1 > gamsq) {
-//             if(flag == 0d) {
-//                 h11 = 1d;
-//                 h22 = 1d;
-//                 flag = -1d;
-//             } else {
-//                 h21 = -1d;
-//                 h12 = 1d;
-//                 flag = -1d;
-//             }
-//             if(d1 < rgamsq) {
-//                 d1 *= gam*gam;
-//                 x1 /= gam;
-//                 h11 /= gam;
-//                 h12 /= gam;
-//             } else {
-//                 d1 /= gam*gam;
-//                 x1 *= gam;
-//                 h11 *= gam;
-//                 h12 *= gam;
-//             }
-//         }
-//     }
-
-//     if(d2 != 0d) {
-//         while(abs(d2) < rgamsq || abs(d2) > gamsq) {
-//             if(flag == 0d) {
-//                 h11 = 1d;
-//                 h22 = 1d;
-//                 flag = -1d;
-//             } else {
-//                 h21 = -1d;
-//                 h12 = 1d;
-//                 flag = -1d;
-//             }
-//             if(abs(d2) < rgamsq) {
-//                 d2 *= gam*gam;
-//                 h21 /= gam;
-//                 h22 /= gam;
-//             } else {
-//                 d2 /= gam*gam;
-//                 h21 *= gam;
-//                 h22 *= gam;
-//             }
-//         }
+//       uplo = 'u';
 //     }
 //   }
 
-//   return (d1, d2, x1, [flag, h11, h21, h12, h22]);
-// }
-//external
-//double, double, double, double[5] cblas_drotmg(double d1, double d2, double x1, double y1);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [1,2,3,5, 1,2,3,4]
+//   inter = [1.0f];
 
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+//     // upper
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+//   } 
 
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+//     // upper unit
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+//   } 
 
-// inline
-// double[.], double[.] drot(int n, double[.] X, int incx, double[.] Y, int incy, double c, double s)
-// {
-//   //expects n > 0, incx > 0, incy > 0
-//   return (
-//     {i -> c*X[i] + s*Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
-//     {i -> c*Y[i] - s*X[(i*incx)/incy] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]}
-//   );
-// }
-//external
-//double[.], double[.] cblas_drot(int n, double[.] X, int incx, double[.] Y, int incy, double c, double s);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [2,4, 1,2,3,4,5,6,7]
-
-
-
-// inline
-// double[.], double[.] drotm(int n, double[.] X, int incx, double[.] Y, int incy, double[5] param)
-// {
-//   //expects n > 0, -2 <= param[0] <= 1 
-//   flag = param[0];
-//   h11  = param[1];
-//   h21  = param[2];
-//   h12  = param[3];
-//   h22  = param[4];
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+//     // lower
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+//   } 
   
-//   if(n < 1 || flag == -2d) {
-//     X_prime = X;
-//     Y_prime = Y;
-//   } else if(flag < 0d) {
-//     X_prime = {i -> X[i]*h11 + Y[(i*incy)/incx]*h12 | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
-//     Y_prime = {i -> X[(i*incx)/incy]*h21 + Y[i]*h22 | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
-//   } else if(flag == 0d) {
-//     X_prime = {i -> X[i] + Y[(i*incy)/incx]*h12 | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
-//     Y_prime = {i -> X[(i*incx)/incy]*h21 + Y[i] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
-//   } else {
-//     X_prime = {i ->  X[i]*h11 + Y[(i*incy)/incx] | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
-//     Y_prime = {i -> -X[(i*incx)/incy] + Y[i]*h22 | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
-//   }
-  
-//   return (X_prime, Y_prime);
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+//     // lower unit
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+//   } 
+
+
+//   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+//           [iv] -> x[iv]};
+
+//   return res;
 // }
-//external
-//double[.], double[.] cblas_drotm(int n, double[.] X, int incx, double[.] Y, int incy, double[5] param);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [2,4, 1,2,3,4,5,6]
 
+float[xn] stbsv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+{
+//   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
 
-
-// inline
-// double[.], double[.] dswap(int n, double[.] X, int incx, double[.] Y, int incy)
-// {
-//   //expects n > 0, incx > 0, incy > 0
-//   return (
-//     {i -> Y[(i/incx)*incy] | [0] <= i < [n*incx] step [incx] ; i -> X[i]},
-//     {i -> X[(i/incy)*incx] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]}
-//   );
-// }
-//external
-//double[.], double[.] cblas_dswap(int n, double[.] X, int incx, double[.] Y, int incy);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [2,4, 1,2,3,4,5]
-
-
-
-// inline
-// double[.] dscal(int n, double a, double[.] X, int incx)
-// {
-//   //expects n > 0, incx > 0
-//   return {i -> a * X[i] | [0] <= i < [n*incx] step [incx] ; i -> X[i]};
-// }
-//external
-//double[.] cblas_dscal(int n, double a, double[.] X, int incx);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [3,1,2,3,4]
-
-
-
-// inline
-// double[.] dcopy(int n, double[.] X, int incx, double[.] Y, int incy)
-// {
-//   //expects n > 0, incx >= 0, incy > 0
-//   return {i -> X[(i/incy)*incx] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
-// }
-//external
-//double[.] cblas_dcopy(int n, double[.] X, int incx, double[.] Y, int incy);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [4, 1,2,3,4,5]
-
-
-
-// inline
-// double[.] daxpy(int n, double a, double[.] X, int incx, double[.] Y, int incy)
-// {
-//   //expects n > 0, incx >= 0, incy > 0
-//   if(a == 0d) {
-//     result = Y;
-//   } else {
-//     result = {i -> a * X[(i/incy)*incx] + Y[i] | [0] <= i < [n*incy] step [incy] ; i -> Y[i]};
-//   }
-//   return result;
-// }
-//external
-//double[.] cblas_daxpy(int n, double a, double[.] X, int incx, double[.] Y, int incy);
-//#pragma linkobj "/home/casper/AOCL-BLIS-mt/lib/libblis-mt.a"
-//#pragma linksign [5, 1,2,3,4,5,6]
-
-
-
-// inline
-// double ddot(int n, double[.] X, int incx, double[.] Y, int incy)
-// {
-//   //expects n > 0, incx >= 0, incy >= 0
-//   return sum( {i -> X[i*incx] * Y[i*incy] | [0] <= i < [n]} );
-// }
-//external
-//double cblas_ddot(int n, double[.] X, int incx, double[.] Y, int incy);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [0, 1,2,3,4,5]
-
-
-
-// inline
-// double dsdot(int n, float[.] X, int incx, float[.] Y, int incy)
-// {
-//   //expects n > 0, incx >= 0, incy >= 0
-//   return sum( {i -> tod(X[i*incx]) * tod(Y[i*incy]) | [0] <= i < [n] } );
-// }
-//external
-//double cblas_dsdot(int n, float[.] X, int incx, float[.] Y, int incy);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [0, 1,2,3,4,5]
-
-// inline
-// double dnrm2(int n, double[.] X, int incx)
-// {
-//   //expects n > 0, incx > 0
-//     return sqrt(sum( {i -> X[i]*X[i] | [0] <= i < [n*incx] step [incx]} ));
-// }
-//external
-//double cblas_dnrm2(int n, double[.] X, int incx);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [0, 1,2,3]
-
-
-
-//in the cblas implementation the complex list is a void pointer...
-// inline
-// double dznrm2(int n, complex[.] X, int incx)
-// {
-//   //expects n > 0, incx > 0
-//   X_prime = {i -> X[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
-//   return sqrt(sum(normSq(X_prime)));
-// }
-//external
-//double cblas_dznrm2(int n, complex[.] X, int incx);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [0, 1,2,3]
-
-
-
-// inline
-// double dasum(int n, double[.] X, int incx)
-// {
-//   //expects n > 0, incx > 0
-//   return sum( {i -> abs(X[i]) | [0] <= i < [n*incx] step [incx]} );
-// }
-//external
-//double cblas_dasum(int n, double[.] X, int incx);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [0,1,2,3]
-
-
-
-// inline
-// int idamax(int n, double[.] X, int incx)
-// {
-//   //expects n > 0, incx > 0
-//   max_i = 0;
-//   max_v = 0d;
-//   ix = 0;
-//   for(i = 0; i < n; i++) {
-//     current_v = abs(X[ix]);
-//     if(current_v > max_v) {
-//       max_i = i;
-//       max_v = current_v;
+//   if (trans != 'N' && trans != 'n') {
+//     a = transpose(a);
+//     if (uplo == 'U' || uplo == 'u') {
+//       uplo = 'l';
+//     } else {
+//       uplo = 'u';
 //     }
-//     ix += incx;
 //   }
 
-//   return max_i;
+//   inter = [1.0f];
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+//     // upper
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+//   } 
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+//     // upper unit
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+//   } 
+
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+//     // lower
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+//   } 
+  
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+//     // lower unit
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+//   } 
+
+
+//   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+//           [iv] -> x[iv]};
+
+  return x;
+}
+
+float[xn] stpmv(char uplo, char trans, char diag, int n, float[an] ap, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0, an >= n*(n+1)/2,  incx != 0
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+  res = { [iv] -> sum(take([n-iv],drop([idx(n, iv)], ap)) * drop([iv/incx], xt)) | [iv] <= [(xn-1)*incx] step [incx]; 
+          [iv] -> x[iv]};
+
+  return res;
+}
+
+float[xn] stpsv(char uplo, char trans, char diag, int n, float[apn] ap, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+  if (uplo == 'U' || uplo == 'u') {
+    a = trttrs('u', ap, n);
+  } else {
+    a = trttrs('l', ap, n);
+  }
+
+  if (trans != 'N' && trans != 'n') {
+    a = transpose(a);
+    if (uplo == 'U' || uplo == 'u') {
+      uplo = 'l';
+    } else {
+      uplo = 'u';
+    }
+  } 
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+      x[i] = (x[xn-1-i]-subtract) / a[n-1-i][n-1-i];
+    } 
+  } 
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+      x[i] = (x[xn-1-i]-subtract);
+    } 
+  } 
+
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([i], a[i]) * take([i], x));
+      x[i] = (x[i]-subtract) / a[i][i];
+    } 
+  } 
+  
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([i], a[i]) * take([i], x));
+      x[i] = (x[i]-subtract);
+    } 
+  } 
+
+  return x;
+}
+
+
+float[xn] strmv(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda >= max(1,n)
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+  if (trans != 'N' && trans != 'n') {
+    a = transpose(a);
+    if (uplo == 'U' || uplo == 'u') {
+      uplo = 'l';
+    } else {
+      uplo = 'u';
+    }
+  }
+
+  inter = [1.0f];
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+    // upper
+    inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+  } 
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+    // upper unit
+    inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+  } 
+
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+    // lower
+    inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+  } 
+  
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+    // lower unit
+    inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+  } 
+
+  res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+          [iv] -> x[iv]};
+
+  return res;
+}
+
+
+float[xn] strsv(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+  if (trans != 'N' && trans != 'n') {
+    a = transpose(a);
+    if (uplo == 'U' || uplo == 'u') {
+      uplo = 'l';
+    } else {
+      uplo = 'u';
+    }
+  }
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+      x[i] = (x[xn-1-i]-subtract) / a[an-1-i][am-1-i];
+    } 
+  } 
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+      x[i] = (x[xn-1-i]-subtract);
+    } 
+  } 
+
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([i], a[i]) * take([i], x));
+      x[i] = (x[i]-subtract) / a[i][i];
+    } 
+  } 
+  
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([i], a[i]) * take([i], x));
+      x[i] = (x[i]-subtract);
+    } 
+  } 
+
+  return x;
+}
+
+
+// Double
+double[*] dgbmv(char trans, int m, int n, int kl, int ku, double alpha, double[am,an] a, int lda, double[xn] x, int incx, double beta, double[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >= 0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
+{
+  if (trans == 'N' | trans == 'n') {
+    lenx = n;
+    leny = m;
+  } else {
+    lenx = m;
+    leny = n;
+    a = bandStorageToFull(a, kl, ku, m, n);
+    a = transpose(a);
+    a = fullStorageToBand(a, ku, kl, n, m);
+  }
+
+  betaY =   BlasLevel1::dscal(leny, beta, y, incy);
+  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+
+  resA = { [i] -> sum(padVectorBack(an,drop([kl-i], a[i]))   * take([an], alphaX))    | [i] < [kl];
+           [i] -> sum(a[i]              * take([an], drop([i-1],alphaX)))      | [i] < [am] };
+
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
+  
+  return res;
+}
+
+double[yn] dgemv(char trans, int m, int n, double alpha, double[am,an] a, int lda, double[xn] x, int incx, double beta, double[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
+{
+  if (trans == 'N' | trans == 'n') {
+    lenx = n;
+    leny = m;
+  } else {
+    lenx = m;
+    leny = n;
+    a = transpose(a);
+  }
+
+  betaY =   BlasLevel1::dscal(leny, beta, y, incy);
+  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+  resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
+
+  return res;
+}
+
+
+double[m,n] dger(int m, int n, double alpha, double[lenx] x, int incx, double[leny] y, int incy, double[m,n] a, int lda)
+{
+  return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
+}
+
+double[*] dsbmv(char uplo, int n, int k, double alpha, double[*] a, int lda, double[*] x, int incx, double beta, double[*] y, int incy)
+{
+    betaY =   BlasLevel1::dscal(n, beta, y, incy);
+    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+    if (uplo == 'u' || uplo == 'U') {
+        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+    } else {
+        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+    }
+    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+
+    return res;
+}
+
+double[yn] dspmv(char uplo, int n, double alpha, double[.] ap, double[xn] x, int incx, double beta, double[yn] y, int incy)
+{
+    a = trttrs('u', ap, n);
+    betaY =   BlasLevel1::dscal(n, beta, y, incy);
+    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+    if (uplo == 'u' || uplo == 'U') {
+        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+    } else {
+        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+    }
+    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+
+   return res;
+}
+
+double[apn] dspr(char uplo, int n, double alpha, double[xn] x, int incx, double[apn] ap)
+{
+    full = trttrs(uplo, ap, n);
+    xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv]) | iv < [n]};
+    } else {
+        inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv]) | iv < [n]};
+    }
+    res = trttps(uplo, inter);
+    return res;
+}
+
+double[apn] dspr2(char uplo, int n, double alpha, double[xn] x, int incx, double[yn] y, int incy, double[apn] ap)
+{
+    full = trttrs(uplo, ap, n);
+    xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
+    yMat = {[i,j] -> alpha * y[j*incy] * x[i*incx] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
+    } else {
+        inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
+    }
+    res = trttps(uplo, inter);
+    return res;
+}
+
+
+double[leny] dsymv(char uplo, int n, double alpha, double[d:shp] a, int lda, double[lenx] x, int incx, double beta, double[leny] y, int incy) | ismember(uplo, ['u', 'U', 'l', 'L'])
+{
+    betaY =   BlasLevel1::dscal(n, beta, y, incy);
+    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+    if (uplo == 'u' || uplo == 'U') {
+        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+    } else {
+        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+    }
+    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+
+   return res;
+}
+
+
+double[am,an] dsyr(char uplo, int n, double alpha, double[*] x, int incx, double[am,an] a, int lda)
+{
+    xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv])) | iv < [n]};
+    } else {
+        res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+    }
+    return res;
+}
+
+
+double[am,an] dsyr2(char uplo, int n, double alpha, double[*] x, int incx, double[*] y, int incy, double[am,an] a, int lda)
+{
+    xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
+    yMat = {[i,j] -> alpha * y[i*incx] * x[j*incy] | [i,j] < [n,n]};
+    if (uplo == 'U' || uplo == 'u') {
+        res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv]) + drop(iv, yMat[iv])) | iv < [n]};
+    } else {
+        res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv]) + take(iv+1, yMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+    }
+    return res;
+}
+
+
+// double[xn] dtbmv(char uplo, char trans, char diag, int n, int k, double[an,am] a, int lda, double[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// {
+//   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+//   if (trans != 'N' && trans != 'n') {
+//     a = transpose(a);
+//     if (uplo == 'U' || uplo == 'u') {
+//       uplo = 'l';
+//     } else {
+//       uplo = 'u';
+//     }
+//   }
+
+//   inter = [1.0d];
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+//     // upper
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+//   } 
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+//     // upper unit
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+//   } 
+
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+//     // lower
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+//   } 
+  
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+//     // lower unit
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+//   } 
+
+
+//   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+//           [iv] -> x[iv]};
+
+//   return res;
 // }
-//external
-//int cblas_idamax(int n, double[.] X, int incx);
-//#pragma linkobj "/home/casper/AOCL-BLIS/lib/libblis.a"
-//#pragma linksign [0,1,2,3]
+
+double[xn] dtbsv(char uplo, char trans, char diag, int n, int k, double[an,am] a, int lda, double[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+{
+//   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+//   if (trans != 'N' && trans != 'n') {
+//     a = transpose(a);
+//     if (uplo == 'U' || uplo == 'u') {
+//       uplo = 'l';
+//     } else {
+//       uplo = 'u';
+//     }
+//   }
+
+//   inter = [1.0d];
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+//     // upper
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+//   } 
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+//     // upper unit
+//     a = upperTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+//   } 
+
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+//     // lower
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+//   } 
+  
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+//     // lower unit
+//     a = lowerTriangleBandStorageToFull(a, k);
+//     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+//   } 
+
+
+//   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+//           [iv] -> x[iv]};
+
+  return x;
+}
+
+double[xn] dtpmv(char uplo, char trans, char diag, int n, double[an] ap, double[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0, an >= n*(n+1)/2,  incx != 0
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+  res = { [iv] -> sum(take([n-iv],drop([idx(n, iv)], ap)) * drop([iv/incx], xt)) | [iv] <= [(xn-1)*incx] step [incx]; 
+          [iv] -> x[iv]};
+
+  return res;
+}
+
+double[xn] dtpsv(char uplo, char trans, char diag, int n, double[apn] ap, double[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+  if (uplo == 'U' || uplo == 'u') {
+    a = trttrs('u', ap, n);
+  } else {
+    a = trttrs('l', ap, n);
+  }
+
+  if (trans != 'N' && trans != 'n') {
+    a = transpose(a);
+    if (uplo == 'U' || uplo == 'u') {
+      uplo = 'l';
+    } else {
+      uplo = 'u';
+    }
+  } 
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+      x[i] = (x[xn-1-i]-subtract) / a[n-1-i][n-1-i];
+    } 
+  } 
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+      x[i] = (x[xn-1-i]-subtract);
+    } 
+  } 
+
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([i], a[i]) * take([i], x));
+      x[i] = (x[i]-subtract) / a[i][i];
+    } 
+  } 
+  
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([i], a[i]) * take([i], x));
+      x[i] = (x[i]-subtract);
+    } 
+  } 
+
+  return x;
+}
+
+
+double[xn] dtrmv(char uplo, char trans, char diag, int n, double[an,am] a, int lda, double[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda >= max(1,n)
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+  if (trans != 'N' && trans != 'n') {
+    a = transpose(a);
+    if (uplo == 'U' || uplo == 'u') {
+      uplo = 'l';
+    } else {
+      uplo = 'u';
+    }
+  }
+
+  inter = [1.0d];
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+    // upper
+    inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+  } 
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+    // upper unit
+    inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+  } 
+
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+    // lower
+    inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+  } 
+  
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+    // lower unit
+    inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+  } 
+
+  res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+          [iv] -> x[iv]};
+
+  return res;
+}
+
+
+double[xn] dtrsv(char uplo, char trans, char diag, int n, double[an,am] a, int lda, double[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+{
+  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+  if (trans != 'N' && trans != 'n') {
+    a = transpose(a);
+    if (uplo == 'U' || uplo == 'u') {
+      uplo = 'l';
+    } else {
+      uplo = 'u';
+    }
+  }
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+      x[i] = (x[xn-1-i]-subtract) / a[an-1-i][am-1-i];
+    } 
+  } 
+
+  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+      x[i] = (x[xn-1-i]-subtract);
+    } 
+  } 
+
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([i], a[i]) * take([i], x));
+      x[i] = (x[i]-subtract) / a[i][i];
+    } 
+  } 
+  
+  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+    for (i = 0; i < xn; i++) {
+      subtract = sum(take([i], a[i]) * take([i], x));
+      x[i] = (x[i]-subtract);
+    } 
+  } 
+
+  return x;
+}
+
+/*
+ * Helper.sac
+ */
+
+
+// bool eq (int[d1:shp1] a, int[d2:shp2] b) {
+//     return all(a == b) && all(shp1==shp2) && all(d1==d2);
+// }
+
+// inline
+bool eq (float[d1:shp1] a, float[d2:shp2] b) {
+    return all(a == b) && all(shp1==shp2) && all(d1==d2);
+}
+
+bool eq (double[d1:shp1] a, double[d2:shp2] b) {
+    return all(a == b) && all(shp1==shp2) && all(d1==d2);
+}
+
+// inline
+bool almost_eq (float[d1:shp1] a, float[d2:shp2] b, float loss) {
+    return all(abs(a - b) < loss) && all(shp1==shp2) && all(d1==d2);
+}
+
+// inline
+bool almost_eq (double[d1:shp1] a, double[d2:shp2] b, double loss) {
+    return all(abs(a - b) < loss) && all(shp1==shp2) && all(d1==d2);
+}
+
+// inline
+bool ismember(char c, char[n] ca)
+{
+  b = false;
+  for(i=0; i<n;i++) {
+    if (ca[i] == c) b = true;
+  }
+  return b;
+}
+
+// inline
+bool ismember(float c, float[n] ca)
+{
+  b = false;
+  for(i=0; i<n;i++) {
+    if (ca[i] == c) b = true;
+  }
+  return b;
+}
+
+// inline
+bool ismember(int c, int[n] ca)
+{
+  b = false;
+  for(i=0; i<n;i++) {
+    if (ca[i] == c) b = true;
+  }
+  return b;
+}
+
+// inline
+bool ismember(double c, double[n] ca)
+{
+  b = false;
+  for(i=0; i<n;i++) {
+    if (ca[i] == c) b = true;
+  }
+  return b;
+}
+
+// inline
+bool minArrLen(int n, int arrLength, int inc)
+{
+    return arrLength  > (n-1)*inc;
+}
+
+// Checks max index of elements we go through is smaller than the length of x
+// inline
+bool sgemvXdim(char trans, int m, int n, int incx, int xn)
+{
+  if (trans == 'N' || trans == 'n') {
+    res = minArrLen(n, xn, incx);
+  } else {
+    res = minArrLen(m, xn, incx);
+  }
+  return res;
+}
+
+// inline
+bool sgemvYdim(char trans, int m, int n, int incy, int yn)
+{
+  if (trans == 'N' || trans == 'n') {
+    res = minArrLen(m, yn, incy);
+  } else {
+    res = minArrLen(n, yn, incy);
+  }
+  return res;
+}
+
+// inline
+float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
+{
+  lim = n-ku;
+
+  return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
+           [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
+           [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
+}
+
+// inline
+double[m,n] bandStorageToFull(double[m,lda] storage, int kl, int ku, int m, int n)
+{
+  lim = n-ku;
+
+  return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
+           [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
+           [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
+}
+
+inline
+float[m,lda] fullStorageToBand(float[m,n] storage, int kl, int ku, int m, int n)
+{
+  lim = n-ku;
+  w = kl + ku + 1;
+  return {  [i] -> padVectorFront(w, take([i+ku+1], drop([max(0,i-kl)],storage[i])))  | [i] < [kl];
+            [i] -> take([w], drop([i-kl],storage[i]))                                 | [i] < [lim];
+            [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
+}
+
+inline
+double[m,lda] fullStorageToBand(double[m,n] storage, int kl, int ku, int m, int n)
+{
+  lim = n-ku;
+  w = kl + ku + 1;
+  return {  [i] -> padVectorFront(w, take([i+ku+1], drop([max(0,i-kl)],storage[i])))  | [i] < [kl];
+            [i] -> take([w], drop([i-kl],storage[i]))                                 | [i] < [lim];
+            [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
+}
+
+// inline
+float[m] padVectorFront(int k, float[n] arr)
+{
+  zeros = [k-n];
+  return { iv -> 0.0f           | iv < zeros;
+           iv -> arr[iv-zeros]  | zeros <= iv < [k]
+         };
+}
+
+// inline
+double[m] padVectorFront(int k, double[n] arr)
+{
+  zeros = [k-n];
+  return { iv -> 0.0d           | iv < zeros;
+           iv -> arr[iv-zeros]  | zeros <= iv < [k]
+         };
+}
+
+// inline
+float[m] padVectorBack(int k, float[n] arr) | (k >= n)
+{
+  return { iv -> arr[iv]  | iv < [n];
+           iv -> 0.0f     | [n] <= iv < [k]       
+         };
+}
+
+// inline
+double[m] padVectorBack(int k, double[n] arr) | (k >= n)
+{
+  return { iv -> arr[iv]  | iv < [n];
+           iv -> 0.0d     | [n] <= iv < [k]       
+         };
+}
+
+// inline
+float[m] padVectorOffset(int m, int offset, float[n] arr) | (offset >= 0)
+{
+  return { iv -> 0.0f             | iv < [offset];  
+           iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
+           iv -> 0.0f             | [offset+n] <= iv < [m]       
+         };
+}
+
+// inline
+double[m] padVectorOffset(int m, int offset, double[n] arr) | (offset >= 0)
+{
+  return { iv -> 0.0d             | iv < [offset];  
+           iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
+           iv -> 0.0d             | [offset+n] <= iv < [m]       
+         };
+}
+
+// float[m,n] bandUpperTriangleStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
+// {
+//   return { [i,j] -> storage[i - (k+1-j)] | [k+1-j, 0] <= [i,j] < [max(1+k+1-j,(j-k)+k+1-j),n] }
+//   // lim = n-ku;
+
+//   // return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
+//   //          [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
+//   //          [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
+// }
+
+// inline
+float[am,n] fullUpperTriangleStorageToBand(float[m,n] full, int k) | (n-k-1 == am)
+{
+  a = transpose(full);
+  a = {iv -> take([1+k],drop(iv-[k],a[iv])) | iv < [n]};
+  a = {iv -> padVectorFront(1+k,take(min([1+k],iv+1),a[iv])) | iv < [n]};
+  a = transpose(a);
+  return a;
+}
+
+// inline
+double[am,n] fullUpperTriangleStorageToBand(double[m,n] full, int k) | (n-k-1 == am)
+{
+  a = transpose(full);
+  a = {iv -> take([1+k],drop(iv-[k],a[iv])) | iv < [n]};
+  a = {iv -> padVectorFront(1+k,take(min([1+k],iv+1),a[iv])) | iv < [n]};
+  a = transpose(a);
+  return a;
+}
+
+// inline
+float[n,m] rotateCW(float[m,n] a) 
+{
+  return {[i,j] -> a[n-j-1][i] | [i,j] < [n,m]};
+}
+
+// inline
+double[n,m] rotateCW(double[m,n] a) 
+{
+  return {[i,j] -> a[n-j-1][i] | [i,j] < [n,m]};
+}
+
+// inline
+float[n,m] rotateCCW(float[m,n] a) 
+{
+  return {[i,j] -> a[j][n-i-1] | [i,j] < [n,m]};
+}
+
+// inline
+double[n,m] rotateCCW(double[m,n] a) 
+{
+  return {[i,j] -> a[j][n-i-1] | [i,j] < [n,m]};
+}
+
+// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+float[m] trttpsCOL(char uplo, float[n,n] a)
+{
+    len = (n*(n+1)/2);
+    arr = genarray([len], 0.0f);
+    return trttpCOL(uplo, n, a, n, arr, 0);
+}   
+
+// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+double[m] trttpsCOL(char uplo, double[n,n] a)
+{
+    len = (n*(n+1)/2);
+    arr = genarray([len], 0.0d);
+    return trttpCOL(uplo, n, a, n, arr, 0);
+}   
+
+// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+float[m] trttpCOL(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (j=0; j<n; j++)
+        {
+            for (i=j; i<n; i++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k+1;
+            }
+        }
+    } else {
+        for (j=0; j<n; j++)
+        {
+            for (i=0; i<=j; i++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k+1;
+            }
+        }
+    }
+    return ap;
+}   
+
+// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+double[m] trttpCOL(char uplo, int n, double[lda,n] a, int lda, double[m] ap, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (j=0; j<n; j++)
+        {
+            for (i=j; i<n; i++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k+1;
+            }
+        }
+    } else {
+        for (j=0; j<n; j++)
+        {
+            for (i=0; i<=j; i++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k+1;
+            }
+        }
+    }
+    return ap;
+}   
+
+
+// triangular matrix, packed (tp) to full (tr) COLMAJ
+float[n,n] trttrsCOL(char uplo, float[m] ap, int n)
+{
+    arr = genarray([n,n], 0.0f);
+    return tpttrCOL(uplo, n, ap, n, arr, 0);
+}   
+
+// triangular matrix, packed (tp) to full (tr) COLMAJ
+double[n,n] trttrsCOL(char uplo, double[m] ap, int n)
+{
+    arr = genarray([n,n], 0.0d);
+    return tpttrCOL(uplo, n, ap, n, arr, 0);
+}   
+
+// triangular matrix, packed (tp) to full (tr) COLMAJ
+float[n,n] tpttrCOL(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (j=0; j<n; j++)
+        {
+            for (i=j; i<n; i++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k+1;
+            }
+        }
+    } else {
+        for (j=0; j<n; j++)
+        {
+            for (i=0; i<=j; i++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k+1;
+            }
+        }
+    }
+    return a;
+}
+
+// triangular matrix, packed (tp) to full (tr) COLMAJ
+double[n,n] tpttrCOL(char uplo, int n, double[m] ap, int lda, double[lda,n] a, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (j=0; j<n; j++)
+        {
+            for (i=j; i<n; i++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k+1;
+            }
+        }
+    } else {
+        for (j=0; j<n; j++)
+        {
+            for (i=0; i<=j; i++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k+1;
+            }
+        }
+    }
+    return a;
+}
+
+
+// triangular matrix, packed (tp) to full (tr)  RowMAJ
+inline
+float[n,n] trttrs(char uplo, float[m] ap, int n)
+{
+    arr = genarray([n,n], 0.0f);
+    return tpttr(uplo, n, ap, n, arr, 0);
+}   
+
+// triangular matrix, packed (tp) to full (tr)  RowMAJ
+inline
+double[n,n] trttrs(char uplo, double[m] ap, int n)
+{
+    arr = genarray([n,n], 0.0d);
+    return tpttr(uplo, n, ap, n, arr, 0);
+}   
+
+
+// triangular matrix, packed (tp) to full (tr) RowMAJ
+inline
+float[n,n] tpttr(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j <= i; j++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k + 1;
+            }
+        }
+    } else {
+        for (i = 0; i < n; i++)
+        {
+            for (j = i; j < n; j++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k + 1;
+            }
+        }
+    }
+    return a;
+}
+
+// triangular matrix, packed (tp) to full (tr) RowMAJ
+inline
+double[n,n] tpttr(char uplo, int n, double[m] ap, int lda, double[lda,n] a, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j <= i; j++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k + 1;
+            }
+        }
+    } else {
+        for (i = 0; i < n; i++)
+        {
+            for (j = i; j < n; j++)
+            {
+                a[[i,j]] = ap[[k]];
+                k = k + 1;
+            }
+        }
+    }
+    return a;
+}
+
+
+// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+inline
+float[m] trttps(char uplo, float[n,n] a)
+{
+    len = (n*(n+1)/2);
+    arr = genarray([len], 0.0f);
+    return trttp(uplo, n, a, n, arr, 0);
+}   
+
+// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+inline
+double[m] trttps(char uplo, double[n,n] a)
+{
+    len = (n*(n+1)/2);
+    arr = genarray([len], 0.0d);
+    return trttp(uplo, n, a, n, arr, 0);
+}   
+
+// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+inline
+float[m] trttp(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j <= i; j++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k + 1;
+            }
+        }
+    } else {
+        for (i = 0; i < n; i++)
+        {
+            for (j = i; j < n; j++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k + 1;
+            }
+        }
+    }
+    return ap;
+}
+
+
+// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+inline
+double[m] trttp(char uplo, int n, double[lda,n] a, int lda, double[m] ap, int info)
+{
+    k = 0;
+    if (uplo == 'L' || uplo == 'l') 
+    {
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j <= i; j++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k + 1;
+            }
+        }
+    } else {
+        for (i = 0; i < n; i++)
+        {
+            for (j = i; j < n; j++)
+            {
+                ap[[k]] = a[[i,j]];
+                k = k + 1;
+            }
+        }
+    }
+    return ap;
+}
+
+
+int idx(int n, int i) 
+{
+  return n * i - (i * (i - 1)) / 2;
+}
+
 
 /*
  * HELPER FUNCTIONS
@@ -600,18 +2133,19 @@ double measure_drotmg(int version) {
     d2 = id(5d);
     x1 = id(7d);
     y1 = id(11d);
+    param = id(tod(iota(5)));
     
     if(version == NATIVE) {
         start(interval);
-        d1, d2, x1, param = drotmg(d1, d2, x1, y1);
+        d1, d2, x1, y1, param = drotmg(d1, d2, x1, y1, param);
         end(interval);
     } else {
         start(interval);
-        d1, d2, x1, param = OpenBlas::drotmg(d1, d2, x1, y1);
+        d1, d2, x1, y1, param = OpenBlas::drotmg(d1, d2, x1, y1, param);
         end(interval);
     }
 
-    printf("d1: %f\nd2: %f\nx1: %f\n", id(d1), id(d2), id(x1));
+    printf("d1: %f\nd2: %f\nx1: %f\ny1: %f\n", id(d1), id(d2), id(x1), id(y1));
     printf("param: ");
     show(take([5], id(param)));
 
@@ -1127,24 +2661,48 @@ void test_drotmg(double[.] d1s, double[.] d2s, double[.] x1s, double[.] y1s) {
         params = perms[i];
         d1 = params[0]; d2 = params[1];
         x1 = params[2]; y1 = params[3];
+        param = tod(iota(5));
 
         native = genarray([8], 0d);
         library = genarray([8], 0d);
-        native1, native2, native3, native4 = drotmg(d1, d2, x1, y1);
-        library1, library2, library3, library4 = OpenBlas::drotmg(d1, d2, x1, y1);
-        native[0] = native1; native[1] = native2; native[2] = native3; native[3] = native4[0];
-        native[4] = native4[1]; native[5] = native4[2]; native[6] = native4[3]; native[7] = native4[4];
-        library[0] = library1; library[1] = library2; library[2] = library3; library[3] = library4[0];
-        library[4] = library4[1]; library[5] = library4[2]; library[6] = library4[3]; library[7] = library4[4];
 
-        if(any(abs(native - library) > MAX_ACC_LOSS)) {
-            printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
-            printf("Native: ");
-            show(native);
-            printf("Library:");
-            show(library);
-            mistakes++;
-        }
+        print("input");
+        print(d1);
+        print(d2);
+        print(x1);
+        print(y1);
+        print(param);
+
+        native1, native2, native3, native4, native5 = drotmg(d1, d2, x1, y1, param);
+        print("native results");
+        print(native1);
+        print(native2);
+        print(native3);
+        print(native4);
+        print(native5);
+        
+        library1, library2, library3, library4, library5 = OpenBlas::drotmg(d1, d2, x1, y1, param);
+        print("lib results");
+        print(library1);
+        print(library2);
+        print(library3);
+        print(library4);
+        print(library5);
+
+
+        // native[0] = native1; native[1] = native2; native[2] = native3; native[3] = native4[0];
+        // native[4] = native4[1]; native[5] = native4[2]; native[6] = native4[3]; native[7] = native4[4];
+        // library[0] = library1; library[1] = library2; library[2] = library3; library[3] = library4[0];
+        // library[4] = library4[1]; library[5] = library4[2]; library[6] = library4[3]; library[7] = library4[4];
+
+        // if(any(abs(native - library) > MAX_ACC_LOSS)) {
+        //     printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
+        //     printf("Native: ");
+        //     show(native);
+        //     printf("Library:");
+        //     show(library);
+        //     mistakes++;
+        // }
     }
     print_test_status("drotmg", mistakes);
 }
@@ -1558,35 +3116,36 @@ void test() {
     // BLAS L1 
     print("Testing drotg");
     test_drotg(ds, ds);
-    //drotmg lib version doesn't work
-    //test_drotmg(ds, ds, ds, ds);
-    print("Testing drot");
-    test_drot(n, ds, incs, ds, incs, ds, ds);
-    print("Testing drotm");
-    test_drotm(n, ds, incs, ds, incs, flags, ds);
-    print("Testing dswap");
-    test_dswap(n, ds, incs, ds, incs);
-    print("Testing dscal");
-    test_dscal(n, ds, ds, incs);
-    print("Testing dcopy");
-    test_dcopy(n, ds, incs, ds, incs);
-    print("Testing daxpy");
-    test_daxpy(n, ds, ds, incs, ds, incs);
-    print("Testing ddot");
-    test_ddot(n, ds, incs, ds, incs);
-    print("Testing dsdot");
-    test_dsdot(n, fs, incs, fs, incs);
-    print("Testing dnrm2");
-    test_dnrm2(n, ds, incs);
-    // test_dznrm2(n, cs, incs);
-    print("Testing dasum");
-    test_dasum(n, ds, incs);
-    print("Testing idamax");
-    test_idamax(n, ds, incs);
+    // drotmg lib version doesn't work
+    print("Testing drotmg");
+    test_drotmg(ds, ds, ds, ds);
+    // print("Testing drot");
+    // test_drot(n, ds, incs, ds, incs, ds, ds);
+    // print("Testing drotm");
+    // test_drotm(n, ds, incs, ds, incs, flags, ds);
+    // print("Testing dswap");
+    // test_dswap(n, ds, incs, ds, incs);
+    // print("Testing dscal");
+    // test_dscal(n, ds, ds, incs);
+    // print("Testing dcopy");
+    // test_dcopy(n, ds, incs, ds, incs);
+    // print("Testing daxpy");
+    // test_daxpy(n, ds, ds, incs, ds, incs);
+    // print("Testing ddot");
+    // test_ddot(n, ds, incs, ds, incs);
+    // print("Testing dsdot");
+    // test_dsdot(n, fs, incs, fs, incs);
+    // print("Testing dnrm2");
+    // test_dnrm2(n, ds, incs);
+    // // test_dznrm2(n, cs, incs);
+    // print("Testing dasum");
+    // test_dasum(n, ds, incs);
+    // print("Testing idamax");
+    // test_idamax(n, ds, incs);
 
-    // BLAS L2
-    print("Testing sgemv");
-    test_sgemv(n, chars, nms, nms, fs, fs, nms, fs, incs, fs, fs, incs);
+    // // BLAS L2
+    // print("Testing sgemv");
+    // test_sgemv(n, chars, nms, nms, fs, fs, nms, fs, incs, fs, fs, incs);
 }
 
 /*

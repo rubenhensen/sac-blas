@@ -1,4 +1,4 @@
-#include </home/rhensen/bin/openblas/bin/include/cblas.h>
+#include "/home/rhensen/OpenBLAS/cblas.h"
 
 void SACsrotm(const int n, float *x, const int incx, float *y, const int incy, const float *param)
 {

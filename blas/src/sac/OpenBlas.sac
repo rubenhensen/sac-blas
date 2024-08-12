@@ -90,11 +90,11 @@ external double, double, double, double drotg(double a, double b, double c, doub
     #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
     #pragma linksign [1,2,3,4,1,2,3,4]
 
-external double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1);
+external double, double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1, double[5] param);
     #pragma linkname "SACdrotmg"
     #pragma linkobj "bin/blas/drotmg.o"
     #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
-    #pragma linksign [1,2,3,5,1,2,3,4]
+    #pragma linksign [1,2,3,4,5,1,2,3,4,5]
 
 external double[k], double[l] drot(int n, double[k] x, int incx, double[l] y, int incy, double c, double s); 
     #pragma linkname "SACdrot"

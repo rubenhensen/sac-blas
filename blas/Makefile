@@ -28,11 +28,25 @@ ROUTINE=TEST
 echo: 
 	echo $(BLAS_BIN)
 
+debug_seq: bin/sac/seq/debug.out
+	./$<
+
+bin/sac/seq/debug.out: src/sac/debug.sac bin/blas/drotmg.o
+	sac2c $(CHECKFLAG) $(LIBS) -o $@ $<
+
+debug: bin/sac/mt-pth/debug.out
+	env SAC_PARALLEL=$(THREADS) ./$<
+
+bin/sac/mt-pth/debug.out: src/sac/debug.sac bin/blas/drotmg.o
+	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth -D ROUTINE=$(ROUTINE) -o $@ $<
+
 stest: 
 	sbatch long make test
 
 test: bin/sac/mt-pth/testing_tool.out
 	env SAC_PARALLEL=$(THREADS) ./$<
+# test: bin/sac/mt-pth/testing_tool.out
+# 	./$<
 
 test-seq: bin/sac/seq/testing_tool.out
 	env LD_LIBRARY_PATH="/home/rhensen/bin/openblas/bin/lib/" ./$<

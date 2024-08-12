@@ -1,4 +1,4 @@
-#include </home/rhensen/bin/openblas/bin/include/cblas.h>
+#include "/home/rhensen/OpenBLAS/cblas.h"
 
 double SACddot(const int n, const double *x, const int incx, const double *y, const int incy)
 {

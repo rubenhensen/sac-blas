@@ -1,0 +1,201 @@
+use Math: all;
+use StdIO: all;
+use Structures: all;
+use Benchmarking: all;
+
+int main() {
+    d1 = 0d;
+    d2 = 0d;
+    x1 = 7d;
+    y1 = 0d;
+    param = tod(iota(5)+1);
+
+    print("\n######## INPUT ########");
+    print(d1);
+    print(d2);
+    print(x1);
+    print(y1);
+    print(param);
+    v1,v2,v3,v4,v5 = OpenBlas::drotmg(d1, d2, x1, y1, param);
+    print("\n######## OPENBLAS ########");
+    print(v1);
+    print(v2);
+    print(v3);
+    print(v4);
+    print(v5);
+
+    print("\n######## INPUT ########");
+    print(d1);
+    print(d2);
+    print(x1);
+    print(y1);
+    print(param);
+    r1,r2,r3,r4,r5 = drotmg(d1, d2, x1, y1, param);
+    print("\n######## SAC ########");
+    print(r1);
+    print(r2);
+    print(r3);
+    print(r4);
+    print(r5);
+
+
+    return 0;
+}
+
+inline
+double, double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1, double[5] param)
+{
+  //A very literal translation from Fortran
+  gam    = 4096d;
+  gamsq  = 16777216d;
+  rgamsq = 5.9604645e-8d;
+
+  flag = 0d;
+  h11 = 0d;
+  h21 = 0d;
+  h12 = 0d;
+  h22 = 0d;
+
+  if(d1 < 0d) {
+    // GO ZERO-H-D-AND-DX1..
+    flag = -1d;
+    h11 = 0d;
+    h12 = 0d;
+    h21 = 0d;
+    h22 = 0d;
+
+    d1 = 0d;
+    d2 = 0d;
+    x1 = 0d;
+  } else if (d2 * y1 == 0d) {
+    // CASE-DD1-NONNEGATIVE
+    p2 = d2 * y1;
+    flag = -2d;
+    param[0] = flag;
+  } else {
+    p2 = d2 * y1;
+    // REGULAR-CASE..
+    p1 = d1*x1;
+    q2 = p2*y1;
+    q1 = p1*x1;
+
+    if (abs(q1) > abs(q2)) {
+      h21 = -y1/x1;
+      h12 = p2/p1;
+      
+      u = 1d - h12*h21;
+
+      if (u > 0d) {
+        flag = 0d;
+        d1 = d1/u;
+        d2 = d2/u;
+        x1 = x1/u;
+      } else {
+        // This code path if here for safety. We do not expect this
+        // condition to ever hold except in edge cases with rounding
+        // errors. See DOI: 10.1145/355841.355847
+        flag = -1d;
+        h11 = 0d;
+        h12 = 0d;
+        h21 = 0d;
+        h22 = 0d;
+
+        d1 = 0d;
+        d2 = 0d;
+        x1 = 0d;
+      }
+    } else {
+
+      if (q2 < 0d) {
+        // GO ZERO-H-D-AND-DX1..
+        flag = -1d;
+        h11 = 0d;
+        h12 = 0d;
+        h21 = 0d;
+        h22 = 0d;
+
+        d1 = 0d;
+        d2 = 0d;
+        x1 = 0d;
+      } else {
+        flag = 1d;
+        h11 = p1/p2;
+        h22 = x1/y1;
+        u = 1d + h11*h22;
+        temp = d2/u;
+        d2 = d1/u;
+        d1 = temp;
+        x1 = y1*u;
+      }
+    }
+  
+    // PROCEDURE..SCALE-CHECK
+    if (d1 != 0d) {
+      while (d1 <= rgamsq || d1 >= gamsq) {
+        if (flag == 0d) {
+          h11 = 1d;
+          h22 = 1d;
+          flag = -1d;
+        } else {
+          h21 = -1d;
+          h12 = 1d;
+          flag = -1d;
+        }
+        if (d1 <= rgamsq) {
+          d1 = d1*pow(gam,2d);
+          x1 = x1/gam;
+          h11 = h11/gam;
+          h12 = h12/gam;
+        } else {
+          d1 = d1/pow(gam,2d);
+          x1 = x1*gam;
+          h11 = h11*gam;
+          h12 = h12*gam;
+        }
+      }
+    }
+
+    if (d2 != 0d) {
+      while (abs(d2) <= rgamsq || abs(d2) >= gamsq) {
+        if (flag == 0d) {
+          h11 = 1d;
+          h22 = 1d;
+          flag = -1d;
+        } else {
+          h21 = -1d;
+          h12 = 1d;
+          flag = -1d;
+        }
+        if (abs(d2) <= rgamsq) {
+          d2 = d2*pow(gam,2d);
+          h21 = h21/gam;
+          h22 = h22/gam;
+        } else {
+          d2 = d2/pow(gam,2d);
+          h21 = h21*gam;
+          h22 = h22*gam;
+        }
+      }
+    }
+
+  }
+
+  if (flag == -2d) {
+    // skip
+  } else if (flag < 0d) {
+    param[1] = h11;
+    param[2] = h21;
+    param[3] = h12;
+    param[4] = h22;
+  } else if (flag == 0d) {
+    param[2] = h21;
+    param[3] = h12;
+  } else {
+    param[1] = h11;
+    param[4] = h22;
+  }
+
+  param[0] = flag;
+
+  return (d1, d2, x1, y1, param);
+}

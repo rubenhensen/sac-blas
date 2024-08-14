@@ -1,4 +1,4 @@
-#include "/home/rhensen/OpenBLAS/cblas.h"
+#include "/home/rhensen/bin/OpenBLAS/include/cblas.h"
 
 void SACdrot(const int n, double *x, const int incx, double *y, const int incy, const double c, const double s)
 {

@@ -1,4 +1,4 @@
-#include "/home/rhensen/OpenBLAS/cblas.h"
+#include "/home/rhensen/bin/OpenBLAS/include/cblas.h"
 void SACssyr2(const char uplo, const int n, const float alpha, const float *x, const int incx, const float *y, const int incy, float *a, const int lda)
 {
     CBLAS_UPLO cblasUplo;

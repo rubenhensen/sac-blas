@@ -254,123 +254,159 @@ double, double, double, double, double[5] drotmg(double d1, double d2, double x1
 {
   //A very literal translation from Fortran
   gam    = 4096d;
-  gamsq  = 1.67772e7d;
-  rgamsq = 5.96046e-8d;
+  gamsq  = 16777216d;
+  rgamsq = 5.9604645e-8d;
 
-  sflag = 0d;
-  sh11 = 0d;
-  sh21 = 0d;
-  sh12 = 0d;
-  sh22 = 0d;
+  flag = 0d;
+  h11 = 0d;
+  h21 = 0d;
+  h12 = 0d;
+  h22 = 0d;
 
   if(d1 < 0d) {
-    sflag = -1d;
+    // GO ZERO-H-D-AND-DX1..
+    flag = -1d;
+    h11 = 0d;
+    h12 = 0d;
+    h21 = 0d;
+    h22 = 0d;
+
     d1 = 0d;
     d2 = 0d;
     x1 = 0d;
-  } else if(d2*y1 == 0d) {
-    sflag = -2d;
+  } else if (d2 * y1 == 0d) {
+    // CASE-DD1-NONNEGATIVE
+    p2 = d2 * y1;
+    flag = -2d;
+    param[0] = flag;
   } else {
-    sp2 = d2*y1;
-    sp1 = d1*x1;
-    sq2 = sp2*y1;
-    sq1 = sp1*x1;
+    p2 = d2 * y1;
+    // REGULAR-CASE..
+    p1 = d1*x1;
+    q2 = p2*y1;
+    q1 = p1*x1;
 
-    if(abs(sq1) > abs(sq2)) {
-      sh21 = -y1/x1;
-      sh12 = sp2/sp1;
-      su = 1d - sh12*sh21;
+    if (abs(q1) > abs(q2)) {
+      h21 = -y1/x1;
+      h12 = p2/p1;
+      
+      u = 1d - h12*h21;
 
-      if(su > 0d) {
-        sflag = 0d;
-        d1 /= su;
-        d2 /= su;
-        x1 *= su;
+      if (u > 0d) {
+        flag = 0d;
+        d1 = d1/u;
+        d2 = d2/u;
+        x1 = x1/u;
       } else {
-        sflag = -1d;
-        sh11 = 0d;
-        sh21 = 0d;
-        sh12 = 0d;
-        sh22 = 0d;
+        // This code path if here for safety. We do not expect this
+        // condition to ever hold except in edge cases with rounding
+        // errors. See DOI: 10.1145/355841.355847
+        flag = -1d;
+        h11 = 0d;
+        h12 = 0d;
+        h21 = 0d;
+        h22 = 0d;
+
         d1 = 0d;
         d2 = 0d;
         x1 = 0d;
       }
     } else {
-      if(sq2 < 0d) {
-        sflag = -1d;
-        sh11 = 0d;
-        sh21 = 0d;
-        sh12 = 0d;
-        sh22 = 0d;
+
+      if (q2 < 0d) {
+        // GO ZERO-H-D-AND-DX1..
+        flag = -1d;
+        h11 = 0d;
+        h12 = 0d;
+        h21 = 0d;
+        h22 = 0d;
+
         d1 = 0d;
         d2 = 0d;
         x1 = 0d;
       } else {
-        sflag = 1d;
-        sh11 = sp1/sp2;
-        sh22 = x1/y1;
-        su = 1d + sh11*sh22;
-        stemp = d2/su;
-        d2 = d1/su;
-        d1 = stemp;
-        x1 = y1*su;
+        flag = 1d;
+        h11 = p1/p2;
+        h22 = x1/y1;
+        u = 1d + h11*h22;
+        temp = d2/u;
+        d2 = d1/u;
+        d1 = temp;
+        x1 = y1*u;
+      }
+    }
+  
+    // PROCEDURE..SCALE-CHECK
+    if (d1 != 0d) {
+      while (d1 <= rgamsq || d1 >= gamsq) {
+        if (flag == 0d) {
+          h11 = 1d;
+          h22 = 1d;
+          flag = -1d;
+        } else {
+          h21 = -1d;
+          h12 = 1d;
+          flag = -1d;
+        }
+        if (d1 <= rgamsq) {
+          d1 = d1*pow(gam,2d);
+          x1 = x1/gam;
+          h11 = h11/gam;
+          h12 = h12/gam;
+        } else {
+          d1 = d1/pow(gam,2d);
+          x1 = x1*gam;
+          h11 = h11*gam;
+          h12 = h12*gam;
+        }
       }
     }
 
-    if(d1 != 0d) {
-      while((d1 < rgamsq) || (d1 > gamsq)) {
-        if(sflag == 0d) {
-          sh11 = 1d;
-          sh22 = 1d;
+    if (d2 != 0d) {
+      while (abs(d2) <= rgamsq || abs(d2) >= gamsq) {
+        if (flag == 0d) {
+          h11 = 1d;
+          h22 = 1d;
+          flag = -1d;
         } else {
-          sh21 = -1d;
-          sh12 = 1d;
+          h21 = -1d;
+          h12 = 1d;
+          flag = -1d;
         }
-
-        sflag = -1d;
-
-        if(d1 < rgamsq) {
-          d1 *= gam * gam;
-          x1 /= gam;
-          sh11 /= gam;
-          sh12 /= gam;
+        if (abs(d2) <= rgamsq) {
+          d2 = d2*pow(gam,2d);
+          h21 = h21/gam;
+          h22 = h22/gam;
         } else {
-          d1 /= gam*gam;
-          x1 *= gam;
-          sh11 *= gam;
-          sh12 *= gam;
+          d2 = d2/pow(gam,2d);
+          h21 = h21*gam;
+          h22 = h22*gam;
         }
       }
     }
 
-    if(d2 != 0d) {
-      while((abs(d2) < rgamsq) || (abs(d2) > gamsq)) {
-        if(sflag == 0d) {
-          sh11 = 1d;
-          sh22 = 1d;
-        } else {
-          sh21 = -1d;
-          sh12 = 1d;
-        }
-
-        sflag = -1d;
-
-        if(abs(d2) < rgamsq) {
-          d2 *= gam * gam;
-          sh21 /= gam;
-          sh22 /= gam;
-        } else {
-          d2 /= gam*gam;
-          sh21 *= gam;
-          sh22 *= gam;
-        }
-      }
-    }
   }
 
-  return (d1, d2, x1, y1, [sflag, sh11, sh21, sh12, sh22]);
+  if (flag == -2d) {
+    // skip
+  } else if (flag < 0d) {
+    param[1] = h11;
+    param[2] = h21;
+    param[3] = h12;
+    param[4] = h22;
+  } else if (flag == 0d) {
+    param[2] = h21;
+    param[3] = h12;
+  } else {
+    param[1] = h11;
+    param[4] = h22;
+  }
+
+  param[0] = flag;
+
+  return (d1, d2, x1, y1, param);
 }
+
 
 /*
  * ?rot
@@ -3116,7 +3152,8 @@ void test() {
     // BLAS L1 
     print("Testing drotg");
     test_drotg(ds, ds);
-    // drotmg lib version doesn't work
+    // drotmg linksign fails
+    // https://gitlab.sac-home.org/sac-group/sac2c/-/issues/2427
     print("Testing drotmg");
     test_drotmg(ds, ds, ds, ds);
     // print("Testing drot");

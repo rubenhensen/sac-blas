@@ -1,4 +1,4 @@
-#include "/home/rhensen/OpenBLAS/cblas.h"
+#include "/home/rhensen/bin/OpenBLAS/include/cblas.h"
 void SACstpmv(const char uplo, const char trans, const char diag, const int n, const float *ap, float *x, const int incx)
 {
     CBLAS_UPLO cblasUplo;

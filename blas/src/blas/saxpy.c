@@ -1,4 +1,4 @@
-#include "/home/rhensen/OpenBLAS/cblas.h"
+#include "/home/rhensen/bin/OpenBLAS/include/cblas.h"
 
 void SACsaxpy(const int n, const float a, const float *x, const int incx, float *y, const int incy)
 {

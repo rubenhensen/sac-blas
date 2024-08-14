@@ -8,159 +8,158 @@ export all;
 external float, float, float, float srotg(float a, float b, float c, float s);
     #pragma linkname "SACsrotg"
     #pragma linkobj "bin/blas/srotg.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [1,2,3,4,1,2,3,4]
 
 external float, float, float, float[5] srotmg(float d1, float d2, float x1, float y1);
     #pragma linkname "SACsrotmg"
     #pragma linkobj "bin/blas/srotmg.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [1,2,3,5,1,2,3,4]
 
 external float[k], float[l] srot(int n, float[k] x, int incx, float[l] y, int incy, float c, float s); 
     #pragma linkname "SACsrot"
     #pragma linkobj "bin/blas/srot.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [2,4,1,2,3,4,5,6,7]
 
 external float[.], float[.] srotm(int n, float[.] x, int incx, float[.] y, int incy, float[5] param);
     #pragma linkname "SACsrotm"
     #pragma linkobj "bin/blas/srotm.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [2,4,1,2,3,4,5,6]
 
 external float[k], float[l] sswap(int n, float[k] x, int incx, float[l] y, int incy);
     #pragma linkname "SACsswap"
     #pragma linkobj "bin/blas/sswap.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [2,4,1,2,3,4,5]
 
 external float[k] sscal(int n, float a, float[k] x, int incx);
     #pragma linkname "SACsscal"
     #pragma linkobj "bin/blas/sscal.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [3,1,2,3,4]
 
 external float[l] scopy(int n, float[k] x, int incx, float[l] y, int incy);
     #pragma linkname "SACscopy"
     #pragma linkobj "bin/blas/scopy.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [4,1,2,3,4,5]
 
 external float[l] saxpy(int n, float a, float[k] x, int incx, float[l] y, int incy);
     #pragma linkname "SACsaxpy"
     #pragma linkobj "bin/blas/saxpy.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [5,1,2,3,4,5,6]
 
 external float sdot(int n, float[k] x, int incx, float[l] y, int incy);
     #pragma linkname "SACsdot"
     #pragma linkobj "bin/blas/sdot.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3,4,5]
 
 external float sdsdot(int n, float sb, float[k] sx, int incx, float[l] sy, int incy);
     #pragma linkname "SACsdsdot"
     #pragma linkobj "bin/blas/sdsdot.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3,4,5,6]
 
 external float snrm2(int n, float[k] x, int incx);
     #pragma linkname "SACsnrm2"
     #pragma linkobj "bin/blas/snrm2.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3]
 
 external float sasum(int n, float[k] x, int incx);
     #pragma linkname "SACsasum"
     #pragma linkobj "bin/blas/sasum.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3]
-
 
 external int isamax(int n, float[k] x, int incx);
     #pragma linkname "SACisamax"
     #pragma linkobj "bin/blas/isamax.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3]
 
 external double, double, double, double drotg(double a, double b, double c, double s);
     #pragma linkname "SACdrotg"
     #pragma linkobj "bin/blas/drotg.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [1,2,3,4,1,2,3,4]
 
 external double, double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1, double[5] param);
     #pragma linkname "SACdrotmg"
     #pragma linkobj "bin/blas/drotmg.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [1,2,3,4,5,1,2,3,4,5]
 
 external double[k], double[l] drot(int n, double[k] x, int incx, double[l] y, int incy, double c, double s); 
     #pragma linkname "SACdrot"
     #pragma linkobj "bin/blas/drot.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [2,4,1,2,3,4,5,6,7]
 
 external double[.], double[.] drotm(int n, double[.] x, int incx, double[.] y, int incy, double[5] param);
     #pragma linkname "SACdrotm"
     #pragma linkobj "bin/blas/drotm.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [2,4,1,2,3,4,5,6]
 
 external double[k], double[l] dswap(int n, double[k] x, int incx, double[l] y, int incy);
     #pragma linkname "SACdswap"
     #pragma linkobj "bin/blas/dswap.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [2,4,1,2,3,4,5]
 
 external double[k] dscal(int n, double a, double[k] x, int incx);
     #pragma linkname "SACdscal"
     #pragma linkobj "bin/blas/dscal.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [3,1,2,3,4]
 
 external double[l] dcopy(int n, double[k] x, int incx, double[l] y, int incy);
     #pragma linkname "SACdcopy"
     #pragma linkobj "bin/blas/dcopy.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [4,1,2,3,4,5]
 
 external double[l] daxpy(int n, double a, double[k] x, int incx, double[l] y, int incy);
     #pragma linkname "SACdaxpy"
     #pragma linkobj "bin/blas/daxpy.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [5,1,2,3,4,5,6]
 
 external double ddot(int n, double[k] x, int incx, double[l] y, int incy);
     #pragma linkname "SACddot"
     #pragma linkobj "bin/blas/ddot.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3,4,5]
 
 external double dsdot(int n, float[k] sx, int incx, float[l] sy, int incy);
     #pragma linkname "SACdsdot"
     #pragma linkobj "bin/blas/dsdot.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3,4,5]
 
 external double dnrm2(int n, double[k] x, int incx);
     #pragma linkname "SACdnrm2"
     #pragma linkobj "bin/blas/dnrm2.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3]
 
 external double dasum(int n, double[k] x, int incx);
     #pragma linkname "SACdasum"
     #pragma linkobj "bin/blas/dasum.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3]
 
 
 external int idamax(int n, double[k] x, int incx);
     #pragma linkname "SACidamax"
     #pragma linkobj "bin/blas/idamax.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [0,1,2,3]
 
 
@@ -168,7 +167,7 @@ external int idamax(int n, double[k] x, int incx);
 // external float scnrm2(int n, complex[.] x, int incx);
 //     #pragma linkname "SACscnrm2"
 //     #pragma linkobj "bin/blas/scnrm2.o"
-//     #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+//     #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
 //     #pragma linksign []
 
 // Blas level 2
@@ -179,143 +178,143 @@ external int idamax(int n, double[k] x, int incx);
 external float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy);
     #pragma linkname "SACsgbmv"
     #pragma linkobj "bin/blas/sgbmv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [12,1,2,3,4,5,6,7,8,9,10,11,12,13]
 
 external float[*] sgemv(char trans, int m, int n, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy);
     #pragma linkname "SACsgemv"
     #pragma linkobj "bin/blas/sgemv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]
 
 external float[m,n] sger(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda);
     #pragma linkname "SACsger"
     #pragma linkobj "bin/blas/sger.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
 external float[*] ssymv(char uplo, int n, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy);
     #pragma linkname "SACssymv"
     #pragma linkobj "bin/blas/ssymv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [9,1,2,3,4,5,6,7,8,9,10]
 
 external complex[*] zgerc(int m, int n, complex[*] alpha, complex[*] x, int incx, complex[*] y, int incy, complex[*] a, int lda);
     #pragma linkname "SACzgerc"
     #pragma linkobj "bin/blas/zgerc.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
 external complex[*] zgeru(int m, int n, complex[*] alpha, complex[*] x, int incx, complex[*] y, int incy, complex[*] a, int lda);
     #pragma linkname "SACzgeru"
     #pragma linkobj "bin/blas/zgeru.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
 external complex[*] zhbmv(char uplo, int n, int k, complex alpha, complex[*] a, int lda, complex[*] x, int incx, complex beta, complex[*] y, int incy);
     #pragma linkname "SACzhbmv"
     #pragma linkobj "bin/blas/zhbmv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]
 
 external complex[*] zher(char uplo, int n, double alpha, complex[.] x, int incx, complex[*] a, int lda);
     #pragma linkname "SACzher"
     #pragma linkobj "bin/blas/zher.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [6,1,2,3,4,5,6,7]
 
 external complex[*] zher2(char uplo, int n, double alpha, complex[.] x, int incx, complex[.] y, int incy, complex[*] a, int lda);
     #pragma linkname "SACzher2"
     #pragma linkobj "bin/blas/zher2.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
 external complex[*] zhpmv(char uplo, int n, complex alpha, complex[*] ap, complex[*] x, int incx, complex beta, complex[*] y, int incy);
     #pragma linkname "SACzhpmv"
     #pragma linkobj "bin/blas/zhpmv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
 external complex[*] zhpr(char uplo, int n, complex alpha, complex[*] x, int incx, complex[*] ap);
     #pragma linkname "SACzhpr"
     #pragma linkobj "bin/blas/zhpr.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [6,1,2,3,4,5,6]
 
 external complex[*] zhpr2(char uplo, int n, double alpha, complex[*] x, int incx, complex[*] y, int incy, complex[*] ap);
     #pragma linkname "SACzhpr2"
     #pragma linkobj "bin/blas/zhpr2.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8]
 
 external float[*] ssbmv(char uplo, int n, int k, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy);
     #pragma linkname "SACssbmv"
     #pragma linkobj "bin/blas/ssbmv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]
 
 external float[xn] stpmv(char uplo, char trans, char diag, int n, float[an] ap, float[xn] x, int incx);
     #pragma linkname "SACstpmv"
     #pragma linkobj "bin/blas/stpmv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [6,1,2,3,4,5,6,7]
 
 external float[xn] strmv(char uplo, char trans, char diag, int n, float[am,an] a, int lda, float[xn] x, int incx);
     #pragma linkname "SACstrmv"
     #pragma linkobj "bin/blas/strmv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [7,1,2,3,4,5,6,7,8]
 
 external float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[am,an] a, int lda, float[xn] x, int incx);
     #pragma linkname "SACstbmv"
     #pragma linkobj "bin/blas/stbmv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
 external float[xn] stbsv(char uplo, char trans, char diag, int n, int k, float[am,an] a, int lda, float[xn] x, int incx);
     #pragma linkname "SACstbsv"
     #pragma linkobj "bin/blas/stbsv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
 external float[xn] strsv(char uplo, char trans, char diag, int n, float[am,an] a, int lda, float[xn] x, int incx);
     #pragma linkname "SACstrsv"
     #pragma linkobj "bin/blas/strsv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [7,1,2,3,4,5,6,7,8]
     
 external float[yn] sspmv(char uplo, int n, float alpha, float[.] ap, float[xn] x, int incx, float beta, float[yn] y, int incy);
     #pragma linkname "SACsspmv"
     #pragma linkobj "bin/blas/sspmv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
 external float[*] sspr(char uplo, int n, float alpha, float[*] x, int incx, float[*] ap);
     #pragma linkname "SACsspr"
     #pragma linkobj "bin/blas/sspr.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [6,1,2,3,4,5,6]
 
 external float[apn] sspr2(char uplo, int n, float alpha, float[*] x, int incx, float[*] y, int incy, float[apn] ap);
     #pragma linkname "SACsspr2"
     #pragma linkobj "bin/blas/sspr2.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8]
 
 external float[am,an] ssyr(char uplo, int n, float alpha, float[*] x, int incx, float[am,an] a, int lda);
     #pragma linkname "SACssyr"
     #pragma linkobj "bin/blas/ssyr.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [6,1,2,3,4,5,6,7]
 
 external float[am,an] ssyr2(char uplo, int n, float alpha, float[*] x, int incx, float[*] y, int incy, float[am,an] a, int lda);
     #pragma linkname "SACssyr2"
     #pragma linkobj "bin/blas/ssyr2.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [8,1,2,3,4,5,6,7,8,9]
 
 external float[xn] stpsv(char uplo, char trans, char diag, int n, float[apn] ap, float[xn] x, int incx);
     #pragma linkname "SACstpsv"
     #pragma linkobj "bin/blas/stpsv.o"
-    #pragma header  "/home/rhensen/bin/openblas/bin/include/cblas.h"
+    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
     #pragma linksign [6,1,2,3,4,5,6,7]

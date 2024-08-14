@@ -1,7 +1,7 @@
-LIBS  = -Xl -L/home/rhensen/bin/openblas/bin/lib/ -Xl -lopenblas
-CFLAGS = -Wall -L/home/rhensen/bin/openblas/bin/lib/ -lopenblas
+LIBS  = #-Xl -lopenblas
+CFLAGS = -Wall
 CC = gcc
-CHECKFLAG = -check tc -ecc
+CHECKFLAG = # -check tc
 
 THREADS = 8
 
@@ -12,11 +12,12 @@ Helper_seq = host/seq/libHelperMod.so tree/host/libHelperTree.so
 BlasLevel1_seq = host/seq/libBlasLevel1Mod.so tree/host/libBlasLevel1Tree.so
 BlasLevel2_seq = host/seq/libBlasLevel2Mod.so tree/host/libBlasLevel2Tree.so
 OpenBlas_seq = host/seq/libOpenBlasMod.so tree/host/libOpenBlasTree.so
+ob2_seq = host/seq/libob2Mod.so tree/host/libob2Tree.so
 
 Helper = host/mt-pth/libHelperMod.so tree/host/libHelperTree.so
 BlasLevel1 = host/mt-pth/libBlasLevel1Mod.so tree/host/libBlasLevel1Tree.so
 BlasLevel2 = host/mt-pth/libBlasLevel2Mod.so tree/host/libBlasLevel2Tree.so
-OpenBlas = host/mt-pth/libOpenBlasMod.so tree/host/libOpenBlasTree.so
+ob2 = host/mt-pth/libob2Mod.so tree/host/libob2Tree.so
 BLAS_BIN = $(patsubst src/blas/%.c, bin/blas/%.o, $(wildcard src/blas/*.c))
 
 
@@ -28,22 +29,22 @@ ROUTINE=TEST
 echo: 
 	echo $(BLAS_BIN)
 
-debug_seq: bin/sac/seq/debug.out
+debug_seq: bin/sac/seq/debug.out $(ob2_seq)
 	./$<
 
 bin/sac/seq/debug.out: src/sac/debug.sac bin/blas/drotmg.o
 	sac2c $(CHECKFLAG) $(LIBS) -o $@ $<
 
-debug: bin/sac/mt-pth/debug.out
+debug: bin/sac/mt-pth/debug.out 
 	env SAC_PARALLEL=$(THREADS) ./$<
 
-bin/sac/mt-pth/debug.out: src/sac/debug.sac bin/blas/drotmg.o
-	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth -D ROUTINE=$(ROUTINE) -o $@ $<
+bin/sac/mt-pth/debug.out: src/sac/debug.sac bin/blas/mock_drotmg.o
+	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth -o $@ $<
 
 stest: 
 	sbatch long make test
 
-test: bin/sac/mt-pth/testing_tool.out
+test: bin/sac/mt-pth/testing_tool.out $(OpenBlas)
 	env SAC_PARALLEL=$(THREADS) ./$<
 # test: bin/sac/mt-pth/testing_tool.out
 # 	./$<
@@ -56,6 +57,8 @@ bin/blas/%.o: src/blas/%.c
 
 host/seq/libOpenBlasMod.so tree/host/libOpenBlasTree.so &: src/sac/OpenBlas.sac $(BLAS_BIN)
 	sac2c $(CHECKFLAG) $(LIBS) $< 
+host/seq/libob2Mod.so tree/host/libob2Tree.so &: src/sac/ob2.sac $(BLAS_BIN)
+	sac2c $(CHECKFLAG) $(LIBS) $< 
 host/seq/libHelperMod.so tree/host/libHelperTree.so &: src/sac/Helper.sac
 	sac2c $(CHECKFLAG) $(LIBS) $< 
 host/seq/libBlasLevel1Mod.so tree/host/libBlasLevel1Tree.so &: src/sac/BlasLevel1.sac $(Helper)
@@ -66,6 +69,8 @@ host/seq/libBlasLevel2Mod.so tree/host/libBlasLevel2Tree.so &: src/sac/BlasLevel
 	sac2c $(CHECKFLAG) $(LIBS) src/sac/BlasLevel2.sac
 
 host/mt-pth/libOpenBlasMod.so: src/sac/OpenBlas.sac $(BLAS_BIN)
+	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth $< 
+host/mt-pth/libob2Mod.so: src/sac/ob2.sac $(BLAS_BIN)
 	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth $< 
 host/mt-pth/libHelperMod.so: src/sac/Helper.sac
 	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth $< 
@@ -98,9 +103,16 @@ bin/sac/mt-pth/%.out: src/sac/%.sac
 
 
 clean: 
-	rm -rf src/blas/*.o
+	rm -rf bin/blas/*.o
+	rm -rf bin/sac/mt-pth/*.out
+	rm -rf bin/sac/mt-pth/*.i
+	rm -rf bin/sac/mt-pth/*.o
+	rm -rf bin/sac/mt-pth/*.c
+	rm -rf bin/sac/seq/*.out
+	rm -rf bin/sac/seq/*.i
+	rm -rf bin/sac/seq/*.o
+	rm -rf bin/sac/seq/*.c
 	rm -rf host/mt-pth/*.so
 	rm -rf host/seq/*.so
 	rm -rf tree/host/*.so
 	rm -rf ./**/*.i
-	rm -rf bin/*

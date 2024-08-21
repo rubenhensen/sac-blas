@@ -1,4 +1,5 @@
-LIBS  = #-Xl -lopenblas
+# LIBS  = -Xl -lopenblas -Xl -lf77blas
+LIBS  = -Xl -lcblas
 CFLAGS = -Wall
 CC = gcc
 CHECKFLAG = # -check tc
@@ -17,6 +18,7 @@ ob2_seq = host/seq/libob2Mod.so tree/host/libob2Tree.so
 Helper = host/mt-pth/libHelperMod.so tree/host/libHelperTree.so
 BlasLevel1 = host/mt-pth/libBlasLevel1Mod.so tree/host/libBlasLevel1Tree.so
 BlasLevel2 = host/mt-pth/libBlasLevel2Mod.so tree/host/libBlasLevel2Tree.so
+OpenBlas = host/mt-pth/libOpenBlasMod.so tree/host/libOpenBlasTree.so
 ob2 = host/mt-pth/libob2Mod.so tree/host/libob2Tree.so
 BLAS_BIN = $(patsubst src/blas/%.c, bin/blas/%.o, $(wildcard src/blas/*.c))
 
@@ -38,7 +40,7 @@ bin/sac/seq/debug.out: src/sac/debug.sac bin/blas/drotmg.o
 debug: bin/sac/mt-pth/debug.out 
 	env SAC_PARALLEL=$(THREADS) ./$<
 
-bin/sac/mt-pth/debug.out: src/sac/debug.sac bin/blas/mock_drotmg.o
+bin/sac/mt-pth/debug.out: src/sac/debug.sac bin/blas/drotmg.o
 	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth -o $@ $<
 
 stest: 

@@ -251,17 +251,17 @@ float, float, float, float[5] srotmg(float d1, float d2, float x1, float y1)
 
 inline
 double, double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1, double[5] param)
-{
+{     
   //A very literal translation from Fortran
   gam    = 4096d;
   gamsq  = 16777216d;
   rgamsq = 5.9604645e-8d;
 
-  flag = 0d;
-  h11 = 0d;
-  h21 = 0d;
-  h12 = 0d;
-  h22 = 0d;
+  flag = -9999999d;
+  h11 = -9999999d;
+  h21 = -9999999d;
+  h12 = -9999999d;
+  h22 = -9999999d;
 
   if(d1 < 0d) {
     // GO ZERO-H-D-AND-DX1..
@@ -296,7 +296,7 @@ double, double, double, double, double[5] drotmg(double d1, double d2, double x1
         flag = 0d;
         d1 = d1/u;
         d2 = d2/u;
-        x1 = x1/u;
+        x1 = x1*u;
       } else {
         // This code path if here for safety. We do not expect this
         // condition to ever hold except in edge cases with rounding
@@ -349,12 +349,12 @@ double, double, double, double, double[5] drotmg(double d1, double d2, double x1
           flag = -1d;
         }
         if (d1 <= rgamsq) {
-          d1 = d1*pow(gam,2d);
+          d1 = d1*(gam*gam);
           x1 = x1/gam;
           h11 = h11/gam;
           h12 = h12/gam;
         } else {
-          d1 = d1/pow(gam,2d);
+          d1 = d1/(gam*gam);
           x1 = x1*gam;
           h11 = h11*gam;
           h12 = h12*gam;
@@ -374,11 +374,11 @@ double, double, double, double, double[5] drotmg(double d1, double d2, double x1
           flag = -1d;
         }
         if (abs(d2) <= rgamsq) {
-          d2 = d2*pow(gam,2d);
+          d2 = d2*(gam*gam);
           h21 = h21/gam;
           h22 = h22/gam;
         } else {
-          d2 = d2/pow(gam,2d);
+          d2 = d2/(gam*gam);
           h21 = h21*gam;
           h22 = h22*gam;
         }
@@ -389,7 +389,7 @@ double, double, double, double, double[5] drotmg(double d1, double d2, double x1
 
   if (flag == -2d) {
     // skip
-  } else if (flag < 0d) {
+  } else if (flag == -1d) {
     param[1] = h11;
     param[2] = h21;
     param[3] = h12;
@@ -397,15 +397,196 @@ double, double, double, double, double[5] drotmg(double d1, double d2, double x1
   } else if (flag == 0d) {
     param[2] = h21;
     param[3] = h12;
-  } else {
+  } else if (flag == 1d) {
     param[1] = h11;
     param[4] = h22;
+  } else {
+    print("FLAG HAS ILLEGAL VALUE!!!!");
   }
 
   param[0] = flag;
 
   return (d1, d2, x1, y1, param);
 }
+
+// inline
+// double, double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1, double[5] param)
+// {     
+//   gam    = 4096d;
+//   gamsq  = 16777216d;
+//   rgamsq = 5.9604645e-8d;
+
+//   flag = param[0];
+//   h11 = param[1];
+//   h21 = param[2];
+//   h12 = param[3];
+//   h22 = param[4];
+
+// if(d1 < 0d)
+// 	{
+// 		flag = -1d;
+// 		h11  = 0d;
+// 		h12  = 0d;
+// 		h21  = 0d;
+// 		h22  = 0d;
+
+// 		d1  = 0d;
+// 		d2  = 0d;
+// 		x1  = 0d;
+// 	}
+//   else if (d2 * y1 == 0d) {
+//     p22 = d2 * y1;
+//     flag = -2d;
+// 		param[0] = flag;
+//   }
+// 	else
+// 	{
+// 		p22 = d2 * y1;
+// 		p21 = d1 * x1;
+// 		q2 =  p22 * y1;
+// 		q1 =  p21 * x1;
+// 		if(abs(q1) > abs(q2))
+// 		{
+// 			h21 = -y1 / x1;
+// 			h12 = p22 / p21;
+
+// 			u = 1d - h12 * h21;
+// 			if(u > 0d)
+// 			{
+// 				flag = 0d;
+// 				d1  = d1 / u;
+// 				d2  = d2 / u;
+// 				x1  = x1 * u;
+// 			}
+// 		}
+// 		else
+// 		{
+// 			if(q2 < 0d)
+// 			{
+// 				flag = -1d;
+				
+// 				h11  = 0d;
+// 				h12  = 0d;
+// 				h21  = 0d;
+// 				h22  = 0d;
+
+// 				d1  = 0d;
+// 				d2  = 0d;
+// 				x1  = 0d;
+// 			}
+// 			else
+// 			{
+// 				flag = 1d;
+
+// 				h11  =  p21 / p22;
+// 				h22  = x1 / y1;
+// 				u    = 1d + h11 * h22;
+// 				temp = d2 / u;
+
+// 				d2  = d1 / u;
+// 				d1  = temp;
+// 				x1  = y1 * u;
+// 			}			
+// 		}
+
+
+// 		if(d1 != 0d)
+// 		{
+// 			while( (d1 <= rgamsq) || (d1 >= gamsq) )
+// 			{
+// 				if(flag == 0d)
+// 				{
+// 					h11  =  1d;
+// 					h22  =  1d;
+// 					flag = -1d;
+// 				}
+// 				else
+// 				{
+// 					if(flag == 1d)
+// 					{
+// 						h21  = -1d;
+// 						h12  =  1d;
+// 						flag = -1d;
+// 					}
+// 				}
+// 				if( d1 <= rgamsq )
+// 				{
+// 					d1  = d1 * (gam * gam);
+// 					x1  = x1 / gam;
+// 					h11  = h11 / gam;
+// 					h12  = h12 / gam;
+// 				}
+// 				else
+// 				{
+// 					d1  = d1 / (gam * gam);
+// 					x1  = x1 * gam;
+// 					h11  = h11 * gam;
+// 					h12  = h12 * gam;
+// 				}
+// 			}
+// 		}
+			
+// 		if(d2 != 0d)
+// 		{
+// 			while( (abs(d2) <= rgamsq) || (abs(d2) >= gamsq) )
+// 			{
+// 				if(flag == 0d)
+// 				{
+// 					h11  =  1d;
+// 					h22  =  1d;
+// 					flag = -1d;
+// 				}
+// 				else
+// 				{
+// 					if(flag == 1d)
+// 					{
+// 						h21  = -1d;
+// 						h12  =  1d;
+// 						flag = -1d;
+// 					}
+// 				}
+// 				if( abs(d2) <= rgamsq )
+// 				{
+// 					d2  = d2 * (gam * gam);
+// 					h21  = h21 / gam;
+// 					h22  = h22 / gam;
+// 				}
+// 				else
+// 				{
+// 					d2  = d2 / (gam * gam);
+// 					h21  = h21 * gam;
+// 					h22  = h22 * gam;
+// 				}
+// 			}
+// 		}
+					
+// 	}
+
+// 	if(flag < 0d)
+// 	{
+// 		param[1] = h11;
+// 		param[2] = h21;
+// 		param[3] = h12;
+// 		param[4] = h22;
+// 	}
+// 	else
+// 	{
+// 		if(flag == 0d)
+// 		{
+// 			param[2] = h21;
+// 			param[3] = h12;
+// 		}
+// 		else
+// 		{
+// 			param[1] = h11;
+// 			param[4] = h22;
+// 		}
+// 	}
+
+// 	param[0] = flag;
+// 	return (d1, d2, x1, y1, param);
+// }
+
 
 
 /*
@@ -2692,6 +2873,7 @@ void test_drotg(double[.] as, double[.] bs) {
 
 void test_drotmg(double[.] d1s, double[.] d2s, double[.] x1s, double[.] y1s) {
     mistakes = 0;
+    correct = 0;
     perms = permutations(d1s, d2s, x1s, y1s);
     for(i = 0; i < shape(perms)[0]; i++) {
         params = perms[i];
@@ -2699,47 +2881,63 @@ void test_drotmg(double[.] d1s, double[.] d2s, double[.] x1s, double[.] y1s) {
         x1 = params[2]; y1 = params[3];
         param = tod(iota(5));
 
-        native = genarray([8], 0d);
-        library = genarray([8], 0d);
 
-        print("input");
-        print(d1);
-        print(d2);
-        print(x1);
-        print(y1);
-        print(param);
 
         native1, native2, native3, native4, native5 = drotmg(d1, d2, x1, y1, param);
-        print("native results");
-        print(native1);
-        print(native2);
-        print(native3);
-        print(native4);
-        print(native5);
-        
         library1, library2, library3, library4, library5 = OpenBlas::drotmg(d1, d2, x1, y1, param);
-        print("lib results");
-        print(library1);
-        print(library2);
-        print(library3);
-        print(library4);
-        print(library5);
+        native = [native1, native2, native3, native4] ++ native5;
+        library = [library1, library2, library3, library4] ++ library5;
 
-
-        // native[0] = native1; native[1] = native2; native[2] = native3; native[3] = native4[0];
-        // native[4] = native4[1]; native[5] = native4[2]; native[6] = native4[3]; native[7] = native4[4];
-        // library[0] = library1; library[1] = library2; library[2] = library3; library[3] = library4[0];
-        // library[4] = library4[1]; library[5] = library4[2]; library[6] = library4[3]; library[7] = library4[4];
-
-        // if(any(abs(native - library) > MAX_ACC_LOSS)) {
-        //     printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
-        //     printf("Native: ");
-        //     show(native);
-        //     printf("Library:");
-        //     show(library);
-        //     mistakes++;
-        // }
+        if (library5[0] == -2d) {
+           if(any(abs(take([4],native) - take([4],library)) > MAX_ACC_LOSS)) {
+            printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
+            printf("Native: ");
+            show(native);
+            printf("Library:");
+            show(library);
+            mistakes++;
+           } else {
+              correct++;
+            }
+        } else if (library5[0] == -1d) {
+           if(any(abs(native - library) > MAX_ACC_LOSS)) {
+            printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
+            printf("Native: ");
+            show(native);
+            printf("Library:");
+            show(library);
+            mistakes++;
+           } else {
+              correct++;
+            }
+        } else if (library5[0] == 0d) {
+            if(any(abs(take([4],native) - take([4],library)) > MAX_ACC_LOSS) || native5[2] - library5[2] > MAX_ACC_LOSS || native5[3] - library5[3] > MAX_ACC_LOSS) {
+              printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
+              printf("Native: ");
+              show(native);
+              printf("Library:");
+              show(library);
+              mistakes++;
+            } else {
+              correct++;
+            }
+        } else if (library5[0] == 1d) {
+            if(any(abs(take([4],native) - take([4],library)) > MAX_ACC_LOSS) || native5[1] - library5[1] > MAX_ACC_LOSS || native5[4] - library5[4] > MAX_ACC_LOSS) {
+              printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
+              printf("Native: ");
+              show(native);
+              printf("Library:");
+              show(library);
+              mistakes++;
+            } else {
+              correct++;
+            }
+        } 
     }
+    print("Correct:"); 
+    print(correct);
+    print("mistakes");
+    print(mistakes);
     print_test_status("drotmg", mistakes);
 }
 

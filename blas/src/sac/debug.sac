@@ -1,23 +1,7 @@
+use Array: all;
+use StdIO: all;
+
 int main() {
-    d1 = 0d;
-    d2 = 0d;
-    x1 = 7d;
-    y1 = 0d;
-    param = [1d,2d,3d,4d,5d];
-
-    v1,v2,v3,v4,v5 = drotmg(d1, d2, x1, y1, param);
-    StdIO::print("\n######## OPENBLAS ########");
-    StdIO::print(v1);
-    StdIO::print(v2);
-    StdIO::print(v3);
-    StdIO::print(v4); 
-    StdIO::print(v5);
-
+    print(take([4], iota(9)));
     return 0;
 }
-
-external double, double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1, double[5] param);
-    #pragma linkname "SACdrotmg"
-    #pragma linkobj "bin/blas/mock_drotmg.o"
-    #pragma header  "/home/rhensen/bin/OpenBLAS/include/cblas.h"
-    #pragma linksign [1,2,3,4,5,1,2,3,4,5]

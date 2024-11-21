@@ -2,7 +2,8 @@
 LIBS  = -Xl -lcblas
 CFLAGS = -Wall
 CC = gcc
-CHECKFLAG = # -check tc
+# CHECKFLAG = 
+CHECKFLAG = -check tc
 
 THREADS = 8
 
@@ -52,7 +53,7 @@ test: bin/sac/mt-pth/testing_tool.out $(OpenBlas)
 # 	./$<
 
 test-seq: bin/sac/seq/testing_tool.out
-	env LD_LIBRARY_PATH="/home/rhensen/bin/openblas/bin/lib/" ./$<
+	./$<
 
 bin/blas/%.o: src/blas/%.c
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -63,11 +64,11 @@ host/seq/libob2Mod.so tree/host/libob2Tree.so &: src/sac/ob2.sac $(BLAS_BIN)
 	sac2c $(CHECKFLAG) $(LIBS) $< 
 host/seq/libHelperMod.so tree/host/libHelperTree.so &: src/sac/Helper.sac
 	sac2c $(CHECKFLAG) $(LIBS) $< 
-host/seq/libBlasLevel1Mod.so tree/host/libBlasLevel1Tree.so &: src/sac/BlasLevel1.sac $(Helper)
+host/seq/libBlasLevel1Mod.so tree/host/libBlasLevel1Tree.so &: src/sac/BlasLevel1.sac $(Helper_seq)
 	sac2c $(CHECKFLAG) $(LIBS)  src/sac/BlasLevel1.sac
-bin/sac/seq/testing_tool.out: src/sac/testing_tool.sac $(BlasLevel1) $(BlasLevel2) $(OpenBlas) $(Helper) 
+bin/sac/seq/testing_tool.out: src/sac/testing_tool.sac $(OpenBlas_seq)
 	sac2c $(CHECKFLAG) $(LIBS) -D ROUTINE=$(ROUTINE) -o $@ $<
-host/seq/libBlasLevel2Mod.so tree/host/libBlasLevel2Tree.so &: src/sac/BlasLevel2.sac $(BlasLevel1) $(Helper)
+host/seq/libBlasLevel2Mod.so tree/host/libBlasLevel2Tree.so &: src/sac/BlasLevel2.sac $(BlasLevel1_seq) $(Helper_seq)
 	sac2c $(CHECKFLAG) $(LIBS) src/sac/BlasLevel2.sac
 
 host/mt-pth/libOpenBlasMod.so: src/sac/OpenBlas.sac $(BLAS_BIN)

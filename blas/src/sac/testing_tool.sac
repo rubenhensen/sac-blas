@@ -1,8 +1,8 @@
-use Math: all;
+// use Math: all;
 use StdIO: all;
-use Array: all except {+};
-use Structures: {string, +};
-use Benchmarking: all;
+use Array: all;
+use Structures: {string};
+// use Benchmarking: all;
 
 #ifndef N
 #define N 10000000
@@ -19,7 +19,7 @@ use Benchmarking: all;
 #endif
 
 #define MAX_ACC_LOSS 0.001
-#define MAX_ACC_LOSSF 0.001f
+#define MAX_ACC_LOSSF 1f
 
 
 #ifndef MODE
@@ -71,450 +71,450 @@ use Benchmarking: all;
  * ROUTINE DEFINITIONS
  */
 
-/*
- * BLAS L1
- */
+// /*
+//  * BLAS L1
+//  */
 
-/*
- * ?rotg
- */
-inline
-float, float, float, float srotg(float a, float b, float c, float s)  
-{
-  if(b == 0f) {
-    r = a;
-    z = 0f;
-    c = 1f;
-    s = 0f;
-  } else if(a == 0f) {
-    r = b;
-    z = 1f;
-    c = 0f;
-    s = 1f;
-  } else {
-    sigma = tof(abs(a) > abs(b) ? sign(a) : sign(b));
-    r = sigma * sqrtf(a*a + b*b);
-    c = a/r;
-    s = b/r;
-    z = abs(a) > abs(b) ? s : c == 0f ? 1f : 1f/c;
-  }
-  return (r, z, c, s);
-}
+// /*
+//  * ?rotg
+//  */
+// inline
+// float, float, float, float srotg(float a, float b, float c, float s)  
+// {
+//   if(b == 0f) {
+//     r = a;
+//     z = 0f;
+//     c = 1f;
+//     s = 0f;
+//   } else if(a == 0f) {
+//     r = b;
+//     z = 1f;
+//     c = 0f;
+//     s = 1f;
+//   } else {
+//     sigma = tof(abs(a) > abs(b) ? sign(a) : sign(b));
+//     r = sigma * sqrtf(a*a + b*b);
+//     c = a/r;
+//     s = b/r;
+//     z = abs(a) > abs(b) ? s : c == 0f ? 1f : 1f/c;
+//   }
+//   return (r, z, c, s);
+// }
 
-inline
-double, double, double, double drotg(double a, double b, double c, double s)
-{
-  if(b == 0d) {
-    r = a;
-    z = 0d;
-    c = 1d;
-    s = 0d;
-  } else if(a == 0d) {
-    r = b;
-    z = 1d;
-    c = 0d;
-    s = 1d;
-  } else {
-    sigma = tod(abs(a) > abs(b) ? sign(a) : sign(b));
-    r = sigma * sqrt(a*a + b*b);
-    c = a/r;
-    s = b/r;
-    z = abs(a) > abs(b) ? s : c == 0d ? 1d : 1d/c;
-  }
-  return (r, z, c, s);
-}
+// inline
+// double, double, double, double drotg(double a, double b, double c, double s)
+// {
+//   if(b == 0d) {
+//     r = a;
+//     z = 0d;
+//     c = 1d;
+//     s = 0d;
+//   } else if(a == 0d) {
+//     r = b;
+//     z = 1d;
+//     c = 0d;
+//     s = 1d;
+//   } else {
+//     sigma = tod(abs(a) > abs(b) ? sign(a) : sign(b));
+//     r = sigma * sqrt(a*a + b*b);
+//     c = a/r;
+//     s = b/r;
+//     z = abs(a) > abs(b) ? s : c == 0d ? 1d : 1d/c;
+//   }
+//   return (r, z, c, s);
+// }
 
-/*
- * ?rotmg
- */
-inline
-float, float, float, float[5] srotmg(float d1, float d2, float x1, float y1)
-{
-  //A very literal translation from Fortran
-  gam    = 4096f;
-  gamsq  = 1.67772e7f;
-  rgamsq = 5.96046e-8f;
+// /*
+//  * ?rotmg
+//  */
+// inline
+// float, float, float, float[5] srotmg(float d1, float d2, float x1, float y1)
+// {
+//   //A very literal translation from Fortran
+//   gam    = 4096f;
+//   gamsq  = 1.67772e7f;
+//   rgamsq = 5.96046e-8f;
 
-  sflag = 0f;
-  sh11 = 0f;
-  sh21 = 0f;
-  sh12 = 0f;
-  sh22 = 0f;
+//   sflag = 0f;
+//   sh11 = 0f;
+//   sh21 = 0f;
+//   sh12 = 0f;
+//   sh22 = 0f;
 
-  if(d1 < 0f) {
-    sflag = -1f;
-    d1 = 0f;
-    d2 = 0f;
-    x1 = 0f;
-  } else if(d2*y1 == 0f) {
-    sflag = -2f;
-  } else {
-    sp2 = d2*y1;
-    sp1 = d1*x1;
-    sq2 = sp2*y1;
-    sq1 = sp1*x1;
+//   if(d1 < 0f) {
+//     sflag = -1f;
+//     d1 = 0f;
+//     d2 = 0f;
+//     x1 = 0f;
+//   } else if(d2*y1 == 0f) {
+//     sflag = -2f;
+//   } else {
+//     sp2 = d2*y1;
+//     sp1 = d1*x1;
+//     sq2 = sp2*y1;
+//     sq1 = sp1*x1;
 
-    if(abs(sq1) > abs(sq2)) {
-      sh21 = -y1/x1;
-      sh12 = sp2/sp1;
-      su = 1f - sh12*sh21;
+//     if(abs(sq1) > abs(sq2)) {
+//       sh21 = -y1/x1;
+//       sh12 = sp2/sp1;
+//       su = 1f - sh12*sh21;
 
-      if(su > 0f) {
-        sflag = 0f;
-        d1 /= su;
-        d2 /= su;
-        x1 *= su;
-      } else {
-        sflag = -1f;
-        sh11 = 0f;
-        sh21 = 0f;
-        sh12 = 0f;
-        sh22 = 0f;
-        d1 = 0f;
-        d2 = 0f;
-        x1 = 0f;
-      }
-    } else {
-      if(sq2 < 0f) {
-        sflag = -1f;
-        sh11 = 0f;
-        sh21 = 0f;
-        sh12 = 0f;
-        sh22 = 0f;
-        d1 = 0f;
-        d2 = 0f;
-        x1 = 0f;
-      } else {
-        sflag = 1f;
-        sh11 = sp1/sp2;
-        sh22 = x1/y1;
-        su = 1f + sh11*sh22;
-        stemp = d2/su;
-        d2 = d1/su;
-        d1 = stemp;
-        x1 = y1*su;
-      }
-    }
+//       if(su > 0f) {
+//         sflag = 0f;
+//         d1 /= su;
+//         d2 /= su;
+//         x1 *= su;
+//       } else {
+//         sflag = -1f;
+//         sh11 = 0f;
+//         sh21 = 0f;
+//         sh12 = 0f;
+//         sh22 = 0f;
+//         d1 = 0f;
+//         d2 = 0f;
+//         x1 = 0f;
+//       }
+//     } else {
+//       if(sq2 < 0f) {
+//         sflag = -1f;
+//         sh11 = 0f;
+//         sh21 = 0f;
+//         sh12 = 0f;
+//         sh22 = 0f;
+//         d1 = 0f;
+//         d2 = 0f;
+//         x1 = 0f;
+//       } else {
+//         sflag = 1f;
+//         sh11 = sp1/sp2;
+//         sh22 = x1/y1;
+//         su = 1f + sh11*sh22;
+//         stemp = d2/su;
+//         d2 = d1/su;
+//         d1 = stemp;
+//         x1 = y1*su;
+//       }
+//     }
 
-    if(d1 != 0f) {
-      while((d1 < rgamsq) || (d1 > gamsq)) {
-        if(sflag == 0f) {
-          sh11 = 1f;
-          sh22 = 1f;
-        } else {
-          sh21 = -1f;
-          sh12 = 1f;
-        }
+//     if(d1 != 0f) {
+//       while((d1 < rgamsq) || (d1 > gamsq)) {
+//         if(sflag == 0f) {
+//           sh11 = 1f;
+//           sh22 = 1f;
+//         } else {
+//           sh21 = -1f;
+//           sh12 = 1f;
+//         }
 
-        sflag = -1f;
+//         sflag = -1f;
 
-        if(d1 < rgamsq) {
-          d1 *= gam * gam;
-          x1 /= gam;
-          sh11 /= gam;
-          sh12 /= gam;
-        } else {
-          d1 /= gam*gam;
-          x1 *= gam;
-          sh11 *= gam;
-          sh12 *= gam;
-        }
-      }
-    }
+//         if(d1 < rgamsq) {
+//           d1 *= gam * gam;
+//           x1 /= gam;
+//           sh11 /= gam;
+//           sh12 /= gam;
+//         } else {
+//           d1 /= gam*gam;
+//           x1 *= gam;
+//           sh11 *= gam;
+//           sh12 *= gam;
+//         }
+//       }
+//     }
 
-    if(d2 != 0f) {
-      while((abs(d2) < rgamsq) || (abs(d2) > gamsq)) {
-        if(sflag == 0f) {
-          sh11 = 1f;
-          sh22 = 1f;
-        } else {
-          sh21 = -1f;
-          sh12 = 1f;
-        }
+//     if(d2 != 0f) {
+//       while((abs(d2) < rgamsq) || (abs(d2) > gamsq)) {
+//         if(sflag == 0f) {
+//           sh11 = 1f;
+//           sh22 = 1f;
+//         } else {
+//           sh21 = -1f;
+//           sh12 = 1f;
+//         }
 
-        sflag = -1f;
+//         sflag = -1f;
 
-        if(abs(d2) < rgamsq) {
-          d2 *= gam * gam;
-          sh21 /= gam;
-          sh22 /= gam;
-        } else {
-          d2 /= gam*gam;
-          sh21 *= gam;
-          sh22 *= gam;
-        }
-      }
-    }
-  }
+//         if(abs(d2) < rgamsq) {
+//           d2 *= gam * gam;
+//           sh21 /= gam;
+//           sh22 /= gam;
+//         } else {
+//           d2 /= gam*gam;
+//           sh21 *= gam;
+//           sh22 *= gam;
+//         }
+//       }
+//     }
+//   }
 
-  return (d1, d2, x1, [sflag, sh11, sh21, sh12, sh22]);
-}
+//   return (d1, d2, x1, [sflag, sh11, sh21, sh12, sh22]);
+// }
 
-inline
-double, double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1, double[5] param)
-{     
-  //A very literal translation from Fortran
-  gam    = 4096d;
-  gamsq  = 16777216d;
-  rgamsq = 5.9604645e-8d;
+// inline
+// double, double, double, double, double[5] drotmg(double d1, double d2, double x1, double y1, double[5] param)
+// {     
+//   //A very literal translation from Fortran
+//   gam    = 4096d;
+//   gamsq  = 16777216d;
+//   rgamsq = 5.9604645e-8d;
 
-  flag = -9999999d;
-  h11 = -9999999d;
-  h21 = -9999999d;
-  h12 = -9999999d;
-  h22 = -9999999d;
+//   flag = -9999999d;
+//   h11 = -9999999d;
+//   h21 = -9999999d;
+//   h12 = -9999999d;
+//   h22 = -9999999d;
 
-  if(d1 < 0d) {
-    // GO ZERO-H-D-AND-DX1..
-    flag = -1d;
-    h11 = 0d;
-    h12 = 0d;
-    h21 = 0d;
-    h22 = 0d;
+//   if(d1 < 0d) {
+//     // GO ZERO-H-D-AND-DX1..
+//     flag = -1d;
+//     h11 = 0d;
+//     h12 = 0d;
+//     h21 = 0d;
+//     h22 = 0d;
 
-    d1 = 0d;
-    d2 = 0d;
-    x1 = 0d;
-  } else if (d2 * y1 == 0d) {
-    // CASE-DD1-NONNEGATIVE
-    p2 = d2 * y1;
-    flag = -2d;
-    param[0] = flag;
-  } else {
-    p2 = d2 * y1;
-    // REGULAR-CASE..
-    p1 = d1*x1;
-    q2 = p2*y1;
-    q1 = p1*x1;
+//     d1 = 0d;
+//     d2 = 0d;
+//     x1 = 0d;
+//   } else if (d2 * y1 == 0d) {
+//     // CASE-DD1-NONNEGATIVE
+//     p2 = d2 * y1;
+//     flag = -2d;
+//     param[0] = flag;
+//   } else {
+//     p2 = d2 * y1;
+//     // REGULAR-CASE..
+//     p1 = d1*x1;
+//     q2 = p2*y1;
+//     q1 = p1*x1;
 
-    if (abs(q1) > abs(q2)) {
-      h21 = -y1/x1;
-      h12 = p2/p1;
+//     if (abs(q1) > abs(q2)) {
+//       h21 = -y1/x1;
+//       h12 = p2/p1;
       
-      u = 1d - h12*h21;
+//       u = 1d - h12*h21;
 
-      if (u > 0d) {
-        flag = 0d;
-        d1 = d1/u;
-        d2 = d2/u;
-        x1 = x1*u;
-      } else {
-        // This code path if here for safety. We do not expect this
-        // condition to ever hold except in edge cases with rounding
-        // errors. See DOI: 10.1145/355841.355847
-        flag = -1d;
-        h11 = 0d;
-        h12 = 0d;
-        h21 = 0d;
-        h22 = 0d;
+//       if (u > 0d) {
+//         flag = 0d;
+//         d1 = d1/u;
+//         d2 = d2/u;
+//         x1 = x1*u;
+//       } else {
+//         // This code path if here for safety. We do not expect this
+//         // condition to ever hold except in edge cases with rounding
+//         // errors. See DOI: 10.1145/355841.355847
+//         flag = -1d;
+//         h11 = 0d;
+//         h12 = 0d;
+//         h21 = 0d;
+//         h22 = 0d;
 
-        d1 = 0d;
-        d2 = 0d;
-        x1 = 0d;
-      }
-    } else {
+//         d1 = 0d;
+//         d2 = 0d;
+//         x1 = 0d;
+//       }
+//     } else {
 
-      if (q2 < 0d) {
-        // GO ZERO-H-D-AND-DX1..
-        flag = -1d;
-        h11 = 0d;
-        h12 = 0d;
-        h21 = 0d;
-        h22 = 0d;
+//       if (q2 < 0d) {
+//         // GO ZERO-H-D-AND-DX1..
+//         flag = -1d;
+//         h11 = 0d;
+//         h12 = 0d;
+//         h21 = 0d;
+//         h22 = 0d;
 
-        d1 = 0d;
-        d2 = 0d;
-        x1 = 0d;
-      } else {
-        flag = 1d;
-        h11 = p1/p2;
-        h22 = x1/y1;
-        u = 1d + h11*h22;
-        temp = d2/u;
-        d2 = d1/u;
-        d1 = temp;
-        x1 = y1*u;
-      }
-    }
+//         d1 = 0d;
+//         d2 = 0d;
+//         x1 = 0d;
+//       } else {
+//         flag = 1d;
+//         h11 = p1/p2;
+//         h22 = x1/y1;
+//         u = 1d + h11*h22;
+//         temp = d2/u;
+//         d2 = d1/u;
+//         d1 = temp;
+//         x1 = y1*u;
+//       }
+//     }
   
-    // PROCEDURE..SCALE-CHECK
-    if (d1 != 0d) {
-      while (d1 <= rgamsq || d1 >= gamsq) {
-        if (flag == 0d) {
-          h11 = 1d;
-          h22 = 1d;
-          flag = -1d;
-        } else {
-          h21 = -1d;
-          h12 = 1d;
-          flag = -1d;
-        }
-        if (d1 <= rgamsq) {
-          d1 = d1*(gam*gam);
-          x1 = x1/gam;
-          h11 = h11/gam;
-          h12 = h12/gam;
-        } else {
-          d1 = d1/(gam*gam);
-          x1 = x1*gam;
-          h11 = h11*gam;
-          h12 = h12*gam;
-        }
-      }
-    }
+//     // PROCEDURE..SCALE-CHECK
+//     if (d1 != 0d) {
+//       while (d1 <= rgamsq || d1 >= gamsq) {
+//         if (flag == 0d) {
+//           h11 = 1d;
+//           h22 = 1d;
+//           flag = -1d;
+//         } else {
+//           h21 = -1d;
+//           h12 = 1d;
+//           flag = -1d;
+//         }
+//         if (d1 <= rgamsq) {
+//           d1 = d1*(gam*gam);
+//           x1 = x1/gam;
+//           h11 = h11/gam;
+//           h12 = h12/gam;
+//         } else {
+//           d1 = d1/(gam*gam);
+//           x1 = x1*gam;
+//           h11 = h11*gam;
+//           h12 = h12*gam;
+//         }
+//       }
+//     }
 
-    if (d2 != 0d) {
-      while (abs(d2) <= rgamsq || abs(d2) >= gamsq) {
-        if (flag == 0d) {
-          h11 = 1d;
-          h22 = 1d;
-          flag = -1d;
-        } else {
-          h21 = -1d;
-          h12 = 1d;
-          flag = -1d;
-        }
-        if (abs(d2) <= rgamsq) {
-          d2 = d2*(gam*gam);
-          h21 = h21/gam;
-          h22 = h22/gam;
-        } else {
-          d2 = d2/(gam*gam);
-          h21 = h21*gam;
-          h22 = h22*gam;
-        }
-      }
-    }
+//     if (d2 != 0d) {
+//       while (abs(d2) <= rgamsq || abs(d2) >= gamsq) {
+//         if (flag == 0d) {
+//           h11 = 1d;
+//           h22 = 1d;
+//           flag = -1d;
+//         } else {
+//           h21 = -1d;
+//           h12 = 1d;
+//           flag = -1d;
+//         }
+//         if (abs(d2) <= rgamsq) {
+//           d2 = d2*(gam*gam);
+//           h21 = h21/gam;
+//           h22 = h22/gam;
+//         } else {
+//           d2 = d2/(gam*gam);
+//           h21 = h21*gam;
+//           h22 = h22*gam;
+//         }
+//       }
+//     }
 
-  }
+//   }
 
-  if (flag == -2d) {
-    // skip
-  } else if (flag == -1d) {
-    param[1] = h11;
-    param[2] = h21;
-    param[3] = h12;
-    param[4] = h22;
-  } else if (flag == 0d) {
-    param[2] = h21;
-    param[3] = h12;
-  } else if (flag == 1d) {
-    param[1] = h11;
-    param[4] = h22;
-  } else {
-    print("FLAG HAS ILLEGAL VALUE!!!!");
-  }
+//   if (flag == -2d) {
+//     // skip
+//   } else if (flag == -1d) {
+//     param[1] = h11;
+//     param[2] = h21;
+//     param[3] = h12;
+//     param[4] = h22;
+//   } else if (flag == 0d) {
+//     param[2] = h21;
+//     param[3] = h12;
+//   } else if (flag == 1d) {
+//     param[1] = h11;
+//     param[4] = h22;
+//   } else {
+//     print("FLAG HAS ILLEGAL VALUE!!!!");
+//   }
 
-  param[0] = flag;
+//   param[0] = flag;
 
-  return (d1, d2, x1, y1, param);
-}
+//   return (d1, d2, x1, y1, param);
+// }
 
 
-/*
- * ?rot
- * incx and incy do not have to be > 0 but inverse matrix is not implemented
- * 
- */
-inline
-float[xn], float[yn] srot(int n, float[xn] x, int incx, float[yn] y, int incy, float c, float s) | n > 0, incx > 0, incy > 0
-{
-  return (
-    {iv -> c*x[iv] + s*y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
-    {iv -> c*y[iv] - s*x[(iv*incx)/incy] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
-  );
-}
+// /*
+//  * ?rot
+//  * incx and incy do not have to be > 0 but inverse matrix is not implemented
+//  * 
+//  */
+// inline
+// float[xn], float[yn] srot(int n, float[xn] x, int incx, float[yn] y, int incy, float c, float s) | n > 0, incx > 0, incy > 0
+// {
+//   return (
+//     {iv -> c*x[iv] + s*y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
+//     {iv -> c*y[iv] - s*x[(iv*incx)/incy] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
+//   );
+// }
 
-inline
-double[xn], double[yn] drot(int n, double[xn] x, int incx, double[yn] y, int incy, double c, double s) | n > 0, incx > 0, incy > 0
-{
-  return (
-    {iv -> c*x[iv] + s*y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
-    {iv -> c*y[iv] - s*x[(iv*incx)/incy] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
-  );
-}
+// inline
+// double[xn], double[yn] drot(int n, double[xn] x, int incx, double[yn] y, int incy, double c, double s) | n > 0, incx > 0, incy > 0
+// {
+//   return (
+//     {iv -> c*x[iv] + s*y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
+//     {iv -> c*y[iv] - s*x[(iv*incx)/incy] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
+//   );
+// }
 
-/*
- * ?rotm
- */
-inline
-float[xn], float[yn] srotm(int n, float[xn] x, int incx, float[yn] y, int incy, float[5] param) | n > 0, ismember(param[0], [1.0f, 0.0f, -1.0f, -2.0f]), minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  sflag = param[0];
-  sh11  = param[1];
-  sh21  = param[2];
-  sh12  = param[3];
-  sh22  = param[4];
+// /*
+//  * ?rotm
+//  */
+// inline
+// float[xn], float[yn] srotm(int n, float[xn] x, int incx, float[yn] y, int incy, float[5] param) | n > 0, ismember(param[0], [1.0f, 0.0f, -1.0f, -2.0f]), minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+// {
+//   sflag = param[0];
+//   sh11  = param[1];
+//   sh21  = param[2];
+//   sh12  = param[3];
+//   sh22  = param[4];
   
-  if(n < 1 || sflag == -2f) {
-    x_prime = x;
-    y_prime = y;
-  } else if(sflag < 0f) {
-    x_prime = {iv -> x[iv]*sh11 + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
-    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-  } else if(sflag == 0f) {
-    x_prime = {iv -> x[iv] + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
-    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-  } else {
-    x_prime = {iv ->  x[iv]*sh11 + y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
-    y_prime = {iv -> -x[(iv*incx)/incy] + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-  }
+//   if(n < 1 || sflag == -2f) {
+//     x_prime = x;
+//     y_prime = y;
+//   } else if(sflag < 0f) {
+//     x_prime = {iv -> x[iv]*sh11 + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+//     y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+//   } else if(sflag == 0f) {
+//     x_prime = {iv -> x[iv] + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+//     y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+//   } else {
+//     x_prime = {iv ->  x[iv]*sh11 + y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+//     y_prime = {iv -> -x[(iv*incx)/incy] + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+//   }
   
-  return (x_prime, y_prime);
-}
+//   return (x_prime, y_prime);
+// }
 
-inline
-double[xn], double[yn] drotm(int n, double[xn] x, int incx, double[yn] y, int incy, double[5] param) | n > 0, ismember(param[0], [1.0d, 0.0d, -1.0d, -2.0d]), minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  sflag = param[0];
-  sh11  = param[1];
-  sh21  = param[2];
-  sh12  = param[3];
-  sh22  = param[4];
+// inline
+// double[xn], double[yn] drotm(int n, double[xn] x, int incx, double[yn] y, int incy, double[5] param) | n > 0, ismember(param[0], [1.0d, 0.0d, -1.0d, -2.0d]), minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+// {
+//   sflag = param[0];
+//   sh11  = param[1];
+//   sh21  = param[2];
+//   sh12  = param[3];
+//   sh22  = param[4];
   
-  if(n < 1 || sflag == -2d) {
-    x_prime = x;
-    y_prime = y;
-  } else if(sflag < 0d) {
-    x_prime = {iv -> x[iv]*sh11 + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
-    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-  } else if(sflag == 0d) {
-    x_prime = {iv -> x[iv] + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
-    y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-  } else {
-    x_prime = {iv ->  x[iv]*sh11 + y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
-    y_prime = {iv -> -x[(iv*incx)/incy] + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-  }
+//   if(n < 1 || sflag == -2d) {
+//     x_prime = x;
+//     y_prime = y;
+//   } else if(sflag < 0d) {
+//     x_prime = {iv -> x[iv]*sh11 + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+//     y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+//   } else if(sflag == 0d) {
+//     x_prime = {iv -> x[iv] + y[(iv*incy)/incx]*sh12 | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+//     y_prime = {iv -> x[(iv*incx)/incy]*sh21 + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+//   } else {
+//     x_prime = {iv ->  x[iv]*sh11 + y[(iv*incy)/incx] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
+//     y_prime = {iv -> -x[(iv*incx)/incy] + y[iv]*sh22 | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+//   }
   
-  return (x_prime, y_prime);
-}
+//   return (x_prime, y_prime);
+// }
 
 
-/*
- * ?swap
- */
-// Does this work for swapping things with the same indices?
-inline
-float[xn], float[yn] sswap(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx > 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  return (
-    {iv -> y[(iv/incx)*incy] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
-    {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
-  );
-}
+// /*
+//  * ?swap
+//  */
+// // Does this work for swapping things with the same indices?
+// inline
+// float[xn], float[yn] sswap(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx > 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+// {
+//   return (
+//     {iv -> y[(iv/incx)*incy] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
+//     {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
+//   );
+// }
 
-inline
-double[xn], double[yn] dswap(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx > 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  return (
-    {iv -> y[(iv/incx)*incy] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
-    {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
-  );
-}
+// inline
+// double[xn], double[yn] dswap(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx > 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+// {
+//   return (
+//     {iv -> y[(iv/incx)*incy] | [0] <= iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]},
+//     {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]}
+//   );
+// }
 
-/*
- * ?scal
- */
+// /*
+//  * ?scal
+//  */
 inline
 float[xn] sscal(int n, float a, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
 {
@@ -527,194 +527,194 @@ double[xn] dscal(int n, double a, double[xn] x, int incx) | n > 0, incx > 0, min
   return {iv -> a * x[iv] | iv <= [(n-1)*incx] step [incx] ; iv -> x[iv]};
 }
 
-/*
- * ?copy
- */
-inline
-float[yn] scopy(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  return {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-}
-
-inline
-double[yn] dcopy(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  return {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-}
-
-
-
-/*
- * ?axpy
- */
-inline
-float[yn] saxpy(int n, float a, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  if(a == 0f) {
-    result = y;
-  } else {
-    result = {iv -> a * x[(iv/incy)*incx] + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-  }
-  return result;
-}
-
-
-inline
-double[yn] daxpy(int n, double a, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  if(a == 0d) {
-    result = y;
-  } else {
-    result = {iv -> a * x[(iv/incy)*incx] + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-  }
-  return result;
-}
-
-/*
- * ?dot
- */
-inline
-float sdot(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  return sum( {iv -> x[iv*incx] * y[iv*incy] | [0] <= iv < [n]} );
-}
-
-
-inline
-double ddot(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  return sum( {iv -> x[iv*incx] * y[iv*incy] | [0] <= iv < [n]} );
-}
-
-/*
- * ?dsdot
- */
-inline
-float sdsdot(int n, float sb, float[xn] sx, int incx, float[yn] sy, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  return tof( tod(sb) + sum( {iv -> tod(sx[iv*incx]) * tod(sy[iv*incy]) | [0] <= iv < [n] }) );
-}
-
-inline
-double dsdot(int n, float[xn] sx, int incx, float[yn] sy, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
-{
-  return sum({iv -> tod(sx[iv*incx]) * tod(sy[iv*incy]) | [0] <= iv < [n] });
-}
-
-/*
- * ?nrm2
- */
-inline
-float snrm2(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
-{
-  return sqrtf(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
-}
-
-inline
-double dnrm2(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
-{
-  return sqrt(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
-}
-
-// Creates compiler core dump error with check tc
+// /*
+//  * ?copy
+//  */
 // inline
-// float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
+// float[yn] scopy(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
 // {
-//   x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
-//   return sqrtf(tof(sum(normSq(x_prime))));
+//   return {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 // }
 
-// Creates compiler core dump error with check tc
 // inline
-// double dznrm2(int n, complex[.] x, int incx) | n > 0, incx > 0
+// double[yn] dcopy(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
 // {
-//   x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
-//   return sqrt(tod(sum(normSq(x_prime))));
+//   return {iv -> x[(iv/incy)*incx] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 // }
 
 
 
-/*
- * ?asum
- */
-inline
-float sasum(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
-{
-  return sum( {iv -> abs(x[iv]) | [0] <= iv <= [(n-1)*incx] step [incx]} );
-}
+// /*
+//  * ?axpy
+//  */
+// inline
+// float[yn] saxpy(int n, float a, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+// {
+//   if(a == 0f) {
+//     result = y;
+//   } else {
+//     result = {iv -> a * x[(iv/incy)*incx] + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+//   }
+//   return result;
+// }
 
 
-inline
-double dasum(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
-{
-  return sum( {iv -> abs(x[iv]) | [0] <= iv <= [(n-1)*incx] step [incx]} );
-}
+// inline
+// double[yn] daxpy(int n, double a, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy > 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+// {
+//   if(a == 0d) {
+//     result = y;
+//   } else {
+//     result = {iv -> a * x[(iv/incy)*incx] + y[iv] | [0] <= iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+//   }
+//   return result;
+// }
 
-/*
- * i?amax
- */
-inline
-int isamax(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
-{
-  max_i = 0;
-  max_v = 0f;
-  ix = 0;
-  for(i = 0; i < n; i++) {
-    if(abs(x[ix]) > max_v) {
-      max_i = i;
-      max_v = abs(x[ix]);
-    }
-    ix += incx;
-  }
+// /*
+//  * ?dot
+//  */
+// inline
+// float sdot(int n, float[xn] x, int incx, float[yn] y, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+// {
+//   return sum( {iv -> x[iv*incx] * y[iv*incy] | [0] <= iv < [n]} );
+// }
 
-  return max_i;
-}
 
-inline
-int idamax(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
-{
-  max_i = 0;
-  max_v = 0d;
-  ix = 0;
-  for(i = 0; i < n; i++) {
-    if(abs(x[ix]) > max_v) {
-      max_i = i;
-      max_v = abs(x[ix]);
-    }
-    ix += incx;
-  }
+// inline
+// double ddot(int n, double[xn] x, int incx, double[yn] y, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+// {
+//   return sum( {iv -> x[iv*incx] * y[iv*incy] | [0] <= iv < [n]} );
+// }
 
-  return max_i;
-}
+// /*
+//  * ?dsdot
+//  */
+// inline
+// float sdsdot(int n, float sb, float[xn] sx, int incx, float[yn] sy, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+// {
+//   return tof( tod(sb) + sum( {iv -> tod(sx[iv*incx]) * tod(sy[iv*incy]) | [0] <= iv < [n] }) );
+// }
 
-/*
- * BLAS L2
- */
+// inline
+// double dsdot(int n, float[xn] sx, int incx, float[yn] sy, int incy) | n > 0, incx >= 0, incy >= 0, minArrLen(n, xn, incx), minArrLen(n, yn, incy)
+// {
+//   return sum({iv -> tod(sx[iv*incx]) * tod(sy[iv*incy]) | [0] <= iv < [n] });
+// }
+
+// /*
+//  * ?nrm2
+//  */
+// inline
+// float snrm2(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+// {
+//   return sqrtf(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
+// }
+
+// inline
+// double dnrm2(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+// {
+//   return sqrt(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
+// }
+
+// // Creates compiler core dump error with check tc
+// // inline
+// // float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
+// // {
+// //   x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
+// //   return sqrtf(tof(sum(normSq(x_prime))));
+// // }
+
+// // Creates compiler core dump error with check tc
+// // inline
+// // double dznrm2(int n, complex[.] x, int incx) | n > 0, incx > 0
+// // {
+// //   x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
+// //   return sqrt(tod(sum(normSq(x_prime))));
+// // }
+
+
+
+// /*
+//  * ?asum
+//  */
+// inline
+// float sasum(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+// {
+//   return sum( {iv -> abs(x[iv]) | [0] <= iv <= [(n-1)*incx] step [incx]} );
+// }
+
+
+// inline
+// double dasum(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+// {
+//   return sum( {iv -> abs(x[iv]) | [0] <= iv <= [(n-1)*incx] step [incx]} );
+// }
+
+// /*
+//  * i?amax
+//  */
+// inline
+// int isamax(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+// {
+//   max_i = 0;
+//   max_v = 0f;
+//   ix = 0;
+//   for(i = 0; i < n; i++) {
+//     if(abs(x[ix]) > max_v) {
+//       max_i = i;
+//       max_v = abs(x[ix]);
+//     }
+//     ix += incx;
+//   }
+
+//   return max_i;
+// }
+
+// inline
+// int idamax(int n, double[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
+// {
+//   max_i = 0;
+//   max_v = 0d;
+//   ix = 0;
+//   for(i = 0; i < n; i++) {
+//     if(abs(x[ix]) > max_v) {
+//       max_i = i;
+//       max_v = abs(x[ix]);
+//     }
+//     ix += incx;
+//   }
+
+//   return max_i;
+// }
+
+// /*
+//  * BLAS L2
+//  */
 
 // Float
-float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >= 0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
-{
-  if (trans == 'N' | trans == 'n') {
-    lenx = n;
-    leny = m;
-  } else {
-    lenx = m;
-    leny = n;
-    a = bandStorageToFull(a, kl, ku, m, n);
-    a = transpose(a);
-    a = fullStorageToBand(a, ku, kl, n, m);
-  }
+// float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >= 0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
+// {
+//   if (trans == 'N' | trans == 'n') {
+//     lenx = n;
+//     leny = m;
+//   } else {
+//     lenx = m;
+//     leny = n;
+//     a = bandStorageToFull(a, kl, ku, m, n);
+//     a = transpose(a);
+//     a = fullStorageToBand(a, ku, kl, n, m);
+//   }
 
-  betaY =   BlasLevel1::sscal(leny, beta, y, incy);
-  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+//   betaY =   sscal(leny, beta, y, incy);
+//   alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
 
-  resA = { [i] -> sum(padVectorBack(an,drop([kl-i], a[i]))   * take([an], alphaX))    | [i] < [kl];
-           [i] -> sum(a[i]              * take([an], drop([i-1],alphaX)))      | [i] < [am] };
+//   resA = { [i] -> sum(padVectorBack(an,drop([kl-i], a[i]))   * take([an], alphaX))    | [i] < [kl];
+//            [i] -> sum(a[i]              * take([an], drop([i-1],alphaX)))      | [i] < [am] };
 
-  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
+//   res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
   
-  return res;
-}
+//   return res;
+// }
 
 float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
 {
@@ -727,7 +727,7 @@ float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, 
     a = transpose(a);
   }
 
-  betaY =   BlasLevel1::sscal(leny, beta, y, incy);
+  betaY =   sscal(leny, beta, y, incy);
   alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
   resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
   res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
@@ -735,109 +735,291 @@ float[yn] sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, 
   return res;
 }
 
-float[m,n] sger(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda)
+float[yn] print_sgemv(char trans, int m, int n, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
 {
-  return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
+  if (trans == 'N' | trans == 'n') {
+    lenx = n;
+    leny = m;
+  } else {
+    lenx = m;
+    leny = n;
+    a = transpose(a);
+  }
+
+  betaY =   sscal(leny, beta, y, incy);
+  print("betaY");
+  print(betaY);
+  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
+  print("alphaX");
+  print(alphaX);
+  resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
+  print("resA");
+  print(resA);
+
+  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
+  print("betay[0]");
+  print(betaY[0]);
+  print("res");
+  print(res);
+  print("test");
+  print(10.240001f * 700000.000000f);
+  return res;
 }
+// float[m,n] sger(int m, int n, float alpha, float[lenx] x, int incx, float[leny] y, int incy, float[m,n] a, int lda)
+// {
+//   return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
+// }
 
-float[*] ssbmv(char uplo, int n, int k, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy)
-{
-    betaY =   BlasLevel1::sscal(n, beta, y, incy);
-    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
-    if (uplo == 'u' || uplo == 'U') {
-        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
-    } else {
-        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
-    }
-    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+// float[*] ssbmv(char uplo, int n, int k, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy)
+// {
+//     betaY =   sscal(n, beta, y, incy);
+//     alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+//     if (uplo == 'u' || uplo == 'U') {
+//         resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+//     } else {
+//         resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+//     }
+//     res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 
-    return res;
-}
+//     return res;
+// }
 
-float[yn] sspmv(char uplo, int n, float alpha, float[.] ap, float[xn] x, int incx, float beta, float[yn] y, int incy)
-{
-    a = trttrs('u', ap, n);
-    betaY =   BlasLevel1::sscal(n, beta, y, incy);
-    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
-    if (uplo == 'u' || uplo == 'U') {
-        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
-    } else {
-        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
-    }
-    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+// float[yn] sspmv(char uplo, int n, float alpha, float[.] ap, float[xn] x, int incx, float beta, float[yn] y, int incy)
+// {
+//     a = trttrs('u', ap, n);
+//     betaY =   sscal(n, beta, y, incy);
+//     alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+//     if (uplo == 'u' || uplo == 'U') {
+//         resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+//     } else {
+//         resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+//     }
+//     res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 
-   return res;
-}
+//    return res;
+// }
 
-float[apn] sspr(char uplo, int n, float alpha, float[xn] x, int incx, float[apn] ap)
-{
-    full = trttrs(uplo, ap, n);
-    xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
-    if (uplo == 'U' || uplo == 'u') {
-        inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv]) | iv < [n]};
-    } else {
-        inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv]) | iv < [n]};
-    }
-    res = trttps(uplo, inter);
-    return res;
-}
+// float[apn] sspr(char uplo, int n, float alpha, float[xn] x, int incx, float[apn] ap)
+// {
+//     full = trttrs(uplo, ap, n);
+//     xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+//     if (uplo == 'U' || uplo == 'u') {
+//         inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv]) | iv < [n]};
+//     } else {
+//         inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv]) | iv < [n]};
+//     }
+//     res = trttps(uplo, inter);
+//     return res;
+// }
 
-float[apn] sspr2(char uplo, int n, float alpha, float[xn] x, int incx, float[yn] y, int incy, float[apn] ap)
-{
-    full = trttrs(uplo, ap, n);
-    xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
-    yMat = {[i,j] -> alpha * y[j*incy] * x[i*incx] | [i,j] < [n,n]};
-    if (uplo == 'U' || uplo == 'u') {
-        inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
-    } else {
-        inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
-    }
-    res = trttps(uplo, inter);
-    return res;
-}
-
-
-float[leny] ssymv(char uplo, int n, float alpha, float[d:shp] a, int lda, float[lenx] x, int incx, float beta, float[leny] y, int incy) | ismember(uplo, ['u', 'U', 'l', 'L'])
-{
-    betaY =   BlasLevel1::sscal(n, beta, y, incy);
-    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
-    if (uplo == 'u' || uplo == 'U') {
-        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
-    } else {
-        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
-    }
-    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-
-   return res;
-}
+// float[apn] sspr2(char uplo, int n, float alpha, float[xn] x, int incx, float[yn] y, int incy, float[apn] ap)
+// {
+//     full = trttrs(uplo, ap, n);
+//     xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
+//     yMat = {[i,j] -> alpha * y[j*incy] * x[i*incx] | [i,j] < [n,n]};
+//     if (uplo == 'U' || uplo == 'u') {
+//         inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
+//     } else {
+//         inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
+//     }
+//     res = trttps(uplo, inter);
+//     return res;
+// }
 
 
-float[am,an] ssyr(char uplo, int n, float alpha, float[*] x, int incx, float[am,an] a, int lda)
-{
-    xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
-    if (uplo == 'U' || uplo == 'u') {
-        res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv])) | iv < [n]};
-    } else {
-        res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
-    }
-    return res;
-}
+// float[leny] ssymv(char uplo, int n, float alpha, float[d:shp] a, int lda, float[lenx] x, int incx, float beta, float[leny] y, int incy) | ismember(uplo, ['u', 'U', 'l', 'L'])
+// {
+//     betaY =   sscal(n, beta, y, incy);
+//     alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+//     if (uplo == 'u' || uplo == 'U') {
+//         resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+//     } else {
+//         resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+//     }
+//     res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+
+//    return res;
+// }
 
 
-float[am,an] ssyr2(char uplo, int n, float alpha, float[*] x, int incx, float[*] y, int incy, float[am,an] a, int lda)
-{
-    xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
-    yMat = {[i,j] -> alpha * y[i*incx] * x[j*incy] | [i,j] < [n,n]};
-    if (uplo == 'U' || uplo == 'u') {
-        res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv]) + drop(iv, yMat[iv])) | iv < [n]};
-    } else {
-        res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv]) + take(iv+1, yMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
-    }
-    return res;
-}
+// float[am,an] ssyr(char uplo, int n, float alpha, float[*] x, int incx, float[am,an] a, int lda)
+// {
+//     xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+//     if (uplo == 'U' || uplo == 'u') {
+//         res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv])) | iv < [n]};
+//     } else {
+//         res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+//     }
+//     return res;
+// }
 
 
-// float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// float[am,an] ssyr2(char uplo, int n, float alpha, float[*] x, int incx, float[*] y, int incy, float[am,an] a, int lda)
+// {
+//     xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
+//     yMat = {[i,j] -> alpha * y[i*incx] * x[j*incy] | [i,j] < [n,n]};
+//     if (uplo == 'U' || uplo == 'u') {
+//         res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv]) + drop(iv, yMat[iv])) | iv < [n]};
+//     } else {
+//         res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv]) + take(iv+1, yMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+//     }
+//     return res;
+// }
+
+
+// // float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// // {
+// //   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+// //   if (trans != 'N' && trans != 'n') {
+// //     a = transpose(a);
+// //     if (uplo == 'U' || uplo == 'u') {
+// //       uplo = 'l';
+// //     } else {
+// //       uplo = 'u';
+// //     }
+// //   }
+
+// //   inter = [1.0f];
+
+// //   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+// //     // upper
+// //     a = upperTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+// //   } 
+
+// //   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+// //     // upper unit
+// //     a = upperTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+// //   } 
+
+// //   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+// //     // lower
+// //     a = lowerTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+// //   } 
+  
+// //   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+// //     // lower unit
+// //     a = lowerTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+// //   } 
+
+
+// //   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+// //           [iv] -> x[iv]};
+
+// //   return res;
+// // }
+
+// float[xn] stbsv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// {
+// //   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+// //   if (trans != 'N' && trans != 'n') {
+// //     a = transpose(a);
+// //     if (uplo == 'U' || uplo == 'u') {
+// //       uplo = 'l';
+// //     } else {
+// //       uplo = 'u';
+// //     }
+// //   }
+
+// //   inter = [1.0f];
+
+// //   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+// //     // upper
+// //     a = upperTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+// //   } 
+
+// //   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+// //     // upper unit
+// //     a = upperTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+// //   } 
+
+// //   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+// //     // lower
+// //     a = lowerTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+// //   } 
+  
+// //   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+// //     // lower unit
+// //     a = lowerTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+// //   } 
+
+
+// //   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+// //           [iv] -> x[iv]};
+
+//   return x;
+// }
+
+// float[xn] stpmv(char uplo, char trans, char diag, int n, float[an] ap, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0, an >= n*(n+1)/2,  incx != 0
+// {
+//   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+//   res = { [iv] -> sum(take([n-iv],drop([idx(n, iv)], ap)) * drop([iv/incx], xt)) | [iv] <= [(xn-1)*incx] step [incx]; 
+//           [iv] -> x[iv]};
+
+//   return res;
+// }
+
+// float[xn] stpsv(char uplo, char trans, char diag, int n, float[apn] ap, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// {
+//   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+//   if (uplo == 'U' || uplo == 'u') {
+//     a = trttrs('u', ap, n);
+//   } else {
+//     a = trttrs('l', ap, n);
+//   }
+
+//   if (trans != 'N' && trans != 'n') {
+//     a = transpose(a);
+//     if (uplo == 'U' || uplo == 'u') {
+//       uplo = 'l';
+//     } else {
+//       uplo = 'u';
+//     }
+//   } 
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+//       x[i] = (x[xn-1-i]-subtract) / a[n-1-i][n-1-i];
+//     } 
+//   } 
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+//       x[i] = (x[xn-1-i]-subtract);
+//     } 
+//   } 
+
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([i], a[i]) * take([i], x));
+//       x[i] = (x[i]-subtract) / a[i][i];
+//     } 
+//   } 
+  
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([i], a[i]) * take([i], x));
+//       x[i] = (x[i]-subtract);
+//     } 
+//   } 
+
+//   return x;
+// }
+
+
+// float[xn] strmv(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda >= max(1,n)
 // {
 //   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
 
@@ -854,28 +1036,23 @@ float[am,an] ssyr2(char uplo, int n, float alpha, float[*] x, int incx, float[*]
 
 //   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
 //     // upper
-//     a = upperTriangleBandStorageToFull(a, k);
 //     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
 //   } 
 
 //   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
 //     // upper unit
-//     a = upperTriangleBandStorageToFull(a, k);
 //     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
 //   } 
 
 //   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
 //     // lower
-//     a = lowerTriangleBandStorageToFull(a, k);
 //     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
 //   } 
   
 //   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
 //     // lower unit
-//     a = lowerTriangleBandStorageToFull(a, k);
 //     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
 //   } 
-
 
 //   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
 //           [iv] -> x[iv]};
@@ -883,8 +1060,9 @@ float[am,an] ssyr2(char uplo, int n, float alpha, float[*] x, int incx, float[*]
 //   return res;
 // }
 
-float[xn] stbsv(char uplo, char trans, char diag, int n, int k, float[an,am] a, int lda, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
-{
+
+// float[xn] strsv(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// {
 //   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
 
 //   if (trans != 'N' && trans != 'n') {
@@ -896,210 +1074,62 @@ float[xn] stbsv(char uplo, char trans, char diag, int n, int k, float[an,am] a, 
 //     }
 //   }
 
-//   inter = [1.0f];
-
 //   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
-//     // upper
-//     a = upperTriangleBandStorageToFull(a, k);
-//     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+//       x[i] = (x[xn-1-i]-subtract) / a[an-1-i][am-1-i];
+//     } 
 //   } 
 
 //   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
-//     // upper unit
-//     a = upperTriangleBandStorageToFull(a, k);
-//     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+//       x[i] = (x[xn-1-i]-subtract);
+//     } 
 //   } 
 
-//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
-//     // lower
-//     a = lowerTriangleBandStorageToFull(a, k);
-//     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([i], a[i]) * take([i], x));
+//       x[i] = (x[i]-subtract) / a[i][i];
+//     } 
 //   } 
   
 //   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
-//     // lower unit
-//     a = lowerTriangleBandStorageToFull(a, k);
-//     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([i], a[i]) * take([i], x));
+//       x[i] = (x[i]-subtract);
+//     } 
 //   } 
 
+//   return x;
+// }
 
-//   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
-//           [iv] -> x[iv]};
 
-  return x;
-}
+// // Double
+// double[*] dgbmv(char trans, int m, int n, int kl, int ku, double alpha, double[am,an] a, int lda, double[xn] x, int incx, double beta, double[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >= 0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
+// {
+//   if (trans == 'N' | trans == 'n') {
+//     lenx = n;
+//     leny = m;
+//   } else {
+//     lenx = m;
+//     leny = n;
+//     a = bandStorageToFull(a, kl, ku, m, n);
+//     a = transpose(a);
+//     a = fullStorageToBand(a, ku, kl, n, m);
+//   }
 
-float[xn] stpmv(char uplo, char trans, char diag, int n, float[an] ap, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0, an >= n*(n+1)/2,  incx != 0
-{
-  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
-  res = { [iv] -> sum(take([n-iv],drop([idx(n, iv)], ap)) * drop([iv/incx], xt)) | [iv] <= [(xn-1)*incx] step [incx]; 
-          [iv] -> x[iv]};
+//   betaY =   dscal(leny, beta, y, incy);
+//   alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
 
-  return res;
-}
+//   resA = { [i] -> sum(padVectorBack(an,drop([kl-i], a[i]))   * take([an], alphaX))    | [i] < [kl];
+//            [i] -> sum(a[i]              * take([an], drop([i-1],alphaX)))      | [i] < [am] };
 
-float[xn] stpsv(char uplo, char trans, char diag, int n, float[apn] ap, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
-{
-  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
-
-  if (uplo == 'U' || uplo == 'u') {
-    a = trttrs('u', ap, n);
-  } else {
-    a = trttrs('l', ap, n);
-  }
-
-  if (trans != 'N' && trans != 'n') {
-    a = transpose(a);
-    if (uplo == 'U' || uplo == 'u') {
-      uplo = 'l';
-    } else {
-      uplo = 'u';
-    }
-  } 
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
-      x[i] = (x[xn-1-i]-subtract) / a[n-1-i][n-1-i];
-    } 
-  } 
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
-      x[i] = (x[xn-1-i]-subtract);
-    } 
-  } 
-
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([i], a[i]) * take([i], x));
-      x[i] = (x[i]-subtract) / a[i][i];
-    } 
-  } 
+//   res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
   
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([i], a[i]) * take([i], x));
-      x[i] = (x[i]-subtract);
-    } 
-  } 
-
-  return x;
-}
-
-
-float[xn] strmv(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda >= max(1,n)
-{
-  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
-
-  if (trans != 'N' && trans != 'n') {
-    a = transpose(a);
-    if (uplo == 'U' || uplo == 'u') {
-      uplo = 'l';
-    } else {
-      uplo = 'u';
-    }
-  }
-
-  inter = [1.0f];
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
-    // upper
-    inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
-  } 
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
-    // upper unit
-    inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
-  } 
-
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
-    // lower
-    inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
-  } 
-  
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
-    // lower unit
-    inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
-  } 
-
-  res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
-          [iv] -> x[iv]};
-
-  return res;
-}
-
-
-float[xn] strsv(char uplo, char trans, char diag, int n, float[an,am] a, int lda, float[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
-{
-  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
-
-  if (trans != 'N' && trans != 'n') {
-    a = transpose(a);
-    if (uplo == 'U' || uplo == 'u') {
-      uplo = 'l';
-    } else {
-      uplo = 'u';
-    }
-  }
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
-      x[i] = (x[xn-1-i]-subtract) / a[an-1-i][am-1-i];
-    } 
-  } 
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
-      x[i] = (x[xn-1-i]-subtract);
-    } 
-  } 
-
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([i], a[i]) * take([i], x));
-      x[i] = (x[i]-subtract) / a[i][i];
-    } 
-  } 
-  
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([i], a[i]) * take([i], x));
-      x[i] = (x[i]-subtract);
-    } 
-  } 
-
-  return x;
-}
-
-
-// Double
-double[*] dgbmv(char trans, int m, int n, int kl, int ku, double alpha, double[am,an] a, int lda, double[xn] x, int incx, double beta, double[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >= 0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
-{
-  if (trans == 'N' | trans == 'n') {
-    lenx = n;
-    leny = m;
-  } else {
-    lenx = m;
-    leny = n;
-    a = bandStorageToFull(a, kl, ku, m, n);
-    a = transpose(a);
-    a = fullStorageToBand(a, ku, kl, n, m);
-  }
-
-  betaY =   BlasLevel1::dscal(leny, beta, y, incy);
-  alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
-
-  resA = { [i] -> sum(padVectorBack(an,drop([kl-i], a[i]))   * take([an], alphaX))    | [i] < [kl];
-           [i] -> sum(a[i]              * take([an], drop([i-1],alphaX)))      | [i] < [am] };
-
-  res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
-  
-  return res;
-}
+//   return res;
+// }
 
 double[yn] dgemv(char trans, int m, int n, double alpha, double[am,an] a, int lda, double[xn] x, int incx, double beta, double[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
 {
@@ -1112,7 +1142,7 @@ double[yn] dgemv(char trans, int m, int n, double alpha, double[am,an] a, int ld
     a = transpose(a);
   }
 
-  betaY =   BlasLevel1::dscal(leny, beta, y, incy);
+  betaY =   dscal(leny, beta, y, incy);
   alphaX =  {iv -> alpha * x[iv*incx]         | iv < [lenx]};
   resA =    {iv -> sum(a[iv] * alphaX)        | iv < [leny]};
   res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(leny-1)*incy] step [incy] ; iv -> y[iv]};
@@ -1121,109 +1151,261 @@ double[yn] dgemv(char trans, int m, int n, double alpha, double[am,an] a, int ld
 }
 
 
-double[m,n] dger(int m, int n, double alpha, double[lenx] x, int incx, double[leny] y, int incy, double[m,n] a, int lda)
-{
-  return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
-}
+// double[m,n] dger(int m, int n, double alpha, double[lenx] x, int incx, double[leny] y, int incy, double[m,n] a, int lda)
+// {
+//   return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
+// }
 
-double[*] dsbmv(char uplo, int n, int k, double alpha, double[*] a, int lda, double[*] x, int incx, double beta, double[*] y, int incy)
-{
-    betaY =   BlasLevel1::dscal(n, beta, y, incy);
-    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
-    if (uplo == 'u' || uplo == 'U') {
-        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
-    } else {
-        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
-    }
-    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+// double[*] dsbmv(char uplo, int n, int k, double alpha, double[*] a, int lda, double[*] x, int incx, double beta, double[*] y, int incy)
+// {
+//     betaY =   dscal(n, beta, y, incy);
+//     alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+//     if (uplo == 'u' || uplo == 'U') {
+//         resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+//     } else {
+//         resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+//     }
+//     res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 
-    return res;
-}
+//     return res;
+// }
 
-double[yn] dspmv(char uplo, int n, double alpha, double[.] ap, double[xn] x, int incx, double beta, double[yn] y, int incy)
-{
-    a = trttrs('u', ap, n);
-    betaY =   BlasLevel1::dscal(n, beta, y, incy);
-    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
-    if (uplo == 'u' || uplo == 'U') {
-        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
-    } else {
-        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
-    }
-    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+// double[yn] dspmv(char uplo, int n, double alpha, double[.] ap, double[xn] x, int incx, double beta, double[yn] y, int incy)
+// {
+//     a = trttrs('u', ap, n);
+//     betaY =   dscal(n, beta, y, incy);
+//     alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+//     if (uplo == 'u' || uplo == 'U') {
+//         resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+//     } else {
+//         resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+//     }
+//     res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
 
-   return res;
-}
+//    return res;
+// }
 
-double[apn] dspr(char uplo, int n, double alpha, double[xn] x, int incx, double[apn] ap)
-{
-    full = trttrs(uplo, ap, n);
-    xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
-    if (uplo == 'U' || uplo == 'u') {
-        inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv]) | iv < [n]};
-    } else {
-        inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv]) | iv < [n]};
-    }
-    res = trttps(uplo, inter);
-    return res;
-}
+// double[apn] dspr(char uplo, int n, double alpha, double[xn] x, int incx, double[apn] ap)
+// {
+//     full = trttrs(uplo, ap, n);
+//     xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+//     if (uplo == 'U' || uplo == 'u') {
+//         inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv]) | iv < [n]};
+//     } else {
+//         inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv]) | iv < [n]};
+//     }
+//     res = trttps(uplo, inter);
+//     return res;
+// }
 
-double[apn] dspr2(char uplo, int n, double alpha, double[xn] x, int incx, double[yn] y, int incy, double[apn] ap)
-{
-    full = trttrs(uplo, ap, n);
-    xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
-    yMat = {[i,j] -> alpha * y[j*incy] * x[i*incx] | [i,j] < [n,n]};
-    if (uplo == 'U' || uplo == 'u') {
-        inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
-    } else {
-        inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
-    }
-    res = trttps(uplo, inter);
-    return res;
-}
-
-
-double[leny] dsymv(char uplo, int n, double alpha, double[d:shp] a, int lda, double[lenx] x, int incx, double beta, double[leny] y, int incy) | ismember(uplo, ['u', 'U', 'l', 'L'])
-{
-    betaY =   BlasLevel1::dscal(n, beta, y, incy);
-    alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
-    if (uplo == 'u' || uplo == 'U') {
-        resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
-    } else {
-        resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
-    }
-    res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
-
-   return res;
-}
+// double[apn] dspr2(char uplo, int n, double alpha, double[xn] x, int incx, double[yn] y, int incy, double[apn] ap)
+// {
+//     full = trttrs(uplo, ap, n);
+//     xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
+//     yMat = {[i,j] -> alpha * y[j*incy] * x[i*incx] | [i,j] < [n,n]};
+//     if (uplo == 'U' || uplo == 'u') {
+//         inter = {iv -> ((take(iv, transpose(full)[iv]) ++ drop(iv, full[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
+//     } else {
+//         inter = {iv -> ((take(iv, full[iv]) ++ drop(iv, transpose(full)[iv])) + xMat[iv] + yMat[iv]) | iv < [n]};
+//     }
+//     res = trttps(uplo, inter);
+//     return res;
+// }
 
 
-double[am,an] dsyr(char uplo, int n, double alpha, double[*] x, int incx, double[am,an] a, int lda)
-{
-    xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
-    if (uplo == 'U' || uplo == 'u') {
-        res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv])) | iv < [n]};
-    } else {
-        res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
-    }
-    return res;
-}
+// double[leny] dsymv(char uplo, int n, double alpha, double[d:shp] a, int lda, double[lenx] x, int incx, double beta, double[leny] y, int incy) | ismember(uplo, ['u', 'U', 'l', 'L'])
+// {
+//     betaY =   dscal(n, beta, y, incy);
+//     alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
+//     if (uplo == 'u' || uplo == 'U') {
+//         resA =    {iv -> sum((take(iv, transpose(a)[iv]) ++ drop(iv, a[iv])) * alphaX) | iv < [n]};
+//     } else {
+//         resA =    {iv -> sum((take(iv, a[iv]) ++ drop(iv, transpose(a)[iv])) * alphaX) | iv < [n]};
+//     }
+//     res =     {iv -> resA[iv/incy] +  betaY[iv] | iv <= [(n-1)*incy] step [incy] ; iv -> y[iv]};
+
+//    return res;
+// }
 
 
-double[am,an] dsyr2(char uplo, int n, double alpha, double[*] x, int incx, double[*] y, int incy, double[am,an] a, int lda)
-{
-    xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
-    yMat = {[i,j] -> alpha * y[i*incx] * x[j*incy] | [i,j] < [n,n]};
-    if (uplo == 'U' || uplo == 'u') {
-        res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv]) + drop(iv, yMat[iv])) | iv < [n]};
-    } else {
-        res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv]) + take(iv+1, yMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
-    }
-    return res;
-}
+// double[am,an] dsyr(char uplo, int n, double alpha, double[*] x, int incx, double[am,an] a, int lda)
+// {
+//     xMat = {[i,j] -> alpha * x[i*incx] * x[j*incx] | [i,j] < [n,n]};
+//     if (uplo == 'U' || uplo == 'u') {
+//         res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv])) | iv < [n]};
+//     } else {
+//         res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+//     }
+//     return res;
+// }
 
 
-// double[xn] dtbmv(char uplo, char trans, char diag, int n, int k, double[an,am] a, int lda, double[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// double[am,an] dsyr2(char uplo, int n, double alpha, double[*] x, int incx, double[*] y, int incy, double[am,an] a, int lda)
+// {
+//     xMat = {[i,j] -> alpha * x[i*incx] * y[j*incy] | [i,j] < [n,n]};
+//     yMat = {[i,j] -> alpha * y[i*incx] * x[j*incy] | [i,j] < [n,n]};
+//     if (uplo == 'U' || uplo == 'u') {
+//         res = {iv -> take(iv, a[iv]) ++ (drop(iv, a[iv]) + drop(iv, xMat[iv]) + drop(iv, yMat[iv])) | iv < [n]};
+//     } else {
+//         res = {iv -> (take(iv+1, a[iv]) + take(iv+1, xMat[iv]) + take(iv+1, yMat[iv])) ++ drop(iv+1, a[iv]) | iv < [n]};
+//     }
+//     return res;
+// }
+
+
+// // double[xn] dtbmv(char uplo, char trans, char diag, int n, int k, double[an,am] a, int lda, double[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// // {
+// //   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+// //   if (trans != 'N' && trans != 'n') {
+// //     a = transpose(a);
+// //     if (uplo == 'U' || uplo == 'u') {
+// //       uplo = 'l';
+// //     } else {
+// //       uplo = 'u';
+// //     }
+// //   }
+
+// //   inter = [1.0d];
+
+// //   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+// //     // upper
+// //     a = upperTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+// //   } 
+
+// //   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+// //     // upper unit
+// //     a = upperTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+// //   } 
+
+// //   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+// //     // lower
+// //     a = lowerTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+// //   } 
+  
+// //   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+// //     // lower unit
+// //     a = lowerTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+// //   } 
+
+
+// //   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+// //           [iv] -> x[iv]};
+
+// //   return res;
+// // }
+
+// double[xn] dtbsv(char uplo, char trans, char diag, int n, int k, double[an,am] a, int lda, double[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// {
+// //   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+// //   if (trans != 'N' && trans != 'n') {
+// //     a = transpose(a);
+// //     if (uplo == 'U' || uplo == 'u') {
+// //       uplo = 'l';
+// //     } else {
+// //       uplo = 'u';
+// //     }
+// //   }
+
+// //   inter = [1.0d];
+
+// //   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+// //     // upper
+// //     a = upperTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+// //   } 
+
+// //   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+// //     // upper unit
+// //     a = upperTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+// //   } 
+
+// //   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
+// //     // lower
+// //     a = lowerTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+// //   } 
+  
+// //   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+// //     // lower unit
+// //     a = lowerTriangleBandStorageToFull(a, k);
+// //     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+// //   } 
+
+
+// //   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
+// //           [iv] -> x[iv]};
+
+//   return x;
+// }
+
+// double[xn] dtpmv(char uplo, char trans, char diag, int n, double[an] ap, double[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0, an >= n*(n+1)/2,  incx != 0
+// {
+//   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+//   res = { [iv] -> sum(take([n-iv],drop([idx(n, iv)], ap)) * drop([iv/incx], xt)) | [iv] <= [(xn-1)*incx] step [incx]; 
+//           [iv] -> x[iv]};
+
+//   return res;
+// }
+
+// double[xn] dtpsv(char uplo, char trans, char diag, int n, double[apn] ap, double[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// {
+//   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+
+//   if (uplo == 'U' || uplo == 'u') {
+//     a = trttrs('u', ap, n);
+//   } else {
+//     a = trttrs('l', ap, n);
+//   }
+
+//   if (trans != 'N' && trans != 'n') {
+//     a = transpose(a);
+//     if (uplo == 'U' || uplo == 'u') {
+//       uplo = 'l';
+//     } else {
+//       uplo = 'u';
+//     }
+//   } 
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+//       x[i] = (x[xn-1-i]-subtract) / a[n-1-i][n-1-i];
+//     } 
+//   } 
+
+//   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+//       x[i] = (x[xn-1-i]-subtract);
+//     } 
+//   } 
+
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([i], a[i]) * take([i], x));
+//       x[i] = (x[i]-subtract) / a[i][i];
+//     } 
+//   } 
+  
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([i], a[i]) * take([i], x));
+//       x[i] = (x[i]-subtract);
+//     } 
+//   } 
+
+//   return x;
+// }
+
+
+// double[xn] dtrmv(char uplo, char trans, char diag, int n, double[an,am] a, int lda, double[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda >= max(1,n)
 // {
 //   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
 
@@ -1240,28 +1422,23 @@ double[am,an] dsyr2(char uplo, int n, double alpha, double[*] x, int incx, doubl
 
 //   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
 //     // upper
-//     a = upperTriangleBandStorageToFull(a, k);
 //     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
 //   } 
 
 //   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
 //     // upper unit
-//     a = upperTriangleBandStorageToFull(a, k);
 //     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
 //   } 
 
 //   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
 //     // lower
-//     a = lowerTriangleBandStorageToFull(a, k);
 //     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
 //   } 
   
 //   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
 //     // lower unit
-//     a = lowerTriangleBandStorageToFull(a, k);
 //     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
 //   } 
-
 
 //   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
 //           [iv] -> x[iv]};
@@ -1269,8 +1446,9 @@ double[am,an] dsyr2(char uplo, int n, double alpha, double[*] x, int incx, doubl
 //   return res;
 // }
 
-double[xn] dtbsv(char uplo, char trans, char diag, int n, int k, double[an,am] a, int lda, double[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
-{
+
+// double[xn] dtrsv(char uplo, char trans, char diag, int n, double[an,am] a, int lda, double[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
+// {
 //   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
 
 //   if (trans != 'N' && trans != 'n') {
@@ -1282,214 +1460,66 @@ double[xn] dtbsv(char uplo, char trans, char diag, int n, int k, double[an,am] a
 //     }
 //   }
 
-//   inter = [1.0d];
-
 //   if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
-//     // upper
-//     a = upperTriangleBandStorageToFull(a, k);
-//     inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+//       x[i] = (x[xn-1-i]-subtract) / a[an-1-i][am-1-i];
+//     } 
 //   } 
 
 //   if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
-//     // upper unit
-//     a = upperTriangleBandStorageToFull(a, k);
-//     inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
+//       x[i] = (x[xn-1-i]-subtract);
+//     } 
 //   } 
 
-//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
-//     // lower
-//     a = lowerTriangleBandStorageToFull(a, k);
-//     inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
+//   if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([i], a[i]) * take([i], x));
+//       x[i] = (x[i]-subtract) / a[i][i];
+//     } 
 //   } 
   
 //   if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
-//     // lower unit
-//     a = lowerTriangleBandStorageToFull(a, k);
-//     inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
+//     for (i = 0; i < xn; i++) {
+//       subtract = sum(take([i], a[i]) * take([i], x));
+//       x[i] = (x[i]-subtract);
+//     } 
 //   } 
 
+//   return x;
+// }
 
-//   res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
-//           [iv] -> x[iv]};
-
-  return x;
-}
-
-double[xn] dtpmv(char uplo, char trans, char diag, int n, double[an] ap, double[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0, an >= n*(n+1)/2,  incx != 0
-{
-  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
-  res = { [iv] -> sum(take([n-iv],drop([idx(n, iv)], ap)) * drop([iv/incx], xt)) | [iv] <= [(xn-1)*incx] step [incx]; 
-          [iv] -> x[iv]};
-
-  return res;
-}
-
-double[xn] dtpsv(char uplo, char trans, char diag, int n, double[apn] ap, double[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
-{
-  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
-
-  if (uplo == 'U' || uplo == 'u') {
-    a = trttrs('u', ap, n);
-  } else {
-    a = trttrs('l', ap, n);
-  }
-
-  if (trans != 'N' && trans != 'n') {
-    a = transpose(a);
-    if (uplo == 'U' || uplo == 'u') {
-      uplo = 'l';
-    } else {
-      uplo = 'u';
-    }
-  } 
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
-      x[i] = (x[xn-1-i]-subtract) / a[n-1-i][n-1-i];
-    } 
-  } 
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
-      x[i] = (x[xn-1-i]-subtract);
-    } 
-  } 
-
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([i], a[i]) * take([i], x));
-      x[i] = (x[i]-subtract) / a[i][i];
-    } 
-  } 
-  
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([i], a[i]) * take([i], x));
-      x[i] = (x[i]-subtract);
-    } 
-  } 
-
-  return x;
-}
+// /*
+//  * Helper.sac
+//  */
 
 
-double[xn] dtrmv(char uplo, char trans, char diag, int n, double[an,am] a, int lda, double[xn] x, int incx) | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda >= max(1,n)
-{
-  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
+// // bool eq (int[d1:shp1] a, int[d2:shp2] b) {
+// //     return all(a == b) && all(shp1==shp2) && all(d1==d2);
+// // }
 
-  if (trans != 'N' && trans != 'n') {
-    a = transpose(a);
-    if (uplo == 'U' || uplo == 'u') {
-      uplo = 'l';
-    } else {
-      uplo = 'u';
-    }
-  }
-
-  inter = [1.0d];
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
-    // upper
-    inter = { [iv] -> sum(drop([iv],a[iv]) * drop([iv],xt)) | [iv] < [n] };
-  } 
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
-    // upper unit
-    inter = { [iv] -> sum(drop([iv+1],a[iv]) * drop([iv+1],xt)) + xt[iv] | [iv] < [n] };
-  } 
-
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) {
-    // lower
-    inter = { [iv] -> sum(take([iv+1],a[iv]) * take([iv+1],xt)) | [iv] < [n] };
-  } 
-  
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
-    // lower unit
-    inter = { [iv] -> sum(take([iv],a[iv]) * take([iv],xt)) + xt[iv]| [iv] < [n] };
-  } 
-
-  res = { [iv] -> inter[iv/incx] | [iv] <= [(xn-1)*incx] step [incx]; 
-          [iv] -> x[iv]};
-
-  return res;
-}
-
-
-double[xn] dtrsv(char uplo, char trans, char diag, int n, double[an,am] a, int lda, double[xn] x, int incx)// | ismember(uplo, ['u', 'U', 'l', 'L']), ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), ismember(diag, ['u', 'U', 'n', 'N']), n >= 0,  incx != 0, lda > 0, lda >= k+1, k >= 0
-{
-  xt = { [iv] -> x[iv*incx] | [iv] < [n]};
-
-  if (trans != 'N' && trans != 'n') {
-    a = transpose(a);
-    if (uplo == 'U' || uplo == 'u') {
-      uplo = 'l';
-    } else {
-      uplo = 'u';
-    }
-  }
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'N' || diag == 'n')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
-      x[i] = (x[xn-1-i]-subtract) / a[an-1-i][am-1-i];
-    } 
-  } 
-
-  if ((uplo == 'U' || uplo == 'u') && (diag == 'U' || diag == 'u')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([-i], a[xn-1-i]) * take([-i], x));
-      x[i] = (x[xn-1-i]-subtract);
-    } 
-  } 
-
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'N' || diag == 'n')) { 
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([i], a[i]) * take([i], x));
-      x[i] = (x[i]-subtract) / a[i][i];
-    } 
-  } 
-  
-  if ((uplo == 'L' || uplo == 'l') && (diag == 'U' || diag == 'u')) {
-    for (i = 0; i < xn; i++) {
-      subtract = sum(take([i], a[i]) * take([i], x));
-      x[i] = (x[i]-subtract);
-    } 
-  } 
-
-  return x;
-}
-
-/*
- * Helper.sac
- */
-
-
-// bool eq (int[d1:shp1] a, int[d2:shp2] b) {
+// // inline
+// bool eq (float[d1:shp1] a, float[d2:shp2] b) {
 //     return all(a == b) && all(shp1==shp2) && all(d1==d2);
 // }
 
-// inline
-bool eq (float[d1:shp1] a, float[d2:shp2] b) {
-    return all(a == b) && all(shp1==shp2) && all(d1==d2);
-}
+// bool eq (double[d1:shp1] a, double[d2:shp2] b) {
+//     return all(a == b) && all(shp1==shp2) && all(d1==d2);
+// }
 
-bool eq (double[d1:shp1] a, double[d2:shp2] b) {
-    return all(a == b) && all(shp1==shp2) && all(d1==d2);
-}
+// // inline
+// bool almost_eq (float[d1:shp1] a, float[d2:shp2] b, float loss) {
+//     return all(abs(a - b) < loss) && all(shp1==shp2) && all(d1==d2);
+// }
 
-// inline
-bool almost_eq (float[d1:shp1] a, float[d2:shp2] b, float loss) {
-    return all(abs(a - b) < loss) && all(shp1==shp2) && all(d1==d2);
-}
+// // inline
+// bool almost_eq (double[d1:shp1] a, double[d2:shp2] b, double loss) {
+//     return all(abs(a - b) < loss) && all(shp1==shp2) && all(d1==d2);
+// }
 
-// inline
-bool almost_eq (double[d1:shp1] a, double[d2:shp2] b, double loss) {
-    return all(abs(a - b) < loss) && all(shp1==shp2) && all(d1==d2);
-}
-
-// inline
+inline
 bool ismember(char c, char[n] ca)
 {
   b = false;
@@ -1499,7 +1529,7 @@ bool ismember(char c, char[n] ca)
   return b;
 }
 
-// inline
+inline
 bool ismember(float c, float[n] ca)
 {
   b = false;
@@ -1509,7 +1539,7 @@ bool ismember(float c, float[n] ca)
   return b;
 }
 
-// inline
+inline
 bool ismember(int c, int[n] ca)
 {
   b = false;
@@ -1519,7 +1549,7 @@ bool ismember(int c, int[n] ca)
   return b;
 }
 
-// inline
+inline
 bool ismember(double c, double[n] ca)
 {
   b = false;
@@ -1529,14 +1559,14 @@ bool ismember(double c, double[n] ca)
   return b;
 }
 
-// inline
+inline
 bool minArrLen(int n, int arrLength, int inc)
 {
     return arrLength  > (n-1)*inc;
 }
 
 // Checks max index of elements we go through is smaller than the length of x
-// inline
+inline
 bool sgemvXdim(char trans, int m, int n, int incx, int xn)
 {
   if (trans == 'N' || trans == 'n') {
@@ -1547,7 +1577,7 @@ bool sgemvXdim(char trans, int m, int n, int incx, int xn)
   return res;
 }
 
-// inline
+inline
 bool sgemvYdim(char trans, int m, int n, int incy, int yn)
 {
   if (trans == 'N' || trans == 'n') {
@@ -1559,468 +1589,468 @@ bool sgemvYdim(char trans, int m, int n, int incy, int yn)
 }
 
 // inline
-float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
-{
-  lim = n-ku;
-
-  return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
-           [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
-           [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
-}
-
-// inline
-double[m,n] bandStorageToFull(double[m,lda] storage, int kl, int ku, int m, int n)
-{
-  lim = n-ku;
-
-  return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
-           [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
-           [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
-}
-
-inline
-float[m,lda] fullStorageToBand(float[m,n] storage, int kl, int ku, int m, int n)
-{
-  lim = n-ku;
-  w = kl + ku + 1;
-  return {  [i] -> padVectorFront(w, take([i+ku+1], drop([max(0,i-kl)],storage[i])))  | [i] < [kl];
-            [i] -> take([w], drop([i-kl],storage[i]))                                 | [i] < [lim];
-            [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
-}
-
-inline
-double[m,lda] fullStorageToBand(double[m,n] storage, int kl, int ku, int m, int n)
-{
-  lim = n-ku;
-  w = kl + ku + 1;
-  return {  [i] -> padVectorFront(w, take([i+ku+1], drop([max(0,i-kl)],storage[i])))  | [i] < [kl];
-            [i] -> take([w], drop([i-kl],storage[i]))                                 | [i] < [lim];
-            [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
-}
-
-// inline
-float[m] padVectorFront(int k, float[n] arr)
-{
-  zeros = [k-n];
-  return { iv -> 0.0f           | iv < zeros;
-           iv -> arr[iv-zeros]  | zeros <= iv < [k]
-         };
-}
-
-// inline
-double[m] padVectorFront(int k, double[n] arr)
-{
-  zeros = [k-n];
-  return { iv -> 0.0d           | iv < zeros;
-           iv -> arr[iv-zeros]  | zeros <= iv < [k]
-         };
-}
-
-// inline
-float[m] padVectorBack(int k, float[n] arr) | (k >= n)
-{
-  return { iv -> arr[iv]  | iv < [n];
-           iv -> 0.0f     | [n] <= iv < [k]       
-         };
-}
-
-// inline
-double[m] padVectorBack(int k, double[n] arr) | (k >= n)
-{
-  return { iv -> arr[iv]  | iv < [n];
-           iv -> 0.0d     | [n] <= iv < [k]       
-         };
-}
-
-// inline
-float[m] padVectorOffset(int m, int offset, float[n] arr) | (offset >= 0)
-{
-  return { iv -> 0.0f             | iv < [offset];  
-           iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
-           iv -> 0.0f             | [offset+n] <= iv < [m]       
-         };
-}
-
-// inline
-double[m] padVectorOffset(int m, int offset, double[n] arr) | (offset >= 0)
-{
-  return { iv -> 0.0d             | iv < [offset];  
-           iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
-           iv -> 0.0d             | [offset+n] <= iv < [m]       
-         };
-}
-
-// float[m,n] bandUpperTriangleStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
+// float[m,n] bandStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
 // {
-//   return { [i,j] -> storage[i - (k+1-j)] | [k+1-j, 0] <= [i,j] < [max(1+k+1-j,(j-k)+k+1-j),n] }
-//   // lim = n-ku;
+//   lim = n-ku;
 
-//   // return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
-//   //          [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
-//   //          [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
+//   return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
+//            [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
+//            [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
 // }
 
 // inline
-float[am,n] fullUpperTriangleStorageToBand(float[m,n] full, int k) | (n-k-1 == am)
-{
-  a = transpose(full);
-  a = {iv -> take([1+k],drop(iv-[k],a[iv])) | iv < [n]};
-  a = {iv -> padVectorFront(1+k,take(min([1+k],iv+1),a[iv])) | iv < [n]};
-  a = transpose(a);
-  return a;
-}
+// double[m,n] bandStorageToFull(double[m,lda] storage, int kl, int ku, int m, int n)
+// {
+//   lim = n-ku;
 
-// inline
-double[am,n] fullUpperTriangleStorageToBand(double[m,n] full, int k) | (n-k-1 == am)
-{
-  a = transpose(full);
-  a = {iv -> take([1+k],drop(iv-[k],a[iv])) | iv < [n]};
-  a = {iv -> padVectorFront(1+k,take(min([1+k],iv+1),a[iv])) | iv < [n]};
-  a = transpose(a);
-  return a;
-}
-
-// inline
-float[n,m] rotateCW(float[m,n] a) 
-{
-  return {[i,j] -> a[n-j-1][i] | [i,j] < [n,m]};
-}
-
-// inline
-double[n,m] rotateCW(double[m,n] a) 
-{
-  return {[i,j] -> a[n-j-1][i] | [i,j] < [n,m]};
-}
-
-// inline
-float[n,m] rotateCCW(float[m,n] a) 
-{
-  return {[i,j] -> a[j][n-i-1] | [i,j] < [n,m]};
-}
-
-// inline
-double[n,m] rotateCCW(double[m,n] a) 
-{
-  return {[i,j] -> a[j][n-i-1] | [i,j] < [n,m]};
-}
-
-// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
-float[m] trttpsCOL(char uplo, float[n,n] a)
-{
-    len = (n*(n+1)/2);
-    arr = genarray([len], 0.0f);
-    return trttpCOL(uplo, n, a, n, arr, 0);
-}   
-
-// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
-double[m] trttpsCOL(char uplo, double[n,n] a)
-{
-    len = (n*(n+1)/2);
-    arr = genarray([len], 0.0d);
-    return trttpCOL(uplo, n, a, n, arr, 0);
-}   
-
-// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
-float[m] trttpCOL(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
-{
-    k = 0;
-    if (uplo == 'L' || uplo == 'l') 
-    {
-        for (j=0; j<n; j++)
-        {
-            for (i=j; i<n; i++)
-            {
-                ap[[k]] = a[[i,j]];
-                k = k+1;
-            }
-        }
-    } else {
-        for (j=0; j<n; j++)
-        {
-            for (i=0; i<=j; i++)
-            {
-                ap[[k]] = a[[i,j]];
-                k = k+1;
-            }
-        }
-    }
-    return ap;
-}   
-
-// trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
-double[m] trttpCOL(char uplo, int n, double[lda,n] a, int lda, double[m] ap, int info)
-{
-    k = 0;
-    if (uplo == 'L' || uplo == 'l') 
-    {
-        for (j=0; j<n; j++)
-        {
-            for (i=j; i<n; i++)
-            {
-                ap[[k]] = a[[i,j]];
-                k = k+1;
-            }
-        }
-    } else {
-        for (j=0; j<n; j++)
-        {
-            for (i=0; i<=j; i++)
-            {
-                ap[[k]] = a[[i,j]];
-                k = k+1;
-            }
-        }
-    }
-    return ap;
-}   
-
-
-// triangular matrix, packed (tp) to full (tr) COLMAJ
-float[n,n] trttrsCOL(char uplo, float[m] ap, int n)
-{
-    arr = genarray([n,n], 0.0f);
-    return tpttrCOL(uplo, n, ap, n, arr, 0);
-}   
-
-// triangular matrix, packed (tp) to full (tr) COLMAJ
-double[n,n] trttrsCOL(char uplo, double[m] ap, int n)
-{
-    arr = genarray([n,n], 0.0d);
-    return tpttrCOL(uplo, n, ap, n, arr, 0);
-}   
-
-// triangular matrix, packed (tp) to full (tr) COLMAJ
-float[n,n] tpttrCOL(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
-{
-    k = 0;
-    if (uplo == 'L' || uplo == 'l') 
-    {
-        for (j=0; j<n; j++)
-        {
-            for (i=j; i<n; i++)
-            {
-                a[[i,j]] = ap[[k]];
-                k = k+1;
-            }
-        }
-    } else {
-        for (j=0; j<n; j++)
-        {
-            for (i=0; i<=j; i++)
-            {
-                a[[i,j]] = ap[[k]];
-                k = k+1;
-            }
-        }
-    }
-    return a;
-}
-
-// triangular matrix, packed (tp) to full (tr) COLMAJ
-double[n,n] tpttrCOL(char uplo, int n, double[m] ap, int lda, double[lda,n] a, int info)
-{
-    k = 0;
-    if (uplo == 'L' || uplo == 'l') 
-    {
-        for (j=0; j<n; j++)
-        {
-            for (i=j; i<n; i++)
-            {
-                a[[i,j]] = ap[[k]];
-                k = k+1;
-            }
-        }
-    } else {
-        for (j=0; j<n; j++)
-        {
-            for (i=0; i<=j; i++)
-            {
-                a[[i,j]] = ap[[k]];
-                k = k+1;
-            }
-        }
-    }
-    return a;
-}
-
-
-// triangular matrix, packed (tp) to full (tr)  RowMAJ
-inline
-float[n,n] trttrs(char uplo, float[m] ap, int n)
-{
-    arr = genarray([n,n], 0.0f);
-    return tpttr(uplo, n, ap, n, arr, 0);
-}   
-
-// triangular matrix, packed (tp) to full (tr)  RowMAJ
-inline
-double[n,n] trttrs(char uplo, double[m] ap, int n)
-{
-    arr = genarray([n,n], 0.0d);
-    return tpttr(uplo, n, ap, n, arr, 0);
-}   
-
-
-// triangular matrix, packed (tp) to full (tr) RowMAJ
-inline
-float[n,n] tpttr(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
-{
-    k = 0;
-    if (uplo == 'L' || uplo == 'l') 
-    {
-        for (i = 0; i < n; i++)
-        {
-            for (j = 0; j <= i; j++)
-            {
-                a[[i,j]] = ap[[k]];
-                k = k + 1;
-            }
-        }
-    } else {
-        for (i = 0; i < n; i++)
-        {
-            for (j = i; j < n; j++)
-            {
-                a[[i,j]] = ap[[k]];
-                k = k + 1;
-            }
-        }
-    }
-    return a;
-}
-
-// triangular matrix, packed (tp) to full (tr) RowMAJ
-inline
-double[n,n] tpttr(char uplo, int n, double[m] ap, int lda, double[lda,n] a, int info)
-{
-    k = 0;
-    if (uplo == 'L' || uplo == 'l') 
-    {
-        for (i = 0; i < n; i++)
-        {
-            for (j = 0; j <= i; j++)
-            {
-                a[[i,j]] = ap[[k]];
-                k = k + 1;
-            }
-        }
-    } else {
-        for (i = 0; i < n; i++)
-        {
-            for (j = i; j < n; j++)
-            {
-                a[[i,j]] = ap[[k]];
-                k = k + 1;
-            }
-        }
-    }
-    return a;
-}
-
-
-// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
-inline
-float[m] trttps(char uplo, float[n,n] a)
-{
-    len = (n*(n+1)/2);
-    arr = genarray([len], 0.0f);
-    return trttp(uplo, n, a, n, arr, 0);
-}   
-
-// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
-inline
-double[m] trttps(char uplo, double[n,n] a)
-{
-    len = (n*(n+1)/2);
-    arr = genarray([len], 0.0d);
-    return trttp(uplo, n, a, n, arr, 0);
-}   
-
-// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
-inline
-float[m] trttp(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
-{
-    k = 0;
-    if (uplo == 'L' || uplo == 'l') 
-    {
-        for (i = 0; i < n; i++)
-        {
-            for (j = 0; j <= i; j++)
-            {
-                ap[[k]] = a[[i,j]];
-                k = k + 1;
-            }
-        }
-    } else {
-        for (i = 0; i < n; i++)
-        {
-            for (j = i; j < n; j++)
-            {
-                ap[[k]] = a[[i,j]];
-                k = k + 1;
-            }
-        }
-    }
-    return ap;
-}
-
-
-// trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
-inline
-double[m] trttp(char uplo, int n, double[lda,n] a, int lda, double[m] ap, int info)
-{
-    k = 0;
-    if (uplo == 'L' || uplo == 'l') 
-    {
-        for (i = 0; i < n; i++)
-        {
-            for (j = 0; j <= i; j++)
-            {
-                ap[[k]] = a[[i,j]];
-                k = k + 1;
-            }
-        }
-    } else {
-        for (i = 0; i < n; i++)
-        {
-            for (j = i; j < n; j++)
-            {
-                ap[[k]] = a[[i,j]];
-                k = k + 1;
-            }
-        }
-    }
-    return ap;
-}
-
-
-int idx(int n, int i) 
-{
-  return n * i - (i * (i - 1)) / 2;
-}
-
-
-/*
- * HELPER FUNCTIONS
- */
-noinline float[.] id(float[.] v) {
-    return v;
-}
-noinline double[.] id(double[.] v) {
-    return v;
-}
-// noinline complex[.] id(complex[.] c) {
-//     return c;
+//   return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
+//            [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
+//            [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
 // }
-noinline float id(float f) {
-    return f;
-}
-noinline double id(double f) {
-    return f;
-}
-noinline int id(int i) {
-    return i;
-}
+
+// inline
+// float[m,lda] fullStorageToBand(float[m,n] storage, int kl, int ku, int m, int n)
+// {
+//   lim = n-ku;
+//   w = kl + ku + 1;
+//   return {  [i] -> padVectorFront(w, take([i+ku+1], drop([max(0,i-kl)],storage[i])))  | [i] < [kl];
+//             [i] -> take([w], drop([i-kl],storage[i]))                                 | [i] < [lim];
+//             [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
+// }
+
+// inline
+// double[m,lda] fullStorageToBand(double[m,n] storage, int kl, int ku, int m, int n)
+// {
+//   lim = n-ku;
+//   w = kl + ku + 1;
+//   return {  [i] -> padVectorFront(w, take([i+ku+1], drop([max(0,i-kl)],storage[i])))  | [i] < [kl];
+//             [i] -> take([w], drop([i-kl],storage[i]))                                 | [i] < [lim];
+//             [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
+// }
+
+// inline
+// float[m] padVectorFront(int k, float[n] arr)
+// {
+//   zeros = [k-n];
+//   return { iv -> 0.0f           | iv < zeros;
+//            iv -> arr[iv-zeros]  | zeros <= iv < [k]
+//          };
+// }
+
+// inline
+// double[m] padVectorFront(int k, double[n] arr)
+// {
+//   zeros = [k-n];
+//   return { iv -> 0.0d           | iv < zeros;
+//            iv -> arr[iv-zeros]  | zeros <= iv < [k]
+//          };
+// }
+
+// inline
+// float[m] padVectorBack(int k, float[n] arr) | (k >= n)
+// {
+//   return { iv -> arr[iv]  | iv < [n];
+//            iv -> 0.0f     | [n] <= iv < [k]       
+//          };
+// }
+
+// inline
+// double[m] padVectorBack(int k, double[n] arr) | (k >= n)
+// {
+//   return { iv -> arr[iv]  | iv < [n];
+//            iv -> 0.0d     | [n] <= iv < [k]       
+//          };
+// }
+
+// inline
+// float[m] padVectorOffset(int m, int offset, float[n] arr) | (offset >= 0)
+// {
+//   return { iv -> 0.0f             | iv < [offset];  
+//            iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
+//            iv -> 0.0f             | [offset+n] <= iv < [m]       
+//          };
+// }
+
+// inline
+// double[m] padVectorOffset(int m, int offset, double[n] arr) | (offset >= 0)
+// {
+//   return { iv -> 0.0d             | iv < [offset];  
+//            iv -> arr[iv-offset]   | [offset] <= iv < [n+offset];
+//            iv -> 0.0d             | [offset+n] <= iv < [m]       
+//          };
+// }
+
+// // float[m,n] bandUpperTriangleStorageToFull(float[m,lda] storage, int kl, int ku, int m, int n)
+// // {
+// //   return { [i,j] -> storage[i - (k+1-j)] | [k+1-j, 0] <= [i,j] < [max(1+k+1-j,(j-k)+k+1-j),n] }
+// //   // lim = n-ku;
+
+// //   // return { [i] -> padVectorBack(n, drop([kl-i], storage[i]))  | [i] < [kl];
+// //   //          [i] -> padVectorOffset(n, i-kl, storage[i])        | [kl] <= [i] < [lim];
+// //   //          [i] -> padVectorFront(n,take([kl+1], storage[i]))  | [i] < [m] };
+// // }
+
+// // inline
+// float[am,n] fullUpperTriangleStorageToBand(float[m,n] full, int k) | (n-k-1 == am)
+// {
+//   a = transpose(full);
+//   a = {iv -> take([1+k],drop(iv-[k],a[iv])) | iv < [n]};
+//   a = {iv -> padVectorFront(1+k,take(min([1+k],iv+1),a[iv])) | iv < [n]};
+//   a = transpose(a);
+//   return a;
+// }
+
+// // inline
+// double[am,n] fullUpperTriangleStorageToBand(double[m,n] full, int k) | (n-k-1 == am)
+// {
+//   a = transpose(full);
+//   a = {iv -> take([1+k],drop(iv-[k],a[iv])) | iv < [n]};
+//   a = {iv -> padVectorFront(1+k,take(min([1+k],iv+1),a[iv])) | iv < [n]};
+//   a = transpose(a);
+//   return a;
+// }
+
+// // inline
+// float[n,m] rotateCW(float[m,n] a) 
+// {
+//   return {[i,j] -> a[n-j-1][i] | [i,j] < [n,m]};
+// }
+
+// // inline
+// double[n,m] rotateCW(double[m,n] a) 
+// {
+//   return {[i,j] -> a[n-j-1][i] | [i,j] < [n,m]};
+// }
+
+// // inline
+// float[n,m] rotateCCW(float[m,n] a) 
+// {
+//   return {[i,j] -> a[j][n-i-1] | [i,j] < [n,m]};
+// }
+
+// // inline
+// double[n,m] rotateCCW(double[m,n] a) 
+// {
+//   return {[i,j] -> a[j][n-i-1] | [i,j] < [n,m]};
+// }
+
+// // trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+// float[m] trttpsCOL(char uplo, float[n,n] a)
+// {
+//     len = (n*(n+1)/2);
+//     arr = genarray([len], 0.0f);
+//     return trttpCOL(uplo, n, a, n, arr, 0);
+// }   
+
+// // trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+// double[m] trttpsCOL(char uplo, double[n,n] a)
+// {
+//     len = (n*(n+1)/2);
+//     arr = genarray([len], 0.0d);
+//     return trttpCOL(uplo, n, a, n, arr, 0);
+// }   
+
+// // trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+// float[m] trttpCOL(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
+// {
+//     k = 0;
+//     if (uplo == 'L' || uplo == 'l') 
+//     {
+//         for (j=0; j<n; j++)
+//         {
+//             for (i=j; i<n; i++)
+//             {
+//                 ap[[k]] = a[[i,j]];
+//                 k = k+1;
+//             }
+//         }
+//     } else {
+//         for (j=0; j<n; j++)
+//         {
+//             for (i=0; i<=j; i++)
+//             {
+//                 ap[[k]] = a[[i,j]];
+//                 k = k+1;
+//             }
+//         }
+//     }
+//     return ap;
+// }   
+
+// // trttp: triangular matrix, full (tr) to packed (tp) COLMAJ
+// double[m] trttpCOL(char uplo, int n, double[lda,n] a, int lda, double[m] ap, int info)
+// {
+//     k = 0;
+//     if (uplo == 'L' || uplo == 'l') 
+//     {
+//         for (j=0; j<n; j++)
+//         {
+//             for (i=j; i<n; i++)
+//             {
+//                 ap[[k]] = a[[i,j]];
+//                 k = k+1;
+//             }
+//         }
+//     } else {
+//         for (j=0; j<n; j++)
+//         {
+//             for (i=0; i<=j; i++)
+//             {
+//                 ap[[k]] = a[[i,j]];
+//                 k = k+1;
+//             }
+//         }
+//     }
+//     return ap;
+// }   
+
+
+// // triangular matrix, packed (tp) to full (tr) COLMAJ
+// float[n,n] trttrsCOL(char uplo, float[m] ap, int n)
+// {
+//     arr = genarray([n,n], 0.0f);
+//     return tpttrCOL(uplo, n, ap, n, arr, 0);
+// }   
+
+// // triangular matrix, packed (tp) to full (tr) COLMAJ
+// double[n,n] trttrsCOL(char uplo, double[m] ap, int n)
+// {
+//     arr = genarray([n,n], 0.0d);
+//     return tpttrCOL(uplo, n, ap, n, arr, 0);
+// }   
+
+// // triangular matrix, packed (tp) to full (tr) COLMAJ
+// float[n,n] tpttrCOL(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
+// {
+//     k = 0;
+//     if (uplo == 'L' || uplo == 'l') 
+//     {
+//         for (j=0; j<n; j++)
+//         {
+//             for (i=j; i<n; i++)
+//             {
+//                 a[[i,j]] = ap[[k]];
+//                 k = k+1;
+//             }
+//         }
+//     } else {
+//         for (j=0; j<n; j++)
+//         {
+//             for (i=0; i<=j; i++)
+//             {
+//                 a[[i,j]] = ap[[k]];
+//                 k = k+1;
+//             }
+//         }
+//     }
+//     return a;
+// }
+
+// // triangular matrix, packed (tp) to full (tr) COLMAJ
+// double[n,n] tpttrCOL(char uplo, int n, double[m] ap, int lda, double[lda,n] a, int info)
+// {
+//     k = 0;
+//     if (uplo == 'L' || uplo == 'l') 
+//     {
+//         for (j=0; j<n; j++)
+//         {
+//             for (i=j; i<n; i++)
+//             {
+//                 a[[i,j]] = ap[[k]];
+//                 k = k+1;
+//             }
+//         }
+//     } else {
+//         for (j=0; j<n; j++)
+//         {
+//             for (i=0; i<=j; i++)
+//             {
+//                 a[[i,j]] = ap[[k]];
+//                 k = k+1;
+//             }
+//         }
+//     }
+//     return a;
+// }
+
+
+// // triangular matrix, packed (tp) to full (tr)  RowMAJ
+// inline
+// float[n,n] trttrs(char uplo, float[m] ap, int n)
+// {
+//     arr = genarray([n,n], 0.0f);
+//     return tpttr(uplo, n, ap, n, arr, 0);
+// }   
+
+// // triangular matrix, packed (tp) to full (tr)  RowMAJ
+// inline
+// double[n,n] trttrs(char uplo, double[m] ap, int n)
+// {
+//     arr = genarray([n,n], 0.0d);
+//     return tpttr(uplo, n, ap, n, arr, 0);
+// }   
+
+
+// // triangular matrix, packed (tp) to full (tr) RowMAJ
+// inline
+// float[n,n] tpttr(char uplo, int n, float[m] ap, int lda, float[lda,n] a, int info)
+// {
+//     k = 0;
+//     if (uplo == 'L' || uplo == 'l') 
+//     {
+//         for (i = 0; i < n; i++)
+//         {
+//             for (j = 0; j <= i; j++)
+//             {
+//                 a[[i,j]] = ap[[k]];
+//                 k = k + 1;
+//             }
+//         }
+//     } else {
+//         for (i = 0; i < n; i++)
+//         {
+//             for (j = i; j < n; j++)
+//             {
+//                 a[[i,j]] = ap[[k]];
+//                 k = k + 1;
+//             }
+//         }
+//     }
+//     return a;
+// }
+
+// // triangular matrix, packed (tp) to full (tr) RowMAJ
+// inline
+// double[n,n] tpttr(char uplo, int n, double[m] ap, int lda, double[lda,n] a, int info)
+// {
+//     k = 0;
+//     if (uplo == 'L' || uplo == 'l') 
+//     {
+//         for (i = 0; i < n; i++)
+//         {
+//             for (j = 0; j <= i; j++)
+//             {
+//                 a[[i,j]] = ap[[k]];
+//                 k = k + 1;
+//             }
+//         }
+//     } else {
+//         for (i = 0; i < n; i++)
+//         {
+//             for (j = i; j < n; j++)
+//             {
+//                 a[[i,j]] = ap[[k]];
+//                 k = k + 1;
+//             }
+//         }
+//     }
+//     return a;
+// }
+
+
+// // trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+// inline
+// float[m] trttps(char uplo, float[n,n] a)
+// {
+//     len = (n*(n+1)/2);
+//     arr = genarray([len], 0.0f);
+//     return trttp(uplo, n, a, n, arr, 0);
+// }   
+
+// // trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+// inline
+// double[m] trttps(char uplo, double[n,n] a)
+// {
+//     len = (n*(n+1)/2);
+//     arr = genarray([len], 0.0d);
+//     return trttp(uplo, n, a, n, arr, 0);
+// }   
+
+// // trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+// inline
+// float[m] trttp(char uplo, int n, float[lda,n] a, int lda, float[m] ap, int info)
+// {
+//     k = 0;
+//     if (uplo == 'L' || uplo == 'l') 
+//     {
+//         for (i = 0; i < n; i++)
+//         {
+//             for (j = 0; j <= i; j++)
+//             {
+//                 ap[[k]] = a[[i,j]];
+//                 k = k + 1;
+//             }
+//         }
+//     } else {
+//         for (i = 0; i < n; i++)
+//         {
+//             for (j = i; j < n; j++)
+//             {
+//                 ap[[k]] = a[[i,j]];
+//                 k = k + 1;
+//             }
+//         }
+//     }
+//     return ap;
+// }
+
+
+// // trttp: triangular matrix, full (tr) to packed (tp) RowMAJ
+// inline
+// double[m] trttp(char uplo, int n, double[lda,n] a, int lda, double[m] ap, int info)
+// {
+//     k = 0;
+//     if (uplo == 'L' || uplo == 'l') 
+//     {
+//         for (i = 0; i < n; i++)
+//         {
+//             for (j = 0; j <= i; j++)
+//             {
+//                 ap[[k]] = a[[i,j]];
+//                 k = k + 1;
+//             }
+//         }
+//     } else {
+//         for (i = 0; i < n; i++)
+//         {
+//             for (j = i; j < n; j++)
+//             {
+//                 ap[[k]] = a[[i,j]];
+//                 k = k + 1;
+//             }
+//         }
+//     }
+//     return ap;
+// }
+
+
+// int idx(int n, int i) 
+// {
+//   return n * i - (i * (i - 1)) / 2;
+// }
+
+
+// /*
+//  * HELPER FUNCTIONS
+//  */
+// noinline float[.] id(float[.] v) {
+//     return v;
+// }
+// noinline double[.] id(double[.] v) {
+//     return v;
+// }
+// // noinline complex[.] id(complex[.] c) {
+// //     return c;
+// // }
+// noinline float id(float f) {
+//     return f;
+// }
+// noinline double id(double f) {
+//     return f;
+// }
+// noinline int id(int i) {
+//     return i;
+// }
 
 noinline int cap_n(int n, int incx, int incy) {
     return incx > incy ? n/incx : n/incy;
@@ -2029,54 +2059,55 @@ noinline int cap_n(int n, int incx) {
     return n/incx;
 }
 
-string routine_id_to_name(int routine) {
-    if(routine == DROTG) {
-        result = "drotg";
-    } else if(routine == DROTMG) {
-        result = "drotmg";
-    } else if(routine == DROT) {
-        result = "drot";
-    } else if(routine == DROTM) {
-        result = "drotm";
-    } else if(routine == DSWAP) {
-        result = "dswap";
-    } else if(routine == DSCAL) {
-        result = "dscal";
-    } else if(routine == DCOPY) {
-        result = "dcopy";
-    } else if(routine == DAXPY) {
-        result = "daxpy";
-    } else if(routine == DDOT) {
-        result = "ddot";
-    } else if(routine == DSDOT) {
-        result = "dsdot";
-    } else if(routine == DNRM2) {
-        result = "dnrm2";
-    // } else if(routine == DZNRM2) {
-    //     result = "dznrm2";
-    } else if(routine == DASUM) {
-        result = "dasum";
-    } else if(routine == IDAMAX) {
-        result = "idamax";
-    } else if(routine == SGEMV) {
-        result = "sgemv";
-    } else {
-        result = "unknown";
-    }
-    return result;
-}
+// string routine_id_to_name(int routine) {
+//     if(routine == DROTG) {
+//         result = "drotg";
+//     } else if(routine == DROTMG) {
+//         result = "drotmg";
+//     } else if(routine == DROT) {
+//         result = "drot";
+//     } else if(routine == DROTM) {
+//         result = "drotm";
+//     } else if(routine == DSWAP) {
+//         result = "dswap";
+//     } else if(routine == DSCAL) {
+//         result = "dscal";
+//     } else if(routine == DCOPY) {
+//         result = "dcopy";
+//     } else if(routine == DAXPY) {
+//         result = "daxpy";
+//     } else if(routine == DDOT) {
+//         result = "ddot";
+//     } else if(routine == DSDOT) {
+//         result = "dsdot";
+//     } else if(routine == DNRM2) {
+//         result = "dnrm2";
+//     // } else if(routine == DZNRM2) {
+//     //     result = "dznrm2";
+//     } else if(routine == DASUM) {
+//         result = "dasum";
+//     } else if(routine == IDAMAX) {
+//         result = "idamax";
+//     } else if(routine == SGEMV) {
+//         result = "sgemv";
+//     } else {
+//         result = "unknown";
+//     }
+//     return result;
+// }
 
-noinline
-void log_datapoint(string destination_path, int x_axis_value, double[*] y_axis_values) {
-    err, file = fopen(destination_path, "a");
-    fprintf(file, "%i,", x_axis_value);
-    for(i = 0; i < shape(y_axis_values)[0]; i++) {
-        fprintf(file, "%f,", y_axis_values[i]);
-    }
-    fprintf(file, "\n");
-    fclose(file);
-}
+// noinline
+// void log_datapoint(string destination_path, int x_axis_value, double[*] y_axis_values) {
+//     err, file = fopen(destination_path, "a");
+//     fprintf(file, "%i,", x_axis_value);
+//     for(i = 0; i < shape(y_axis_values)[0]; i++) {
+//         fprintf(file, "%f,", y_axis_values[i]);
+//     }
+//     fprintf(file, "\n");
+//     fclose(file);
+// }
 
+inline
 void print_test_status(string routine, int mistakes) {
     if(mistakes == 0) {
         printf("%s: PASSED all tests.\n", routine);
@@ -2085,61 +2116,84 @@ void print_test_status(string routine, int mistakes) {
     }
 }
 
+inline
 double[*] permutations(double[.] as, double[.] bs) {
     perms = { [i,j] -> [as[i], bs[j]] };
 
     return reshape([shape(as)[0]*shape(bs)[0], 2], perms);
 }
+
+inline
 float[*] permutations(float[.] as, float[.] bs) {
     perms = { [i,j] -> [as[i], bs[j]] };
 
     return reshape([shape(as)[0]*shape(bs)[0], 2], perms);
 }
+
+inline
 int[*] permutations(int[.] as, int[.] bs) {
     perms = { [i,j] -> [as[i], bs[j]] };
 
     return reshape([shape(as)[0]*shape(bs)[0], 2], perms);
 }
+
+inline
 double[*] permutations(double[.] as, double[.] bs, double[.] cs) {
     perms = { [i,j,k] -> [as[i], bs[j], cs[k]]};
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0], 3], perms);
 }
+
+inline
 float[*] permutations(float[.] as, float[.] bs, float[.] cs) {
     perms = { [i,j,k] -> [as[i], bs[j], cs[k]]};
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0], 3], perms);
 }
+
+inline
 int[*] permutations(int[.] as, int[.] bs, int[.] cs) {
     perms = { [i,j,k] -> [as[i], bs[j], cs[k]]};
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0], 3], perms);
 }
+
+inline
 double[*] permutations(double[.] as, double[.] bs, double[.] cs, double[.] ds) {
     perms = { [i,j,k,l] -> [as[i], bs[j], cs[k], ds[l]] };
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0], 4], perms);
 }
+
+inline
 float[*] permutations(float[.] as, float[.] bs, float[.] cs, float[.] ds) {
     perms = { [i,j,k,l] -> [as[i], bs[j], cs[k], ds[l]] };
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0], 4], perms);
 }
+
+inline
 int[*] permutations(int[.] as, int[.] bs, int[.] cs, int[.] ds) {
     perms = { [i,j,k,l] -> [as[i], bs[j], cs[k], ds[l]] };
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0], 4], perms);
 }
+
+inline
 double[*] permutations(double[.] as, double[.] bs, double[.] cs, double[.] ds, double[.] es) {
     perms = { [i,j,k,l,m] -> [as[i], bs[j], cs[k], ds[l], es[m]] };
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0]*shape(es)[0], 5], perms);
 }
+
+inline
 float[*] permutations(float[.] as, float[.] bs, float[.] cs, float[.] ds, float[.] es) {
     perms = { [i,j,k,l,m] -> [as[i], bs[j], cs[k], ds[l], es[m]] };
 
     return reshape([shape(as)[0]*shape(bs)[0]*shape(cs)[0]*shape(ds)[0]*shape(es)[0], 5], perms);
 }
+
+inline
 int[*] permutations(int[.] as, int[.] bs, int[.] cs, int[.] ds, int[.] es) {
     perms = { [i,j,k,l,m] -> [as[i], bs[j], cs[k], ds[l], es[m]] };
 
@@ -2148,314 +2202,241 @@ int[*] permutations(int[.] as, int[.] bs, int[.] cs, int[.] ds, int[.] es) {
 
 
 
-/*
- * MEASURE FUNCTIONS
- */
-inline
-double measure_drotg(int version) {
-    interval = getInterval("interval", 7, 1);
-    a = id(7d);
-    b = id(4d);
+// /*
+//  * MEASURE FUNCTIONS
+//  */
+// inline
+// double measure_drotg(int version) {
+//     interval = getInterval("interval", 7, 1);
+//     a = id(7d);
+//     b = id(4d);
     
-    if(version == NATIVE) {
-        start(interval);
-        r, z, c, s = drotg(a, b, a, b);
-        end(interval);
-    } else {
-        start(interval);
-        r, z, c, s = OpenBlas::drotg(a, b, a, b);
-        end(interval);
-    }
+//     if(version == NATIVE) {
+//         start(interval);
+//         r, z, c, s = drotg(a, b, a, b);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         r, z, c, s = OpenBlas::drotg(a, b, a, b);
+//         end(interval);
+//     }
 
-    printf("r: %f\nz: %f\nc: %f\ns: %f\n", id(r), id(z), id(c), id(s));
+//     printf("r: %f\nz: %f\nc: %f\ns: %f\n", id(r), id(z), id(c), id(s));
 
-    time, unit = returnResultUnit(interval);
+//     time, unit = returnResultUnit(interval);
 
-    return time;
-}
-
-inline
-double measure_drotmg(int version) {
-    interval = getInterval("interval", 7, 1);
-    d1 = id(3d);
-    d2 = id(5d);
-    x1 = id(7d);
-    y1 = id(11d);
-    param = id(tod(iota(5)));
-    
-    if(version == NATIVE) {
-        start(interval);
-        d1, d2, x1, y1, param = drotmg(d1, d2, x1, y1, param);
-        end(interval);
-    } else {
-        start(interval);
-        d1, d2, x1, y1, param = OpenBlas::drotmg(d1, d2, x1, y1, param);
-        end(interval);
-    }
-
-    printf("d1: %f\nd2: %f\nx1: %f\ny1: %f\n", id(d1), id(d2), id(x1), id(y1));
-    printf("param: ");
-    show(take([5], id(param)));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
-
-inline
-double measure_drot(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7d));
-    Y = id(genarray([n], 4d));
-    c = id(5d);
-    s = id(11d);
-
-    m = cap_n(n, INCX, INCY);
-    
-    if(version == NATIVE) {
-        start(interval);
-        X, Y = drot(n, X, INCX, Y, INCY, c, s);
-        end(interval);
-    } else {
-        start(interval);
-        X, Y = OpenBlas::drot(n, X, INCX, Y, INCY, c, s);
-        end(interval);
-    }
-
-    printf("X: ");
-    show(take([10], id(X)));
-    printf("Y: ");
-    show(take([10], id(Y)));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
-
-inline
-double measure_drotm(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7d));
-    Y = id(genarray([n], 4d));
-    param = id([-1d, 2d, 3d, 4d, 5d]);
-
-    m = cap_n(n, INCX, INCY);
-    
-    if(version == NATIVE) {
-        start(interval);
-        X, Y = drotm(m, X, INCX, Y, INCY, param);
-        end(interval);
-    } else {
-        start(interval);
-        X, Y = OpenBlas::drotm(m, X, INCX, Y, INCY, param);
-        end(interval);
-    }
-
-    printf("X: ");
-    show(take([10], id(X)));
-    printf("Y: ");
-    show(take([10], id(Y)));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
-
-inline
-double measure_dswap(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7d));
-    Y = id(genarray([n], 4d));
-
-    m = cap_n(n, INCX, INCY);
-    
-    if(version == NATIVE) {
-        start(interval);
-        X, Y = dswap(m, X, INCX, Y, INCY);
-        end(interval);
-    } else {
-        start(interval);
-        X, Y = OpenBlas::dswap(m, X, INCX, Y, INCY);
-        end(interval);
-    }
-
-    printf("X: ");
-    show(take([10], id(X)));
-    printf("Y: ");
-    show(take([10], id(Y)));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
-
-inline
-double measure_dscal(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7d));
-    a = id(5d);
-
-    m = cap_n(n, INCX);
-    
-    if(version == NATIVE) {
-        start(interval);
-        X = dscal(m, a, X, INCX);
-        end(interval);
-    } else {
-        start(interval);
-        X = OpenBlas::dscal(m, a, X, INCX);
-        end(interval);
-    }
-
-    printf("X: ");
-    show(take([10], id(X)));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
-
-inline
-double measure_dcopy(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7d));
-    Y = id(genarray([n], 4d));
-
-    m = cap_n(n, INCX, INCY);
-    
-    if(version == NATIVE) {
-        start(interval);
-        Y = dcopy(m, X, INCX, Y, INCY);
-        end(interval);
-    } else {
-        start(interval);
-        Y = OpenBlas::dcopy(m, X, INCX, Y, INCY);
-        end(interval);
-    }
-
-    printf("Y: ");
-    show(take([10], id(Y)));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
-
-inline
-double measure_daxpy(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7d));
-    Y = id(genarray([n], 4d));
-    a = id(5d);
-
-    m = cap_n(n, INCX, INCY);
-
-    if(version == NATIVE) {
-        start(interval);
-        Y = daxpy(m, a, X, INCX, Y, INCY);
-        end(interval);
-    } else {
-        start(interval);
-        Y = OpenBlas::daxpy(m, a, X, INCX, Y, INCY);
-        end(interval);
-    }
-
-    printf("Y: ");
-    show(take([10], id(Y)));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
-
-inline
-double measure_ddot(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7d));
-    Y = id(genarray([n], 4d));
-
-    m = cap_n(n, INCX, INCY);
-    
-    if(version == NATIVE) {
-        start(interval);
-        result = ddot(m, X, INCX, Y, INCY);
-        end(interval);
-    } else {
-        start(interval);
-        result = OpenBlas::ddot(m, X, INCX, Y, INCY);
-        end(interval);
-    }
-
-    printf("result: %f\n", id(result));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
-
-inline
-double measure_dsdot(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7f));
-    Y = id(genarray([n], 4f));
-
-    m = cap_n(n, INCX, INCY);
-    
-    if(version == NATIVE) {
-        start(interval);
-        result = dsdot(m, X, INCX, Y, INCY);
-        end(interval);
-    } else {
-        start(interval);
-        result = OpenBlas::dsdot(m, X, INCX, Y, INCY);
-        end(interval);
-    }
-
-    printf("result: %f\n", id(result));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
-
-inline
-double measure_dnrm2(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7d));
-
-    m = cap_n(n, INCX);
-
-    if(version == NATIVE) {
-        start(interval);
-        result = dnrm2(m, X, INCX);
-        end(interval);
-    } else {
-        start(interval);
-        result = OpenBlas::dnrm2(m, X, INCX);
-        end(interval);
-    }
-
-    printf("result: %f\n", id(result));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
+//     return time;
+// }
 
 // inline
-// double measure_dznrm2(int version, int n) {
+// double measure_drotmg(int version) {
 //     interval = getInterval("interval", 7, 1);
-//     X = id(genarray([n], toc(7d, 4d)));
+//     d1 = id(3d);
+//     d2 = id(5d);
+//     x1 = id(7d);
+//     y1 = id(11d);
+//     param = id(tod(iota(5)));
     
+//     if(version == NATIVE) {
+//         start(interval);
+//         d1, d2, x1, y1, param = drotmg(d1, d2, x1, y1, param);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         d1, d2, x1, y1, param = OpenBlas::drotmg(d1, d2, x1, y1, param);
+//         end(interval);
+//     }
+
+//     printf("d1: %f\nd2: %f\nx1: %f\ny1: %f\n", id(d1), id(d2), id(x1), id(y1));
+//     printf("param: ");
+//     show(take([5], id(param)));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+// inline
+// double measure_drot(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7d));
+//     Y = id(genarray([n], 4d));
+//     c = id(5d);
+//     s = id(11d);
+
+//     m = cap_n(n, INCX, INCY);
+    
+//     if(version == NATIVE) {
+//         start(interval);
+//         X, Y = drot(n, X, INCX, Y, INCY, c, s);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         X, Y = OpenBlas::drot(n, X, INCX, Y, INCY, c, s);
+//         end(interval);
+//     }
+
+//     printf("X: ");
+//     show(take([10], id(X)));
+//     printf("Y: ");
+//     show(take([10], id(Y)));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+// inline
+// double measure_drotm(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7d));
+//     Y = id(genarray([n], 4d));
+//     param = id([-1d, 2d, 3d, 4d, 5d]);
+
+//     m = cap_n(n, INCX, INCY);
+    
+//     if(version == NATIVE) {
+//         start(interval);
+//         X, Y = drotm(m, X, INCX, Y, INCY, param);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         X, Y = OpenBlas::drotm(m, X, INCX, Y, INCY, param);
+//         end(interval);
+//     }
+
+//     printf("X: ");
+//     show(take([10], id(X)));
+//     printf("Y: ");
+//     show(take([10], id(Y)));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+// inline
+// double measure_dswap(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7d));
+//     Y = id(genarray([n], 4d));
+
+//     m = cap_n(n, INCX, INCY);
+    
+//     if(version == NATIVE) {
+//         start(interval);
+//         X, Y = dswap(m, X, INCX, Y, INCY);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         X, Y = OpenBlas::dswap(m, X, INCX, Y, INCY);
+//         end(interval);
+//     }
+
+//     printf("X: ");
+//     show(take([10], id(X)));
+//     printf("Y: ");
+//     show(take([10], id(Y)));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+// inline
+// double measure_dscal(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7d));
+//     a = id(5d);
+
 //     m = cap_n(n, INCX);
     
 //     if(version == NATIVE) {
 //         start(interval);
-//         result = dznrm2(m, X, INCX);
+//         X = dscal(m, a, X, INCX);
 //         end(interval);
 //     } else {
 //         start(interval);
-//         result = OpenBlas::dznrm2(m, X, INCX);
+//         X = OpenBlas::dscal(m, a, X, INCX);
+//         end(interval);
+//     }
+
+//     printf("X: ");
+//     show(take([10], id(X)));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+// inline
+// double measure_dcopy(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7d));
+//     Y = id(genarray([n], 4d));
+
+//     m = cap_n(n, INCX, INCY);
+    
+//     if(version == NATIVE) {
+//         start(interval);
+//         Y = dcopy(m, X, INCX, Y, INCY);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         Y = OpenBlas::dcopy(m, X, INCX, Y, INCY);
+//         end(interval);
+//     }
+
+//     printf("Y: ");
+//     show(take([10], id(Y)));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+// inline
+// double measure_daxpy(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7d));
+//     Y = id(genarray([n], 4d));
+//     a = id(5d);
+
+//     m = cap_n(n, INCX, INCY);
+
+//     if(version == NATIVE) {
+//         start(interval);
+//         Y = daxpy(m, a, X, INCX, Y, INCY);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         Y = OpenBlas::daxpy(m, a, X, INCX, Y, INCY);
+//         end(interval);
+//     }
+
+//     printf("Y: ");
+//     show(take([10], id(Y)));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+// inline
+// double measure_ddot(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7d));
+//     Y = id(genarray([n], 4d));
+
+//     m = cap_n(n, INCX, INCY);
+    
+//     if(version == NATIVE) {
+//         start(interval);
+//         result = ddot(m, X, INCX, Y, INCY);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         result = OpenBlas::ddot(m, X, INCX, Y, INCY);
 //         end(interval);
 //     }
 
@@ -2466,572 +2447,623 @@ double measure_dnrm2(int version, int n) {
 //     return time;
 // }
 
-inline
-double measure_dasum(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7d));
+// inline
+// double measure_dsdot(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7f));
+//     Y = id(genarray([n], 4f));
+
+//     m = cap_n(n, INCX, INCY);
     
-    m = cap_n(n, INCX);
+//     if(version == NATIVE) {
+//         start(interval);
+//         result = dsdot(m, X, INCX, Y, INCY);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         result = OpenBlas::dsdot(m, X, INCX, Y, INCY);
+//         end(interval);
+//     }
 
-    if(version == NATIVE) {
-        start(interval);
-        result = dasum(m, X, INCX);
-        end(interval);
-    } else {
-        start(interval);
-        result = OpenBlas::dasum(m, X, INCX);
-        end(interval);
-    }
+//     printf("result: %f\n", id(result));
 
-    printf("result: %f\n", id(result));
+//     time, unit = returnResultUnit(interval);
 
-    time, unit = returnResultUnit(interval);
+//     return time;
+// }
 
-    return time;
-}
+// inline
+// double measure_dnrm2(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7d));
 
-inline
-double measure_idamax(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    X = id(genarray([n], 7d));
+//     m = cap_n(n, INCX);
 
-    m = cap_n(n, INCX);
+//     if(version == NATIVE) {
+//         start(interval);
+//         result = dnrm2(m, X, INCX);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         result = OpenBlas::dnrm2(m, X, INCX);
+//         end(interval);
+//     }
+
+//     printf("result: %f\n", id(result));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+// // inline
+// // double measure_dznrm2(int version, int n) {
+// //     interval = getInterval("interval", 7, 1);
+// //     X = id(genarray([n], toc(7d, 4d)));
     
-    if(version == NATIVE) {
-        start(interval);
-        result = idamax(m, X, INCX);
-        end(interval);
-    } else {
-        start(interval);
-        result = OpenBlas::idamax(m, X, INCX);
-        end(interval);
-    }
-
-    printf("result: %i\n", id(result));
-
-    time, unit = returnResultUnit(interval);
-
-    return time;
-}
-
-inline
-double measure_sgemv(int version, int n) {
-    interval = getInterval("interval", 7, 1);
-    x = id(genarray([n], 7f));
-    y = id(genarray([n], 4f));
-    a = genarray([n,n], 3f);
-    lda = n;
-    alpha = 6f;
-    beta = 8f;
-    t = 'n';
-    m = n;
-
-    // m = cap_n(n, INCX, INCY);
+// //     m = cap_n(n, INCX);
     
-    if(version == NATIVE) {
-        start(interval);
-        Y = sgemv(t, m, n, alpha, a, lda, x, INCX, beta, y, INCY);
-        end(interval);
-    } else {
-        start(interval);
-        Y = OpenBlas::sgemv(t, m, n, alpha, a, lda, x, INCX, beta, y, INCY);
-        end(interval);
-    }
+// //     if(version == NATIVE) {
+// //         start(interval);
+// //         result = dznrm2(m, X, INCX);
+// //         end(interval);
+// //     } else {
+// //         start(interval);
+// //         result = OpenBlas::dznrm2(m, X, INCX);
+// //         end(interval);
+// //     }
 
-    // printf("x: ");
-    // show(take([10], id(x)));
-    // printf("y: ");
-    // show(take([10], id(Y)));
+// //     printf("result: %f\n", id(result));
 
-    time, unit = returnResultUnit(interval);
+// //     time, unit = returnResultUnit(interval);
 
-    return time;
-}
+// //     return time;
+// // }
 
-
-double[*] run(int routine, int version, int n, int sample_rate) {
-    m = cap_n(n, INCX, INCY);
-    times = genarray([sample_rate], 0.0);
+// inline
+// double measure_dasum(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7d));
     
-    for(i = 0; i < sample_rate; i++) {
-        //X = id(genarray([n], tod(i)+7d));
-        //Y = id(genarray([n], tod(i)+4d));
-        //param = id([-1d, 2d, 3d, 4d, 5d]);
-        //a = id(2d);
-        //b = id(3d);
-        //c = id(4d);
-        //d = id(5d);
+//     m = cap_n(n, INCX);
 
-        if(routine == DROTG) {
-            time = measure_drotg(version);
-        } else if(routine == DROTMG) {
-            time = measure_drotmg(version);
-        } else if(routine == DROT) {
-            time = measure_drot(version, n);
-        } else if(routine == DROTM) {
-            time = measure_drotm(version, n);
-        } else if(routine == DSWAP) {
-            time = measure_dswap(version, n);
-        } else if(routine == DSCAL) {
-            time = measure_dscal(version, n);
-        } else if(routine == DCOPY) {
-            time = measure_dcopy(version, n);
-        } else if(routine == DAXPY) {
-            time = measure_daxpy(version, n);
-        } else if(routine == DDOT) {
-            time = measure_ddot(version, n);
-        } else if(routine == DSDOT) {
-            time = measure_dsdot(version, n);
-        } else if(routine == DNRM2) {
-            time = measure_dnrm2(version, n);
-        // } else if(routine == DZNRM2) {
-        //     time = measure_dznrm2(version, n);
-        } else if(routine == DASUM) {
-            time = measure_dasum(version, n);
-        } else if(routine == IDAMAX) {
-            time = measure_idamax(version, n);
-        } else if(routine == SGEMV) {
-            time = measure_sgemv(version, n);
-        } else {
-            time = 0.0;
-        }
+//     if(version == NATIVE) {
+//         start(interval);
+//         result = dasum(m, X, INCX);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         result = OpenBlas::dasum(m, X, INCX);
+//         end(interval);
+//     }
+
+//     printf("result: %f\n", id(result));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+// inline
+// double measure_idamax(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     X = id(genarray([n], 7d));
+
+//     m = cap_n(n, INCX);
+    
+//     if(version == NATIVE) {
+//         start(interval);
+//         result = idamax(m, X, INCX);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         result = OpenBlas::idamax(m, X, INCX);
+//         end(interval);
+//     }
+
+//     printf("result: %i\n", id(result));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+// inline
+// double measure_sgemv(int version, int n) {
+//     interval = getInterval("interval", 7, 1);
+//     x = id(genarray([n], 7f));
+//     y = id(genarray([n], 4f));
+//     a = genarray([n,n], 3f);
+//     lda = n;
+//     alpha = 6f;
+//     beta = 8f;
+//     t = 'n';
+//     m = n;
+
+//     // m = cap_n(n, INCX, INCY);
+    
+//     if(version == NATIVE) {
+//         start(interval);
+//         Y = sgemv(t, m, n, alpha, a, lda, x, INCX, beta, y, INCY);
+//         end(interval);
+//     } else {
+//         start(interval);
+//         Y = OpenBlas::sgemv(t, m, n, alpha, a, lda, x, INCX, beta, y, INCY);
+//         end(interval);
+//     }
+
+//     // printf("x: ");
+//     // show(take([10], id(x)));
+//     // printf("y: ");
+//     // show(take([10], id(Y)));
+
+//     time, unit = returnResultUnit(interval);
+
+//     return time;
+// }
+
+
+// double[*] run(int routine, int version, int n, int sample_rate) {
+//     m = cap_n(n, INCX, INCY);
+//     times = genarray([sample_rate], 0.0);
+    
+//     for(i = 0; i < sample_rate; i++) {
+//         //X = id(genarray([n], tod(i)+7d));
+//         //Y = id(genarray([n], tod(i)+4d));
+//         //param = id([-1d, 2d, 3d, 4d, 5d]);
+//         //a = id(2d);
+//         //b = id(3d);
+//         //c = id(4d);
+//         //d = id(5d);
+
+//         if(routine == DROTG) {
+//             time = measure_drotg(version);
+//         } else if(routine == DROTMG) {
+//             time = measure_drotmg(version);
+//         } else if(routine == DROT) {
+//             time = measure_drot(version, n);
+//         } else if(routine == DROTM) {
+//             time = measure_drotm(version, n);
+//         } else if(routine == DSWAP) {
+//             time = measure_dswap(version, n);
+//         } else if(routine == DSCAL) {
+//             time = measure_dscal(version, n);
+//         } else if(routine == DCOPY) {
+//             time = measure_dcopy(version, n);
+//         } else if(routine == DAXPY) {
+//             time = measure_daxpy(version, n);
+//         } else if(routine == DDOT) {
+//             time = measure_ddot(version, n);
+//         } else if(routine == DSDOT) {
+//             time = measure_dsdot(version, n);
+//         } else if(routine == DNRM2) {
+//             time = measure_dnrm2(version, n);
+//         // } else if(routine == DZNRM2) {
+//         //     time = measure_dznrm2(version, n);
+//         } else if(routine == DASUM) {
+//             time = measure_dasum(version, n);
+//         } else if(routine == IDAMAX) {
+//             time = measure_idamax(version, n);
+//         } else if(routine == SGEMV) {
+//             time = measure_sgemv(version, n);
+//         } else {
+//             time = 0.0;
+//         }
         
-        times[i] = time;
-    }
+//         times[i] = time;
+//     }
 
-    return times;
-}
+//     return times;
+// }
 
-void measure_input_size(int mode, int routine) {
-    output_path = "./graphs/data/" + routine_id_to_name(routine) + ".out";
+// void measure_input_size(int mode, int routine) {
+//     output_path = "./graphs/data/" + routine_id_to_name(routine) + ".out";
     
-    if(mode == ST) {
-        //clear the output file now, since the log_data function only appends new data
-        err, file = fopen(output_path, "w");
-        //write some additional info at the top of the file
-        fprintf(file, "%i,%i\n", INCX, INCY);
-        fclose(file);
+//     if(mode == ST) {
+//         //clear the output file now, since the log_data function only appends new data
+//         err, file = fopen(output_path, "w");
+//         //write some additional info at the top of the file
+//         fprintf(file, "%i,%i\n", INCX, INCY);
+//         fclose(file);
 
-        err, file = fopen(output_path, "a");
-        fprintf(file, "%s\n", "nat_st");
-        fclose(file);
-        for(n = 10; n <= N; n = toi(tod(n) * 1.1d)) {
-            printf("\nn = %i\n", n);
-            m = cap_n(n, INCX, INCY);
+//         err, file = fopen(output_path, "a");
+//         fprintf(file, "%s\n", "nat_st");
+//         fclose(file);
+//         for(n = 10; n <= N; n = toi(tod(n) * 1.1d)) {
+//             printf("\nn = %i\n", n);
+//             m = cap_n(n, INCX, INCY);
             
-            printf("-Native-\n");
-            times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
-            log_datapoint(output_path, n, times_nat);
-        }
+//             printf("-Native-\n");
+//             times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
+//             log_datapoint(output_path, n, times_nat);
+//         }
 
-        err, file = fopen(output_path, "a");
-        fprintf(file, "%s\n", "lib");
-        fclose(file);
-        for(n = 10; n <= N; n = toi(tod(n) * 1.1d)) {
-            printf("\nn = %i\n", n);
-            m = cap_n(n, INCX, INCY);
+//         err, file = fopen(output_path, "a");
+//         fprintf(file, "%s\n", "lib");
+//         fclose(file);
+//         for(n = 10; n <= N; n = toi(tod(n) * 1.1d)) {
+//             printf("\nn = %i\n", n);
+//             m = cap_n(n, INCX, INCY);
             
-            printf("-Library-\n");
-            times_lib = run(routine, LIBRARY, n, SAMPLE_RATE);
-            log_datapoint(output_path, n, times_lib);
-        }
-    } else {
-        err, file = fopen(output_path, "a");
-        fprintf(file, "%s\n", "nat_mt");
-        fclose(file);
-        for(n = 10; n <= N; n = toi(tod(n) * 1.1d)) {
-            printf("\nn = %i\n", n);
-            m = cap_n(n, INCX, INCY);
+//             printf("-Library-\n");
+//             times_lib = run(routine, LIBRARY, n, SAMPLE_RATE);
+//             log_datapoint(output_path, n, times_lib);
+//         }
+//     } else {
+//         err, file = fopen(output_path, "a");
+//         fprintf(file, "%s\n", "nat_mt");
+//         fclose(file);
+//         for(n = 10; n <= N; n = toi(tod(n) * 1.1d)) {
+//             printf("\nn = %i\n", n);
+//             m = cap_n(n, INCX, INCY);
             
-            printf("-Native (multi-threaded)-\n");
-            times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
-            log_datapoint(output_path, n, times_nat);
-        }
-    }
-}
+//             printf("-Native (multi-threaded)-\n");
+//             times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
+//             log_datapoint(output_path, n, times_nat);
+//         }
+//     }
+// }
 
-void measure_thread_count(int thread_count, int routine) {
-    output_path = "../../graphs/data/" + routine_id_to_name(routine) + ".out";
+// void measure_thread_count(int thread_count, int routine) {
+//     output_path = "../../graphs/data/" + routine_id_to_name(routine) + ".out";
 
-    //define n as smaller than N, because we want everything to stay within L3 cache for this measurement.
-    n = 1000000;
+//     //define n as smaller than N, because we want everything to stay within L3 cache for this measurement.
+//     n = 1000000;
 
-    if(thread_count == 1) {
-        //clear the output file now, since the log_data function only appends new data
-        err, file = fopen(output_path, "w");
-        //write some additional info at the top of the file
-        fprintf(file, "%i,%i,%i\n", n, INCX, INCY);
-        fclose(file);
+//     if(thread_count == 1) {
+//         //clear the output file now, since the log_data function only appends new data
+//         err, file = fopen(output_path, "w");
+//         //write some additional info at the top of the file
+//         fprintf(file, "%i,%i,%i\n", n, INCX, INCY);
+//         fclose(file);
 
-        times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
-        log_datapoint(output_path, thread_count, times_nat);
-    }
+//         times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
+//         log_datapoint(output_path, thread_count, times_nat);
+//     }
 
-    times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
-    log_datapoint(output_path, thread_count, times_nat);
-}
-
-
-
-/*
- * TEST FUNCTIONS
- */
-void test_drotg(double[.] as, double[.] bs) {
-    mistakes = 0;
-    perms = permutations(as, bs);
-    for(i = 0; i < shape(perms)[0]; i++) {
-        params = perms[i];
-        a = params[0]; b = params[1];
-
-        native = genarray([4], 0d);
-        library = genarray([4], 0d);
-        native1, native2, native3, native4 = drotg(a, b, a, b);
-        library1, library2, library3, library4 = OpenBlas::drotg(a, b, a, b);
-        native[0] = native1; native[1] = native2; native[2] = native3; native[3] = native4;
-        library[0] = library1; library[1] = library2; library[2] = library3; library[3] = library4;
-
-        if(any(abs(native - library) > MAX_ACC_LOSS)) {
-            printf("For a = %f, b = %f\n", a, b);
-            printf("Native: ");
-            show(native);
-            printf("Library:");
-            show(library);
-            mistakes++;
-        }
-    }
-    print_test_status("drotg", mistakes);
-}
-
-void test_drotmg(double[.] d1s, double[.] d2s, double[.] x1s, double[.] y1s) {
-    mistakes = 0;
-    perms = permutations(d1s, d2s, x1s, y1s);
-    for(i = 0; i < shape(perms)[0]; i++) {
-        params = perms[i];
-        d1 = params[0]; d2 = params[1];
-        x1 = params[2]; y1 = params[3];
-        param = tod(iota(5));
+//     times_nat = run(routine, NATIVE,  n, SAMPLE_RATE);
+//     log_datapoint(output_path, thread_count, times_nat);
+// }
 
 
 
-        native1, native2, native3, native4, native5 = drotmg(d1, d2, x1, y1, param);
-        library1, library2, library3, library4, library5 = OpenBlas::drotmg(d1, d2, x1, y1, param);
-        native = [native1, native2, native3, native4] ++ native5;
-        library = [library1, library2, library3, library4] ++ library5;
+// /*
+//  * TEST FUNCTIONS
+//  */
+// void test_drotg(double[.] as, double[.] bs) {
+//     mistakes = 0;
+//     perms = permutations(as, bs);
+//     for(i = 0; i < shape(perms)[0]; i++) {
+//         params = perms[i];
+//         a = params[0]; b = params[1];
 
-        if (library5[0] == -2d) {
-           if(any(abs(take([4],native) - take([4],library)) > MAX_ACC_LOSS)) {
-            printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
-            printf("Native: ");
-            show(native);
-            printf("Library:");
-            show(library);
-            mistakes++;
-           } 
-        } else if (library5[0] == -1d) {
-           if(any(abs(native - library) > MAX_ACC_LOSS)) {
-            printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
-            printf("Native: ");
-            show(native);
-            printf("Library:");
-            show(library);
-            mistakes++;
-           } 
-        } else if (library5[0] == 0d) {
-            if(any(abs(take([4],native) - take([4],library)) > MAX_ACC_LOSS) || native5[2] - library5[2] > MAX_ACC_LOSS || native5[3] - library5[3] > MAX_ACC_LOSS) {
-              printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
-              printf("Native: ");
-              show(native);
-              printf("Library:");
-              show(library);
-              mistakes++;
-            } 
-        } else if (library5[0] == 1d) {
-            if(any(abs(take([4],native) - take([4],library)) > MAX_ACC_LOSS) || native5[1] - library5[1] > MAX_ACC_LOSS || native5[4] - library5[4] > MAX_ACC_LOSS) {
-              printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
-              printf("Native: ");
-              show(native);
-              printf("Library:");
-              show(library);
-              mistakes++;
-            } 
-        } 
-    }
-    print_test_status("drotmg", mistakes);
-}
+//         native = genarray([4], 0d);
+//         library = genarray([4], 0d);
+//         native1, native2, native3, native4 = drotg(a, b, a, b);
+//         library1, library2, library3, library4 = OpenBlas::drotg(a, b, a, b);
+//         native[0] = native1; native[1] = native2; native[2] = native3; native[3] = native4;
+//         library[0] = library1; library[1] = library2; library[2] = library3; library[3] = library4;
 
-void test_drot(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys, double[.] cs, double[.] ss) {
-    mistakes = 0;
-    perms_v = permutations(xs, ys);
-    perms_i = permutations(incxs, incys);
-    perms_d = permutations(cs, ss);
-    for(i = 0; i < shape(perms_v)[0]; i++) {
-        params = perms_v[i];
-        X = genarray([n], params[0]);
-        Y = genarray([n], params[1]);
-        for(j = 0; j < shape(perms_i)[0]; j++) {
-            params = perms_i[j];
-            incx = params[0]; incy = params[1];
-            for(k = 0; k < shape(perms_d)[0]; k++) {
-                params = perms_d[k];
-                c = params[0]; s = params[0];
+//         if(any(abs(native - library) > MAX_ACC_LOSS)) {
+//             printf("For a = %f, b = %f\n", a, b);
+//             printf("Native: ");
+//             show(native);
+//             printf("Library:");
+//             show(library);
+//             mistakes++;
+//         }
+//     }
+//     print_test_status("drotg", mistakes);
+// }
 
-                m = cap_n(n, incx, incy);
+// void test_drotmg(double[.] d1s, double[.] d2s, double[.] x1s, double[.] y1s) {
+//     mistakes = 0;
+//     perms = permutations(d1s, d2s, x1s, y1s);
+//     for(i = 0; i < shape(perms)[0]; i++) {
+//         params = perms[i];
+//         d1 = params[0]; d2 = params[1];
+//         x1 = params[2]; y1 = params[3];
+//         param = tod(iota(5));
 
-                native_X, native_Y = drot(m, X, incx, Y, incy, c, s);
-                library_X, library_Y = OpenBlas::drot(m, X, incx, Y, incy, c, s);
-                if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
-                    printf("For x = %f, incx = %i, y = %f, incy = %i, c = %f, s = %f\n", X[0], incx, Y[0], incy, c, s);
-                    printf("Native: ");
-                    show(take([10], native_X));
-                    show(take([10], native_Y));
-                    printf("Library:");
-                    show(take([10], library_X));
-                    show(take([10], library_Y));
-                    mistakes++;
-                }
-            }
-        }
-    }
-    print_test_status("drot", mistakes);
-}
 
-void test_drotm(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys, double[.] flags, double[.] h_params) {
-    mistakes = 0;
-    perms_v = permutations(xs, ys);
-    perms_i = permutations(incxs, incys);
-    perms_p = permutations(flags, h_params, h_params, h_params, h_params);
-    for(i = 0; i < shape(perms_v)[0]; i++) {
-        params = perms_v[i];
-        X = genarray([n], params[0]);
-        Y = genarray([n], params[1]);
-        for(j = 0; j < shape(perms_i)[0]; j++) {
-            params = perms_i[j];
-            incx = params[0]; 
-            incy = params[1];
-            for(k = 0; k < shape(perms_p)[0]; k++) {
-                params = perms_p[k];
 
-                m = cap_n(n, incx, incy);
-                if (m > 0 && ismember(params[0], [1.0d, 0.0d, -1.0d, -2.0d]) && minArrLen(m, shape(X)[0], incx) && minArrLen(m, shape(Y)[0], incy)) {
-                    native_X, native_Y = drotm(m, X, incx, Y, incy, params);
-                    library_X, library_Y = OpenBlas::drotm(m, X, incx, Y, incy, params);
+//         native1, native2, native3, native4, native5 = drotmg(d1, d2, x1, y1, param);
+//         library1, library2, library3, library4, library5 = OpenBlas::drotmg(d1, d2, x1, y1, param);
+//         native = [native1, native2, native3, native4] ++ native5;
+//         library = [library1, library2, library3, library4] ++ library5;
 
-                    if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
-                        printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
-                        printf("    param = "); show(params);
-                        printf("Native: ");
-                        show(take([10], native_X));
-                        show(take([10], native_Y));
-                        printf("Library:");
-                        show(take([10], library_X));
-                        show(take([10], library_Y));
-                        mistakes++;
-                    }
-                }
+//         if (library5[0] == -2d) {
+//            if(any(abs(take([4],native) - take([4],library)) > MAX_ACC_LOSS)) {
+//             printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
+//             printf("Native: ");
+//             show(native);
+//             printf("Library:");
+//             show(library);
+//             mistakes++;
+//            } 
+//         } else if (library5[0] == -1d) {
+//            if(any(abs(native - library) > MAX_ACC_LOSS)) {
+//             printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
+//             printf("Native: ");
+//             show(native);
+//             printf("Library:");
+//             show(library);
+//             mistakes++;
+//            } 
+//         } else if (library5[0] == 0d) {
+//             if(any(abs(take([4],native) - take([4],library)) > MAX_ACC_LOSS) || native5[2] - library5[2] > MAX_ACC_LOSS || native5[3] - library5[3] > MAX_ACC_LOSS) {
+//               printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
+//               printf("Native: ");
+//               show(native);
+//               printf("Library:");
+//               show(library);
+//               mistakes++;
+//             } 
+//         } else if (library5[0] == 1d) {
+//             if(any(abs(take([4],native) - take([4],library)) > MAX_ACC_LOSS) || native5[1] - library5[1] > MAX_ACC_LOSS || native5[4] - library5[4] > MAX_ACC_LOSS) {
+//               printf("For d1 = %f, d2 = %f, x1 = %f, y1 = %f\n", d1, d2, x1, y1);
+//               printf("Native: ");
+//               show(native);
+//               printf("Library:");
+//               show(library);
+//               mistakes++;
+//             } 
+//         } 
+//     }
+//     print_test_status("drotmg", mistakes);
+// }
 
-            }
-        }
-    }
-    print_test_status("drotm", mistakes);
-}
+// void test_drot(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys, double[.] cs, double[.] ss) {
+//     mistakes = 0;
+//     perms_v = permutations(xs, ys);
+//     perms_i = permutations(incxs, incys);
+//     perms_d = permutations(cs, ss);
+//     for(i = 0; i < shape(perms_v)[0]; i++) {
+//         params = perms_v[i];
+//         X = genarray([n], params[0]);
+//         Y = genarray([n], params[1]);
+//         for(j = 0; j < shape(perms_i)[0]; j++) {
+//             params = perms_i[j];
+//             incx = params[0]; incy = params[1];
+//             for(k = 0; k < shape(perms_d)[0]; k++) {
+//                 params = perms_d[k];
+//                 c = params[0]; s = params[0];
 
-void test_dswap(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
-    mistakes = 0;
-    perms_v = permutations(xs, ys);
-    perms_i = permutations(incxs, incys);
-    for(i = 0; i < shape(perms_v)[0]; i++) {
-        params = perms_v[i];
-        X = genarray([n], params[0]);
-        Y = genarray([n], params[1]);
-        for(j = 0; j < shape(perms_i)[0]; j++) {
-            params = perms_i[j];
-            incx = params[0]; incy = params[1];
+//                 m = cap_n(n, incx, incy);
 
-            m = cap_n(n, incx, incy);
+//                 native_X, native_Y = drot(m, X, incx, Y, incy, c, s);
+//                 library_X, library_Y = OpenBlas::drot(m, X, incx, Y, incy, c, s);
+//                 if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
+//                     printf("For x = %f, incx = %i, y = %f, incy = %i, c = %f, s = %f\n", X[0], incx, Y[0], incy, c, s);
+//                     printf("Native: ");
+//                     show(take([10], native_X));
+//                     show(take([10], native_Y));
+//                     printf("Library:");
+//                     show(take([10], library_X));
+//                     show(take([10], library_Y));
+//                     mistakes++;
+//                 }
+//             }
+//         }
+//     }
+//     print_test_status("drot", mistakes);
+// }
 
-            native_X, native_Y = dswap(m, X, incx, Y, incy);
-            library_X, library_Y = OpenBlas::dswap(m, X, incx, Y, incy);
-            if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
-                printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
-                printf("Native: ");
-                show(take([10], native_X));
-                show(take([10], native_Y));
-                printf("Library:");
-                show(take([10], library_X));
-                show(take([10], library_Y));
-                mistakes++;
-            }
-        }
-    }
-    print_test_status("dswap", mistakes);
-}
+// void test_drotm(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys, double[.] flags, double[.] h_params) {
+//     mistakes = 0;
+//     perms_v = permutations(xs, ys);
+//     perms_i = permutations(incxs, incys);
+//     perms_p = permutations(flags, h_params, h_params, h_params, h_params);
+//     for(i = 0; i < shape(perms_v)[0]; i++) {
+//         params = perms_v[i];
+//         X = genarray([n], params[0]);
+//         Y = genarray([n], params[1]);
+//         for(j = 0; j < shape(perms_i)[0]; j++) {
+//             params = perms_i[j];
+//             incx = params[0]; 
+//             incy = params[1];
+//             for(k = 0; k < shape(perms_p)[0]; k++) {
+//                 params = perms_p[k];
 
-void test_dscal(int n, double[.] as, double[.] xs, int[.] incxs) {
-    mistakes = 0;
-    for(i = 0; i < shape(xs)[0]; i++) {
-        X = genarray([n], xs[0]);
-        for(j = 0; j < shape(as)[0]; j++) {
-            a = as[j];
-            for(k = 0; k < shape(incxs)[0]; k++) {
-                incx = incxs[k];
+//                 m = cap_n(n, incx, incy);
+//                 if (m > 0 && ismember(params[0], [1.0d, 0.0d, -1.0d, -2.0d]) && minArrLen(m, shape(X)[0], incx) && minArrLen(m, shape(Y)[0], incy)) {
+//                     native_X, native_Y = drotm(m, X, incx, Y, incy, params);
+//                     library_X, library_Y = OpenBlas::drotm(m, X, incx, Y, incy, params);
 
-                m = cap_n(n, incx); // This should n should probably be len(X)
+//                     if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
+//                         printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
+//                         printf("    param = "); show(params);
+//                         printf("Native: ");
+//                         show(take([10], native_X));
+//                         show(take([10], native_Y));
+//                         printf("Library:");
+//                         show(take([10], library_X));
+//                         show(take([10], library_Y));
+//                         mistakes++;
+//                     }
+//                 }
 
-                native = dscal(m, a, X, incx);
-                library = OpenBlas::dscal(m, a, X, incx);
-                if(any(abs(native - library) > MAX_ACC_LOSS)) { // Should not be a relative error margin https://floating-point-gui.de/errors/comparison/
-                    printf("For a = %f, x = %f, incx = %i\n", a, X[0], incx);
-                    printf("Native:\n");
-                    show(take([10], native));
-                    printf("Library:\n");
-                    show(take([10], library));
-                    mistakes++;
-                }
-            }
-        }
-    }
-    print_test_status("dscal", mistakes);
-}
+//             }
+//         }
+//     }
+//     print_test_status("drotm", mistakes);
+// }
 
-void test_dcopy(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
-    mistakes = 0;
-    perms_v = permutations(xs, ys);
-    perms_i = permutations(incxs, incys);
-    for(i = 0; i < shape(perms_v)[0]; i++) {
-        params = perms_v[i];
-        X = genarray([n], params[0]);
-        Y = genarray([n], params[1]);
-        for(j = 0; j < shape(perms_i)[0]; j++) {
-            params = perms_i[j];
-            incx = params[0]; incy = params[1];
+// void test_dswap(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
+//     mistakes = 0;
+//     perms_v = permutations(xs, ys);
+//     perms_i = permutations(incxs, incys);
+//     for(i = 0; i < shape(perms_v)[0]; i++) {
+//         params = perms_v[i];
+//         X = genarray([n], params[0]);
+//         Y = genarray([n], params[1]);
+//         for(j = 0; j < shape(perms_i)[0]; j++) {
+//             params = perms_i[j];
+//             incx = params[0]; incy = params[1];
 
-            m = cap_n(n, incx, incy);
+//             m = cap_n(n, incx, incy);
 
-            native = dcopy(m, X, incx, Y, incy);
-            library = OpenBlas::dcopy(m, X, incx, Y, incy);
-            if(any(abs(native - library) > MAX_ACC_LOSS)) {
-                printf("For x = %f, incx = %i, incy = %i\n", X[0], incx, incy);
-                printf("Native:\n");
-                show(take([10], native));
-                printf("Library:\n");
-                show(take([10], library));
-                mistakes++;
-            }
-        }
-    }
-    print_test_status("dcopy", mistakes);
-}
+//             native_X, native_Y = dswap(m, X, incx, Y, incy);
+//             library_X, library_Y = OpenBlas::dswap(m, X, incx, Y, incy);
+//             if(any(abs(native_X - library_X) > MAX_ACC_LOSS) || any(abs(native_Y - library_Y) > MAX_ACC_LOSS)) {
+//                 printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
+//                 printf("Native: ");
+//                 show(take([10], native_X));
+//                 show(take([10], native_Y));
+//                 printf("Library:");
+//                 show(take([10], library_X));
+//                 show(take([10], library_Y));
+//                 mistakes++;
+//             }
+//         }
+//     }
+//     print_test_status("dswap", mistakes);
+// }
 
-void test_daxpy(int n, double[.] as, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
-    mistakes = 0;
-    mistakes = 0;
-    perms_v = permutations(xs, ys);
-    perms_i = permutations(incxs, incys);
-    for(i = 0; i < shape(perms_v)[0]; i++) {
-        params = perms_v[i];
-        X = genarray([n], params[0]);
-        Y = genarray([n], params[1]);
-        for(j = 0; j < shape(as)[0]; j++) {
-            a = as[j];
-            for(k = 0; k < shape(perms_i)[0]; k++) {
-                params = perms_i[k];
-                incx = params[0]; incy = params[1];
+// void test_dscal(int n, double[.] as, double[.] xs, int[.] incxs) {
+//     mistakes = 0;
+//     for(i = 0; i < shape(xs)[0]; i++) {
+//         X = genarray([n], xs[0]);
+//         for(j = 0; j < shape(as)[0]; j++) {
+//             a = as[j];
+//             for(k = 0; k < shape(incxs)[0]; k++) {
+//                 incx = incxs[k];
 
-                m = cap_n(n, incx, incy);
+//                 m = cap_n(n, incx); // This should n should probably be len(X)
 
-                native = daxpy(m, a, X, incx, Y, incy);
-                library = OpenBlas::daxpy(m, a, X, incx, Y, incy);
-                if(any(abs(native - library) > MAX_ACC_LOSS)) {
-                    printf("For a = %f, x = %f, incx = %i, y = %f, incy = %i\n", a, X[0], incx, Y[0], incy);
-                    printf("Native:\n");
-                    show(take([10], native));
-                    printf("Library:\n");
-                    show(take([10], library));
-                    mistakes++;
-                }
-            }
-        }
-    }
-    print_test_status("daxpy", mistakes);
-}
+//                 native = dscal(m, a, X, incx);
+//                 library = OpenBlas::dscal(m, a, X, incx);
+//                 if(any(abs(native - library) > MAX_ACC_LOSS)) { // Should not be a relative error margin https://floating-point-gui.de/errors/comparison/
+//                     printf("For a = %f, x = %f, incx = %i\n", a, X[0], incx);
+//                     printf("Native:\n");
+//                     show(take([10], native));
+//                     printf("Library:\n");
+//                     show(take([10], library));
+//                     mistakes++;
+//                 }
+//             }
+//         }
+//     }
+//     print_test_status("dscal", mistakes);
+// }
 
-void test_ddot(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
-    mistakes = 0;
-    perms_v = permutations(xs, ys);
-    perms_i = permutations(incxs, incys);
-    for(i = 0; i < shape(perms_v)[0]; i++) {
-        params = perms_v[i];
-        X = genarray([n], params[0]);
-        Y = genarray([n], params[1]);
-        for(j = 0; j < shape(perms_i)[0]; j++) {
-            params = perms_i[j];
-            incx = params[0]; incy = params[1];
+// void test_dcopy(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
+//     mistakes = 0;
+//     perms_v = permutations(xs, ys);
+//     perms_i = permutations(incxs, incys);
+//     for(i = 0; i < shape(perms_v)[0]; i++) {
+//         params = perms_v[i];
+//         X = genarray([n], params[0]);
+//         Y = genarray([n], params[1]);
+//         for(j = 0; j < shape(perms_i)[0]; j++) {
+//             params = perms_i[j];
+//             incx = params[0]; incy = params[1];
 
-            m = cap_n(n, incx, incy);
+//             m = cap_n(n, incx, incy);
 
-            native = ddot(m, X, incx, Y, incy);
-            library = OpenBlas::ddot(m, X, incx, Y, incy);
-            if(abs(native - library) > MAX_ACC_LOSS) {
-                printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
-                printf("Native:  %f\n", native);
-                printf("Library: %f\n", library);
-                mistakes++;
-            }
-        }
-    }
-    print_test_status("ddot", mistakes);
-}
+//             native = dcopy(m, X, incx, Y, incy);
+//             library = OpenBlas::dcopy(m, X, incx, Y, incy);
+//             if(any(abs(native - library) > MAX_ACC_LOSS)) {
+//                 printf("For x = %f, incx = %i, incy = %i\n", X[0], incx, incy);
+//                 printf("Native:\n");
+//                 show(take([10], native));
+//                 printf("Library:\n");
+//                 show(take([10], library));
+//                 mistakes++;
+//             }
+//         }
+//     }
+//     print_test_status("dcopy", mistakes);
+// }
 
-void test_dsdot(int n, float[.] xs, int[.] incxs, float[.] ys, int[.] incys) {
-    mistakes = 0;
-    perms_v = permutations(xs, ys);
-    perms_i = permutations(incxs, incys);
-    for(i = 0; i < shape(perms_v)[0]; i++) {
-        params = perms_v[i];
-        X = genarray([n], params[0]);
-        Y = genarray([n], params[1]);
-        for(j = 0; j < shape(perms_i)[0]; j++) {
-            params = perms_i[j];
-            incx = params[0]; incy = params[1];
+// void test_daxpy(int n, double[.] as, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
+//     mistakes = 0;
+//     mistakes = 0;
+//     perms_v = permutations(xs, ys);
+//     perms_i = permutations(incxs, incys);
+//     for(i = 0; i < shape(perms_v)[0]; i++) {
+//         params = perms_v[i];
+//         X = genarray([n], params[0]);
+//         Y = genarray([n], params[1]);
+//         for(j = 0; j < shape(as)[0]; j++) {
+//             a = as[j];
+//             for(k = 0; k < shape(perms_i)[0]; k++) {
+//                 params = perms_i[k];
+//                 incx = params[0]; incy = params[1];
 
-            m = cap_n(n, incx, incy);
+//                 m = cap_n(n, incx, incy);
 
-            native = dsdot(m, X, incx, Y, incy);
-            library = OpenBlas::dsdot(m, X, incx, Y, incy);
-            if(abs(native - library) > MAX_ACC_LOSS) {
-                printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
-                printf("Native:  %f\n", native);
-                printf("Library: %f\n", library);
-                mistakes++;
-            }
-        }
-    }
-    print_test_status("dsdot", mistakes);
-}
+//                 native = daxpy(m, a, X, incx, Y, incy);
+//                 library = OpenBlas::daxpy(m, a, X, incx, Y, incy);
+//                 if(any(abs(native - library) > MAX_ACC_LOSS)) {
+//                     printf("For a = %f, x = %f, incx = %i, y = %f, incy = %i\n", a, X[0], incx, Y[0], incy);
+//                     printf("Native:\n");
+//                     show(take([10], native));
+//                     printf("Library:\n");
+//                     show(take([10], library));
+//                     mistakes++;
+//                 }
+//             }
+//         }
+//     }
+//     print_test_status("daxpy", mistakes);
+// }
 
-void test_dnrm2(int n, double[.] xs, int[.] incxs) {
-    mistakes = 0;
-    for(i = 0; i < shape(xs)[0]; i++) {
-        X = genarray([n], xs[i]);
-        for(j = 0; j < shape(incxs)[0]; j++) {
-            incx = incxs[j];
+// void test_ddot(int n, double[.] xs, int[.] incxs, double[.] ys, int[.] incys) {
+//     mistakes = 0;
+//     perms_v = permutations(xs, ys);
+//     perms_i = permutations(incxs, incys);
+//     for(i = 0; i < shape(perms_v)[0]; i++) {
+//         params = perms_v[i];
+//         X = genarray([n], params[0]);
+//         Y = genarray([n], params[1]);
+//         for(j = 0; j < shape(perms_i)[0]; j++) {
+//             params = perms_i[j];
+//             incx = params[0]; incy = params[1];
 
-            m = cap_n(n, incx);
+//             m = cap_n(n, incx, incy);
 
-            native = dnrm2(m, X, incx);
-            library = OpenBlas::dnrm2(m, X, incx);
-            if(abs(native - library) > MAX_ACC_LOSS) {
-                printf("For x = %f, incx = %i\n", X[0], incx);
-                printf("Native:  %f\n", native);
-                printf("Library: %f\n", library);
-                mistakes++;
-            }
-        }
-    }
-    print_test_status("dnrm2", mistakes);
-}
+//             native = ddot(m, X, incx, Y, incy);
+//             library = OpenBlas::ddot(m, X, incx, Y, incy);
+//             if(abs(native - library) > MAX_ACC_LOSS) {
+//                 printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
+//                 printf("Native:  %f\n", native);
+//                 printf("Library: %f\n", library);
+//                 mistakes++;
+//             }
+//         }
+//     }
+//     print_test_status("ddot", mistakes);
+// }
 
-// void test_dznrm2(int n, complex[.] xs, int[.] incxs) {
+// void test_dsdot(int n, float[.] xs, int[.] incxs, float[.] ys, int[.] incys) {
+//     mistakes = 0;
+//     perms_v = permutations(xs, ys);
+//     perms_i = permutations(incxs, incys);
+//     for(i = 0; i < shape(perms_v)[0]; i++) {
+//         params = perms_v[i];
+//         X = genarray([n], params[0]);
+//         Y = genarray([n], params[1]);
+//         for(j = 0; j < shape(perms_i)[0]; j++) {
+//             params = perms_i[j];
+//             incx = params[0]; incy = params[1];
+
+//             m = cap_n(n, incx, incy);
+
+//             native = dsdot(m, X, incx, Y, incy);
+//             library = OpenBlas::dsdot(m, X, incx, Y, incy);
+//             if(abs(native - library) > MAX_ACC_LOSS) {
+//                 printf("For x = %f, incx = %i, y = %f, incy = %i\n", X[0], incx, Y[0], incy);
+//                 printf("Native:  %f\n", native);
+//                 printf("Library: %f\n", library);
+//                 mistakes++;
+//             }
+//         }
+//     }
+//     print_test_status("dsdot", mistakes);
+// }
+
+// void test_dnrm2(int n, double[.] xs, int[.] incxs) {
 //     mistakes = 0;
 //     for(i = 0; i < shape(xs)[0]; i++) {
 //         X = genarray([n], xs[i]);
@@ -3040,8 +3072,8 @@ void test_dnrm2(int n, double[.] xs, int[.] incxs) {
 
 //             m = cap_n(n, incx);
 
-//             native = dznrm2(m, X, incx);
-//             library = OpenBlas::dznrm2(m, X, incx);
+//             native = dnrm2(m, X, incx);
+//             library = OpenBlas::dnrm2(m, X, incx);
 //             if(abs(native - library) > MAX_ACC_LOSS) {
 //                 printf("For x = %f, incx = %i\n", X[0], incx);
 //                 printf("Native:  %f\n", native);
@@ -3050,109 +3082,353 @@ void test_dnrm2(int n, double[.] xs, int[.] incxs) {
 //             }
 //         }
 //     }
-//     print_test_status("dznrm2", mistakes);
+//     print_test_status("dnrm2", mistakes);
 // }
 
-void test_dasum(int n, double[.] xs, int[.] incxs) {
-    mistakes = 0;
-    for(i = 0; i < shape(xs)[0]; i++) {
-        X = genarray([n], xs[i]);
-        for(j = 0; j < shape(incxs)[0]; j++) {
-            incx = incxs[j];
+// // void test_dznrm2(int n, complex[.] xs, int[.] incxs) {
+// //     mistakes = 0;
+// //     for(i = 0; i < shape(xs)[0]; i++) {
+// //         X = genarray([n], xs[i]);
+// //         for(j = 0; j < shape(incxs)[0]; j++) {
+// //             incx = incxs[j];
 
-            m = cap_n(n, incx);
+// //             m = cap_n(n, incx);
 
-            native = dasum(m, X, incx);
-            library = OpenBlas::dasum(m, X, incx);
-            if(abs(native - library) > MAX_ACC_LOSS) {
-                printf("For x = %f, incx = %i\n", X[0], incx);
-                printf("Native:  %f\n", native);
-                printf("Library: %f\n", library);
-                mistakes++;
-            }
-        }
-    }
-    print_test_status("dasum", mistakes);
+// //             native = dznrm2(m, X, incx);
+// //             library = OpenBlas::dznrm2(m, X, incx);
+// //             if(abs(native - library) > MAX_ACC_LOSS) {
+// //                 printf("For x = %f, incx = %i\n", X[0], incx);
+// //                 printf("Native:  %f\n", native);
+// //                 printf("Library: %f\n", library);
+// //                 mistakes++;
+// //             }
+// //         }
+// //     }
+// //     print_test_status("dznrm2", mistakes);
+// // }
+
+// void test_dasum(int n, double[.] xs, int[.] incxs) {
+//     mistakes = 0;
+//     for(i = 0; i < shape(xs)[0]; i++) {
+//         X = genarray([n], xs[i]);
+//         for(j = 0; j < shape(incxs)[0]; j++) {
+//             incx = incxs[j];
+
+//             m = cap_n(n, incx);
+
+//             native = dasum(m, X, incx);
+//             library = OpenBlas::dasum(m, X, incx);
+//             if(abs(native - library) > MAX_ACC_LOSS) {
+//                 printf("For x = %f, incx = %i\n", X[0], incx);
+//                 printf("Native:  %f\n", native);
+//                 printf("Library: %f\n", library);
+//                 mistakes++;
+//             }
+//         }
+//     }
+//     print_test_status("dasum", mistakes);
+// }
+
+// void test_idamax(int n, double[.] xs, int[.] incxs) {
+//     mistakes = 0;
+//     for(i = 0; i < shape(xs)[0]; i++) {
+//         X = genarray([n], xs[i]);
+//         for(j = 0; j < shape(incxs)[0]; j++) {
+//             incx = incxs[j];
+
+//             m = cap_n(n, incx);
+
+//             native = idamax(m, X, incx);
+//             library = OpenBlas::idamax(m, X, incx);
+//             if(native != library) {
+//                 printf("For x = %f, incx = %i\n", X[0], incx);
+//                 printf("Native:  %f\n", native);
+//                 printf("Library: %f\n", library);
+//                 mistakes++;
+//             }
+//         }
+//     }
+//     print_test_status("idamax", mistakes);
+// }
+
+void test_sgemv(int n, char[.] chars, int[.] nms, float[.] fs, int[.] incs) {
+  xs = fs;
+  ys = fs;
+  as = fs;
+  alphas = fs;
+  betas = fs;
+  incxs = incs;
+  incys = incs;
+  ms = nms;
+  ns = nms;
+  ldas = nms;
+  trans = chars;
+
+  mistakes = 0;
+  idx = 0;
+  perms_v = permutations(xs, ys, as, alphas, betas);
+  perms_i = permutations(incxs, incys);
+  perms_mn = permutations(ms,ns,ldas);
+  for(i = 0; i < shape(perms_v)[0]; i++) {
+      for(l = 0; l < shape(perms_mn)[0]; l++) {
+          param_mn = perms_mn[l];
+          m = param_mn[0];
+          n = param_mn[1];
+          lda = param_mn[2];
+
+          param_v = perms_v[i];
+          x = genarray([n], param_v[0]);
+          y = genarray([m], param_v[1]);
+          a = genarray([m,lda], param_v[2]);
+          alpha = param_v[3];
+          beta = param_v[4];
+
+          for(j = 0; j < shape(trans)[0]; j++) {
+              t = trans[j];
+              for(k = 0; k < shape(perms_i)[0]; k++) {
+                  params = perms_i[k];
+                  incx = params[0]; 
+                  incy = params[1];
+                  if (ismember(t, ['n', 'N', 't', 'T', 'c', 'C']) && m >= 0 && n >=0 && lda >= max(1,n) && sgemvXdim(t, m, n, incx, shape(x)[0]) && incx != 0 && sgemvYdim(t, m, n, incy, shape(y)[0]) && incy != 0) // sgemv guard
+                      {
+                          if (n > 0 && incx > 0 && minArrLen(n, shape(x)[0], incx))
+                          {
+                              // if (idx < 2) {
+                              //   printf("%f", a[0][0]);
+                              //   idx++;
+                              // }
+                              
+                              native = sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
+                              library = OpenBlas::sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
+                              
+                              if (alpha == 0f) {
+                                lossa = 1f;
+                              } else {
+                                lossa = alpha;
+                              }
+
+                              if (beta == 0f) {
+                                lossb = 1f;
+                              } else {
+                                lossb = beta;
+                              }
+
+
+                              if (a[0][0] == 0f) {
+                                la = 1f;
+                              } else {
+                                la = a[0][0];
+                              }
+
+
+                              if (x[0] == 0f) {
+                                lx = 1f;
+                              } else {
+                                lx = x[0];
+                              }
+
+                              if (y[0] == 0f) {
+                                ly = 1f;
+                              } else {
+                                ly = y[0];
+                              }
+                              
+                              diff = abs(native - library);
+                              if(any(diff > MAX_ACC_LOSSF * tof(n) * tof(m) * tof(n) * tof(m)) && mistakes < 10) {
+                                  printf("\nERR: For a = %f, x = %f, incx = %d, y = %f, incy = %d, char= %c, m = %d, n = %d, lda = %d, alpha = %f, beta = %f\n", a[0][0], x[0], incx, y[0], incy, t, m, n, lda, alpha, beta);
+                                  print(print_sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy));
+                                  print(a);
+                                  print(x);
+                                  print(y);
+                                  printf("Native:\n");
+                                  if (shape(native)[0] > 10) {
+                                    show(take([10], native));
+                                  } else {
+                                    show(native);
+                                  }
+                                  printf("Library:\n");
+                                  if (shape(library)[0] > 10) {
+                                    show(take([10], library));
+                                  } else {
+                                    show(library);
+                                  }
+                                  
+                                  print("diff");
+                                  print(diff[0]);
+                                  print("maxloss");
+                                  print(MAX_ACC_LOSSF * tof(n) * tof(m) * tof(n) * tof(m));
+                                  print("diff > maxloss");
+                                  print(diff > MAX_ACC_LOSSF * tof(n) * tof(m) * tof(n) * tof(m));
+                                  print(any(diff > MAX_ACC_LOSSF * tof(n) * tof(m) * tof(n) * tof(m)));
+                                  mistakes++;
+                              }
+                          }
+                      }
+                  
+              }
+          }
+      }
+  }
+  print_test_status("sgemv", mistakes);
+
 }
 
-void test_idamax(int n, double[.] xs, int[.] incxs) {
-    mistakes = 0;
-    for(i = 0; i < shape(xs)[0]; i++) {
-        X = genarray([n], xs[i]);
-        for(j = 0; j < shape(incxs)[0]; j++) {
-            incx = incxs[j];
+void test_dgemv(int n, char[.] chars, int[.] nms, double[.] fs, int[.] incs) {
+  xs = fs;
+  ys = fs;
+  as = fs;
+  alphas = fs;
+  betas = fs;
+  incxs = incs;
+  incys = incs;
+  ms = nms;
+  ns = nms;
+  ldas = nms;
+  trans = chars;
 
-            m = cap_n(n, incx);
+  mistakes = 0;
+  idx = 0;
+  perms_v = permutations(xs, ys, as, alphas, betas);
+  perms_i = permutations(incxs, incys);
+  perms_mn = permutations(ms,ns,ldas);
+  for(i = 0; i < shape(perms_v)[0]; i++) {
+      for(l = 0; l < shape(perms_mn)[0]; l++) {
+          param_mn = perms_mn[l];
+          m = param_mn[0];
+          n = param_mn[1];
+          lda = param_mn[2];
 
-            native = idamax(m, X, incx);
-            library = OpenBlas::idamax(m, X, incx);
-            if(native != library) {
-                printf("For x = %f, incx = %i\n", X[0], incx);
-                printf("Native:  %f\n", native);
-                printf("Library: %f\n", library);
-                mistakes++;
-            }
-        }
-    }
-    print_test_status("idamax", mistakes);
+          param_v = perms_v[i];
+          x = genarray([n], param_v[0]);
+          y = genarray([m], param_v[1]);
+          a = genarray([m,lda], param_v[2]);
+          alpha = param_v[3];
+          beta = param_v[4];
+
+          for(j = 0; j < shape(trans)[0]; j++) {
+              t = trans[j];
+              for(k = 0; k < shape(perms_i)[0]; k++) {
+                  params = perms_i[k];
+                  incx = params[0]; 
+                  incy = params[1];
+                  if (ismember(t, ['n', 'N', 't', 'T', 'c', 'C']) && m >= 0 && n >=0 && lda >= max(1,n) && sgemvXdim(t, m, n, incx, shape(x)[0]) && incx != 0 && sgemvYdim(t, m, n, incy, shape(y)[0]) && incy != 0) // sgemv guard
+                      {
+                          if (n > 0 && incx > 0 && minArrLen(n, shape(x)[0], incx))
+                          {
+                              // if (idx < 2) {
+                              //   printf("%f", a[0][0]);
+                              //   idx++;
+                              // }
+                              
+                              native = dgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
+                              library = OpenBlas::dgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
+                              
+                              diff = abs(native - library);
+                              if(any(diff > MAX_ACC_LOSS * tod(n) * tod(m) * tod(n) * tod(m)) && mistakes < 10) {
+                                  printf("\nERR: For a = %f, x = %f, incx = %d, y = %f, incy = %d, char= %c, m = %d, n = %d, lda = %d, alpha = %f, beta = %f\n", a[0][0], x[0], incx, y[0], incy, t, m, n, lda, alpha, beta);
+                                  // print(print_sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy));
+                                  print(a);
+                                  print(x);
+                                  print(y);
+                                  printf("Native:\n");
+                                  if (shape(native)[0] > 10) {
+                                    show(take([10], native));
+                                  } else {
+                                    show(native);
+                                  }
+                                  printf("Library:\n");
+                                  if (shape(library)[0] > 10) {
+                                    show(take([10], library));
+                                  } else {
+                                    show(library);
+                                  }
+                                  
+                                  print("diff");
+                                  print(diff[0]);
+                                  print("maxloss");
+                                  print(MAX_ACC_LOSS * tod(n) * tod(m) * tod(n) * tod(m));
+                                  print("diff > maxloss");
+                                  print(diff > MAX_ACC_LOSS * tod(n) * tod(m) * tod(n) * tod(m));
+                                  print(any(diff > MAX_ACC_LOSS * tod(n) * tod(m) * tod(n) * tod(m)));
+                                  mistakes++; 
+                              }
+                          }
+                      }
+                  
+              }
+          }
+      }
+  }
+  print_test_status("sgemv", mistakes);
+
 }
+       
+                              
+// float[*] sgbmv(char trans, int m, int n, int kl, int ku, float alpha, float[am,an] a, int lda, float[xn] x, int incx, float beta, float[yn] y, int incy) | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >= 0, sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0 , kl >=0, ku >=  0, lda == kl + ku + 1
+// void test_sgbmv(int n, char[.] chars, int[.] nms, float[.] fs, int[.] incs) {
+//   xs = fs;
+//   ys = fs;
+//   as = fs;
+//   alphas = fs;
+//   betas = fs;
+//   incxs = incs;
+//   incys = incs;
+//   ms = nms;
+//   ns = nms;
+//   ldas = nms;
+//   trans = chars;
 
-void test_sgemv(char[.] trans, int[.] ms, int[.] ns, float[.] alphas, float[.] as, int[.] ldas, float[.] xs, int[.] incxs, float[.] betas, float[.] ys, int[.] incys) {
-    mistakes = 0;
-    perms_v = permutations(xs, ys, as, alphas, betas);
-    perms_i = permutations(incxs, incys);
-    perms_mn = permutations(ms,ns,ldas);
-    print(perms_v);
-    return;
-    // for(i = 0; i < shape(perms_v)[0]; i++) {
-    //     for(l = 0; l < shape(perms_mn)[0]; l++) {
-    //         param_mn = perms_mn[l];
-    //         m = param_mn[0];
-    //         n = param_mn[1];
-    //         lda = param_mn[2];
+//   mistakes = 0;
+//   perms_v = permutations(xs, ys, as, alphas, betas);
+//   perms_i = permutations(incxs, incys);
+//   perms_mn = permutations(ms,ns,ldas);
+//   for(i = 0; i < shape(perms_v)[0]; i++) {
+//       for(l = 0; l < shape(perms_mn)[0]; l++) {
+//           param_mn = perms_mn[l];
+//           m = param_mn[0];
+//           n = param_mn[1];
+//           lda = param_mn[2];
 
-    //         param_v = perms_v[i];
-    //         x = genarray([n], param_v[0]);
-    //         y = genarray([m], param_v[1]);
-    //         a = genarray([lda,n], param_v[2]);
-    //         alpha = param_v[3];
-    //         beta = param_v[4];
+//           param_v = perms_v[i];
+//           x = genarray([n], param_v[0]);
+//           y = genarray([m], param_v[1]);
+//           a = genarray([m,lda], param_v[2]);
+//           alpha = param_v[3];
+//           beta = param_v[4];
 
-    //         for(j = 0; j < shape(trans)[0]; j++) {
-    //             t = trans[j];
-    //             for(k = 0; k < shape(perms_i)[0]; k++) {
-    //                 params = perms_i[k];
-    //                 incx = params[0]; incy = params[1];
-                    
-                        
-    //                 // m = cap_n(n, incx, incy);
-    //                 // sgemv guard
-    //                 // | ismember(trans, ['n', 'N', 't', 'T', 'c', 'C']), m >= 0, n >=0, lda >= max(1,n), sgemvXdim(trans, m, n, incx, xn), incx != 0, sgemvYdim(trans, m, n, incy, yn), incy != 0
-    //                 // sscal guard
-    //                 // n > 0, incx > 0, minArrLen(n, xn, incx)
-    //                 if (ismember(t, ['n', 'N', 't', 'T', 'c', 'C']) && m >= 0 && n >=0 && lda >= max(1,n) && sgemvXdim(t, m, n, incx, shape(x)[0]) && incx != 0 && sgemvYdim(t, m, n, incy, shape(y)[0]) && incy != 0) // sgemv guard
-    //                     {
-    //                         if (n > 0 && incx > 0 && minArrLen(n, shape(x)[0], incx))
-    //                         {
-    //                             native = sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
-    //                             library = OpenBlas::sgemv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
-    //                             if(any(abs(native - library) > MAX_ACC_LOSSF)) {
-    //                                 printf("For a = %f, x = %f, incx = %i, y = %f, incy = %i\n", a, x[0], incx, y[0], incy);
-    //                                 printf("Native:\n");
-    //                                 show(take([10], native));
-    //                                 printf("Library:\n");
-    //                                 show(take([10], library));
-    //                                 mistakes++;
-    //                             }
-    //                         }
-    //                     }
-                    
-    //             }
-    //         }
-    //     }
-    // }
-    // print_test_status("sgemv", mistakes);
-}
+//           for(j = 0; j < shape(trans)[0]; j++) {
+//               t = trans[j];
+//               for(k = 0; k < shape(perms_i)[0]; k++) {
+//                   params = perms_i[k];
+//                   incx = params[0]; 
+//                   incy = params[1];
+//                   if (ismember(t, ['n', 'N', 't', 'T', 'c', 'C']) && m >= 0 && n >=0 && lda >= max(1,n) && sgemvXdim(t, m, n, incx, shape(x)[0]) && incx != 0 && sgemvYdim(t, m, n, incy, shape(y)[0]) && incy != 0) // sgemv guard
+//                       {
+//                           if (n > 0 && incx > 0 && minArrLen(n, shape(x)[0], incx))
+//                           {
+//                               native = sgbmv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
+//                               library = OpenBlas::sgbmv(t, m, n, alpha, a, lda, x, incx, beta, y, incy);
+                              
+//                               if(any(abs(native - library) > MAX_ACC_LOSSF)) {
+//                                   printf("ERR: For a = %f, x = %f, incx = %d, y = %f, incy = %d\n", a[0][0], x[0], incx, y[0], incy);
+//                                   print(a);
+//                                   print(x);
+//                                   print(y);
+//                                   printf("Native:\n");
+//                                   show(take([10], native));
+//                                   printf("Library:\n");
+//                                   show(take([10], library));
+//                                   mistakes++;
+//                               }
+//                           }
+//                       }
+                  
+//               }
+//           }
+//       }
+//   }
+//   print_test_status("sgemv", mistakes);
+// }
 
 
 
@@ -3183,15 +3459,21 @@ void test() {
     // test_dasum(n, ds, incs);
     // test_idamax(n, ds, incs);
 
-    // // // BLAS L2
-    nms = [1,2,100];
-    ds = [0.0, 7.0, -4.6, -0.00000000004];
-    fs = tof(ds);
-    // cs = [toc(7.4, 7.4)];
+    // BLAS L2
+    n = 1000;
+    nms = [1,2,3,4,10,100,9999];
+    fnms = [1,2,3,4,10];
+    ds = [0.0, 3.2, -4.6, -10.0,-0.00000000004, 700000.0, -4375.3];
+    fs = [0.0f, 3.2f, -4.6f, -10.0f,-0.004f, 700.0f, -4375.3f];
+    // cs = {i -> toc(ds[i], ds[i])};
     incs = [1,2,3]; // Add illegal values
     flags = [-1d, 0d, 1d, 2d]; // Add illegal values
-    chars = ['n', 't', 'c']; // Add illegal values
-    test_sgemv(chars, nms, nms, fs, fs, nms, fs, incs, fs, fs, incs);
+    chars = ['N', 'T', 'C']; // Add illegal values
+
+    // test_sgemv(n, chars, fnms, fs, incs);
+    test_dgemv(n, chars, nms, ds, incs);
+    // print("Compile time check");
+    // test_sgbmv(n, chars, nms, fs, incs);
 }
 
 /*
@@ -3209,9 +3491,9 @@ int main() {
     if(ROUTINE == TEST) {
         test();
     } else if(TYPE == THREAD_COUNT) {
-        measure_thread_count(THREADS, ROUTINE);
+        // measure_thread_count(THREADS, ROUTINE);
     } else {
-        measure_input_size(MODE, ROUTINE);
+        // measure_input_size(MODE, ROUTINE);
     }
     #endif
     return 0;

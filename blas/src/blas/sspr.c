@@ -1,4 +1,4 @@
-#include "/home/rhensen/bin/OpenBLAS/include/cblas.h"
+#include "/usr/include/x86_64-linux-gnu/cblas.h"
 
 void SACsspr(const char uplo, const int n, const float alpha, const float *x, const int incx, float *ap)
 {

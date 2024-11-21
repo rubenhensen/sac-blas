@@ -1,4 +1,4 @@
-#include "/home/rhensen/bin/OpenBLAS/include/cblas.h"
+#include "/usr/include/x86_64-linux-gnu/cblas.h"
 
 void SACdgemv(char trans, int m, int n, double alpha, double* a, int lda, double* x, int incx, double beta, double* y, int incy)
 {

@@ -1,4 +1,4 @@
-#include "/home/rhensen/bin/OpenBLAS/include/cblas.h"
+#include "/usr/include/x86_64-linux-gnu/cblas.h"
 
 void SACzhbmv(char uplo, const int n, const int k, const void *alpha, const void *a, const int lda, const void *x, const int incx, const void *beta, void *y, const int incy)
 {

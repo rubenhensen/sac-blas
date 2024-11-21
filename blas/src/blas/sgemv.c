@@ -1,15 +1,15 @@
-#include "/home/rhensen/bin/OpenBLAS/include/cblas.h"
-
-void SACsgemv(char *trans, int *m, int *n, float *alpha, float* a, int *lda, float* x, int *incx, float *beta, float* y, int *incy)
+#include "/usr/include/x86_64-linux-gnu/cblas.h"
+// void cblas_sgemv (const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE trans, const int m, const int n, const float alpha, const float *a, const int lda, const float *x, const int incx, const float beta, float *y, const int incy);
+void SACsgemv(const char trans, const int m, const int n, const float alpha, const float *a, const int lda, const float *x, const int incx, const float beta, float *y, const int incy)
 {
     CBLAS_TRANSPOSE cblasTrans;
 
-    if (*trans == 'N' || *trans == 'n') {
+    if (trans == 'N' || trans == 'n') {
         cblasTrans = CblasNoTrans;
     } else {
         cblasTrans = CblasTrans;
     }
 
-    cblas_sgemv(CblasRowMajor, cblasTrans, *m, *n, *alpha, a, *lda, x, *incx, *beta, y, *incy);
+    cblas_sgemv(CblasRowMajor, cblasTrans, m, n, alpha, a, lda, x, incx, beta, y, incy);
 }
 

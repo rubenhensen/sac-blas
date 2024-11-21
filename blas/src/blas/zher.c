@@ -1,4 +1,4 @@
-#include "/home/rhensen/bin/OpenBLAS/include/cblas.h"
+#include "/usr/include/x86_64-linux-gnu/cblas.h"
 
 void SACzher (const char uplo, const int n, const double alpha, const void *x, const int incx, void *a, const int lda)
 {

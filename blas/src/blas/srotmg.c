@@ -1,4 +1,4 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 void SACsrotmg(float *d1, float *d2, float *x1, const float y1, float *param)
 {

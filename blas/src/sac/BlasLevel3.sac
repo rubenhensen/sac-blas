@@ -1,0 +1,467 @@
+module BlasLevel3;
+
+use StdIO: all;
+use Array: all;
+use Math: all;
+use Helper: all;
+use BlasLevel1: all;
+
+export all;
+
+
+/*
+ * ?gemm - General matrix-matrix multiply
+ * C = alpha * op(A) * op(B) + beta * C
+ */
+inline
+float[m,n] sgemm(char transa, char transb, int m, int n, int k,
+                  float alpha, float[.,.] a, int lda,
+                  float[.,.] b, int ldb,
+                  float beta, float[m,n] c, int ldc)
+{
+  if (transa == 'T' || transa == 't' || transa == 'C' || transa == 'c') {
+    opA = transpose(a);
+  } else {
+    opA = a;
+  }
+  if (transb == 'T' || transb == 't' || transb == 'C' || transb == 'c') {
+    opB = transpose(b);
+  } else {
+    opB = b;
+  }
+
+  result = { [i,j] -> alpha * sum({ [p] -> opA[i,p] * opB[p,j] | [p] < [k] })
+                       + beta * c[i,j]
+           | [i,j] < [m,n] };
+  return result;
+}
+
+inline
+double[m,n] dgemm(char transa, char transb, int m, int n, int k,
+                   double alpha, double[.,.] a, int lda,
+                   double[.,.] b, int ldb,
+                   double beta, double[m,n] c, int ldc)
+{
+  if (transa == 'T' || transa == 't' || transa == 'C' || transa == 'c') {
+    opA = transpose(a);
+  } else {
+    opA = a;
+  }
+  if (transb == 'T' || transb == 't' || transb == 'C' || transb == 'c') {
+    opB = transpose(b);
+  } else {
+    opB = b;
+  }
+
+  result = { [i,j] -> alpha * sum({ [p] -> opA[i,p] * opB[p,j] | [p] < [k] })
+                       + beta * c[i,j]
+           | [i,j] < [m,n] };
+  return result;
+}
+
+
+/*
+ * ?symm - Symmetric matrix-matrix multiply
+ * C = alpha * A * B + beta * C  (side == 'L')
+ * C = alpha * B * A + beta * C  (side == 'R')
+ */
+inline
+float[m,n] ssymm(char side, char uplo, int m, int n,
+                  float alpha, float[.,.] a, int lda,
+                  float[.,.] b, int ldb,
+                  float beta, float[m,n] c, int ldc)
+{
+  na = shape(a)[0];
+  if (uplo == 'U' || uplo == 'u') {
+    symA = { [i,j] -> i <= j ? a[i,j] : a[j,i] | [i,j] < [na,na] };
+  } else {
+    symA = { [i,j] -> i >= j ? a[i,j] : a[j,i] | [i,j] < [na,na] };
+  }
+
+  if (side == 'L' || side == 'l') {
+    kk = m;
+  } else {
+    kk = n;
+  }
+
+  if (side == 'L' || side == 'l') {
+    result = { [i,j] -> alpha * sum({ [p] -> symA[i,p] * b[p,j] | [p] < [kk] })
+                         + beta * c[i,j]
+             | [i,j] < [m,n] };
+  } else {
+    result = { [i,j] -> alpha * sum({ [p] -> b[i,p] * symA[p,j] | [p] < [kk] })
+                         + beta * c[i,j]
+             | [i,j] < [m,n] };
+  }
+  return result;
+}
+
+inline
+double[m,n] dsymm(char side, char uplo, int m, int n,
+                   double alpha, double[.,.] a, int lda,
+                   double[.,.] b, int ldb,
+                   double beta, double[m,n] c, int ldc)
+{
+  na = shape(a)[0];
+  if (uplo == 'U' || uplo == 'u') {
+    symA = { [i,j] -> i <= j ? a[i,j] : a[j,i] | [i,j] < [na,na] };
+  } else {
+    symA = { [i,j] -> i >= j ? a[i,j] : a[j,i] | [i,j] < [na,na] };
+  }
+
+  if (side == 'L' || side == 'l') {
+    kk = m;
+  } else {
+    kk = n;
+  }
+
+  if (side == 'L' || side == 'l') {
+    result = { [i,j] -> alpha * sum({ [p] -> symA[i,p] * b[p,j] | [p] < [kk] })
+                         + beta * c[i,j]
+             | [i,j] < [m,n] };
+  } else {
+    result = { [i,j] -> alpha * sum({ [p] -> b[i,p] * symA[p,j] | [p] < [kk] })
+                         + beta * c[i,j]
+             | [i,j] < [m,n] };
+  }
+  return result;
+}
+
+
+/*
+ * ?syrk - Symmetric rank-k update
+ * C = alpha * A * A^T + beta * C  (trans == 'N')
+ * C = alpha * A^T * A + beta * C  (trans == 'T')
+ */
+inline
+float[n,n] ssyrk(char uplo, char trans, int n, int k,
+                  float alpha, float[.,.] a, int lda,
+                  float beta, float[n,n] c, int ldc)
+{
+  if (trans == 'N' || trans == 'n') {
+    result = { [i,j] -> alpha * sum({ [p] -> a[i,p] * a[j,p] | [p] < [k] })
+                         + beta * c[i,j]
+             | [i,j] < [n,n] };
+  } else {
+    result = { [i,j] -> alpha * sum({ [p] -> a[p,i] * a[p,j] | [p] < [k] })
+                         + beta * c[i,j]
+             | [i,j] < [n,n] };
+  }
+  return result;
+}
+
+inline
+double[n,n] dsyrk(char uplo, char trans, int n, int k,
+                   double alpha, double[.,.] a, int lda,
+                   double beta, double[n,n] c, int ldc)
+{
+  if (trans == 'N' || trans == 'n') {
+    result = { [i,j] -> alpha * sum({ [p] -> a[i,p] * a[j,p] | [p] < [k] })
+                         + beta * c[i,j]
+             | [i,j] < [n,n] };
+  } else {
+    result = { [i,j] -> alpha * sum({ [p] -> a[p,i] * a[p,j] | [p] < [k] })
+                         + beta * c[i,j]
+             | [i,j] < [n,n] };
+  }
+  return result;
+}
+
+
+/*
+ * ?syr2k - Symmetric rank-2k update
+ * C = alpha * A * B^T + alpha * B * A^T + beta * C  (trans == 'N')
+ * C = alpha * A^T * B + alpha * B^T * A + beta * C  (trans == 'T')
+ */
+inline
+float[n,n] ssyr2k(char uplo, char trans, int n, int k,
+                   float alpha, float[.,.] a, int lda,
+                   float[.,.] b, int ldb,
+                   float beta, float[n,n] c, int ldc)
+{
+  if (trans == 'N' || trans == 'n') {
+    result = { [i,j] -> alpha * sum({ [p] -> a[i,p] * b[j,p] + b[i,p] * a[j,p] | [p] < [k] })
+                         + beta * c[i,j]
+             | [i,j] < [n,n] };
+  } else {
+    result = { [i,j] -> alpha * sum({ [p] -> a[p,i] * b[p,j] + b[p,i] * a[p,j] | [p] < [k] })
+                         + beta * c[i,j]
+             | [i,j] < [n,n] };
+  }
+  return result;
+}
+
+inline
+double[n,n] dsyr2k(char uplo, char trans, int n, int k,
+                    double alpha, double[.,.] a, int lda,
+                    double[.,.] b, int ldb,
+                    double beta, double[n,n] c, int ldc)
+{
+  if (trans == 'N' || trans == 'n') {
+    result = { [i,j] -> alpha * sum({ [p] -> a[i,p] * b[j,p] + b[i,p] * a[j,p] | [p] < [k] })
+                         + beta * c[i,j]
+             | [i,j] < [n,n] };
+  } else {
+    result = { [i,j] -> alpha * sum({ [p] -> a[p,i] * b[p,j] + b[p,i] * a[p,j] | [p] < [k] })
+                         + beta * c[i,j]
+             | [i,j] < [n,n] };
+  }
+  return result;
+}
+
+
+/*
+ * ?trmm - Triangular matrix-matrix multiply
+ * B = alpha * op(A) * B  (side == 'L')
+ * B = alpha * B * op(A)  (side == 'R')
+ */
+inline
+float[m,n] strmm(char side, char uplo, char trans, char diag,
+                  int m, int n, float alpha,
+                  float[.,.] a, int lda,
+                  float[m,n] b, int ldb)
+{
+  na = shape(a)[0];
+  if (uplo == 'U' || uplo == 'u') {
+    if (diag == 'U' || diag == 'u') {
+      triA = { [i,j] -> i == j ? 1.0f : i < j ? a[i,j] : 0.0f | [i,j] < [na,na] };
+    } else {
+      triA = { [i,j] -> i <= j ? a[i,j] : 0.0f | [i,j] < [na,na] };
+    }
+  } else {
+    if (diag == 'U' || diag == 'u') {
+      triA = { [i,j] -> i == j ? 1.0f : i > j ? a[i,j] : 0.0f | [i,j] < [na,na] };
+    } else {
+      triA = { [i,j] -> i >= j ? a[i,j] : 0.0f | [i,j] < [na,na] };
+    }
+  }
+
+  if (trans == 'T' || trans == 't' || trans == 'C' || trans == 'c') {
+    triA = transpose(triA);
+  }
+
+  if (side == 'L' || side == 'l') {
+    kk = m;
+  } else {
+    kk = n;
+  }
+
+  if (side == 'L' || side == 'l') {
+    result = { [i,j] -> alpha * sum({ [p] -> triA[i,p] * b[p,j] | [p] < [kk] })
+             | [i,j] < [m,n] };
+  } else {
+    result = { [i,j] -> alpha * sum({ [p] -> b[i,p] * triA[p,j] | [p] < [kk] })
+             | [i,j] < [m,n] };
+  }
+  return result;
+}
+
+inline
+double[m,n] dtrmm(char side, char uplo, char trans, char diag,
+                   int m, int n, double alpha,
+                   double[.,.] a, int lda,
+                   double[m,n] b, int ldb)
+{
+  na = shape(a)[0];
+  if (uplo == 'U' || uplo == 'u') {
+    if (diag == 'U' || diag == 'u') {
+      triA = { [i,j] -> i == j ? 1.0d : i < j ? a[i,j] : 0.0d | [i,j] < [na,na] };
+    } else {
+      triA = { [i,j] -> i <= j ? a[i,j] : 0.0d | [i,j] < [na,na] };
+    }
+  } else {
+    if (diag == 'U' || diag == 'u') {
+      triA = { [i,j] -> i == j ? 1.0d : i > j ? a[i,j] : 0.0d | [i,j] < [na,na] };
+    } else {
+      triA = { [i,j] -> i >= j ? a[i,j] : 0.0d | [i,j] < [na,na] };
+    }
+  }
+
+  if (trans == 'T' || trans == 't' || trans == 'C' || trans == 'c') {
+    triA = transpose(triA);
+  }
+
+  if (side == 'L' || side == 'l') {
+    kk = m;
+  } else {
+    kk = n;
+  }
+
+  if (side == 'L' || side == 'l') {
+    result = { [i,j] -> alpha * sum({ [p] -> triA[i,p] * b[p,j] | [p] < [kk] })
+             | [i,j] < [m,n] };
+  } else {
+    result = { [i,j] -> alpha * sum({ [p] -> b[i,p] * triA[p,j] | [p] < [kk] })
+             | [i,j] < [m,n] };
+  }
+  return result;
+}
+
+
+/*
+ * ?trsm - Triangular solve with multiple right-hand sides
+ * op(A) * X = alpha * B  (side == 'L')
+ * X * op(A) = alpha * B  (side == 'R')
+ */
+inline
+float[m,n] strsm(char side, char uplo, char trans, char diag,
+                  int m, int n, float alpha,
+                  float[.,.] a, int lda,
+                  float[m,n] b, int ldb)
+{
+  na = shape(a)[0];
+  if (uplo == 'U' || uplo == 'u') {
+    if (diag == 'U' || diag == 'u') {
+      triA = { [i,j] -> i == j ? 1.0f : i < j ? a[i,j] : 0.0f | [i,j] < [na,na] };
+    } else {
+      triA = { [i,j] -> i <= j ? a[i,j] : 0.0f | [i,j] < [na,na] };
+    }
+  } else {
+    if (diag == 'U' || diag == 'u') {
+      triA = { [i,j] -> i == j ? 1.0f : i > j ? a[i,j] : 0.0f | [i,j] < [na,na] };
+    } else {
+      triA = { [i,j] -> i >= j ? a[i,j] : 0.0f | [i,j] < [na,na] };
+    }
+  }
+
+  if (trans == 'T' || trans == 't' || trans == 'C' || trans == 'c') {
+    triA = transpose(triA);
+  }
+
+  x = { [i,j] -> alpha * b[i,j] | [i,j] < [m,n] };
+
+  if (side == 'L' || side == 'l') {
+    /* Determine effective triangle shape after transpose */
+    isUpper = ((trans == 'N' || trans == 'n') && (uplo == 'U' || uplo == 'u'))
+           || ((trans != 'N' && trans != 'n') && (uplo == 'L' || uplo == 'l'));
+    if (isUpper) {
+      /* Upper: backward substitution */
+      for (col = 0; col < n; col++) {
+        for (i = m-1; i >= 0; i--) {
+          s = 0.0f;
+          for (p = i+1; p < m; p++) {
+            s += triA[i,p] * x[p,col];
+          }
+          x[i,col] = (x[i,col] - s) / triA[i,i];
+        }
+      }
+    } else {
+      /* Lower: forward substitution */
+      for (col = 0; col < n; col++) {
+        for (i = 0; i < m; i++) {
+          s = 0.0f;
+          for (p = 0; p < i; p++) {
+            s += triA[i,p] * x[p,col];
+          }
+          x[i,col] = (x[i,col] - s) / triA[i,i];
+        }
+      }
+    }
+  } else {
+    isUpper = ((trans == 'N' || trans == 'n') && (uplo == 'U' || uplo == 'u'))
+           || ((trans != 'N' && trans != 'n') && (uplo == 'L' || uplo == 'l'));
+    if (isUpper) {
+      for (row = 0; row < m; row++) {
+        for (j = 0; j < n; j++) {
+          s = 0.0f;
+          for (p = 0; p < j; p++) {
+            s += x[row,p] * triA[p,j];
+          }
+          x[row,j] = (x[row,j] - s) / triA[j,j];
+        }
+      }
+    } else {
+      for (row = 0; row < m; row++) {
+        for (j = n-1; j >= 0; j--) {
+          s = 0.0f;
+          for (p = j+1; p < n; p++) {
+            s += x[row,p] * triA[p,j];
+          }
+          x[row,j] = (x[row,j] - s) / triA[j,j];
+        }
+      }
+    }
+  }
+
+  return x;
+}
+
+inline
+double[m,n] dtrsm(char side, char uplo, char trans, char diag,
+                   int m, int n, double alpha,
+                   double[.,.] a, int lda,
+                   double[m,n] b, int ldb)
+{
+  na = shape(a)[0];
+  if (uplo == 'U' || uplo == 'u') {
+    if (diag == 'U' || diag == 'u') {
+      triA = { [i,j] -> i == j ? 1.0d : i < j ? a[i,j] : 0.0d | [i,j] < [na,na] };
+    } else {
+      triA = { [i,j] -> i <= j ? a[i,j] : 0.0d | [i,j] < [na,na] };
+    }
+  } else {
+    if (diag == 'U' || diag == 'u') {
+      triA = { [i,j] -> i == j ? 1.0d : i > j ? a[i,j] : 0.0d | [i,j] < [na,na] };
+    } else {
+      triA = { [i,j] -> i >= j ? a[i,j] : 0.0d | [i,j] < [na,na] };
+    }
+  }
+
+  if (trans == 'T' || trans == 't' || trans == 'C' || trans == 'c') {
+    triA = transpose(triA);
+  }
+
+  x = { [i,j] -> alpha * b[i,j] | [i,j] < [m,n] };
+
+  if (side == 'L' || side == 'l') {
+    isUpper = ((trans == 'N' || trans == 'n') && (uplo == 'U' || uplo == 'u'))
+           || ((trans != 'N' && trans != 'n') && (uplo == 'L' || uplo == 'l'));
+    if (isUpper) {
+      for (col = 0; col < n; col++) {
+        for (i = m-1; i >= 0; i--) {
+          s = 0.0d;
+          for (p = i+1; p < m; p++) {
+            s += triA[i,p] * x[p,col];
+          }
+          x[i,col] = (x[i,col] - s) / triA[i,i];
+        }
+      }
+    } else {
+      for (col = 0; col < n; col++) {
+        for (i = 0; i < m; i++) {
+          s = 0.0d;
+          for (p = 0; p < i; p++) {
+            s += triA[i,p] * x[p,col];
+          }
+          x[i,col] = (x[i,col] - s) / triA[i,i];
+        }
+      }
+    }
+  } else {
+    isUpper = ((trans == 'N' || trans == 'n') && (uplo == 'U' || uplo == 'u'))
+           || ((trans != 'N' && trans != 'n') && (uplo == 'L' || uplo == 'l'));
+    if (isUpper) {
+      for (row = 0; row < m; row++) {
+        for (j = 0; j < n; j++) {
+          s = 0.0d;
+          for (p = 0; p < j; p++) {
+            s += x[row,p] * triA[p,j];
+          }
+          x[row,j] = (x[row,j] - s) / triA[j,j];
+        }
+      }
+    } else {
+      for (row = 0; row < m; row++) {
+        for (j = n-1; j >= 0; j--) {
+          s = 0.0d;
+          for (p = j+1; p < n; p++) {
+            s += x[row,p] * triA[p,j];
+          }
+          x[row,j] = (x[row,j] - s) / triA[j,j];
+        }
+      }
+    }
+  }
+
+  return x;
+}

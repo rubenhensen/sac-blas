@@ -10,24 +10,34 @@ export all;
  * ?rotg
  */
 inline
-float, float, float, float srotg(float a, float b, float c, float s)  
+float, float, float, float srotg(float a, float b, float c, float s)
 {
-  if(b == 0f) {
-    r = a;
-    z = 0f;
+  roe = b;
+  if (abs(a) > abs(b)) {
+    roe = a;
+  }
+  scale = abs(a) + abs(b);
+  if (scale == 0f) {
     c = 1f;
     s = 0f;
-  } else if(a == 0f) {
-    r = b;
-    z = 1f;
-    c = 0f;
-    s = 1f;
+    r = 0f;
+    z = 0f;
   } else {
-    sigma = tof(abs(a) > abs(b) ? sign(a) : sign(b));
-    r = sigma * sqrtf(a*a + b*b);
-    c = a/r;
-    s = b/r;
-    z = abs(a) > abs(b) ? s : c == 0f ? 1f : 1f/c;
+    sa = a / scale;
+    sb = b / scale;
+    r = scale * sqrt(sa*sa + sb*sb);
+    if (roe < 0f) {
+      r = -r;
+    }
+    c = a / r;
+    s = b / r;
+    z = 1f;
+    if (abs(a) > abs(b)) {
+      z = s;
+    }
+    if (abs(b) >= abs(a) && c != 0f) {
+      z = 1f / c;
+    }
   }
   return (r, z, c, s);
 }
@@ -35,22 +45,32 @@ float, float, float, float srotg(float a, float b, float c, float s)
 inline
 double, double, double, double drotg(double a, double b, double c, double s)
 {
-  if(b == 0d) {
-    r = a;
-    z = 0d;
+  roe = b;
+  if (abs(a) > abs(b)) {
+    roe = a;
+  }
+  scale = abs(a) + abs(b);
+  if (scale == 0d) {
     c = 1d;
     s = 0d;
-  } else if(a == 0d) {
-    r = b;
-    z = 1d;
-    c = 0d;
-    s = 1d;
+    r = 0d;
+    z = 0d;
   } else {
-    sigma = tod(abs(a) > abs(b) ? sign(a) : sign(b));
-    r = sigma * sqrt(a*a + b*b);
-    c = a/r;
-    s = b/r;
-    z = abs(a) > abs(b) ? s : c == 0d ? 1d : 1d/c;
+    sa = a / scale;
+    sb = b / scale;
+    r = scale * sqrt(sa*sa + sb*sb);
+    if (roe < 0d) {
+      r = -r;
+    }
+    c = a / r;
+    s = b / r;
+    z = 1d;
+    if (abs(a) > abs(b)) {
+      z = s;
+    }
+    if (abs(b) >= abs(a) && c != 0d) {
+      z = 1d / c;
+    }
   }
   return (r, z, c, s);
 }
@@ -500,7 +520,7 @@ double dsdot(int n, float[xn] sx, int incx, float[yn] sy, int incy) | n > 0, inc
 inline
 float snrm2(int n, float[xn] x, int incx) | n > 0, incx > 0, minArrLen(n, xn, incx)
 {
-  return sqrtf(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
+  return sqrt(sum( {iv -> x[iv]*x[iv] | [0] <= iv <= [(n-1)*incx] step [incx]} ));
 }
 
 inline
@@ -514,7 +534,7 @@ inline
 float scnrm2(int n, complex[.] x, int incx) //| n > 0, incx > 0
 {
   x_prime = {i -> x[i*incx] | [0] <= i < [n] ; i -> zero() | i < [n*incx]};
-  return sqrtf(tof(sum(normSq(x_prime))));
+  return sqrt(tof(sum(normSq(x_prime))));
 }
 
 

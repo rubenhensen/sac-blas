@@ -1,4 +1,4 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 void SACscopy(const int n, const float *x, const int incx, float *y, const int incy)
 {

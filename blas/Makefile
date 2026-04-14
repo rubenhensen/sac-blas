@@ -1,121 +1,118 @@
-# LIBS  = -Xl -lopenblas -Xl -lf77blas
-LIBS  = -Xl -lcblas
-CFLAGS = -Wall
+# SAC-BLAS Makefile
+# Compiler paths
+SAC2C = /Users/rubenhensen/Repos/cleanroom/sac2c/build_p/sac2c_p
+SAC4C = /Users/rubenhensen/Repos/cleanroom/sac2c/build_p/sac4c_p
+
+# macOS: use Accelerate framework for CBLAS; produces .dylib not .so
+LIBS  = -Xl -framework -Xl Accelerate
+CFLAGS = -Wall -DACCELERATE_NEW_LAPACK
 CC = gcc
-# CHECKFLAG = 
-CHECKFLAG = -check tc
+CHECKFLAG =
+EXT = dylib
 
 THREADS = 8
 
-# Target for cuda -tcuda 
+# Sequential module targets
+Helper_seq = host/seq/libHelperMod.$(EXT)
+BlasLevel1_seq = host/seq/libBlasLevel1Mod.$(EXT)
+BlasLevel2_seq = host/seq/libBlasLevel2Mod.$(EXT)
+BlasLevel3_seq = host/seq/libBlasLevel3Mod.$(EXT)
+OpenBlas_seq = host/seq/libOpenBlasMod.$(EXT)
 
+# Multi-threaded module targets
+Helper = host/mt-pth/libHelperMod.$(EXT)
+BlasLevel1 = host/mt-pth/libBlasLevel1Mod.$(EXT)
+BlasLevel2 = host/mt-pth/libBlasLevel2Mod.$(EXT)
+BlasLevel3 = host/mt-pth/libBlasLevel3Mod.$(EXT)
+OpenBlas = host/mt-pth/libOpenBlasMod.$(EXT)
 
-Helper_seq = host/seq/libHelperMod.so tree/host/libHelperTree.so
-BlasLevel1_seq = host/seq/libBlasLevel1Mod.so tree/host/libBlasLevel1Tree.so
-BlasLevel2_seq = host/seq/libBlasLevel2Mod.so tree/host/libBlasLevel2Tree.so
-OpenBlas_seq = host/seq/libOpenBlasMod.so tree/host/libOpenBlasTree.so
-ob2_seq = host/seq/libob2Mod.so tree/host/libob2Tree.so
-
-Helper = host/mt-pth/libHelperMod.so tree/host/libHelperTree.so
-BlasLevel1 = host/mt-pth/libBlasLevel1Mod.so tree/host/libBlasLevel1Tree.so
-BlasLevel2 = host/mt-pth/libBlasLevel2Mod.so tree/host/libBlasLevel2Tree.so
-OpenBlas = host/mt-pth/libOpenBlasMod.so tree/host/libOpenBlasTree.so
-ob2 = host/mt-pth/libob2Mod.so tree/host/libob2Tree.so
 BLAS_BIN = $(patsubst src/blas/%.c, bin/blas/%.o, $(wildcard src/blas/*.c))
-
 
 ROUTINE=TEST
 
 
-.PHONY: test test-seq stest echo
+.PHONY: test test-seq stest echo clean modules-seq modules-mt
 
-echo: 
+echo:
 	echo $(BLAS_BIN)
 
-debug_seq: bin/sac/seq/debug.out $(ob2_seq)
+# Build all sequential modules
+modules-seq: $(Helper_seq) $(BlasLevel1_seq) $(BlasLevel2_seq) $(OpenBlas_seq)
+
+# Build all multi-threaded modules
+modules-mt: $(Helper) $(BlasLevel1) $(BlasLevel2) $(OpenBlas)
+
+# Debug targets
+debug_seq: bin/sac/seq/debug.out
 	./$<
 
 bin/sac/seq/debug.out: src/sac/debug.sac bin/blas/drotmg.o
-	sac2c $(CHECKFLAG) $(LIBS) -o $@ $<
+	$(SAC2C) $(CHECKFLAG) $(LIBS) -o $@ $<
 
-debug: bin/sac/mt-pth/debug.out 
+debug: bin/sac/mt-pth/debug.out
 	env SAC_PARALLEL=$(THREADS) ./$<
 
 bin/sac/mt-pth/debug.out: src/sac/debug.sac bin/blas/drotmg.o
-	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth -o $@ $<
+	$(SAC2C) $(CHECKFLAG) $(LIBS) -tmt_pth -o $@ $<
 
-stest: 
-	sbatch long make test
-
+# Test targets
 test: bin/sac/mt-pth/testing_tool.out $(OpenBlas)
 	env SAC_PARALLEL=$(THREADS) ./$<
-# test: bin/sac/mt-pth/testing_tool.out
-# 	./$<
 
 test-seq: bin/sac/seq/testing_tool.out
 	./$<
 
+# C wrapper compilation
 bin/blas/%.o: src/blas/%.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) -framework Accelerate
 
-host/seq/libOpenBlasMod.so tree/host/libOpenBlasTree.so &: src/sac/OpenBlas.sac $(BLAS_BIN)
-	sac2c $(CHECKFLAG) $(LIBS) $< 
-host/seq/libob2Mod.so tree/host/libob2Tree.so &: src/sac/ob2.sac $(BLAS_BIN)
-	sac2c $(CHECKFLAG) $(LIBS) $< 
-host/seq/libHelperMod.so tree/host/libHelperTree.so &: src/sac/Helper.sac
-	sac2c $(CHECKFLAG) $(LIBS) $< 
-host/seq/libBlasLevel1Mod.so tree/host/libBlasLevel1Tree.so &: src/sac/BlasLevel1.sac $(Helper_seq)
-	sac2c $(CHECKFLAG) $(LIBS)  src/sac/BlasLevel1.sac
+# Sequential module builds
+host/seq/libOpenBlasMod.$(EXT): src/sac/OpenBlas.sac $(BLAS_BIN)
+	$(SAC2C) $(CHECKFLAG) $(LIBS) $<
+host/seq/libHelperMod.$(EXT): src/sac/Helper.sac
+	$(SAC2C) $(CHECKFLAG) $(LIBS) $<
+host/seq/libBlasLevel1Mod.$(EXT): src/sac/BlasLevel1.sac $(Helper_seq)
+	$(SAC2C) $(CHECKFLAG) $(LIBS) src/sac/BlasLevel1.sac
+host/seq/libBlasLevel2Mod.$(EXT): src/sac/BlasLevel2.sac $(BlasLevel1_seq) $(Helper_seq)
+	$(SAC2C) $(CHECKFLAG) $(LIBS) src/sac/BlasLevel2.sac
+host/seq/libBlasLevel3Mod.$(EXT): src/sac/BlasLevel3.sac $(BlasLevel2_seq) $(BlasLevel1_seq) $(Helper_seq)
+	$(SAC2C) $(CHECKFLAG) $(LIBS) src/sac/BlasLevel3.sac
 bin/sac/seq/testing_tool.out: src/sac/testing_tool.sac $(OpenBlas_seq)
-	sac2c $(CHECKFLAG) $(LIBS) -D ROUTINE=$(ROUTINE) -o $@ $<
-host/seq/libBlasLevel2Mod.so tree/host/libBlasLevel2Tree.so &: src/sac/BlasLevel2.sac $(BlasLevel1_seq) $(Helper_seq)
-	sac2c $(CHECKFLAG) $(LIBS) src/sac/BlasLevel2.sac
+	$(SAC2C) $(CHECKFLAG) $(LIBS) -D ROUTINE=$(ROUTINE) -o $@ $<
 
-host/mt-pth/libOpenBlasMod.so: src/sac/OpenBlas.sac $(BLAS_BIN)
-	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth $< 
-host/mt-pth/libob2Mod.so: src/sac/ob2.sac $(BLAS_BIN)
-	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth $< 
-host/mt-pth/libHelperMod.so: src/sac/Helper.sac
-	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth $< 
-host/mt-pth/libBlasLevel1Mod.so: src/sac/BlasLevel1.sac $(Helper)
-	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth src/sac/BlasLevel1.sac
-host/mt-pth/libBlasLevel2Mod.so: src/sac/BlasLevel2.sac $(BlasLevel1)  $(Helper)
-	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth src/sac/BlasLevel2.sac
-bin/sac/mt-pth/testing_tool.out: src/sac/testing_tool.sac $(BlasLevel1) $(BlasLevel2) $(OpenBlas) $(Helper) 
-	sac2c $(CHECKFLAG) $(LIBS) -tmt_pth -D ROUTINE=$(ROUTINE) -o $@ $<
+# Multi-threaded module builds
+host/mt-pth/libOpenBlasMod.$(EXT): src/sac/OpenBlas.sac $(BLAS_BIN)
+	$(SAC2C) $(CHECKFLAG) $(LIBS) -tmt_pth $<
+host/mt-pth/libHelperMod.$(EXT): src/sac/Helper.sac
+	$(SAC2C) $(CHECKFLAG) $(LIBS) -tmt_pth $<
+host/mt-pth/libBlasLevel1Mod.$(EXT): src/sac/BlasLevel1.sac $(Helper)
+	$(SAC2C) $(CHECKFLAG) $(LIBS) -tmt_pth src/sac/BlasLevel1.sac
+host/mt-pth/libBlasLevel2Mod.$(EXT): src/sac/BlasLevel2.sac $(BlasLevel1) $(Helper)
+	$(SAC2C) $(CHECKFLAG) $(LIBS) -tmt_pth src/sac/BlasLevel2.sac
+host/mt-pth/libBlasLevel3Mod.$(EXT): src/sac/BlasLevel3.sac $(BlasLevel2) $(BlasLevel1) $(Helper)
+	$(SAC2C) $(CHECKFLAG) $(LIBS) -tmt_pth src/sac/BlasLevel3.sac
+bin/sac/mt-pth/testing_tool.out: src/sac/testing_tool.sac $(BlasLevel1) $(BlasLevel2) $(BlasLevel3) $(OpenBlas) $(Helper)
+	$(SAC2C) $(CHECKFLAG) $(LIBS) -tmt_pth -D ROUTINE=$(ROUTINE) -o $@ $<
 
-bin/sac/seq/%.out: src/sac/%.sac $(BlasLevel1_seq) $(BlasLevel2_seq) $(Helper_seq) 
-	sac2c $(CHECKFLAG) $(LIBS) -o $@ $< 
+# Generic sequential build
+bin/sac/seq/%.out: src/sac/%.sac $(BlasLevel1_seq) $(BlasLevel2_seq) $(BlasLevel3_seq) $(Helper_seq)
+	$(SAC2C) $(CHECKFLAG) $(LIBS) -o $@ $<
 	@rm -rf bin/sac/*.i
 	@rm -rf bin/sac/*.o
 	@rm -rf bin/sac/*.c
 
+# Generic multi-threaded build
 bin/sac/mt-pth/%.out: src/sac/%.sac
-	sac2c -tmt_pth $(CHECKFLAG) $(LIBS) -o $@ $< 
+	$(SAC2C) -tmt_pth $(CHECKFLAG) $(LIBS) -o $@ $<
 	@rm -rf bin/sac/*.i
 	@rm -rf bin/sac/*.o
 	@rm -rf bin/sac/*.c
 
-
-# test_single: test/isamax.sac
-# 	sac2c -tmt_pth $(CHECKFLAG) $(LIBS) -o mt_$@ $< 
-# 	env LD_LIBRARY_PATH="/home/rhensen/bin/openblas/bin/lib/" SAC_PARALLEL="8" ./mt_test_single
-
-# test_mt: $(TESTSACEXEC) 
-# 	for x in mt_test/*.out; do echo $$x; env LD_LIBRARY_PATH="/home/rhensen/bin/openblas/bin/lib/" SAC_PARALLEL="8" ./$$x; done
-
-
-clean: 
+clean:
 	rm -rf bin/blas/*.o
-	rm -rf bin/sac/mt-pth/*.out
-	rm -rf bin/sac/mt-pth/*.i
-	rm -rf bin/sac/mt-pth/*.o
-	rm -rf bin/sac/mt-pth/*.c
-	rm -rf bin/sac/seq/*.out
-	rm -rf bin/sac/seq/*.i
-	rm -rf bin/sac/seq/*.o
-	rm -rf bin/sac/seq/*.c
-	rm -rf host/mt-pth/*.so
-	rm -rf host/seq/*.so
-	rm -rf tree/host/*.so
+	rm -rf bin/sac/mt-pth/*.out bin/sac/mt-pth/*.i bin/sac/mt-pth/*.o bin/sac/mt-pth/*.c
+	rm -rf bin/sac/seq/*.out bin/sac/seq/*.i bin/sac/seq/*.o bin/sac/seq/*.c
+	rm -rf host/mt-pth/*.$(EXT) host/mt-pth/*.so
+	rm -rf host/seq/*.$(EXT) host/seq/*.so
+	rm -rf tree/host/*.so tree/host/seq
 	rm -rf ./**/*.i

@@ -1,7 +1,7 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 void SACsspmv(const char uplo, const int n, const float alpha, const float *ap, const float *x, const int incx, const float beta, float *y, const int incy) {
-    CBLAS_UPLO cblasUplo;
+    enum CBLAS_UPLO cblasUplo;
     if (uplo == 'u' || uplo == 'U') {
         cblasUplo =  CblasUpper;
     } else {

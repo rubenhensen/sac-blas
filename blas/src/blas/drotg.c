@@ -1,4 +1,4 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 void SACdrotg(double *a, double *b, double *c, double *s)
 {

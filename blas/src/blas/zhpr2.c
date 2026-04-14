@@ -1,4 +1,4 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 void SACzhpr2(const char uplo, const int n, const void *alpha, const void *x, const int incx, const void *y, const int incy, void *ap)
 {

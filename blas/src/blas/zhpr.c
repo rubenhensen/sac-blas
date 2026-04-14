@@ -1,6 +1,6 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
-void SACzhpr(const CBLAS_UPLO uplo, const int n, const double alpha, const void *x, const int incx, void *ap)
+void SACzhpr(const enum CBLAS_UPLO uplo, const int n, const double alpha, const void *x, const int incx, void *ap)
 {
     if (uplo == 'u' || uplo == 'U') {
         cblas_zhpr(CblasRowMajor, 121, n, alpha, x, incx, ap);

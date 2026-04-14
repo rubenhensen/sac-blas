@@ -1,4 +1,4 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 void SACssymv(const char uplo, const int n, const float alpha, const float *a, const int lda, const float *x, const int incx, const float beta, float *y, const int incy)
 {   

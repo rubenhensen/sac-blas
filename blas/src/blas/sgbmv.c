@@ -1,8 +1,8 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 void SACsgbmv(char trans, int m, int n, int kl, int ku, float alpha, float* a, int lda, float* x, int incx, float beta, float* y, int incy)
 {
-    CBLAS_TRANSPOSE cblasTrans;
+    enum CBLAS_TRANSPOSE cblasTrans;
 
     if (trans == 'N' || trans == 'n') {
         cblasTrans = CblasNoTrans;

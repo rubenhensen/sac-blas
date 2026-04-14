@@ -1,8 +1,8 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 void SACdspr2(const char uplo, const int n, const double alpha, const double *x, const int incx, const double *y, const int incy, double *ap)
 {
-    CBLAS_UPLO cblasUplo;
+    enum CBLAS_UPLO cblasUplo;
     if (uplo == 'u' || uplo == 'U') {
         cblasUplo =  CblasUpper;
     } else {

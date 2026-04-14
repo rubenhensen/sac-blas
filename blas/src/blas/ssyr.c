@@ -1,8 +1,8 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 void SACssyr(const char uplo, const int n, const float alpha, const float *x, const int incx, float *a, const int lda)
 {
-    CBLAS_UPLO cblasUplo;
+    enum CBLAS_UPLO cblasUplo;
     if (uplo == 'u' || uplo == 'U') {
         cblasUplo =  CblasUpper;
     } else {

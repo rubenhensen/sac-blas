@@ -1,4 +1,4 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 void SACdger(const int m, const int n, const double alpha, const double *x, const int incx, const double *y, const int incy, double *a, const int lda)
 {

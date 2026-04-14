@@ -1,4 +1,4 @@
-#include "/usr/include/x86_64-linux-gnu/cblas.h"
+#include <Accelerate/Accelerate.h>
 
 double SACdsdot(const int n, const float *sx, const int incx, const float *sy, const int incy)
 {

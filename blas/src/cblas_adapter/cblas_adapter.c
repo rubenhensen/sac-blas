@@ -67,6 +67,32 @@ static SACarg *mk_dmat(const double *data, int rows, int cols) {
     return SACARGcreateFromPointer(SACTYPE__MAIN__double, c, 2, s);
 }
 
+/* lda-aware matrix helpers: handle lda > logical column count */
+static SACarg *mk_fmat_lda(const float *data, int rows, int ncols, int lda) {
+    if (rows <= 0) rows = 1; if (ncols <= 0) ncols = 1;
+    float *c = (float*)malloc(rows * ncols * sizeof(float));
+    for (int i = 0; i < rows; i++) memcpy(c + i*ncols, data + i*lda, ncols*sizeof(float));
+    sac_int s[] = {rows, ncols};
+    return SACARGcreateFromPointer(SACTYPE__MAIN__float, c, 2, s);
+}
+static SACarg *mk_dmat_lda(const double *data, int rows, int ncols, int lda) {
+    if (rows <= 0) rows = 1; if (ncols <= 0) ncols = 1;
+    double *c = (double*)malloc(rows * ncols * sizeof(double));
+    for (int i = 0; i < rows; i++) memcpy(c + i*ncols, data + i*lda, ncols*sizeof(double));
+    sac_int s[] = {rows, ncols};
+    return SACARGcreateFromPointer(SACTYPE__MAIN__double, c, 2, s);
+}
+static void copy_fmat_lda(SACarg *ret, float *dst, int rows, int ncols, int lda) {
+    const float *src = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, ret);
+    for (int i = 0; i < rows; i++) memcpy(dst + i*lda, src + i*ncols, ncols*sizeof(float));
+    SACARGdeleteSacArray(&ret);
+}
+static void copy_dmat_lda(SACarg *ret, double *dst, int rows, int ncols, int lda) {
+    const double *src = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, ret);
+    for (int i = 0; i < rows; i++) memcpy(dst + i*lda, src + i*ncols, ncols*sizeof(double));
+    SACARGdeleteSacArray(&ret);
+}
+
 static void copy_fvec_back(SACarg *ret, float *dst, int len) {
     const float *src = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, ret);
     memcpy(dst, src, len * sizeof(float));
@@ -863,8 +889,8 @@ void cblas_sger(const CBLAS_LAYOUT Layout, const int M, const int N,
     BlasLevel2__sger9(&r1, mk_int(rm), mk_int(rn), mk_float(alpha),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy),
-        mk_fmat(A, rm, lda), mk_int(lda));
-    copy_fmat_back(r1, A, rm, lda);
+        mk_fmat_lda(A, rm, rn, lda), mk_int(rn));
+    copy_fmat_lda(r1, A, rm, rn, lda);
 }
 
 void cblas_ssyr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -880,8 +906,8 @@ void cblas_ssyr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     SACarg *r1;
     BlasLevel2__ssyr7(&r1, mk_char(u), mk_int(N), mk_float(alpha),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
-        mk_fmat(A, N, lda), mk_int(lda));
-    copy_fmat_back(r1, A, N, lda);
+        mk_fmat_lda(A, N, N, lda), mk_int(N));
+    copy_fmat_lda(r1, A, N, N, lda);
 }
 
 void cblas_sspr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -917,8 +943,8 @@ void cblas_ssyr2(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     BlasLevel2__ssyr29(&r1, mk_char(u), mk_int(N), mk_float(alpha),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy),
-        mk_fmat(A, N, lda), mk_int(lda));
-    copy_fmat_back(r1, A, N, lda);
+        mk_fmat_lda(A, N, N, lda), mk_int(N));
+    copy_fmat_lda(r1, A, N, N, lda);
 }
 
 void cblas_sspr2(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,

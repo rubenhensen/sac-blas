@@ -611,20 +611,30 @@ void cblas_sgemv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
                  float *Y, const int incY) {
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
-    char t; int lenx, leny;
+    char t;
+    int rm, rn;
     if (Layout == CblasColMajor) {
         t = (TransA == CblasNoTrans) ? 'T' : 'N';
-        /* Swap M and N for col-major -> row-major conversion */
+        rm = N; rn = M; /* swap for row-major equivalence */
     } else {
         t = trans_char(TransA);
+        rm = M; rn = N;
     }
-    lenx = (t == 'N') ? veclen(N, incX) : veclen(M, incX);
-    leny = (t == 'N') ? veclen(M, incY) : veclen(N, incY);
+    int lenx_n = (t == 'N') ? rn : rm;
+    int leny_n = (t == 'N') ? rm : rn;
+    int aincx, aincy, xlen, ylen;
+    float *ax = adjust_fvec(X, lenx_n, incX, &aincx, &xlen);
+    float *ay = adjust_fvec(Y, leny_n, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
-    BlasLevel2__sgemv11(&r1, mk_char(t), mk_int(M), mk_int(N), mk_float(alpha),
-        mk_fvec(A, M * lda), mk_int(lda), mk_fvec(X, lenx), mk_int(incX),
-        mk_float(beta), mk_fvec(Y, leny), mk_int(incY));
-    copy_fvec_back(r1, Y, leny);
+    BlasLevel2__sgemv11(&r1, mk_char(t), mk_int(rm), mk_int(rn), mk_float(alpha),
+        mk_fmat(A, rm, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
+        mk_float(beta),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy));
+    const float *ry = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(ry, Y, leny_n, incY);
+    SACARGdeleteSacArray(&r1);
 }
 
 void cblas_sgbmv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
@@ -635,14 +645,21 @@ void cblas_sgbmv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
     char t = (Layout == CblasColMajor) ? ((TransA == CblasNoTrans) ? 'T' : 'N') : trans_char(TransA);
-    int leny = (t == 'N') ? veclen(M, incY) : veclen(N, incY);
-    int lenx = (t == 'N') ? veclen(N, incX) : veclen(M, incX);
+    int lenx_n = (t == 'N') ? N : M;
+    int leny_n = (t == 'N') ? M : N;
+    int aincx, aincy, xlen, ylen;
+    float *ax = adjust_fvec(X, lenx_n, incX, &aincx, &xlen);
+    float *ay = adjust_fvec(Y, leny_n, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     int arows = KL + KU + 1;
     SACarg *r1;
     BlasLevel2__sgbmv13(&r1, mk_char(t), mk_int(M), mk_int(N), mk_int(KL), mk_int(KU),
-        mk_float(alpha), mk_fvec(A, arows * lda), mk_int(lda),
-        mk_fvec(X, lenx), mk_int(incX), mk_float(beta), mk_fvec(Y, leny), mk_int(incY));
-    copy_fvec_back(r1, Y, leny);
+        mk_float(alpha), mk_fmat(A, arows, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
+        mk_float(beta),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy));
+    const float *ry = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(ry, Y, leny_n, incY); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_ssymv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -653,11 +670,18 @@ void cblas_ssymv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
+    int aincx, aincy, xlen, ylen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    float *ay = adjust_fvec(Y, N, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__ssymv10(&r1, mk_char(u), mk_int(N), mk_float(alpha),
-        mk_fvec(A, N * lda), mk_int(lda), mk_fvec(X, veclen(N, incX)), mk_int(incX),
-        mk_float(beta), mk_fvec(Y, veclen(N, incY)), mk_int(incY));
-    copy_fvec_back(r1, Y, veclen(N, incY));
+        mk_fmat(A, N, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
+        mk_float(beta),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy));
+    const float *ry = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(ry, Y, N, incY); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_ssbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -668,11 +692,18 @@ void cblas_ssbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
+    int aincx, aincy, xlen, ylen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    float *ay = adjust_fvec(Y, N, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__ssbmv11(&r1, mk_char(u), mk_int(N), mk_int(K), mk_float(alpha),
-        mk_fvec(A, (K+1) * lda), mk_int(lda), mk_fvec(X, veclen(N, incX)), mk_int(incX),
-        mk_float(beta), mk_fvec(Y, veclen(N, incY)), mk_int(incY));
-    copy_fvec_back(r1, Y, veclen(N, incY));
+        mk_fmat(A, K+1, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
+        mk_float(beta),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy));
+    const float *ry = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(ry, Y, N, incY); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_sspmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -684,11 +715,18 @@ void cblas_sspmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
     int aplen = N * (N + 1) / 2;
+    int aincx, aincy, xlen, ylen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    float *ay = adjust_fvec(Y, N, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__sspmv9(&r1, mk_char(u), mk_int(N), mk_float(alpha),
-        mk_fvec(Ap, aplen), mk_fvec(X, veclen(N, incX)), mk_int(incX),
-        mk_float(beta), mk_fvec(Y, veclen(N, incY)), mk_int(incY));
-    copy_fvec_back(r1, Y, veclen(N, incY));
+        mk_fvec(Ap, aplen),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
+        mk_float(beta),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy));
+    const float *ry = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(ry, Y, N, incY); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_strmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -698,10 +736,15 @@ void cblas_strmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
+    int aincx, xlen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__strmv8(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_fmat(A, N, lda), mk_int(lda), mk_fvec(X, veclen(N, incX)), mk_int(incX));
-    copy_fvec_back(r1, X, veclen(N, incX));
+        mk_fmat(A, N, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx));
+    const float *rx = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_stbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -712,11 +755,16 @@ void cblas_stbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
-    /* stbmv not yet implemented in SAC - use stbsv as placeholder (TODO) */
+    int aincx, xlen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
+    /* stbmv not yet in SAC - using stbsv placeholder */
     SACarg *r1;
     BlasLevel2__stbsv9(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N), mk_int(K),
-        mk_fmat(A, K+1, lda), mk_int(lda), mk_fvec(X, veclen(N, incX)), mk_int(incX));
-    copy_fvec_back(r1, X, veclen(N, incX));
+        mk_fmat(A, K+1, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx));
+    const float *rx = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_stpmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -727,10 +775,15 @@ void cblas_stpmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
     int aplen = N * (N + 1) / 2;
+    int aincx, xlen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__stpmv7(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_fvec(Ap, aplen), mk_fvec(X, veclen(N, incX)), mk_int(incX));
-    copy_fvec_back(r1, X, veclen(N, incX));
+        mk_fvec(Ap, aplen),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx));
+    const float *rx = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_strsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -740,10 +793,15 @@ void cblas_strsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
+    int aincx, xlen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__strsv8(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_fmat(A, N, lda), mk_int(lda), mk_fvec(X, veclen(N, incX)), mk_int(incX));
-    copy_fvec_back(r1, X, veclen(N, incX));
+        mk_fmat(A, N, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx));
+    const float *rx = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_stbsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -754,10 +812,15 @@ void cblas_stbsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
+    int aincx, xlen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__stbsv9(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N), mk_int(K),
-        mk_fmat(A, K+1, lda), mk_int(lda), mk_fvec(X, veclen(N, incX)), mk_int(incX));
-    copy_fvec_back(r1, X, veclen(N, incX));
+        mk_fmat(A, K+1, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx));
+    const float *rx = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_stpsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -768,10 +831,15 @@ void cblas_stpsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
     int aplen = N * (N + 1) / 2;
+    int aincx, xlen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__stpsv7(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_fvec(Ap, aplen), mk_fvec(X, veclen(N, incX)), mk_int(incX));
-    copy_fvec_back(r1, X, veclen(N, incX));
+        mk_fvec(Ap, aplen),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx));
+    const float *rx = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
+    unadjust_fvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_sger(const CBLAS_LAYOUT Layout, const int M, const int N,
@@ -779,21 +847,24 @@ void cblas_sger(const CBLAS_LAYOUT Layout, const int M, const int N,
                 const float *Y, const int incY, float *A, const int lda) {
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
-    SACarg *r1;
+    int rm, rn;
+    if (Layout == CblasColMajor) { rm = N; rn = M; } else { rm = M; rn = N; }
+    int aincx, aincy, xlen, ylen;
+    float *ax, *ay;
     if (Layout == CblasColMajor) {
-        /* Col-major sger(M,N,...) = Row-major sger(N,M,...) with X<->Y swapped */
-        BlasLevel2__sger9(&r1, mk_int(N), mk_int(M), mk_float(alpha),
-            mk_fvec(Y, veclen(N, incY)), mk_int(incY),
-            mk_fvec(X, veclen(M, incX)), mk_int(incX),
-            mk_fmat(A, N, lda), mk_int(lda));
-        copy_fmat_back(r1, A, N, lda);
+        ay = adjust_fvec(X, M, incX, &aincy, &ylen);
+        ax = adjust_fvec(Y, N, incY, &aincx, &xlen);
     } else {
-        BlasLevel2__sger9(&r1, mk_int(M), mk_int(N), mk_float(alpha),
-            mk_fvec(X, veclen(M, incX)), mk_int(incX),
-            mk_fvec(Y, veclen(N, incY)), mk_int(incY),
-            mk_fmat(A, M, lda), mk_int(lda));
-        copy_fmat_back(r1, A, M, lda);
+        ax = adjust_fvec(X, M, incX, &aincx, &xlen);
+        ay = adjust_fvec(Y, N, incY, &aincy, &ylen);
     }
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
+    SACarg *r1;
+    BlasLevel2__sger9(&r1, mk_int(rm), mk_int(rn), mk_float(alpha),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy),
+        mk_fmat(A, rm, lda), mk_int(lda));
+    copy_fmat_back(r1, A, rm, lda);
 }
 
 void cblas_ssyr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -803,9 +874,13 @@ void cblas_ssyr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
+    int aincx, xlen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__ssyr7(&r1, mk_char(u), mk_int(N), mk_float(alpha),
-        mk_fvec(X, veclen(N, incX)), mk_int(incX), mk_fmat(A, N, lda), mk_int(lda));
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
+        mk_fmat(A, N, lda), mk_int(lda));
     copy_fmat_back(r1, A, N, lda);
 }
 
@@ -817,9 +892,13 @@ void cblas_sspr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
     int aplen = N * (N + 1) / 2;
+    int aincx, xlen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__sspr6(&r1, mk_char(u), mk_int(N), mk_float(alpha),
-        mk_fvec(X, veclen(N, incX)), mk_int(incX), mk_fvec(Ap, aplen));
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
+        mk_fvec(Ap, aplen));
     copy_fvec_back(r1, Ap, aplen);
 }
 
@@ -830,10 +909,14 @@ void cblas_ssyr2(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
+    int aincx, aincy, xlen, ylen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    float *ay = adjust_fvec(Y, N, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__ssyr29(&r1, mk_char(u), mk_int(N), mk_float(alpha),
-        mk_fvec(X, veclen(N, incX)), mk_int(incX),
-        mk_fvec(Y, veclen(N, incY)), mk_int(incY),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy),
         mk_fmat(A, N, lda), mk_int(lda));
     copy_fmat_back(r1, A, N, lda);
 }
@@ -846,10 +929,15 @@ void cblas_sspr2(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
     int aplen = N * (N + 1) / 2;
+    int aincx, aincy, xlen, ylen;
+    float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
+    float *ay = adjust_fvec(Y, N, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__sspr28(&r1, mk_char(u), mk_int(N), mk_float(alpha),
-        mk_fvec(X, veclen(N, incX)), mk_int(incX),
-        mk_fvec(Y, veclen(N, incY)), mk_int(incY), mk_fvec(Ap, aplen));
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
+        SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy),
+        mk_fvec(Ap, aplen));
     copy_fvec_back(r1, Ap, aplen);
 }
 
@@ -861,14 +949,23 @@ void cblas_dgemv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
                  double *Y, const int incY) {
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
-    char t = (Layout == CblasColMajor) ? ((TransA == CblasNoTrans) ? 'T' : 'N') : trans_char(TransA);
-    int lenx = (t == 'N') ? veclen(N, incX) : veclen(M, incX);
-    int leny = (t == 'N') ? veclen(M, incY) : veclen(N, incY);
+    char t; int rm, rn;
+    if (Layout == CblasColMajor) { t = (TransA == CblasNoTrans) ? 'T' : 'N'; rm = N; rn = M; }
+    else { t = trans_char(TransA); rm = M; rn = N; }
+    int lenx_n = (t == 'N') ? rn : rm;
+    int leny_n = (t == 'N') ? rm : rn;
+    int aincx, aincy, xlen, ylen;
+    double *ax = adjust_dvec(X, lenx_n, incX, &aincx, &xlen);
+    double *ay = adjust_dvec(Y, leny_n, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
-    BlasLevel2__dgemv11(&r1, mk_char(t), mk_int(M), mk_int(N), mk_double(alpha),
-        mk_dvec(A, M * lda), mk_int(lda), mk_dvec(X, lenx), mk_int(incX),
-        mk_double(beta), mk_dvec(Y, leny), mk_int(incY));
-    copy_dvec_back(r1, Y, leny);
+    BlasLevel2__dgemv11(&r1, mk_char(t), mk_int(rm), mk_int(rn), mk_double(alpha),
+        mk_dmat(A, rm, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
+        mk_double(beta),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy));
+    const double *ry = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(ry, Y, leny_n, incY); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dgbmv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
@@ -879,14 +976,21 @@ void cblas_dgbmv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
     char t = (Layout == CblasColMajor) ? ((TransA == CblasNoTrans) ? 'T' : 'N') : trans_char(TransA);
-    int leny = (t == 'N') ? veclen(M, incY) : veclen(N, incY);
-    int lenx = (t == 'N') ? veclen(N, incX) : veclen(M, incX);
+    int lenx_n = (t == 'N') ? N : M;
+    int leny_n = (t == 'N') ? M : N;
+    int aincx, aincy, xlen, ylen;
+    double *ax = adjust_dvec(X, lenx_n, incX, &aincx, &xlen);
+    double *ay = adjust_dvec(Y, leny_n, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     int arows = KL + KU + 1;
     SACarg *r1;
     BlasLevel2__dgbmv13(&r1, mk_char(t), mk_int(M), mk_int(N), mk_int(KL), mk_int(KU),
-        mk_double(alpha), mk_dvec(A, arows * lda), mk_int(lda),
-        mk_dvec(X, lenx), mk_int(incX), mk_double(beta), mk_dvec(Y, leny), mk_int(incY));
-    copy_dvec_back(r1, Y, leny);
+        mk_double(alpha), mk_dmat(A, arows, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
+        mk_double(beta),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy));
+    const double *ry = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(ry, Y, leny_n, incY); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dsymv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -897,11 +1001,18 @@ void cblas_dsymv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
+    int aincx, aincy, xlen, ylen;
+    double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    double *ay = adjust_dvec(Y, N, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__dsymv10(&r1, mk_char(u), mk_int(N), mk_double(alpha),
-        mk_dvec(A, N * lda), mk_int(lda), mk_dvec(X, veclen(N, incX)), mk_int(incX),
-        mk_double(beta), mk_dvec(Y, veclen(N, incY)), mk_int(incY));
-    copy_dvec_back(r1, Y, veclen(N, incY));
+        mk_dmat(A, N, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
+        mk_double(beta),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy));
+    const double *ry = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(ry, Y, N, incY); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dsbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -912,11 +1023,18 @@ void cblas_dsbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
+    int aincx, aincy, xlen, ylen;
+    double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    double *ay = adjust_dvec(Y, N, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__dsbmv11(&r1, mk_char(u), mk_int(N), mk_int(K), mk_double(alpha),
-        mk_dvec(A, (K+1) * lda), mk_int(lda), mk_dvec(X, veclen(N, incX)), mk_int(incX),
-        mk_double(beta), mk_dvec(Y, veclen(N, incY)), mk_int(incY));
-    copy_dvec_back(r1, Y, veclen(N, incY));
+        mk_dmat(A, K+1, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
+        mk_double(beta),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy));
+    const double *ry = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(ry, Y, N, incY); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dspmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -928,11 +1046,18 @@ void cblas_dspmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
     int aplen = N * (N + 1) / 2;
+    int aincx, aincy, xlen, ylen;
+    double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    double *ay = adjust_dvec(Y, N, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__dspmv9(&r1, mk_char(u), mk_int(N), mk_double(alpha),
-        mk_dvec(Ap, aplen), mk_dvec(X, veclen(N, incX)), mk_int(incX),
-        mk_double(beta), mk_dvec(Y, veclen(N, incY)), mk_int(incY));
-    copy_dvec_back(r1, Y, veclen(N, incY));
+        mk_dvec(Ap, aplen),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
+        mk_double(beta),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy));
+    const double *ry = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(ry, Y, N, incY); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dtrmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -942,10 +1067,14 @@ void cblas_dtrmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
+    int aincx, xlen; double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__dtrmv8(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_dmat(A, N, lda), mk_int(lda), mk_dvec(X, veclen(N, incX)), mk_int(incX));
-    copy_dvec_back(r1, X, veclen(N, incX));
+        mk_dmat(A, N, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx));
+    const double *rx = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dtbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -956,11 +1085,15 @@ void cblas_dtbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
+    int aincx, xlen; double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
-    /* dtbmv not yet implemented in SAC - use dtbsv as placeholder (TODO) */
+    /* dtbmv not yet in SAC - using dtbsv placeholder */
     BlasLevel2__dtbsv9(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N), mk_int(K),
-        mk_dmat(A, K+1, lda), mk_int(lda), mk_dvec(X, veclen(N, incX)), mk_int(incX));
-    copy_dvec_back(r1, X, veclen(N, incX));
+        mk_dmat(A, K+1, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx));
+    const double *rx = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dtpmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -971,10 +1104,14 @@ void cblas_dtpmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
     int aplen = N * (N + 1) / 2;
+    int aincx, xlen; double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__dtpmv7(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_dvec(Ap, aplen), mk_dvec(X, veclen(N, incX)), mk_int(incX));
-    copy_dvec_back(r1, X, veclen(N, incX));
+        mk_dvec(Ap, aplen),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx));
+    const double *rx = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dtrsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -984,10 +1121,14 @@ void cblas_dtrsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
+    int aincx, xlen; double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__dtrsv8(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_dmat(A, N, lda), mk_int(lda), mk_dvec(X, veclen(N, incX)), mk_int(incX));
-    copy_dvec_back(r1, X, veclen(N, incX));
+        mk_dmat(A, N, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx));
+    const double *rx = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dtbsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -998,10 +1139,14 @@ void cblas_dtbsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
+    int aincx, xlen; double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__dtbsv9(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N), mk_int(K),
-        mk_dmat(A, K+1, lda), mk_int(lda), mk_dvec(X, veclen(N, incX)), mk_int(incX));
-    copy_dvec_back(r1, X, veclen(N, incX));
+        mk_dmat(A, K+1, lda), mk_int(lda),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx));
+    const double *rx = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dtpsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -1012,10 +1157,14 @@ void cblas_dtpsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     char u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
     int aplen = N * (N + 1) / 2;
+    int aincx, xlen; double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__dtpsv7(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_dvec(Ap, aplen), mk_dvec(X, veclen(N, incX)), mk_int(incX));
-    copy_dvec_back(r1, X, veclen(N, incX));
+        mk_dvec(Ap, aplen),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx));
+    const double *rx = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
+    unadjust_dvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
 }
 
 void cblas_dger(const CBLAS_LAYOUT Layout, const int M, const int N,
@@ -1023,20 +1172,24 @@ void cblas_dger(const CBLAS_LAYOUT Layout, const int M, const int N,
                 const double *Y, const int incY, double *A, const int lda) {
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
-    SACarg *r1;
+    int rm, rn;
+    if (Layout == CblasColMajor) { rm = N; rn = M; } else { rm = M; rn = N; }
+    int aincx, aincy, xlen, ylen;
+    double *ax, *ay;
     if (Layout == CblasColMajor) {
-        BlasLevel2__dger9(&r1, mk_int(N), mk_int(M), mk_double(alpha),
-            mk_dvec(Y, veclen(N, incY)), mk_int(incY),
-            mk_dvec(X, veclen(M, incX)), mk_int(incX),
-            mk_dmat(A, N, lda), mk_int(lda));
-        copy_dmat_back(r1, A, N, lda);
+        ay = adjust_dvec(X, M, incX, &aincy, &ylen);
+        ax = adjust_dvec(Y, N, incY, &aincx, &xlen);
     } else {
-        BlasLevel2__dger9(&r1, mk_int(M), mk_int(N), mk_double(alpha),
-            mk_dvec(X, veclen(M, incX)), mk_int(incX),
-            mk_dvec(Y, veclen(N, incY)), mk_int(incY),
-            mk_dmat(A, M, lda), mk_int(lda));
-        copy_dmat_back(r1, A, M, lda);
+        ax = adjust_dvec(X, M, incX, &aincx, &xlen);
+        ay = adjust_dvec(Y, N, incY, &aincy, &ylen);
     }
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
+    SACarg *r1;
+    BlasLevel2__dger9(&r1, mk_int(rm), mk_int(rn), mk_double(alpha),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy),
+        mk_dmat(A, rm, lda), mk_int(lda));
+    copy_dmat_back(r1, A, rm, lda);
 }
 
 void cblas_dsyr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -1046,9 +1199,12 @@ void cblas_dsyr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
+    int aincx, xlen; double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__dsyr7(&r1, mk_char(u), mk_int(N), mk_double(alpha),
-        mk_dvec(X, veclen(N, incX)), mk_int(incX), mk_dmat(A, N, lda), mk_int(lda));
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
+        mk_dmat(A, N, lda), mk_int(lda));
     copy_dmat_back(r1, A, N, lda);
 }
 
@@ -1060,9 +1216,12 @@ void cblas_dspr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
     int aplen = N * (N + 1) / 2;
+    int aincx, xlen; double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__dspr6(&r1, mk_char(u), mk_int(N), mk_double(alpha),
-        mk_dvec(X, veclen(N, incX)), mk_int(incX), mk_dvec(Ap, aplen));
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
+        mk_dvec(Ap, aplen));
     copy_dvec_back(r1, Ap, aplen);
 }
 
@@ -1073,10 +1232,14 @@ void cblas_dsyr2(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     if (N <= 0) return;
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
+    int aincx, aincy, xlen, ylen;
+    double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    double *ay = adjust_dvec(Y, N, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__dsyr29(&r1, mk_char(u), mk_int(N), mk_double(alpha),
-        mk_dvec(X, veclen(N, incX)), mk_int(incX),
-        mk_dvec(Y, veclen(N, incY)), mk_int(incY),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy),
         mk_dmat(A, N, lda), mk_int(lda));
     copy_dmat_back(r1, A, N, lda);
 }
@@ -1089,10 +1252,15 @@ void cblas_dspr2(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     char u = uplo_char(Uplo);
     if (Layout == CblasColMajor) u = (u == 'U') ? 'L' : 'U';
     int aplen = N * (N + 1) / 2;
+    int aincx, aincy, xlen, ylen;
+    double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
+    double *ay = adjust_dvec(Y, N, incY, &aincy, &ylen);
+    sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__dspr28(&r1, mk_char(u), mk_int(N), mk_double(alpha),
-        mk_dvec(X, veclen(N, incX)), mk_int(incX),
-        mk_dvec(Y, veclen(N, incY)), mk_int(incY), mk_dvec(Ap, aplen));
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
+        SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy),
+        mk_dvec(Ap, aplen));
     copy_dvec_back(r1, Ap, aplen);
 }
 

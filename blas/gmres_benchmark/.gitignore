@@ -1,0 +1,8 @@
+*.out
+*.o
+venv/
+*.sacbugreport
+__pycache__/
+host/
+tree/
+.out.c

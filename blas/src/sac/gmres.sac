@@ -1,0 +1,183 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+// BlasLevel2 triggers SAC reverse() type bug — use OpenBlas::dgemv directly
+// use Helper: all;
+use Math: all;
+use MTClock: {gettime};
+
+/*
+ * GMRES(m) — Generalized Minimal Residual Method
+ *
+ * Solves Ax = b using BLAS Level 1 (dot, nrm2, scal, axpy) and
+ * Level 2 (sgemv) operations.
+ *
+ * Parameters:
+ *   a     — N×N coefficient matrix
+ *   b     — N right-hand side vector
+ *   x0    — N initial guess
+ *   m     — restart parameter (max Krylov subspace dimension)
+ *   tol   — convergence tolerance on relative residual
+ *   maxit — maximum number of outer iterations (restarts)
+ *
+ * Returns: (x, iters, residual)
+ */
+
+double[n], int, double gmres(double[n,n] a, double[n] b, double[n] x0, int m, double tol, int maxit)
+{
+  nn = n;
+  x = x0;
+
+  /* b_norm for relative residual */
+  b_norm = dnrm2(nn, b, 1);
+  if (b_norm < 1e-15) { b_norm = 1.0; }
+
+  converged = false;
+  total_iters = 0;
+  final_res = 1.0;
+
+  for (outer = 0; outer < maxit && !converged; outer++) {
+    /* r = b - A*x */
+    ax = OpenBlas::dgemv('n', nn, nn, 1.0, a, nn, x, 1, 0.0, genarray([nn], 0.0), 1);
+    r = daxpy(nn, -1.0, ax, 1, b, 1);
+    beta = dnrm2(nn, r, 1);
+
+    if (beta / b_norm < tol) {
+      converged = true;
+      final_res = beta / b_norm;
+    } else {
+      /* Arnoldi process: build orthonormal basis V and upper Hessenberg H */
+      /* V is (m+1) × n, H is (m+1) × m */
+      v = genarray([m+1, nn], 0.0);
+      h = genarray([m+1, m], 0.0);
+
+      /* v[0] = r / beta */
+      v0 = dscal(nn, 1.0 / beta, r, 1);
+      for (j = 0; j < nn; j++) { v[0,j] = v0[j]; }
+
+      /* Givens rotation coefficients */
+      cs = genarray([m], 0.0);
+      sn = genarray([m], 0.0);
+      e1 = genarray([m+1], 0.0);
+      e1[0] = beta;
+
+      k = 0;  /* actual number of Arnoldi steps taken */
+      inner_converged = false;
+
+      for (i = 0; i < m && !inner_converged; i++) {
+        /* w = A * v[i] */
+        vi = v[i];
+        w = OpenBlas::dgemv('n', nn, nn, 1.0, a, nn, vi, 1, 0.0, genarray([nn], 0.0), 1);
+
+        /* Gram-Schmidt orthogonalization */
+        for (j = 0; j <= i; j++) {
+          vj = v[j];
+          hij = ddot(nn, w, 1, vj, 1);
+          h[j,i] = hij;
+          w = daxpy(nn, -hij, vj, 1, w, 1);
+        }
+
+        h[i+1,i] = dnrm2(nn, w, 1);
+
+        if (abs(h[i+1,i]) > 1e-15) {
+          vi1 = dscal(nn, 1.0 / h[i+1,i], w, 1);
+          for (j = 0; j < nn; j++) { v[i+1,j] = vi1[j]; }
+        }
+
+        /* Apply previous Givens rotations to column i of H */
+        for (j = 0; j < i; j++) {
+          tmp = cs[j] * h[j,i] + sn[j] * h[j+1,i];
+          h[j+1,i] = -sn[j] * h[j,i] + cs[j] * h[j+1,i];
+          h[j,i] = tmp;
+        }
+
+        /* Compute new Givens rotation for row i */
+        rr = sqrt(h[i,i] * h[i,i] + h[i+1,i] * h[i+1,i]);
+        if (rr > 1e-15) {
+          cs[i] = h[i,i] / rr;
+          sn[i] = h[i+1,i] / rr;
+        } else {
+          cs[i] = 1.0;
+          sn[i] = 0.0;
+        }
+
+        h[i,i] = cs[i] * h[i,i] + sn[i] * h[i+1,i];
+        h[i+1,i] = 0.0;
+
+        /* Apply rotation to e1 */
+        tmp2 = cs[i] * e1[i] + sn[i] * e1[i+1];
+        e1[i+1] = -sn[i] * e1[i] + cs[i] * e1[i+1];
+        e1[i] = tmp2;
+
+        k = i + 1;
+        total_iters = total_iters + 1;
+        final_res = abs(e1[i+1]) / b_norm;
+
+        if (final_res < tol) {
+          inner_converged = true;
+        }
+      }
+
+      /* Back-substitution to solve H[0:k, 0:k] * y = e1[0:k] */
+      y = genarray([k], 0.0);
+      for (i = k-1; i >= 0; i--) {
+        s = e1[i];
+        for (j = i+1; j < k; j++) {
+          s = s - h[i,j] * y[j];
+        }
+        y[i] = s / h[i,i];
+      }
+
+      /* x = x + V[0:k]^T * y */
+      for (i = 0; i < k; i++) {
+        x = daxpy(nn, y[i], v[i], 1, x, 1);
+      }
+
+      if (inner_converged) { converged = true; }
+    }
+  }
+
+  return (x, total_iters, final_res);
+}
+
+/*
+ * Test problem: Solve a diagonally dominant system
+ */
+void run_bench(int nn) {
+  /* Convection-diffusion matrix: -u_{i-1} + (2+h)*u_i - u_{i+1} = h^2*f
+   * Tridiagonal with slight asymmetry from convection term.
+   * For larger systems, uses more GMRES iterations. */
+  h = 1.0 / tod(nn + 1);
+  a = { [i,j] -> (i == j) ? 2.0 + h : (j == i+1) ? -1.0 + 0.5*h : (j == i-1) ? -1.0 - 0.5*h : 0.0 | [i,j] < [nn,nn] };
+
+  /* Right-hand side: b = A * ones (so exact solution is x = ones) */
+  ones = genarray([nn], 1.0);
+  b = OpenBlas::dgemv('n', nn, nn, 1.0, a, nn, ones, 1, 0.0, genarray([nn], 0.0), 1);
+
+  /* Initial guess: zero */
+  x0 = genarray([nn], 0.0);
+
+  /* GMRES(30) with tol=1e-10, max 100 restarts */
+  sec0, nsec0 = gettime();
+
+  x, iters, res = gmres(a, b, x0, min(30, nn), 1e-10, 100);
+
+  sec1, nsec1 = gettime();
+  t = tod(sec1 - sec0) + tod(nsec1 - nsec0) / 1000000000.0;
+
+  /* Check solution error: ||x - ones|| / ||ones|| */
+  err_vec = daxpy(nn, -1.0, ones, 1, x, 1);
+  err = dnrm2(nn, err_vec, 1) / dnrm2(nn, ones, 1);
+
+  printf("N=%4d: iters=%3d  residual=%.2e  error=%.2e  time=%.6f s\n",
+         nn, iters, res, err, t);
+}
+
+int main() {
+  printf("=== GMRES Benchmark using SAC BLAS ===\n\n");
+  run_bench(50);
+  run_bench(100);
+  run_bench(500);
+  run_bench(1000);
+  return 0;
+}

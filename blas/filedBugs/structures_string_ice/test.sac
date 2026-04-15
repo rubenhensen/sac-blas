@@ -1,0 +1,15 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+use Structures: {string};
+
+void check(string name, float[*] a, float[*] b) {
+  printf("Testing %s\n", name);
+}
+
+int main() {
+  check("test", [1.0f], [1.0f]);
+  return 0;
+}

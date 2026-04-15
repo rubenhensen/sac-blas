@@ -1,0 +1,11 @@
+use StdIO: all;
+use Array: all;
+use Complex: all;
+
+int main() {
+  a = toc(1.0, 2.0);
+  b = toc(3.0, 4.0);
+  c = a + b;
+  printf("Result: %f + %fi\n", real(c), imag(c));
+  return 0;
+}

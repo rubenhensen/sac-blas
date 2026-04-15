@@ -1,0 +1,14 @@
+use StdIO: all;
+use Structures: all;
+use Math: all;
+use Helper: all;
+
+int main() {
+  a = reshape([2,2], [toc(1,0), toc(0,1), toc(1,1), toc(2,0)]);
+  x = [toc(1,0), toc(0,1)];
+  result = with {
+    ([0] <= [i] < [2]): sum(a[i] * x);
+  }: genarray([2], toc(0,0));
+  printf("[0] = %f + %fi\n", real(result[0]), imag(result[0]));
+  return 0;
+}

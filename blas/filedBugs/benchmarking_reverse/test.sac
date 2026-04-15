@@ -1,0 +1,15 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use Benchmarking: all;
+
+int main() {
+  interval = getInterval("test", 0);
+  start(interval);
+  x = dscal(3, 2.0, [1.0, 2.0, 3.0], 1);
+  end(interval);
+  t, unit = returnResultUnit(interval);
+  printf("Time: %f %s\n", t, unit);
+  print(x);
+  return 0;
+}

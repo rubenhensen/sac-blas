@@ -1,0 +1,15 @@
+use StdIO: all;
+use Array: all;
+
+int main() {
+  for (trial = 0; trial < 3; trial++) {
+    if (trial == 0) { nn = 10; }
+    else if (trial == 1) { nn = 50; }
+    else { nn = 100; }
+
+    a = genarray([nn, nn], 1.0);
+    x = genarray([nn], 1.0);
+    printf("N=%d, sum=%f\n", nn, sum(a[0] * x));
+  }
+  return 0;
+}

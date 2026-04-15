@@ -1,0 +1,12 @@
+use StdIO: all;
+use Array: {reshape, genarray, sel, shape, dim, tod, toi, tof, iota, sum, modarray, take, drop, transpose, reverse, +, -, *, /, >=, <=, >, <, ==, !=, min, max, abs, where};
+use ComplexBasics: all;
+use ComplexScalarArith: all;
+
+int main() {
+  a = toc(1.0, 2.0);
+  b = toc(3.0, 4.0);
+  c = a + b;
+  printf("Result: %f + %fi\n", real(c), imag(c));
+  return 0;
+}

@@ -1,0 +1,9 @@
+use StdIO: all;
+use Structures: all;
+
+int main() {
+  ok = true;
+  msg = ok ? "PASS" : "FAIL";
+  printf("%s\n", msg);
+  return 0;
+}

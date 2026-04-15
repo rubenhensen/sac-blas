@@ -1,0 +1,12 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: {dgemv};
+
+int main() {
+  a = reshape([2,2], [1.0, 2.0, 3.0, 4.0]);
+  x = [1.0, 1.0];
+  y = dgemv('n', 2, 2, 1.0, a, 2, x, 1, 0.0, [0.0, 0.0], 1);
+  print(y);
+  return 0;
+}

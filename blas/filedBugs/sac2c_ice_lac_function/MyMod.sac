@@ -1,0 +1,19 @@
+module MyMod;
+use Array: all;
+export all;
+
+/*
+ * A multi-generator with-loop that pads an array with leading zeros.
+ */
+float[k] pad(int k, float[n] arr) {
+  return { iv -> 0.0f          | iv < [k-n];
+           iv -> arr[iv-(k-n)] | [k-n] <= iv < [k] };
+}
+
+/*
+ * Calls pad(n, take([n], ...)) inside a with-loop.
+ * This triggers an ICE when called from a separate program.
+ */
+float[n,n] convert(float[.,.] m, int n) {
+  return { [i] -> pad(n, take([n], m[i])) | [i] < [n] };
+}

@@ -1,0 +1,22 @@
+use StdIO: all;
+use Array: all;
+
+/*
+ * Same code as MyMod, but defined inline in the program.
+ * This compiles and runs correctly.
+ */
+
+float[k] pad(int k, float[n] arr) {
+  return { iv -> 0.0f          | iv < [k-n];
+           iv -> arr[iv-(k-n)] | [k-n] <= iv < [k] };
+}
+
+float[n,n] convert(float[.,.] m, int n) {
+  return { [i] -> pad(n, take([n], m[i])) | [i] < [n] };
+}
+
+int main() {
+  m = reshape([3,3], tof(iota(9)));
+  print(convert(m, 3));
+  return 0;
+}

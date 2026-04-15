@@ -1,0 +1,9 @@
+use StdIO: all;
+use Array: all;
+use MyMod: all;
+
+int main() {
+  m = reshape([3,3], tof(iota(9)));
+  print(convert(m, 3));
+  return 0;
+}

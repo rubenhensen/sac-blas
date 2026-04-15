@@ -205,6 +205,12 @@ external float[*] ssymv(char uplo, int n, float alpha, float[*] a, int lda, floa
     #pragma header  "<Accelerate/Accelerate.h>"
     #pragma linksign [9,1,2,3,4,5,6,7,8,9,10]
 
+external complex[*] zgemv(char trans, int m, int n, complex[*] alpha, complex[*] a, int lda, complex[*] x, int incx, complex[*] beta, complex[*] y, int incy);
+    #pragma linkname "SACzgemv"
+    #pragma linkobj "bin/blas/zgemv.o"
+    #pragma header  "<Accelerate/Accelerate.h>"
+    #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]
+
 external complex[*] zgerc(int m, int n, complex[*] alpha, complex[*] x, int incx, complex[*] y, int incy, complex[*] a, int lda);
     #pragma linkname "SACzgerc"
     #pragma linkobj "bin/blas/zgerc.o"

@@ -1,0 +1,61 @@
+use StdIO: all;
+use Structures: all;
+use Math: all;
+
+complex[.] zgemv(char trans, int m, int n, complex alpha, complex[.,.] a, complex[.] x, complex beta, complex[.] y) {
+  alphaX = with { (. <= iv <= .): alpha * x[iv]; }: genarray(shape(x), toc(0,0));
+  betaY = with { (. <= iv <= .): beta * y[iv]; }: genarray(shape(y), toc(0,0));
+
+  if (trans == 'N' || trans == 'n') {
+    leny = m;
+    resA = with {
+      ([0] <= [i] < [leny]): sum(a[i] * alphaX);
+    }: genarray([leny], toc(0,0));
+  } else if (trans == 'C' || trans == 'c') {
+    leny = n;
+    resA = with {
+      ([0] <= [j] < [leny]): sum(with {
+        ([0] <= [i] < [m]): conj(a[i,j]) * alphaX[i];
+      }: genarray([m], toc(0,0)));
+    }: genarray([leny], toc(0,0));
+  } else {
+    leny = n;
+    resA = with {
+      ([0] <= [j] < [leny]): sum(with {
+        ([0] <= [i] < [m]): a[i,j] * alphaX[i];
+      }: genarray([m], toc(0,0)));
+    }: genarray([leny], toc(0,0));
+  }
+
+  res = resA + take([leny], betaY);
+  return res;
+}
+
+void check(complex[.] sac, complex[.] ref) {
+  n = shape(sac)[0];
+  ok = true;
+  for (i = 0; i < n; i++) {
+    dr = abs(real(sac[i]) - real(ref[i]));
+    di = abs(imag(sac[i]) - imag(ref[i]));
+    if (dr > 0.001 || di > 0.001) { ok = false; }
+  }
+  if (ok) { printf("PASS\n"); }
+  else {
+    printf("FAIL\n");
+    printf("  SAC: "); print(sac);
+    printf("  Ref: "); print(ref);
+  }
+}
+
+int main() {
+  a = reshape([2,2], [toc(1,0), toc(0,1), toc(1,1), toc(2,0)]);
+  x = [toc(1,0), toc(0,1)];
+  y = [toc(0,0), toc(0,0)];
+
+  printf("N:  "); check(zgemv('n',2,2,toc(1,0),a,x,toc(0,0),y), OpenBlas::zgemv('n',2,2,[toc(1,0)],a,2,x,1,[toc(0,0)],y,1));
+  printf("T:  "); check(zgemv('t',2,2,toc(1,0),a,x,toc(0,0),y), OpenBlas::zgemv('t',2,2,[toc(1,0)],a,2,x,1,[toc(0,0)],y,1));
+  printf("C:  "); check(zgemv('c',2,2,toc(1,0),a,x,toc(0,0),y), OpenBlas::zgemv('c',2,2,[toc(1,0)],a,2,x,1,[toc(0,0)],y,1));
+  printf("AB: "); check(zgemv('n',2,2,toc(2,1),a,x,toc(1,0),[toc(1,0),toc(0,1)]), OpenBlas::zgemv('n',2,2,[toc(2,1)],a,2,x,1,[toc(1,0)],[toc(1,0),toc(0,1)],1));
+
+  return 0;
+}

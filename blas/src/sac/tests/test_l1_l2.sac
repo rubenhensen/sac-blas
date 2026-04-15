@@ -1,0 +1,83 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+use Helper: all;
+
+int, int pf(int p, int f, float[*] s, float[*] r) {
+  if (almost_eq(s, r, 0.01f)) { p = p+1; } else { f = f+1; printf("    FAIL: "); print(r); print(s); }
+  return (p, f);
+}
+int, int pd(int p, int f, double[*] s, double[*] r) {
+  if (almost_eq(s, r, 0.0001d)) { p = p+1; } else { f = f+1; printf("    FAIL: "); print(r); print(s); }
+  return (p, f);
+}
+
+int main() {
+  p = 0; f = 0;
+
+  /* L1 Float */
+  p,f = pf(p,f, sscal(3,2.0f,tof([1,2,3]),1), OpenBlas::sscal(3,2.0f,tof([1,2,3]),1));
+  p,f = pf(p,f, saxpy(3,2.0f,tof([1,2,3]),1,tof([4,5,6]),1), OpenBlas::saxpy(3,2.0f,tof([1,2,3]),1,tof([4,5,6]),1));
+  p,f = pf(p,f, scopy(3,tof([1,2,3]),1,tof([0,0,0]),1), OpenBlas::scopy(3,tof([1,2,3]),1,tof([0,0,0]),1));
+  rx,ry = sswap(3,tof([1,2,3]),1,tof([4,5,6]),1); ex,ey = OpenBlas::sswap(3,tof([1,2,3]),1,tof([4,5,6]),1);
+  p,f = pf(p,f, rx, ex); p,f = pf(p,f, ry, ey);
+  rx2,ry2 = srot(3,tof([1,2,3]),1,tof([4,5,6]),1,0.6f,0.8f); ex2,ey2 = OpenBlas::srot(3,tof([1,2,3]),1,tof([4,5,6]),1,0.6f,0.8f);
+  p,f = pf(p,f, rx2, ex2); p,f = pf(p,f, ry2, ey2);
+  if (abs(sdot(3,tof([1,2,3]),1,tof([4,5,6]),1) - OpenBlas::sdot(3,tof([1,2,3]),1,tof([4,5,6]),1)) < 0.01f) { p=p+1; } else { f=f+1; }
+  if (abs(snrm2(3,tof([3,4,0]),1) - OpenBlas::snrm2(3,tof([3,4,0]),1)) < 0.01f) { p=p+1; } else { f=f+1; }
+  if (abs(sasum(3,tof([-1,2,-3]),1) - OpenBlas::sasum(3,tof([-1,2,-3]),1)) < 0.01f) { p=p+1; } else { f=f+1; }
+  if (isamax(3,tof([-1,5,-3]),1) == OpenBlas::isamax(3,tof([-1,5,-3]),1)) { p=p+1; } else { f=f+1; }
+
+  /* L1 Double */
+  p,f = pd(p,f, dscal(3,2.0d,tod([1,2,3]),1), OpenBlas::dscal(3,2.0d,tod([1,2,3]),1));
+  p,f = pd(p,f, daxpy(3,2.0d,tod([1,2,3]),1,tod([4,5,6]),1), OpenBlas::daxpy(3,2.0d,tod([1,2,3]),1,tod([4,5,6]),1));
+  p,f = pd(p,f, dcopy(3,tod([1,2,3]),1,tod([0,0,0]),1), OpenBlas::dcopy(3,tod([1,2,3]),1,tod([0,0,0]),1));
+  if (abs(ddot(3,tod([1,2,3]),1,tod([4,5,6]),1) - OpenBlas::ddot(3,tod([1,2,3]),1,tod([4,5,6]),1)) < 0.0001d) { p=p+1; } else { f=f+1; }
+  if (abs(dnrm2(3,tod([3,4,0]),1) - OpenBlas::dnrm2(3,tod([3,4,0]),1)) < 0.0001d) { p=p+1; } else { f=f+1; }
+  if (abs(dasum(3,tod([-1,2,-3]),1) - OpenBlas::dasum(3,tod([-1,2,-3]),1)) < 0.0001d) { p=p+1; } else { f=f+1; }
+  if (idamax(3,tod([-1,5,-3]),1) == OpenBlas::idamax(3,tod([-1,5,-3]),1)) { p=p+1; } else { f=f+1; }
+
+  /* L2 Float */
+  p,f = pf(p,f, sgemv('n',3,3,1.0f,tof(reshape([3,3],iota(9))),3,tof([1,1,1]),1,0.0f,tof([0,0,0]),1),
+                OpenBlas::sgemv('n',3,3,1.0f,tof(reshape([3,3],iota(9))),3,tof([1,1,1]),1,0.0f,tof([0,0,0]),1));
+  p,f = pf(p,f, sgemv('t',3,3,1.0f,tof(reshape([3,3],iota(9))),3,tof([1,1,1]),1,0.0f,tof([0,0,0]),1),
+                OpenBlas::sgemv('t',3,3,1.0f,tof(reshape([3,3],iota(9))),3,tof([1,1,1]),1,0.0f,tof([0,0,0]),1));
+  p,f = pf(p,f, sgbmv('n',3,3,1,1,1.0f,tof(reshape([3,3],[0,1,2,3,4,5,6,7,0])),3,tof([1,1,1]),1,0.0f,tof([0,0,0]),1),
+                OpenBlas::sgbmv('n',3,3,1,1,1.0f,tof(reshape([3,3],[0,1,2,3,4,5,6,7,0])),3,tof([1,1,1]),1,0.0f,tof([0,0,0]),1));
+  p,f = pf(p,f, ssymv('u',3,1.0f,tof(reshape([3,3],[1,2,3,2,5,6,3,6,9])),3,tof([1,1,1]),1,0.0f,tof([0,0,0]),1),
+                OpenBlas::ssymv('u',3,1.0f,tof(reshape([3,3],[1,2,3,2,5,6,3,6,9])),3,tof([1,1,1]),1,0.0f,tof([0,0,0]),1));
+  p,f = pf(p,f, sspmv('u',3,1.0f,tof([1,2,3,4,5,6]),tof([1,1,1]),1,0.0f,tof([0,0,0]),1),
+                OpenBlas::sspmv('u',3,1.0f,tof([1,2,3,4,5,6]),tof([1,1,1]),1,0.0f,tof([0,0,0]),1));
+  p,f = pf(p,f, strmv('u','n','n',3,tof(reshape([3,3],[1,2,3,0,4,5,0,0,6])),3,tof([1,1,1]),1),
+                OpenBlas::strmv('u','n','n',3,tof(reshape([3,3],[1,2,3,0,4,5,0,0,6])),3,tof([1,1,1]),1));
+  p,f = pf(p,f, stpmv('u','n','n',3,tof([1,2,3,4,5,6]),tof([1,1,1]),1),
+                OpenBlas::stpmv('u','n','n',3,tof([1,2,3,4,5,6]),tof([1,1,1]),1));
+  p,f = pf(p,f, strsv('l','n','n',3,tof(reshape([3,3],[2,0,0,1,3,0,4,5,1])),3,tof([2,7,18]),1),
+                OpenBlas::strsv('l','n','n',3,tof(reshape([3,3],[2,0,0,1,3,0,4,5,1])),3,tof([2,7,18]),1));
+  p,f = pf(p,f, strsv('u','n','n',3,tof(reshape([3,3],[2,1,4,0,3,5,0,0,1])),3,tof([15,8,1]),1),
+                OpenBlas::strsv('u','n','n',3,tof(reshape([3,3],[2,1,4,0,3,5,0,0,1])),3,tof([15,8,1]),1));
+  p,f = pf(p,f, stpsv('u','n','n',3,tof([2,1,3,4,5,6]),tof([1,1,1]),1),
+                OpenBlas::stpsv('u','n','n',3,tof([2,1,3,4,5,6]),tof([1,1,1]),1));
+  p,f = pf(p,f, sger(2,3,1.0f,tof([1,2]),1,tof([1,1,1]),1,tof(reshape([2,3],[1,2,3,4,5,6])),3),
+                OpenBlas::sger(2,3,1.0f,tof([1,2]),1,tof([1,1,1]),1,tof(reshape([2,3],[1,2,3,4,5,6])),3));
+  p,f = pf(p,f, ssyr('u',3,1.0f,tof([1,2,3]),1,tof(reshape([3,3],[1,2,3,99,5,6,99,99,9])),3),
+                OpenBlas::ssyr('u',3,1.0f,tof([1,2,3]),1,tof(reshape([3,3],[1,2,3,99,5,6,99,99,9])),3));
+  p,f = pf(p,f, ssyr2('u',3,1.0f,tof([1,2,3]),1,tof([3,2,1]),1,tof(reshape([3,3],[1,2,3,99,5,6,99,99,9])),3),
+                OpenBlas::ssyr2('u',3,1.0f,tof([1,2,3]),1,tof([3,2,1]),1,tof(reshape([3,3],[1,2,3,99,5,6,99,99,9])),3));
+  p,f = pf(p,f, sspr('u',3,1.0f,tof([1,2,3]),1,tof([1,2,3,4,5,6])),
+                OpenBlas::sspr('u',3,1.0f,tof([1,2,3]),1,tof([1,2,3,4,5,6])));
+  p,f = pf(p,f, sspr2('u',3,1.0f,tof([1,2,3]),1,tof([3,2,1]),1,tof([1,2,3,4,5,6])),
+                OpenBlas::sspr2('u',3,1.0f,tof([1,2,3]),1,tof([3,2,1]),1,tof([1,2,3,4,5,6])));
+
+  /* L2 Double */
+  p,f = pd(p,f, dgemv('n',3,3,1.0d,tod(reshape([3,3],iota(9))),3,tod([1,1,1]),1,0.0d,tod([0,0,0]),1),
+                OpenBlas::dgemv('n',3,3,1.0d,tod(reshape([3,3],iota(9))),3,tod([1,1,1]),1,0.0d,tod([0,0,0]),1));
+  p,f = pd(p,f, dtrsv('l','n','n',3,tod(reshape([3,3],[2,0,0,1,3,0,4,5,1])),3,tod([2,7,18]),1),
+                OpenBlas::dtrsv('l','n','n',3,tod(reshape([3,3],[2,0,0,1,3,0,4,5,1])),3,tod([2,7,18]),1));
+  p,f = pd(p,f, dtrsv('u','n','n',3,tod(reshape([3,3],[2,1,4,0,3,5,0,0,1])),3,tod([15,8,1]),1),
+                OpenBlas::dtrsv('u','n','n',3,tod(reshape([3,3],[2,1,4,0,3,5,0,0,1])),3,tod([15,8,1]),1));
+
+  printf("=== Results: %d passed, %d failed ===\n", p, f);
+  return 0;
+}

@@ -654,7 +654,7 @@ void cblas_sgemv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
     sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__sgemv11(&r1, mk_char(t), mk_int(rm), mk_int(rn), mk_float(alpha),
-        mk_fmat(A, rm, lda), mk_int(lda),
+        mk_fmat_lda(A, rm, rn, lda), mk_int(rn),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
         mk_float(beta),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy));
@@ -670,17 +670,24 @@ void cblas_sgbmv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
                  float *Y, const int incY) {
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
-    char t = (Layout == CblasColMajor) ? ((TransA == CblasNoTrans) ? 'T' : 'N') : trans_char(TransA);
-    int lenx_n = (t == 'N') ? N : M;
-    int leny_n = (t == 'N') ? M : N;
+    char t; int rm, rn, rkl, rku;
+    if (Layout == CblasColMajor) {
+        t = (TransA == CblasNoTrans) ? 'T' : 'N';
+        rm = N; rn = M; rkl = KU; rku = KL;
+    } else {
+        t = trans_char(TransA);
+        rm = M; rn = N; rkl = KL; rku = KU;
+    }
+    int lenx_n = (t == 'N') ? rn : rm;
+    int leny_n = (t == 'N') ? rm : rn;
     int aincx, aincy, xlen, ylen;
     float *ax = adjust_fvec(X, lenx_n, incX, &aincx, &xlen);
     float *ay = adjust_fvec(Y, leny_n, incY, &aincy, &ylen);
     sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
-    int arows = KL + KU + 1;
+    int bw = rkl + rku + 1;
     SACarg *r1;
-    BlasLevel2__sgbmv13(&r1, mk_char(t), mk_int(M), mk_int(N), mk_int(KL), mk_int(KU),
-        mk_float(alpha), mk_fmat(A, arows, lda), mk_int(lda),
+    BlasLevel2__sgbmv13(&r1, mk_char(t), mk_int(rm), mk_int(rn), mk_int(rkl), mk_int(rku),
+        mk_float(alpha), mk_fmat_lda(A, rm, bw, lda), mk_int(bw),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
         mk_float(beta),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy));
@@ -702,7 +709,7 @@ void cblas_ssymv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__ssymv10(&r1, mk_char(u), mk_int(N), mk_float(alpha),
-        mk_fmat(A, N, lda), mk_int(lda),
+        mk_fmat_lda(A, N, N, lda), mk_int(N),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
         mk_float(beta),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy));
@@ -724,7 +731,7 @@ void cblas_ssbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__ssbmv11(&r1, mk_char(u), mk_int(N), mk_int(K), mk_float(alpha),
-        mk_fmat(A, K+1, lda), mk_int(lda),
+        mk_fmat_lda(A, N, K+1, lda), mk_int(K+1),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx),
         mk_float(beta),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ay, 1, yshp), mk_int(aincy));
@@ -767,7 +774,7 @@ void cblas_strmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__strmv8(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_fmat(A, N, lda), mk_int(lda),
+        mk_fmat_lda(A, N, N, lda), mk_int(N),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx));
     const float *rx = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
     unadjust_fvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
@@ -784,10 +791,9 @@ void cblas_stbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     int aincx, xlen;
     float *ax = adjust_fvec(X, N, incX, &aincx, &xlen);
     sac_int xshp[] = {xlen};
-    /* stbmv not yet in SAC - using stbsv placeholder */
     SACarg *r1;
-    BlasLevel2__stbsv9(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N), mk_int(K),
-        mk_fmat(A, K+1, lda), mk_int(lda),
+    BlasLevel2__stbmv9(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N), mk_int(K),
+        mk_fmat_lda(A, N, K+1, lda), mk_int(K+1),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx));
     const float *rx = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
     unadjust_fvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
@@ -824,7 +830,7 @@ void cblas_strsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__strsv8(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_fmat(A, N, lda), mk_int(lda),
+        mk_fmat_lda(A, N, N, lda), mk_int(N),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx));
     const float *rx = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
     unadjust_fvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
@@ -843,7 +849,7 @@ void cblas_stbsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__stbsv9(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N), mk_int(K),
-        mk_fmat(A, K+1, lda), mk_int(lda),
+        mk_fmat_lda(A, N, K+1, lda), mk_int(K+1),
         SACARGcreateFromPointer(SACTYPE__MAIN__float, ax, 1, xshp), mk_int(aincx));
     const float *rx = (const float*)SACARGgetSharedData(SACTYPE__MAIN__float, r1);
     unadjust_fvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
@@ -986,7 +992,7 @@ void cblas_dgemv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
     sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__dgemv11(&r1, mk_char(t), mk_int(rm), mk_int(rn), mk_double(alpha),
-        mk_dmat(A, rm, lda), mk_int(lda),
+        mk_dmat_lda(A, rm, rn, lda), mk_int(rn),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
         mk_double(beta),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy));
@@ -1001,17 +1007,24 @@ void cblas_dgbmv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
                  double *Y, const int incY) {
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
-    char t = (Layout == CblasColMajor) ? ((TransA == CblasNoTrans) ? 'T' : 'N') : trans_char(TransA);
-    int lenx_n = (t == 'N') ? N : M;
-    int leny_n = (t == 'N') ? M : N;
+    char t; int rm, rn, rkl, rku;
+    if (Layout == CblasColMajor) {
+        t = (TransA == CblasNoTrans) ? 'T' : 'N';
+        rm = N; rn = M; rkl = KU; rku = KL;
+    } else {
+        t = trans_char(TransA);
+        rm = M; rn = N; rkl = KL; rku = KU;
+    }
+    int lenx_n = (t == 'N') ? rn : rm;
+    int leny_n = (t == 'N') ? rm : rn;
     int aincx, aincy, xlen, ylen;
     double *ax = adjust_dvec(X, lenx_n, incX, &aincx, &xlen);
     double *ay = adjust_dvec(Y, leny_n, incY, &aincy, &ylen);
     sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
-    int arows = KL + KU + 1;
+    int bw = rkl + rku + 1;
     SACarg *r1;
-    BlasLevel2__dgbmv13(&r1, mk_char(t), mk_int(M), mk_int(N), mk_int(KL), mk_int(KU),
-        mk_double(alpha), mk_dmat(A, arows, lda), mk_int(lda),
+    BlasLevel2__dgbmv13(&r1, mk_char(t), mk_int(rm), mk_int(rn), mk_int(rkl), mk_int(rku),
+        mk_double(alpha), mk_dmat_lda(A, rm, bw, lda), mk_int(bw),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
         mk_double(beta),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy));
@@ -1033,7 +1046,7 @@ void cblas_dsymv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__dsymv10(&r1, mk_char(u), mk_int(N), mk_double(alpha),
-        mk_dmat(A, N, lda), mk_int(lda),
+        mk_dmat_lda(A, N, N, lda), mk_int(N),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
         mk_double(beta),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy));
@@ -1055,7 +1068,7 @@ void cblas_dsbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     sac_int xshp[] = {xlen}; sac_int yshp[] = {ylen};
     SACarg *r1;
     BlasLevel2__dsbmv11(&r1, mk_char(u), mk_int(N), mk_int(K), mk_double(alpha),
-        mk_dmat(A, K+1, lda), mk_int(lda),
+        mk_dmat_lda(A, N, K+1, lda), mk_int(K+1),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
         mk_double(beta),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy));
@@ -1097,7 +1110,7 @@ void cblas_dtrmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__dtrmv8(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_dmat(A, N, lda), mk_int(lda),
+        mk_dmat_lda(A, N, N, lda), mk_int(N),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx));
     const double *rx = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
     unadjust_dvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
@@ -1114,9 +1127,8 @@ void cblas_dtbmv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     int aincx, xlen; double *ax = adjust_dvec(X, N, incX, &aincx, &xlen);
     sac_int xshp[] = {xlen};
     SACarg *r1;
-    /* dtbmv not yet in SAC - using dtbsv placeholder */
-    BlasLevel2__dtbsv9(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N), mk_int(K),
-        mk_dmat(A, K+1, lda), mk_int(lda),
+    BlasLevel2__dtbmv9(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N), mk_int(K),
+        mk_dmat_lda(A, N, K+1, lda), mk_int(K+1),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx));
     const double *rx = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
     unadjust_dvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
@@ -1151,7 +1163,7 @@ void cblas_dtrsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__dtrsv8(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N),
-        mk_dmat(A, N, lda), mk_int(lda),
+        mk_dmat_lda(A, N, N, lda), mk_int(N),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx));
     const double *rx = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
     unadjust_dvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
@@ -1169,7 +1181,7 @@ void cblas_dtbsv(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     sac_int xshp[] = {xlen};
     SACarg *r1;
     BlasLevel2__dtbsv9(&r1, mk_char(u), mk_char(t), mk_char(d), mk_int(N), mk_int(K),
-        mk_dmat(A, K+1, lda), mk_int(lda),
+        mk_dmat_lda(A, N, K+1, lda), mk_int(K+1),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx));
     const double *rx = (const double*)SACARGgetSharedData(SACTYPE__MAIN__double, r1);
     unadjust_dvec(rx, X, N, incX); SACARGdeleteSacArray(&r1);
@@ -1214,8 +1226,8 @@ void cblas_dger(const CBLAS_LAYOUT Layout, const int M, const int N,
     BlasLevel2__dger9(&r1, mk_int(rm), mk_int(rn), mk_double(alpha),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy),
-        mk_dmat(A, rm, lda), mk_int(lda));
-    copy_dmat_back(r1, A, rm, lda);
+        mk_dmat_lda(A, rm, rn, lda), mk_int(rn));
+    copy_dmat_lda(r1, A, rm, rn, lda);
 }
 
 void cblas_dsyr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -1230,8 +1242,8 @@ void cblas_dsyr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     SACarg *r1;
     BlasLevel2__dsyr7(&r1, mk_char(u), mk_int(N), mk_double(alpha),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
-        mk_dmat(A, N, lda), mk_int(lda));
-    copy_dmat_back(r1, A, N, lda);
+        mk_dmat_lda(A, N, N, lda), mk_int(N));
+    copy_dmat_lda(r1, A, N, N, lda);
 }
 
 void cblas_dspr(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -1266,8 +1278,8 @@ void cblas_dsyr2(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     BlasLevel2__dsyr29(&r1, mk_char(u), mk_int(N), mk_double(alpha),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ax, 1, xshp), mk_int(aincx),
         SACARGcreateFromPointer(SACTYPE__MAIN__double, ay, 1, yshp), mk_int(aincy),
-        mk_dmat(A, N, lda), mk_int(lda));
-    copy_dmat_back(r1, A, N, lda);
+        mk_dmat_lda(A, N, N, lda), mk_int(N));
+    copy_dmat_lda(r1, A, N, N, lda);
 }
 
 void cblas_dspr2(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
@@ -1290,6 +1302,18 @@ void cblas_dspr2(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo,
     copy_dvec_back(r1, Ap, aplen);
 }
 
+/* Helpers for K=0 edge cases in Level 3 */
+static void scale_mat_lda(float *C, int rows, int cols, int ldc, float beta) {
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            C[i * ldc + j] *= beta;
+}
+static void scale_dmat_lda(double *C, int rows, int cols, int ldc, double beta) {
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            C[i * ldc + j] *= beta;
+}
+
 /* ========== LEVEL 3: FLOAT ========== */
 
 void cblas_sgemm(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
@@ -1298,25 +1322,32 @@ void cblas_sgemm(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
                  const float *B, const int ldb, const float beta,
                  float *C, const int ldc) {
     ensure_sac_init();
-    if (M <= 0 || N <= 0 || K <= 0) return;
+    if (M <= 0 || N <= 0) return;
+    if (K <= 0) { scale_mat_lda((float*)C, M, N, ldc, beta); return; }
     char ta, tb;
     int rm, rn, rk;
+    const float *Ap, *Bp;
+    int lda_p, ldb_p;
     if (Layout == CblasColMajor) {
-        /* Col-major gemm(ta,tb,M,N,K) = Row-major gemm(tb,ta,N,M,K) */
+        /* Col-major gemm(ta,tb,M,N,K,A,B,C) = Row-major gemm(tb,ta,N,M,K,B,A,C) */
         ta = trans_char(TransB); tb = trans_char(TransA);
         rm = N; rn = M; rk = K;
+        Ap = B; lda_p = ldb; Bp = A; ldb_p = lda;
     } else {
         ta = trans_char(TransA); tb = trans_char(TransB);
         rm = M; rn = N; rk = K;
+        Ap = A; lda_p = lda; Bp = B; ldb_p = ldb;
     }
     int arows = (ta == 'N') ? rm : rk;
+    int acols = (ta == 'N') ? rk : rm;
     int brows = (tb == 'N') ? rk : rn;
+    int bcols = (tb == 'N') ? rn : rk;
     SACarg *r1;
     BlasLevel3__sgemm13(&r1, mk_char(ta), mk_char(tb), mk_int(rm), mk_int(rn), mk_int(rk),
-        mk_float(alpha), mk_fvec(A, arows * lda), mk_int(lda),
-        mk_fvec(B, brows * ldb), mk_int(ldb),
-        mk_float(beta), mk_fvec(C, rm * ldc), mk_int(ldc));
-    copy_fvec_back(r1, C, rm * ldc);
+        mk_float(alpha), mk_fmat_lda(Ap, arows, acols, lda_p), mk_int(lda_p),
+        mk_fmat_lda(Bp, brows, bcols, ldb_p), mk_int(ldb_p),
+        mk_float(beta), mk_fmat_lda(C, rm, rn, ldc), mk_int(ldc));
+    copy_fmat_lda(r1, C, rm, rn, ldc);
 }
 
 void cblas_ssymm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_UPLO Uplo,
@@ -1325,14 +1356,15 @@ void cblas_ssymm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_U
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
     char s = side_char(Side), u = uplo_char(Uplo);
-    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; }
-    int na = (s == 'L') ? M : N;
+    int rm = M, rn = N;
+    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; rm = N; rn = M; }
+    int na = (s == 'L') ? rm : rn;
     SACarg *r1;
-    BlasLevel3__ssymm12(&r1, mk_char(s), mk_char(u), mk_int(M), mk_int(N),
-        mk_float(alpha), mk_fvec(A, na * lda), mk_int(lda),
-        mk_fvec(B, M * ldb), mk_int(ldb),
-        mk_float(beta), mk_fvec(C, M * ldc), mk_int(ldc));
-    copy_fvec_back(r1, C, M * ldc);
+    BlasLevel3__ssymm12(&r1, mk_char(s), mk_char(u), mk_int(rm), mk_int(rn),
+        mk_float(alpha), mk_fmat_lda(A, na, na, lda), mk_int(lda),
+        mk_fmat_lda(B, rm, rn, ldb), mk_int(ldb),
+        mk_float(beta), mk_fmat_lda(C, rm, rn, ldc), mk_int(ldc));
+    copy_fmat_lda(r1, C, rm, rn, ldc);
 }
 
 void cblas_ssyrk(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo, const CBLAS_TRANSPOSE Trans,
@@ -1340,14 +1372,16 @@ void cblas_ssyrk(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo, const CBLAS_T
                  const float beta, float *C, const int ldc) {
     ensure_sac_init();
     if (N <= 0) return;
+    if (K <= 0) { scale_mat_lda((float*)C, N, N, ldc, beta); return; }
     char u = uplo_char(Uplo), t = trans_char(Trans);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
     int arows = (t == 'N') ? N : K;
+    int acols = (t == 'N') ? K : N;
     SACarg *r1;
     BlasLevel3__ssyrk10(&r1, mk_char(u), mk_char(t), mk_int(N), mk_int(K),
-        mk_float(alpha), mk_fvec(A, arows * lda), mk_int(lda),
-        mk_float(beta), mk_fvec(C, N * ldc), mk_int(ldc));
-    copy_fvec_back(r1, C, N * ldc);
+        mk_float(alpha), mk_fmat_lda(A, arows, acols, lda), mk_int(lda),
+        mk_float(beta), mk_fmat_lda(C, N, N, ldc), mk_int(ldc));
+    copy_fmat_lda(r1, C, N, N, ldc);
 }
 
 void cblas_ssyr2k(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo, const CBLAS_TRANSPOSE Trans,
@@ -1355,15 +1389,17 @@ void cblas_ssyr2k(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo, const CBLAS_
                   const float *B, const int ldb, const float beta, float *C, const int ldc) {
     ensure_sac_init();
     if (N <= 0) return;
+    if (K <= 0) { scale_mat_lda((float*)C, N, N, ldc, beta); return; }
     char u = uplo_char(Uplo), t = trans_char(Trans);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
     int arows = (t == 'N') ? N : K;
+    int acols = (t == 'N') ? K : N;
     SACarg *r1;
     BlasLevel3__ssyr2k12(&r1, mk_char(u), mk_char(t), mk_int(N), mk_int(K),
-        mk_float(alpha), mk_fvec(A, arows * lda), mk_int(lda),
-        mk_fvec(B, arows * ldb), mk_int(ldb),
-        mk_float(beta), mk_fvec(C, N * ldc), mk_int(ldc));
-    copy_fvec_back(r1, C, N * ldc);
+        mk_float(alpha), mk_fmat_lda(A, arows, acols, lda), mk_int(lda),
+        mk_fmat_lda(B, arows, acols, ldb), mk_int(ldb),
+        mk_float(beta), mk_fmat_lda(C, N, N, ldc), mk_int(ldc));
+    copy_fmat_lda(r1, C, N, N, ldc);
 }
 
 void cblas_strmm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_UPLO Uplo,
@@ -1373,14 +1409,15 @@ void cblas_strmm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_U
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
     char s = side_char(Side), u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
-    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
-    int na = (s == 'L') ? M : N;
+    int rm = M, rn = N;
+    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; rm = N; rn = M; }
+    int na = (s == 'L') ? rm : rn;
     SACarg *r1;
     BlasLevel3__strmm11(&r1, mk_char(s), mk_char(u), mk_char(t), mk_char(d),
-        mk_int(M), mk_int(N), mk_float(alpha),
-        mk_fvec(A, na * lda), mk_int(lda),
-        mk_fvec(B, M * ldb), mk_int(ldb));
-    copy_fvec_back(r1, B, M * ldb);
+        mk_int(rm), mk_int(rn), mk_float(alpha),
+        mk_fmat_lda(A, na, na, lda), mk_int(lda),
+        mk_fmat_lda(B, rm, rn, ldb), mk_int(ldb));
+    copy_fmat_lda(r1, B, rm, rn, ldb);
 }
 
 void cblas_strsm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_UPLO Uplo,
@@ -1390,14 +1427,15 @@ void cblas_strsm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_U
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
     char s = side_char(Side), u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
-    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
-    int na = (s == 'L') ? M : N;
+    int rm = M, rn = N;
+    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; rm = N; rn = M; }
+    int na = (s == 'L') ? rm : rn;
     SACarg *r1;
     BlasLevel3__strsm11(&r1, mk_char(s), mk_char(u), mk_char(t), mk_char(d),
-        mk_int(M), mk_int(N), mk_float(alpha),
-        mk_fvec(A, na * lda), mk_int(lda),
-        mk_fvec(B, M * ldb), mk_int(ldb));
-    copy_fvec_back(r1, B, M * ldb);
+        mk_int(rm), mk_int(rn), mk_float(alpha),
+        mk_fmat_lda(A, na, na, lda), mk_int(lda),
+        mk_fmat_lda(B, rm, rn, ldb), mk_int(ldb));
+    copy_fmat_lda(r1, B, rm, rn, ldb);
 }
 
 /* ========== LEVEL 3: DOUBLE ========== */
@@ -1408,7 +1446,8 @@ void cblas_dgemm(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
                  const double *B, const int ldb, const double beta,
                  double *C, const int ldc) {
     ensure_sac_init();
-    if (M <= 0 || N <= 0 || K <= 0) return;
+    if (M <= 0 || N <= 0) return;
+    if (K <= 0) { scale_dmat_lda((double*)C, M, N, ldc, beta); return; }
     char ta, tb;
     int rm, rn, rk;
     if (Layout == CblasColMajor) {
@@ -1419,13 +1458,15 @@ void cblas_dgemm(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA,
         rm = M; rn = N; rk = K;
     }
     int arows = (ta == 'N') ? rm : rk;
+    int acols = (ta == 'N') ? rk : rm;
     int brows = (tb == 'N') ? rk : rn;
+    int bcols = (tb == 'N') ? rn : rk;
     SACarg *r1;
     BlasLevel3__dgemm13(&r1, mk_char(ta), mk_char(tb), mk_int(rm), mk_int(rn), mk_int(rk),
-        mk_double(alpha), mk_dvec(A, arows * lda), mk_int(lda),
-        mk_dvec(B, brows * ldb), mk_int(ldb),
-        mk_double(beta), mk_dvec(C, rm * ldc), mk_int(ldc));
-    copy_dvec_back(r1, C, rm * ldc);
+        mk_double(alpha), mk_dmat_lda(A, arows, acols, lda), mk_int(lda),
+        mk_dmat_lda(B, brows, bcols, ldb), mk_int(ldb),
+        mk_double(beta), mk_dmat_lda(C, rm, rn, ldc), mk_int(ldc));
+    copy_dmat_lda(r1, C, rm, rn, ldc);
 }
 
 void cblas_dsymm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_UPLO Uplo,
@@ -1434,14 +1475,15 @@ void cblas_dsymm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_U
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
     char s = side_char(Side), u = uplo_char(Uplo);
-    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; }
-    int na = (s == 'L') ? M : N;
+    int rm = M, rn = N;
+    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; rm = N; rn = M; }
+    int na = (s == 'L') ? rm : rn;
     SACarg *r1;
-    BlasLevel3__dsymm12(&r1, mk_char(s), mk_char(u), mk_int(M), mk_int(N),
-        mk_double(alpha), mk_dvec(A, na * lda), mk_int(lda),
-        mk_dvec(B, M * ldb), mk_int(ldb),
-        mk_double(beta), mk_dvec(C, M * ldc), mk_int(ldc));
-    copy_dvec_back(r1, C, M * ldc);
+    BlasLevel3__dsymm12(&r1, mk_char(s), mk_char(u), mk_int(rm), mk_int(rn),
+        mk_double(alpha), mk_dmat_lda(A, na, na, lda), mk_int(lda),
+        mk_dmat_lda(B, rm, rn, ldb), mk_int(ldb),
+        mk_double(beta), mk_dmat_lda(C, rm, rn, ldc), mk_int(ldc));
+    copy_dmat_lda(r1, C, rm, rn, ldc);
 }
 
 void cblas_dsyrk(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo, const CBLAS_TRANSPOSE Trans,
@@ -1449,14 +1491,16 @@ void cblas_dsyrk(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo, const CBLAS_T
                  const double beta, double *C, const int ldc) {
     ensure_sac_init();
     if (N <= 0) return;
+    if (K <= 0) { scale_dmat_lda((double*)C, N, N, ldc, beta); return; }
     char u = uplo_char(Uplo), t = trans_char(Trans);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
     int arows = (t == 'N') ? N : K;
+    int acols = (t == 'N') ? K : N;
     SACarg *r1;
     BlasLevel3__dsyrk10(&r1, mk_char(u), mk_char(t), mk_int(N), mk_int(K),
-        mk_double(alpha), mk_dvec(A, arows * lda), mk_int(lda),
-        mk_double(beta), mk_dvec(C, N * ldc), mk_int(ldc));
-    copy_dvec_back(r1, C, N * ldc);
+        mk_double(alpha), mk_dmat_lda(A, arows, acols, lda), mk_int(lda),
+        mk_double(beta), mk_dmat_lda(C, N, N, ldc), mk_int(ldc));
+    copy_dmat_lda(r1, C, N, N, ldc);
 }
 
 void cblas_dsyr2k(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo, const CBLAS_TRANSPOSE Trans,
@@ -1464,15 +1508,17 @@ void cblas_dsyr2k(const CBLAS_LAYOUT Layout, const CBLAS_UPLO Uplo, const CBLAS_
                   const double *B, const int ldb, const double beta, double *C, const int ldc) {
     ensure_sac_init();
     if (N <= 0) return;
+    if (K <= 0) { scale_dmat_lda((double*)C, N, N, ldc, beta); return; }
     char u = uplo_char(Uplo), t = trans_char(Trans);
     if (Layout == CblasColMajor) { u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
     int arows = (t == 'N') ? N : K;
+    int acols = (t == 'N') ? K : N;
     SACarg *r1;
     BlasLevel3__dsyr2k12(&r1, mk_char(u), mk_char(t), mk_int(N), mk_int(K),
-        mk_double(alpha), mk_dvec(A, arows * lda), mk_int(lda),
-        mk_dvec(B, arows * ldb), mk_int(ldb),
-        mk_double(beta), mk_dvec(C, N * ldc), mk_int(ldc));
-    copy_dvec_back(r1, C, N * ldc);
+        mk_double(alpha), mk_dmat_lda(A, arows, acols, lda), mk_int(lda),
+        mk_dmat_lda(B, arows, acols, ldb), mk_int(ldb),
+        mk_double(beta), mk_dmat_lda(C, N, N, ldc), mk_int(ldc));
+    copy_dmat_lda(r1, C, N, N, ldc);
 }
 
 void cblas_dtrmm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_UPLO Uplo,
@@ -1482,14 +1528,15 @@ void cblas_dtrmm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_U
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
     char s = side_char(Side), u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
-    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
-    int na = (s == 'L') ? M : N;
+    int rm = M, rn = N;
+    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; rm = N; rn = M; }
+    int na = (s == 'L') ? rm : rn;
     SACarg *r1;
     BlasLevel3__dtrmm11(&r1, mk_char(s), mk_char(u), mk_char(t), mk_char(d),
-        mk_int(M), mk_int(N), mk_double(alpha),
-        mk_dvec(A, na * lda), mk_int(lda),
-        mk_dvec(B, M * ldb), mk_int(ldb));
-    copy_dvec_back(r1, B, M * ldb);
+        mk_int(rm), mk_int(rn), mk_double(alpha),
+        mk_dmat_lda(A, na, na, lda), mk_int(lda),
+        mk_dmat_lda(B, rm, rn, ldb), mk_int(ldb));
+    copy_dmat_lda(r1, B, rm, rn, ldb);
 }
 
 void cblas_dtrsm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_UPLO Uplo,
@@ -1499,14 +1546,15 @@ void cblas_dtrsm(const CBLAS_LAYOUT Layout, const CBLAS_SIDE Side, const CBLAS_U
     ensure_sac_init();
     if (M <= 0 || N <= 0) return;
     char s = side_char(Side), u = uplo_char(Uplo), t = trans_char(TransA), d = diag_char(Diag);
-    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; }
-    int na = (s == 'L') ? M : N;
+    int rm = M, rn = N;
+    if (Layout == CblasColMajor) { s = (s == 'L') ? 'R' : 'L'; u = (u == 'U') ? 'L' : 'U'; t = (t == 'N') ? 'T' : 'N'; rm = N; rn = M; }
+    int na = (s == 'L') ? rm : rn;
     SACarg *r1;
     BlasLevel3__dtrsm11(&r1, mk_char(s), mk_char(u), mk_char(t), mk_char(d),
-        mk_int(M), mk_int(N), mk_double(alpha),
-        mk_dvec(A, na * lda), mk_int(lda),
-        mk_dvec(B, M * ldb), mk_int(ldb));
-    copy_dvec_back(r1, B, M * ldb);
+        mk_int(rm), mk_int(rn), mk_double(alpha),
+        mk_dmat_lda(A, na, na, lda), mk_int(lda),
+        mk_dmat_lda(B, rm, rn, ldb), mk_int(ldb));
+    copy_dmat_lda(r1, B, rm, rn, ldb);
 }
 
 /* ========== Error handling and test infrastructure ========== */
@@ -1535,3 +1583,27 @@ void cblas_dskewsymv(const CBLAS_LAYOUT L, const CBLAS_UPLO U, const int N,
 void cblas_dskewsyr2(const CBLAS_LAYOUT L, const CBLAS_UPLO U, const int N,
                      const double a, const double *X, const int incX,
                      const double *Y, const int incY, double *A, const int lda) { (void)L; (void)U; (void)N; (void)a; (void)X; (void)incX; (void)Y; (void)incY; (void)A; (void)lda; }
+
+/* Level 3 skewsym and gemmtr stubs - not implemented */
+void cblas_sskewsymm(const CBLAS_LAYOUT L, const CBLAS_SIDE S, const CBLAS_UPLO U,
+                     const int M, const int N, const float a, const float *A,
+                     const int lda, const float *B, const int ldb, const float b,
+                     float *C, const int ldc) { (void)L; (void)S; (void)U; (void)M; (void)N; (void)a; (void)A; (void)lda; (void)B; (void)ldb; (void)b; (void)C; (void)ldc; }
+void cblas_dskewsymm(const CBLAS_LAYOUT L, const CBLAS_SIDE S, const CBLAS_UPLO U,
+                     const int M, const int N, const double a, const double *A,
+                     const int lda, const double *B, const int ldb, const double b,
+                     double *C, const int ldc) { (void)L; (void)S; (void)U; (void)M; (void)N; (void)a; (void)A; (void)lda; (void)B; (void)ldb; (void)b; (void)C; (void)ldc; }
+void cblas_sskewsyr2k(const CBLAS_LAYOUT L, const CBLAS_UPLO U, const CBLAS_TRANSPOSE T,
+                      const int N, const int K, const float a, const float *A, const int lda,
+                      const float *B, const int ldb, const float b, float *C, const int ldc) { (void)L; (void)U; (void)T; (void)N; (void)K; (void)a; (void)A; (void)lda; (void)B; (void)ldb; (void)b; (void)C; (void)ldc; }
+void cblas_dskewsyr2k(const CBLAS_LAYOUT L, const CBLAS_UPLO U, const CBLAS_TRANSPOSE T,
+                      const int N, const int K, const double a, const double *A, const int lda,
+                      const double *B, const int ldb, const double b, double *C, const int ldc) { (void)L; (void)U; (void)T; (void)N; (void)K; (void)a; (void)A; (void)lda; (void)B; (void)ldb; (void)b; (void)C; (void)ldc; }
+void cblas_sgemmtr(const CBLAS_LAYOUT L, const CBLAS_UPLO U, const CBLAS_TRANSPOSE TA,
+                   const CBLAS_TRANSPOSE TB, const int N, const int K, const float a,
+                   const float *A, const int lda, const float *B, const int ldb,
+                   const float b, float *C, const int ldc) { (void)L; (void)U; (void)TA; (void)TB; (void)N; (void)K; (void)a; (void)A; (void)lda; (void)B; (void)ldb; (void)b; (void)C; (void)ldc; }
+void cblas_dgemmtr(const CBLAS_LAYOUT L, const CBLAS_UPLO U, const CBLAS_TRANSPOSE TA,
+                   const CBLAS_TRANSPOSE TB, const int N, const int K, const double a,
+                   const double *A, const int lda, const double *B, const int ldb,
+                   const double b, double *C, const int ldc) { (void)L; (void)U; (void)TA; (void)TB; (void)N; (void)K; (void)a; (void)A; (void)lda; (void)B; (void)ldb; (void)b; (void)C; (void)ldc; }

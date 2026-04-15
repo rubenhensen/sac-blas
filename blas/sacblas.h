@@ -222,6 +222,17 @@ SAC_C_EXTERN void BlasLevel2__dspr28(SACarg **ret1, SACarg *arg1, SACarg *arg2, 
 SAC_C_EXTERN void BlasLevel2__stpsv7(SACarg **ret1, SACarg *arg1, SACarg *arg2, SACarg *arg3, SACarg *arg4, SACarg *arg5, SACarg *arg6, SACarg *arg7);
 
 /*****************************************************************************
+ * C declaration of function BlasLevel2::dtbmv.
+ *
+ * defined instances:
+ *
+ *  ( char, char, char, int, int, double[.,.], int, double[.], int) -> ( double[.])
+ *
+ *****************************************************************************/
+
+SAC_C_EXTERN void BlasLevel2__dtbmv9(SACarg **ret1, SACarg *arg1, SACarg *arg2, SACarg *arg3, SACarg *arg4, SACarg *arg5, SACarg *arg6, SACarg *arg7, SACarg *arg8, SACarg *arg9);
+
+/*****************************************************************************
  * C declaration of function BlasLevel2::sspr.
  *
  * defined instances:
@@ -264,6 +275,17 @@ SAC_C_EXTERN void BlasLevel2__dsbmv11(SACarg **ret1, SACarg *arg1, SACarg *arg2,
  *****************************************************************************/
 
 SAC_C_EXTERN void BlasLevel2__sspr28(SACarg **ret1, SACarg *arg1, SACarg *arg2, SACarg *arg3, SACarg *arg4, SACarg *arg5, SACarg *arg6, SACarg *arg7, SACarg *arg8);
+
+/*****************************************************************************
+ * C declaration of function BlasLevel2::stbmv.
+ *
+ * defined instances:
+ *
+ *  ( char, char, char, int, int, float[.,.], int, float[.], int) -> ( float[.])
+ *
+ *****************************************************************************/
+
+SAC_C_EXTERN void BlasLevel2__stbmv9(SACarg **ret1, SACarg *arg1, SACarg *arg2, SACarg *arg3, SACarg *arg4, SACarg *arg5, SACarg *arg6, SACarg *arg7, SACarg *arg8, SACarg *arg9);
 
 /*****************************************************************************
  * C declaration of function BlasLevel2::dtpmv.

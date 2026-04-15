@@ -1,41 +1,47 @@
-- [x] cblas_?gbmv
+# SAC-BLAS Implementation Checklist
+
+## Level 1 (Vector-Vector) — Complete
+All 13 float + 13 double routines implemented and passing.
+
+## Level 2 (Matrix-Vector) — Complete
+
 - [x] cblas_?gemv
-- [x] cblas_?ger
-- [-] cblas_?gerc
-- [-] cblas_?geru
-- [-] cblas_?hbmv
-- [-] cblas_?hemv
-- [-] cblas_?her
-- [-] cblas_?her2
-- [-] cblas_?hpmv
-- [-] cblas_?hpr
-- [-] cblas_?hpr2
-- [-] cblas_?sbmv
-- [x] cblas_?spmv
-- [x] cblas_?spr
-- [x] cblas_?spr2
+- [x] cblas_?gbmv
 - [x] cblas_?symv
-- [x] cblas_?syr
-- [x] cblas_?syr2
-- [-] cblas_?tbmv
-- [-] cblas_?tbsv
-- [-] cblas_?tpmv
-- [ ] cblas_?tpsv
+- [x] cblas_?sbmv
+- [x] cblas_?spmv
 - [x] cblas_?trmv
-- [x] cblas_?trsv 
+- [x] cblas_?tbmv
+- [x] cblas_?tpmv
+- [x] cblas_?trsv
+- [x] cblas_?tbsv
+- [x] cblas_?tpsv
+- [x] cblas_?ger
+- [x] cblas_?syr
+- [x] cblas_?spr
+- [x] cblas_?syr2
+- [x] cblas_?spr2
+- [-] cblas_?gerc (complex only)
+- [-] cblas_?geru (complex only)
+- [-] cblas_?hemv (complex only)
+- [-] cblas_?hbmv (complex only)
+- [-] cblas_?hpmv (complex only)
+- [-] cblas_?her (complex only)
+- [-] cblas_?her2 (complex only)
+- [-] cblas_?hpr (complex only)
+- [-] cblas_?hpr2 (complex only)
 
-IMPLEMENT MISSING FUNCS
+`[-]` = complex-number-only variants, not implemented (SAC complex support limited)
 
-- Werkt de padding, lda
-- Wordt ongebruikte values daadwerkelijk niet gebruikt. eg sym
-- Werkt de stapgrote correct
-- Check type guards
+## Level 3 (Matrix-Matrix) — Complete
 
+- [x] cblas_?gemm
+- [x] cblas_?symm
+- [x] cblas_?syrk
+- [x] cblas_?syr2k
+- [x] cblas_?trmm
+- [x] cblas_?trsm
 
-bugs:
-inline / noinline bug ttrs(constraint violation)
-wrong type bug, displays int instead of float
-can't read from char array bug.
-Doesn't do loop bug when using nested loops
-Crashes when reading float in matrix
-displays <> dim 0 instead of actual number
+## Test Results: 91 passed, 0 failed
+
+See `STATUS.md` for details and `run_tests.sh` to run the full suite.

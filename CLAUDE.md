@@ -79,4 +79,11 @@ Filed bugs are documented in `blas/filedBugs/` as reproducible `.sac` files. The
 
 ## Implementation status
 
-Level 1 routines are complete. Level 2 progress is tracked in `blas/CHECKLIST.md` — routines marked `[-]` are complex-number-only variants not yet implemented, `[ ]` are pending.
+All standard BLAS routines are complete for float and double (70 routines total):
+- **Level 1**: 13 float + 13 double — all passing
+- **Level 2**: 16 float + 16 double — all passing  
+- **Level 3**: 6 float + 6 double — all passing
+
+Full test suite: **91 passed, 0 failed** (run `bash blas/run_tests.sh`).
+See `blas/STATUS.md` for detailed results, architecture docs, and known issues.
+See `blas/CHECKLIST.md` for the routine-by-routine checklist.

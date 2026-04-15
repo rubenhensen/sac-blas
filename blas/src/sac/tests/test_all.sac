@@ -1,0 +1,336 @@
+use StdIO: all;
+use Array: all;
+use BlasLevel1: all;
+use BlasLevel2: all;
+// use BlasLevel3: all;
+use Helper: all;
+use Structures: {string};
+
+#define TOL 0.01f
+#define DTOL 0.0001d
+
+void check_f(string name, float[*] sac_res, float[*] ref_res) {
+  if (almost_eq(sac_res, ref_res, TOL)) { printf("  PASS: %s\n", name); }
+  else { printf("  FAIL: %s\n", name); printf("    expected: "); print(ref_res); printf("    got:      "); print(sac_res); }
+}
+void check_d(string name, double[*] sac_res, double[*] ref_res) {
+  if (almost_eq(sac_res, ref_res, DTOL)) { printf("  PASS: %s\n", name); }
+  else { printf("  FAIL: %s\n", name); printf("    expected: "); print(ref_res); printf("    got:      "); print(sac_res); }
+}
+
+/* ========== Level 2 Float ========== */
+
+void test_sgemv() {
+  printf("--- sgemv ---\n");
+  a = tof(reshape([3,3], iota(9)));
+  x = tof([1,1,1]);
+  y = tof([0,0,0]);
+  check_f("N 3x3", sgemv('n',3,3,1.0f,a,3,x,1,0.0f,y,1), OpenBlas::sgemv('n',3,3,1.0f,a,3,x,1,0.0f,y,1));
+  check_f("T 3x3", sgemv('t',3,3,1.0f,a,3,x,1,0.0f,y,1), OpenBlas::sgemv('t',3,3,1.0f,a,3,x,1,0.0f,y,1));
+  check_f("N alpha2 beta1", sgemv('n',3,3,2.0f,a,3,x,1,1.0f,tof([1,1,1]),1), OpenBlas::sgemv('n',3,3,2.0f,a,3,x,1,1.0f,tof([1,1,1]),1));
+}
+
+void test_sgbmv() {
+  printf("--- sgbmv ---\n");
+  band = tof(reshape([3,3], [0,1,2, 3,4,5, 6,7,0]));
+  x = tof([1,1,1]);
+  y = tof([0,0,0]);
+  check_f("N 3x3 kl1ku1", sgbmv('n',3,3,1,1,1.0f,band,3,x,1,0.0f,y,1),
+                           OpenBlas::sgbmv('n',3,3,1,1,1.0f,band,3,x,1,0.0f,y,1));
+  band2 = tof(reshape([2,1], [5,7]));
+  x2 = tof([3]);
+  y2 = tof([0,0]);
+  check_f("N 2x1 kl0ku0", sgbmv('n',2,1,0,0,1.0f,band2,1,x2,1,0.0f,y2,1),
+                           OpenBlas::sgbmv('n',2,1,0,0,1.0f,band2,1,x2,1,0.0f,y2,1));
+}
+
+void test_ssymv() {
+  printf("--- ssymv ---\n");
+  a = tof(reshape([3,3], [1,2,3, 2,5,6, 3,6,9]));
+  x = tof([1,1,1]);
+  y = tof([0,0,0]);
+  check_f("U 3x3", ssymv('u',3,1.0f,a,3,x,1,0.0f,y,1), OpenBlas::ssymv('u',3,1.0f,a,3,x,1,0.0f,y,1));
+  check_f("L 3x3", ssymv('l',3,1.0f,a,3,x,1,0.0f,y,1), OpenBlas::ssymv('l',3,1.0f,a,3,x,1,0.0f,y,1));
+}
+
+void test_ssbmv() {
+  printf("--- ssbmv ---\n");
+  band = tof(reshape([3,2], [1,2, 3,4, 5,0]));
+  x = tof([1,1,1]);
+  y = tof([0,0,0]);
+  check_f("U N3K1", ssbmv('u',3,1,1.0f,band,2,x,1,0.0f,y,1), OpenBlas::ssbmv('u',3,1,1.0f,band,2,x,1,0.0f,y,1));
+  check_f("L N3K1", ssbmv('l',3,1,1.0f,band,2,x,1,0.0f,y,1), OpenBlas::ssbmv('l',3,1,1.0f,band,2,x,1,0.0f,y,1));
+}
+
+void test_sspmv() {
+  printf("--- sspmv ---\n");
+  ap = tof([1,2,3,4,5,6]);
+  x = tof([1,1,1]);
+  y = tof([0,0,0]);
+  check_f("U N3", sspmv('u',3,1.0f,ap,x,1,0.0f,y,1), OpenBlas::sspmv('u',3,1.0f,ap,x,1,0.0f,y,1));
+  check_f("L N3", sspmv('l',3,1.0f,ap,x,1,0.0f,y,1), OpenBlas::sspmv('l',3,1.0f,ap,x,1,0.0f,y,1));
+}
+
+void test_strmv() {
+  printf("--- strmv ---\n");
+  a = tof(reshape([3,3], [1,2,3, 0,4,5, 0,0,6]));
+  x = tof([1,1,1]);
+  check_f("UN N3", strmv('u','n','n',3,a,3,x,1), OpenBlas::strmv('u','n','n',3,a,3,x,1));
+  check_f("UT N3", strmv('u','t','n',3,a,3,x,1), OpenBlas::strmv('u','t','n',3,a,3,x,1));
+  check_f("UU N3", strmv('u','n','u',3,a,3,x,1), OpenBlas::strmv('u','n','u',3,a,3,x,1));
+  a2 = tof(reshape([3,3], [1,0,0, 2,3,0, 4,5,6]));
+  check_f("LN N3", strmv('l','n','n',3,a2,3,x,1), OpenBlas::strmv('l','n','n',3,a2,3,x,1));
+}
+
+void test_stbmv() {
+  printf("--- stbmv ---\n");
+  band = tof(reshape([3,2], [1,2, 3,4, 5,0]));
+  x = tof([1,1,1]);
+  check_f("UN K1", stbmv('u','n','n',3,1,band,2,x,1), OpenBlas::stbmv('u','n','n',3,1,band,2,x,1));
+  check_f("LN K1", stbmv('l','n','n',3,1,band,2,x,1), OpenBlas::stbmv('l','n','n',3,1,band,2,x,1));
+  check_f("UT K1", stbmv('u','t','n',3,1,band,2,x,1), OpenBlas::stbmv('u','t','n',3,1,band,2,x,1));
+  check_f("UU K1", stbmv('u','n','u',3,1,band,2,x,1), OpenBlas::stbmv('u','n','u',3,1,band,2,x,1));
+}
+
+void test_stpmv() {
+  printf("--- stpmv ---\n");
+  ap = tof([1,2,3,4,5,6]);
+  x = tof([1,1,1]);
+  check_f("UN N3", stpmv('u','n','n',3,ap,x,1), OpenBlas::stpmv('u','n','n',3,ap,x,1));
+  check_f("LN N3", stpmv('l','n','n',3,ap,x,1), OpenBlas::stpmv('l','n','n',3,ap,x,1));
+  check_f("UT N3", stpmv('u','t','n',3,ap,x,1), OpenBlas::stpmv('u','t','n',3,ap,x,1));
+  check_f("UU N3", stpmv('u','n','u',3,ap,x,1), OpenBlas::stpmv('u','n','u',3,ap,x,1));
+}
+
+void test_strsv() {
+  printf("--- strsv ---\n");
+  a = tof(reshape([3,3], [2,0,0, 1,3,0, 4,5,1]));
+  x = tof([2,7,18]);
+  check_f("LN N3", strsv('l','n','n',3,a,3,x,1), OpenBlas::strsv('l','n','n',3,a,3,x,1));
+  a2 = tof(reshape([3,3], [2,1,4, 0,3,5, 0,0,1]));
+  x2 = tof([15,8,1]);
+  check_f("UN N3", strsv('u','n','n',3,a2,3,x2,1), OpenBlas::strsv('u','n','n',3,a2,3,x2,1));
+  a3 = tof(reshape([3,3], [1,2,3, 0,1,4, 0,0,1]));
+  x3 = tof([7,5,1]);
+  check_f("UU N3", strsv('u','n','u',3,a3,3,x3,1), OpenBlas::strsv('u','n','u',3,a3,3,x3,1));
+  check_f("LN inc2", strsv('l','n','n',2,tof(reshape([2,2],[2,0,3,4])),2,tof([2,0,11]),2),
+                      OpenBlas::strsv('l','n','n',2,tof(reshape([2,2],[2,0,3,4])),2,tof([2,0,11]),2));
+}
+
+void test_stbsv() {
+  printf("--- stbsv ---\n");
+  band = tof(reshape([3,2], [2,1, 3,4, 5,0]));
+  x = tof([1,1,1]);
+  check_f("UN K1", stbsv('u','n','n',3,1,band,2,x,1), OpenBlas::stbsv('u','n','n',3,1,band,2,x,1));
+  check_f("LN K1", stbsv('l','n','n',3,1,band,2,x,1), OpenBlas::stbsv('l','n','n',3,1,band,2,x,1));
+}
+
+void test_stpsv() {
+  printf("--- stpsv ---\n");
+  ap = tof([2,1,3,4,5,6]);
+  x = tof([1,1,1]);
+  check_f("UN N3", stpsv('u','n','n',3,ap,x,1), OpenBlas::stpsv('u','n','n',3,ap,x,1));
+  check_f("LN N3", stpsv('l','n','n',3,ap,x,1), OpenBlas::stpsv('l','n','n',3,ap,x,1));
+  check_f("UT N3", stpsv('u','t','n',3,ap,x,1), OpenBlas::stpsv('u','t','n',3,ap,x,1));
+}
+
+void test_sger() {
+  printf("--- sger ---\n");
+  a = tof(reshape([2,3], [1,2,3,4,5,6]));
+  x = tof([1,2]);
+  y = tof([1,1,1]);
+  check_f("2x3", sger(2,3,1.0f,x,1,y,1,a,3), OpenBlas::sger(2,3,1.0f,x,1,y,1,a,3));
+}
+
+void test_ssyr() {
+  printf("--- ssyr ---\n");
+  a = tof(reshape([3,3], [1,2,3, 99,5,6, 99,99,9]));
+  x = tof([1,2,3]);
+  check_f("U N3", ssyr('u',3,1.0f,x,1,a,3), OpenBlas::ssyr('u',3,1.0f,x,1,a,3));
+}
+
+void test_ssyr2() {
+  printf("--- ssyr2 ---\n");
+  a = tof(reshape([3,3], [1,2,3, 99,5,6, 99,99,9]));
+  x = tof([1,2,3]);
+  y = tof([3,2,1]);
+  check_f("U N3", ssyr2('u',3,1.0f,x,1,y,1,a,3), OpenBlas::ssyr2('u',3,1.0f,x,1,y,1,a,3));
+  check_f("U inc2", ssyr2('u',2,1.0f,tof([1,0,2]),2,tof([3,0,1]),2,tof(reshape([2,2],[1,2,99,3])),2),
+                     OpenBlas::ssyr2('u',2,1.0f,tof([1,0,2]),2,tof([3,0,1]),2,tof(reshape([2,2],[1,2,99,3])),2));
+}
+
+void test_sspr() {
+  printf("--- sspr ---\n");
+  ap = tof([1,2,3,4,5,6]);
+  x = tof([1,2,3]);
+  check_f("U N3", sspr('u',3,1.0f,x,1,ap), OpenBlas::sspr('u',3,1.0f,x,1,ap));
+  check_f("L N3", sspr('l',3,1.0f,x,1,ap), OpenBlas::sspr('l',3,1.0f,x,1,ap));
+}
+
+void test_sspr2() {
+  printf("--- sspr2 ---\n");
+  ap = tof([1,2,3,4,5,6]);
+  x = tof([1,2,3]);
+  y = tof([3,2,1]);
+  check_f("U N3", sspr2('u',3,1.0f,x,1,y,1,ap), OpenBlas::sspr2('u',3,1.0f,x,1,y,1,ap));
+  check_f("L N3", sspr2('l',3,1.0f,x,1,y,1,ap), OpenBlas::sspr2('l',3,1.0f,x,1,y,1,ap));
+}
+
+/* ========== Level 2 Double ========== */
+
+void test_dgemv() {
+  printf("--- dgemv ---\n");
+  a = tod(reshape([3,3], iota(9)));
+  x = tod([1,1,1]);
+  y = tod([0,0,0]);
+  check_d("N 3x3", dgemv('n',3,3,1.0d,a,3,x,1,0.0d,y,1), OpenBlas::dgemv('n',3,3,1.0d,a,3,x,1,0.0d,y,1));
+  check_d("T 3x3", dgemv('t',3,3,1.0d,a,3,x,1,0.0d,y,1), OpenBlas::dgemv('t',3,3,1.0d,a,3,x,1,0.0d,y,1));
+}
+
+void test_dtrsv() {
+  printf("--- dtrsv ---\n");
+  a = tod(reshape([3,3], [2,0,0, 1,3,0, 4,5,1]));
+  x = tod([2,7,18]);
+  check_d("LN N3", dtrsv('l','n','n',3,a,3,x,1), OpenBlas::dtrsv('l','n','n',3,a,3,x,1));
+  a2 = tod(reshape([3,3], [2,1,4, 0,3,5, 0,0,1]));
+  x2 = tod([15,8,1]);
+  check_d("UN N3", dtrsv('u','n','n',3,a2,3,x2,1), OpenBlas::dtrsv('u','n','n',3,a2,3,x2,1));
+}
+
+/* ========== Level 3 Float ========== */
+
+void test_sgemm() {
+  printf("--- sgemm ---\n");
+  a = tof(reshape([2,3], iota(6)));
+  b = tof(reshape([3,2], iota(6)));
+  c = tof(reshape([2,2], [0,0,0,0]));
+  check_f("NN 2x3x2", sgemm('n','n',2,2,3,1.0f,a,3,b,2,0.0f,c,2),
+                       OpenBlas::sgemm('n','n',2,2,3,1.0f,a,3,b,2,0.0f,c,2));
+  check_f("TN 3x2", sgemm('t','n',3,2,2,1.0f,tof(reshape([2,3],iota(6))),3,b,2,0.0f,tof(reshape([3,2],[0,0,0,0,0,0])),2),
+                     OpenBlas::sgemm('t','n',3,2,2,1.0f,tof(reshape([2,3],iota(6))),3,b,2,0.0f,tof(reshape([3,2],[0,0,0,0,0,0])),2));
+  check_f("NT 2x3", sgemm('n','t',2,3,2,1.0f,tof(reshape([2,2],[1,2,3,4])),2,tof(reshape([3,2],iota(6))),2,0.0f,tof(reshape([2,3],[0,0,0,0,0,0])),3),
+                     OpenBlas::sgemm('n','t',2,3,2,1.0f,tof(reshape([2,2],[1,2,3,4])),2,tof(reshape([3,2],iota(6))),2,0.0f,tof(reshape([2,3],[0,0,0,0,0,0])),3));
+}
+
+void test_ssymm() {
+  printf("--- ssymm ---\n");
+  a = tof(reshape([2,2], [1,2,2,3]));
+  b = tof(reshape([2,2], [1,0,0,1]));
+  c = tof(reshape([2,2], [0,0,0,0]));
+  check_f("L 2x2", ssymm('l','u',2,2,1.0f,a,2,b,2,0.0f,c,2), OpenBlas::ssymm('l','u',2,2,1.0f,a,2,b,2,0.0f,c,2));
+  check_f("R 2x2", ssymm('r','u',2,2,1.0f,a,2,b,2,0.0f,c,2), OpenBlas::ssymm('r','u',2,2,1.0f,a,2,b,2,0.0f,c,2));
+}
+
+void test_ssyrk() {
+  printf("--- ssyrk ---\n");
+  a = tof(reshape([2,3], iota(6)));
+  c = tof(reshape([2,2], [0,0,0,0]));
+  check_f("UN 2x3", ssyrk('u','n',2,3,1.0f,a,3,0.0f,c,2), OpenBlas::ssyrk('u','n',2,3,1.0f,a,3,0.0f,c,2));
+  check_f("LN 2x3", ssyrk('l','n',2,3,1.0f,a,3,0.0f,c,2), OpenBlas::ssyrk('l','n',2,3,1.0f,a,3,0.0f,c,2));
+  check_f("UT 3x2", ssyrk('u','t',2,3,1.0f,tof(reshape([3,2],iota(6))),2,0.0f,c,2),
+                     OpenBlas::ssyrk('u','t',2,3,1.0f,tof(reshape([3,2],iota(6))),2,0.0f,c,2));
+  check_f("with beta", ssyrk('u','n',2,3,1.0f,a,3,2.0f,tof(reshape([2,2],[1,0,0,1])),2),
+                        OpenBlas::ssyrk('u','n',2,3,1.0f,a,3,2.0f,tof(reshape([2,2],[1,0,0,1])),2));
+}
+
+void test_ssyr2k() {
+  printf("--- ssyr2k ---\n");
+  a = tof(reshape([2,3], iota(6)));
+  b = tof(reshape([2,3], [6,5,4,3,2,1]));
+  c = tof(reshape([2,2], [0,0,0,0]));
+  check_f("UN 2x3", ssyr2k('u','n',2,3,1.0f,a,3,b,3,0.0f,c,2),
+                     OpenBlas::ssyr2k('u','n',2,3,1.0f,a,3,b,3,0.0f,c,2));
+  check_f("LN 2x3", ssyr2k('l','n',2,3,1.0f,a,3,b,3,0.0f,c,2),
+                     OpenBlas::ssyr2k('l','n',2,3,1.0f,a,3,b,3,0.0f,c,2));
+  check_f("UT 3x2", ssyr2k('u','t',2,3,1.0f,tof(reshape([3,2],iota(6))),2,tof(reshape([3,2],[6,5,4,3,2,1])),2,0.0f,c,2),
+                     OpenBlas::ssyr2k('u','t',2,3,1.0f,tof(reshape([3,2],iota(6))),2,tof(reshape([3,2],[6,5,4,3,2,1])),2,0.0f,c,2));
+}
+
+void test_strmm() {
+  printf("--- strmm ---\n");
+  a = tof(reshape([2,2], [2,1, 0,3]));
+  b = tof(reshape([2,2], [1,2, 3,4]));
+  check_f("LUN 2x2", strmm('l','u','n','n',2,2,1.0f,a,2,b,2), OpenBlas::strmm('l','u','n','n',2,2,1.0f,a,2,b,2));
+  check_f("RUN 2x2", strmm('r','u','n','n',2,2,1.0f,a,2,b,2), OpenBlas::strmm('r','u','n','n',2,2,1.0f,a,2,b,2));
+  check_f("LUT 2x2", strmm('l','u','t','n',2,2,1.0f,a,2,b,2), OpenBlas::strmm('l','u','t','n',2,2,1.0f,a,2,b,2));
+  check_f("LLN 2x2", strmm('l','l','n','n',2,2,1.0f,tof(reshape([2,2],[2,0,1,3])),2,b,2),
+                      OpenBlas::strmm('l','l','n','n',2,2,1.0f,tof(reshape([2,2],[2,0,1,3])),2,b,2));
+}
+
+void test_strsm() {
+  printf("--- strsm ---\n");
+  a = tof(reshape([2,2], [2,1, 0,3]));
+  b = tof(reshape([2,2], [5,8, 9,12]));
+  check_f("LUN 2x2", strsm('l','u','n','n',2,2,1.0f,a,2,b,2), OpenBlas::strsm('l','u','n','n',2,2,1.0f,a,2,b,2));
+  check_f("RUN 2x2", strsm('r','u','n','n',2,2,1.0f,a,2,b,2), OpenBlas::strsm('r','u','n','n',2,2,1.0f,a,2,b,2));
+}
+
+/* ========== Level 3 Double ========== */
+
+void test_dgemm() {
+  printf("--- dgemm ---\n");
+  a = tod(reshape([2,3], iota(6)));
+  b = tod(reshape([3,2], iota(6)));
+  c = tod(reshape([2,2], [0,0,0,0]));
+  check_d("NN 2x3x2", dgemm('n','n',2,2,3,1.0d,a,3,b,2,0.0d,c,2),
+                       OpenBlas::dgemm('n','n',2,2,3,1.0d,a,3,b,2,0.0d,c,2));
+}
+
+void test_dsyrk() {
+  printf("--- dsyrk ---\n");
+  a = tod(reshape([2,3], iota(6)));
+  c = tod(reshape([2,2], [0,0,0,0]));
+  check_d("UN 2x3", dsyrk('u','n',2,3,1.0d,a,3,0.0d,c,2), OpenBlas::dsyrk('u','n',2,3,1.0d,a,3,0.0d,c,2));
+  check_d("LN 2x3", dsyrk('l','n',2,3,1.0d,a,3,0.0d,c,2), OpenBlas::dsyrk('l','n',2,3,1.0d,a,3,0.0d,c,2));
+}
+
+void test_dsyr2k() {
+  printf("--- dsyr2k ---\n");
+  a = tod(reshape([2,3], iota(6)));
+  b = tod(reshape([2,3], [6,5,4,3,2,1]));
+  c = tod(reshape([2,2], [0,0,0,0]));
+  check_d("UN 2x3", dsyr2k('u','n',2,3,1.0d,a,3,b,3,0.0d,c,2),
+                     OpenBlas::dsyr2k('u','n',2,3,1.0d,a,3,b,3,0.0d,c,2));
+}
+
+int main() {
+  printf("=== SAC BLAS Test Suite ===\n\n");
+
+  printf("== Level 2 Float ==\n");
+  test_sgemv();
+  test_sgbmv();
+  test_ssymv();
+  test_ssbmv();
+  test_sspmv();
+  test_strmv();
+  test_stbmv();
+  test_stpmv();
+  test_strsv();
+  test_stbsv();
+  test_stpsv();
+  test_sger();
+  test_ssyr();
+  test_ssyr2();
+  test_sspr();
+  test_sspr2();
+
+  printf("\n== Level 2 Double ==\n");
+  test_dgemv();
+  test_dtrsv();
+
+  // printf("\n== Level 3 Float ==\n");
+  // test_sgemm();
+  // test_ssymm();
+  // test_ssyrk();
+  // test_ssyr2k();
+  // test_strmm();
+  // test_strsm();
+
+  // printf("\n== Level 3 Double ==\n");
+  // test_dgemm();
+  // test_dsyrk();
+  // test_dsyr2k();
+
+  printf("\n=== Done ===\n");
+  return 0;
+}

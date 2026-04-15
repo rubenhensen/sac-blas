@@ -138,62 +138,33 @@ double[m,lda] fullStorageToBand(double[m,n] storage, int kl, int ku, int m, int 
 }
 
 // Triangular band storage to full matrix (row-major CBLAS convention)
-// Upper: band[i][j-i] = A(i,j) for 0 <= j-i <= k. Band has N rows x (K+1) cols.
 float[n,n] upperTriBandToFull(float[.,.] band, int k, int n)
 {
-  return { [i,j] -> (j >= i && j <= i+k) ? band[i][j-i] : 0.0f | [i,j] < [n,n] };
+  /* Upper: A(i,j) = band[i][j-i] for j in [i, min(n-1, i+k)] */
+  rows = { [i] -> padVectorFront(n, take([min(k+1, n-i)], band[i])) | [i] < [n] };
+  return rows;
 }
 
 double[n,n] upperTriBandToFull(double[.,.] band, int k, int n)
 {
-  return { [i,j] -> (j >= i && j <= i+k) ? band[i][j-i] : 0.0d | [i,j] < [n,n] };
+  rows = { [i] -> padVectorFront(n, take([min(k+1, n-i)], band[i])) | [i] < [n] };
+  return rows;
 }
 
-// Lower: band[i][k-(i-j)] = A(i,j) for 0 <= i-j <= k. Band has N rows x (K+1) cols.
 float[n,n] lowerTriBandToFull(float[.,.] band, int k, int n)
 {
-  return { [i,j] -> (i >= j && i <= j+k) ? band[i][k-i+j] : 0.0f | [i,j] < [n,n] };
+  /* Lower: A(i,j) = band[i][k-(i-j)] for j in [max(0,i-k), i] */
+  rows = { [i] -> padVectorBack(n, drop([max(0, k-i)], take([min(k+1, i+1)], band[i]))) | [i] < [n] };
+  return rows;
 }
 
 double[n,n] lowerTriBandToFull(double[.,.] band, int k, int n)
 {
-  return { [i,j] -> (i >= j && i <= j+k) ? band[i][k-i+j] : 0.0d | [i,j] < [n,n] };
+  rows = { [i] -> padVectorBack(n, drop([max(0, k-i)], take([min(k+1, i+1)], band[i]))) | [i] < [n] };
+  return rows;
 }
 
-// General band storage to full matrix (row-major CBLAS convention)
-// band[i][kl+j-i] = A(i,j) for max(0,i-kl) <= j <= min(n-1,i+ku). Band has M rows x (kl+ku+1) cols.
-float[m,n] genBandToFull(float[.,.] band, int kl, int ku, int m, int n)
-{
-  return { [i,j] -> (j >= max(0,i-kl) && j <= min(n-1,i+ku)) ? band[i][kl+j-i] : 0.0f | [i,j] < [m,n] };
-}
-
-double[m,n] genBandToFull(double[.,.] band, int kl, int ku, int m, int n)
-{
-  return { [i,j] -> (j >= max(0,i-kl) && j <= min(n-1,i+ku)) ? band[i][kl+j-i] : 0.0d | [i,j] < [m,n] };
-}
-
-// Symmetric band to full symmetric matrix (row-major CBLAS convention)
-float[n,n] symBandToFull(char uplo, float[.,.] band, int k, int n)
-{
-  upper = upperTriBandToFull(band, k, n);
-  res = { [i,j] -> (i <= j) ? upper[i][j] : upper[j][i] | [i,j] < [n,n] };
-  if (uplo == 'L' || uplo == 'l') {
-    lower = lowerTriBandToFull(band, k, n);
-    res = { [i,j] -> (i >= j) ? lower[i][j] : lower[j][i] | [i,j] < [n,n] };
-  }
-  return res;
-}
-
-double[n,n] symBandToFull(char uplo, double[.,.] band, int k, int n)
-{
-  upper = upperTriBandToFull(band, k, n);
-  res = { [i,j] -> (i <= j) ? upper[i][j] : upper[j][i] | [i,j] < [n,n] };
-  if (uplo == 'L' || uplo == 'l') {
-    lower = lowerTriBandToFull(band, k, n);
-    res = { [i,j] -> (i >= j) ? lower[i][j] : lower[j][i] | [i,j] < [n,n] };
-  }
-  return res;
-}
+// symBandToFull inlined into ssbmv/dsbmv directly to avoid SAC type inference issues
 
 // inline
 float[m] padVectorFront(int k, float[n] arr)

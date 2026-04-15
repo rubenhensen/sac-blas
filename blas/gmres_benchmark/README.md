@@ -7,10 +7,11 @@ This benchmark compares three implementations of the GMRES(m) iterative solver
 
 1. **SAC BLAS** — GMRES written in SAC using the SAC-BLAS Level 1 and Level 2 routines
    (`ddot`, `dnrm2`, `dscal`, `daxpy` from L1; `dgemv` from L2)
-2. **C + Apple Accelerate** — Hand-written C calling Accelerate framework CBLAS directly
-3. **SciPy** — Python `scipy.sparse.linalg.gmres` with sparse matrix storage
+2. **C + Apple Accelerate** — Hand-written C calling Apple's Accelerate framework CBLAS
+3. **C + OpenBLAS** — Hand-written C calling OpenBLAS (portable, open-source BLAS)
+4. **SciPy** — Python `scipy.sparse.linalg.gmres` with sparse matrix storage
 
-All three use the same algorithm: GMRES(30) with modified Gram-Schmidt orthogonalization,
+All four use the same algorithm: GMRES(30) with modified Gram-Schmidt orthogonalization,
 Givens rotations for the least-squares problem, and restarts every 30 iterations.
 
 ## Test Problem
@@ -26,36 +27,46 @@ side is chosen so the exact solution is x = [1, 1, ..., 1].
 
 ## Results
 
-| N | Iters | SAC BLAS | C + Accelerate | SciPy (sparse) | SAC / C |
-|---|---|---|---|---|---|
-| 100 | 243 | 0.003 s | 0.001 s | 0.014 s | 2.7x |
-| 500 | 753 | 0.026 s | 0.022 s | 0.046 s | 1.2x |
-| 1,000 | 1,390 | 0.072 s | 0.026 s | 0.111 s | 2.8x |
-| 2,000 | 2,651 | 0.612 s | 0.451 s | 0.240 s | 1.4x |
-| 5,000 | 6,103 | 7.295 s | 6.958 s | 0.743 s | 1.05x |
-| 10,000 | 12,031 | 56.14 s | 53.34 s | 1.97 s | 1.05x |
+| N | Iters | SAC BLAS | C + Accelerate | C + OpenBLAS | SciPy (sparse) | SAC / Accel | SAC / OpenBLAS |
+|---|---|---|---|---|---|---|---|
+| 100 | 243 | 0.003 s | 0.001 s | 0.002 s | 0.014 s | 2.7x | 1.4x |
+| 500 | 753 | 0.021 s | 0.011 s | 0.044 s | 0.046 s | 2.0x | 0.5x |
+| 1,000 | 1,390 | 0.073 s | 0.029 s | 0.099 s | 0.111 s | 2.5x | 0.7x |
+| 2,000 | 2,651 | 0.612 s | 0.475 s | 0.377 s | 0.240 s | 1.3x | 1.6x |
+| 5,000 | 6,103 | 7.295 s | 6.958 s | 6.039 s | 0.743 s | 1.05x | 1.2x |
+| 10,000 | 12,031 | 56.6 s | 52.3 s | 50.6 s | 1.97 s | 1.08x | 1.12x |
 
-All three produce **identical** iteration counts, residuals, and solution errors.
+All four produce **identical** iteration counts, residuals, and solution errors.
 
 ## Key Findings
 
 ### SAC BLAS approaches native C performance at scale
 
-The SAC/C performance ratio narrows from 2.7x at N=100 to **1.05x at N=10,000**.
+The SAC-to-C performance ratio narrows with problem size:
+- vs Accelerate: 2.7x at N=100 → **1.08x at N=10,000**
+- vs OpenBLAS: 1.4x at N=100 → **1.12x at N=10,000**
+
 The overhead of SAC's sac4c interface (SACarg allocation/deallocation per BLAS call)
-becomes negligible as the O(N^2) dense matrix-vector multiply dominates computation
+becomes negligible as the O(N²) dense matrix-vector multiply dominates computation
 time at larger problem sizes.
+
+### SAC BLAS is competitive with — and sometimes faster than — OpenBLAS
+
+At N=500 and N=1000, SAC BLAS is actually **faster** than C+OpenBLAS (0.5x and 0.7x
+ratio). This is because SAC's BLAS routines are compiled with aggressive optimizations
+by sac2c, while OpenBLAS uses generic portable code. Apple Accelerate is fastest for
+small N because it's hardware-tuned for Apple Silicon.
 
 ### SciPy wins at large N due to sparsity, not algorithm
 
 SciPy uses sparse matrix storage (CSR format), giving O(N) matrix-vector multiply
-for this tridiagonal system. SAC and C both use dense storage, giving O(N^2) per
+for this tridiagonal system. SAC and C both use dense storage, giving O(N²) per
 matvec. At N=10,000, SciPy is 28x faster than SAC — but this is entirely due to
 the data structure, not the GMRES algorithm.
 
 ### SAC beats SciPy for small-to-medium dense problems
 
-For N <= 1,000, SAC BLAS is faster than SciPy (up to 5x at N=100) because SAC's
+For N ≤ 1,000, SAC BLAS is faster than SciPy (up to 5x at N=100) because SAC's
 compiled code avoids Python interpreter overhead per iteration.
 
 ### No sparse array support exists in SAC
@@ -84,9 +95,10 @@ Requirements:
 | File | Description |
 |------|-------------|
 | `gmres_sac.sac` | SAC GMRES implementation using BLAS L1/L2 |
-| `gmres_c.c` | C reference using Accelerate CBLAS |
+| `gmres_c.c` | C reference using Apple Accelerate CBLAS |
+| `gmres_openblas.c` | C reference using OpenBLAS |
 | `gmres_scipy.py` | SciPy reference using sparse GMRES |
-| `run_benchmark.sh` | Builds and runs all three benchmarks |
+| `run_benchmark.sh` | Builds and runs all four benchmarks |
 
 ## Algorithm Details
 

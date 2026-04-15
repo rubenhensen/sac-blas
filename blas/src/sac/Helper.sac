@@ -138,65 +138,29 @@ double[m,lda] fullStorageToBand(double[m,n] storage, int kl, int ku, int m, int 
 }
 
 // Triangular band storage to full matrix (row-major CBLAS convention)
-// Workaround for sac2c ICE (issue #1): use float[n,kp1] typed parameter
-// instead of float[.,.] to avoid function composition issues during
-// module specialization. Callers must pass band with exact [n, k+1] shape.
+// Workaround for sac2c ICE (issue #1): use _sel_VxA_ to return scalars in
+// ternary expressions, avoiding float[*] vs float type mismatch.
 //
-// Upper: band[i][j-i] = A(i,j). Row i needs i zeros front, then band elements, then trailing zeros.
-float[n,n] upperTriBandToFull(float[n,kp1] band, int k, int n)
+// Upper: band[i][j-i] = A(i,j) for 0 <= j-i <= k
+float[n,n] upperTriBandToFull(float[.,.] band, int k, int n)
 {
-  return { [i] -> padVectorOffset(n, i, band[i]) | [i] < [n] };
+  return { [i,j] -> (j >= i && j-i <= k) ? _sel_VxA_([j-i], band[i]) : 0.0f | [i,j] < [n,n] };
 }
 
-double[n,n] upperTriBandToFull(double[n,kp1] band, int k, int n)
+double[n,n] upperTriBandToFull(double[.,.] band, int k, int n)
 {
-  return { [i] -> padVectorOffset(n, i, band[i]) | [i] < [n] };
+  return { [i,j] -> (j >= i && j-i <= k) ? _sel_VxA_([j-i], band[i]) : 0.0d | [i,j] < [n,n] };
 }
 
-// Lower: band[i][k-(i-j)] = A(i,j) for j in [max(0,i-k), i].
-// Band row i has valid elements at offsets [max(0,k-i)..k], representing
-// columns [max(0,i-k)..i] of the full matrix.
-// Strategy: reverse the band row so diagonal comes first, then pad from front
-// with i zeros (placing diagonal at column i), and the invalid trailing
-// entries fall off the end via padVectorBack truncation.
-float[n,n] lowerTriBandToFull(float[n,kp1] band, int k, int n)
+// Lower: band[i][k-(i-j)] = A(i,j) for max(0,i-k) <= j <= i
+float[n,n] lowerTriBandToFull(float[.,.] band, int k, int n)
 {
-  // Reverse each row: [subdiag_far,...,subdiag_1,diag] -> [diag,subdiag_1,...,subdiag_far]
-  // Then padVectorBack places [diag,subdiag_1,...] starting at position i, trailing zeros fill rest
-  // But we need diagonal at column i, subdiag_1 at column i-1, etc.
-  // So reversed row is in WRONG order. Instead: use padVectorFront to push to END then offset.
-  //
-  // Alternative: build row explicitly. For row i: A(i,j) = band[i][k-(i-j)] = band[i][k-i+j]
-  // Valid columns: max(0,i-k) to i. At column j: band[i][k-i+j].
-  // Use padVectorOffset(n, max(0,i-k), ...) with the valid sub-array.
-  // Valid sub-array = drop(max(0,k-i), band[i]) ... but that's composition.
-  //
-  // Simplest workaround: zero invalid entries then use padVectorOffset.
-  clean = band;
-  for (i = 0; i < min(k, n); i++) {
-    for (j = 0; j < k-i; j++) {
-      clean[i,j] = 0.0f;
-    }
-  }
-  // Now clean[i] for i < k has leading zeros. padVectorOffset places at column max(0,i-k).
-  // But the leading zeros in clean[i] will appear BEFORE the valid data in the row.
-  // For i=0,k=1: clean[0]=[0,2]. padVectorOffset(3, 0, [0,2]) = [0,2,0]. Wrong.
-  // We need to shift the valid part to the beginning: take only last min(k+1,i+1) elements.
-  // Can't compose drop+pad. So reverse the approach:
-  // padVectorBack(n, take(min(k+1,i+1), drop(max(0,k-i), clean[i]))) ... too much composition.
-  //
-  // Final approach: build the full row using the upper tri approach on transposed band.
-  // Lower tri of A = transpose of upper tri of A^T.
-  // A_lower = transpose(upperTriBandToFull(transpose_band, k, n))
-  // But transpose_band requires restructuring...
-  //
-  // Pragmatic: just build each row element by element using a nested with-loop.
-  return { [i,j] -> (j >= max(0,i-k) && j <= i) ? _sel_VxA_([k-i+j], band[i]) : 0.0f | [i,j] < [n,n] };
+  return { [i,j] -> (i-j >= 0 && i-j <= k) ? _sel_VxA_([k-i+j], band[i]) : 0.0f | [i,j] < [n,n] };
 }
 
-double[n,n] lowerTriBandToFull(double[n,kp1] band, int k, int n)
+double[n,n] lowerTriBandToFull(double[.,.] band, int k, int n)
 {
-  return { [i,j] -> (j >= max(0,i-k) && j <= i) ? _sel_VxA_([k-i+j], band[i]) : 0.0d | [i,j] < [n,n] };
+  return { [i,j] -> (i-j >= 0 && i-j <= k) ? _sel_VxA_([k-i+j], band[i]) : 0.0d | [i,j] < [n,n] };
 }
 
 // symBandToFull inlined into ssbmv/dsbmv directly to avoid SAC type inference issues

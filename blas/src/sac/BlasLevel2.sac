@@ -58,12 +58,12 @@ float[m,n] sger(int m, int n, float alpha, float[lenx] x, int incx, float[leny] 
   return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
 }
 
-float[*] ssbmv(char uplo, int n, int k, float alpha, float[*] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy)
+float[*] ssbmv(char uplo, int n, int k, float alpha, float[an,am] a, int lda, float[*] x, int incx, float beta, float[*] y, int incy)
 {
     if (uplo == 'U' || uplo == 'u') {
-      tri = upperTriBandToFull(reshape([n,k+1], a), k, n);
+      tri = upperTriBandToFull(a, k, n);
     } else {
-      tri = lowerTriBandToFull(reshape([n,k+1], a), k, n);
+      tri = lowerTriBandToFull(a, k, n);
     }
     betaY =   BlasLevel1::sscal(n, beta, y, incy);
     alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
@@ -165,9 +165,9 @@ float[xn] stbmv(char uplo, char trans, char diag, int n, int k, float[an,am] a, 
   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
 
   if (uplo == 'U' || uplo == 'u') {
-    full = upperTriBandToFull(reshape([n,k+1], a), k, n);
+    full = upperTriBandToFull(a, k, n);
   } else {
-    full = lowerTriBandToFull(reshape([n,k+1], a), k, n);
+    full = lowerTriBandToFull(a, k, n);
   }
 
   if (trans != 'N' && trans != 'n') {
@@ -204,9 +204,9 @@ float[xn] stbsv(char uplo, char trans, char diag, int n, int k, float[an,am] a, 
   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
 
   if (uplo == 'U' || uplo == 'u') {
-    full = upperTriBandToFull(reshape([n,k+1], a), k, n);
+    full = upperTriBandToFull(a, k, n);
   } else {
-    full = lowerTriBandToFull(reshape([n,k+1], a), k, n);
+    full = lowerTriBandToFull(a, k, n);
   }
 
   if (trans != 'N' && trans != 'n') {
@@ -487,12 +487,12 @@ double[m,n] dger(int m, int n, double alpha, double[lenx] x, int incx, double[le
   return {[i,j] -> a[i,j] + alpha * x[i*incx] * y[j*incy] | [i,j] < [m,n]};
 }
 
-double[*] dsbmv(char uplo, int n, int k, double alpha, double[*] a, int lda, double[*] x, int incx, double beta, double[*] y, int incy)
+double[*] dsbmv(char uplo, int n, int k, double alpha, double[an,am] a, int lda, double[*] x, int incx, double beta, double[*] y, int incy)
 {
     if (uplo == 'U' || uplo == 'u') {
-      tri = upperTriBandToFull(reshape([n,k+1], a), k, n);
+      tri = upperTriBandToFull(a, k, n);
     } else {
-      tri = lowerTriBandToFull(reshape([n,k+1], a), k, n);
+      tri = lowerTriBandToFull(a, k, n);
     }
     betaY =   BlasLevel1::dscal(n, beta, y, incy);
     alphaX =  {iv -> alpha * x[iv*incx]         | iv < [n]};
@@ -594,9 +594,9 @@ double[xn] dtbmv(char uplo, char trans, char diag, int n, int k, double[an,am] a
   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
 
   if (uplo == 'U' || uplo == 'u') {
-    full = upperTriBandToFull(reshape([n,k+1], a), k, n);
+    full = upperTriBandToFull(a, k, n);
   } else {
-    full = lowerTriBandToFull(reshape([n,k+1], a), k, n);
+    full = lowerTriBandToFull(a, k, n);
   }
 
   if (trans != 'N' && trans != 'n') {
@@ -633,9 +633,9 @@ double[xn] dtbsv(char uplo, char trans, char diag, int n, int k, double[an,am] a
   xt = { [iv] -> x[iv*incx] | [iv] < [n]};
 
   if (uplo == 'U' || uplo == 'u') {
-    full = upperTriBandToFull(reshape([n,k+1], a), k, n);
+    full = upperTriBandToFull(a, k, n);
   } else {
-    full = lowerTriBandToFull(reshape([n,k+1], a), k, n);
+    full = lowerTriBandToFull(a, k, n);
   }
 
   if (trans != 'N' && trans != 'n') {

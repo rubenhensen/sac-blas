@@ -259,7 +259,7 @@ SAC_C_EXTERN void BlasLevel2__dtrmv8(SACarg **ret1, SACarg *arg1, SACarg *arg2, 
  *
  * defined instances:
  *
- *  ( char, int, int, double, double[*], int, double[*], int, double, double[*], int) -> ( double[.])
+ *  ( char, int, int, double, double[.,.], int, double[*], int, double, double[*], int) -> ( double[.])
  *
  *****************************************************************************/
 
@@ -314,7 +314,7 @@ SAC_C_EXTERN void BlasLevel2__strmv8(SACarg **ret1, SACarg *arg1, SACarg *arg2, 
  *
  * defined instances:
  *
- *  ( char, int, int, float, float[*], int, float[*], int, float, float[*], int) -> ( float[.])
+ *  ( char, int, int, float, float[.,.], int, float[*], int, float, float[*], int) -> ( float[.])
  *
  *****************************************************************************/
 

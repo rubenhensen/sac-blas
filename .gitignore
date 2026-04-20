@@ -8,4 +8,4 @@
 # sac2c build artifacts
 host/
 tree/
-lib/
+lib/blas/lapack/

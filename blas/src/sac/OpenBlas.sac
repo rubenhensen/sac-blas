@@ -211,6 +211,24 @@ external complex[*] zgemv(char trans, int m, int n, complex[*] alpha, complex[*]
     #pragma header  "<Accelerate/Accelerate.h>"
     #pragma linksign [10,1,2,3,4,5,6,7,8,9,10,11]
 
+external complex[*] ztrmv(char uplo, char trans, char diag, int n, complex[*] a, int lda, complex[*] x, int incx);
+    #pragma linkname "SACztrmv"
+    #pragma linkobj "bin/blas/ztrmv.o"
+    #pragma header  "<Accelerate/Accelerate.h>"
+    #pragma linksign [7,1,2,3,4,5,6,7,8]
+
+external complex[*] ztrsv(char uplo, char trans, char diag, int n, complex[*] a, int lda, complex[*] x, int incx);
+    #pragma linkname "SACztrsv"
+    #pragma linkobj "bin/blas/ztrsv.o"
+    #pragma header  "<Accelerate/Accelerate.h>"
+    #pragma linksign [7,1,2,3,4,5,6,7,8]
+
+external complex[*] zhemv(char uplo, int n, complex[*] alpha, complex[*] a, int lda, complex[*] x, int incx, complex[*] beta, complex[*] y, int incy);
+    #pragma linkname "SACzhemv"
+    #pragma linkobj "bin/blas/zhemv.o"
+    #pragma header  "<Accelerate/Accelerate.h>"
+    #pragma linksign [9,1,2,3,4,5,6,7,8,9,10]
+
 external complex[*] zgerc(int m, int n, complex[*] alpha, complex[*] x, int incx, complex[*] y, int incy, complex[*] a, int lda);
     #pragma linkname "SACzgerc"
     #pragma linkobj "bin/blas/zgerc.o"
@@ -235,7 +253,7 @@ external complex[*] zher(char uplo, int n, double alpha, complex[.] x, int incx,
     #pragma header  "<Accelerate/Accelerate.h>"
     #pragma linksign [6,1,2,3,4,5,6,7]
 
-external complex[*] zher2(char uplo, int n, double alpha, complex[.] x, int incx, complex[.] y, int incy, complex[*] a, int lda);
+external complex[*] zher2(char uplo, int n, complex[*] alpha, complex[.] x, int incx, complex[.] y, int incy, complex[*] a, int lda);
     #pragma linkname "SACzher2"
     #pragma linkobj "bin/blas/zher2.o"
     #pragma header  "<Accelerate/Accelerate.h>"

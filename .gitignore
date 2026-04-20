@@ -1,4 +1,11 @@
 *.out
+*.out.c
 *.i
 *.o
 *.so
+*.sacbugreport
+
+# sac2c build artifacts
+host/
+tree/
+lib/

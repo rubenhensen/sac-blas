@@ -1,0 +1,10 @@
+module Helper;
+
+use Array: all;
+
+export all;
+
+float[n,n] upperTriBandToFull(float[.,.] band, int k, int n)
+{
+  return { [i,j] -> (j >= i && j-i <= k) ? band[i][j-i] : 0.0f | [i,j] < [n,n] };
+}

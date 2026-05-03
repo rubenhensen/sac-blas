@@ -1,0 +1,17 @@
+use Helper: all;
+
+inline float[d:shp] my_reshape(int[d] shp, float[*] arr)
+{
+  return _reshape_VxA_(shp, arr);
+}
+
+int main() {
+  band = my_reshape([3,2], [1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 0.0f]);
+  cond = true;
+  if (cond) {
+    full = upperTriBandToFull(band, 1, 3);
+  } else {
+    full = upperTriBandToFull(band, 1, 3);
+  }
+  return _toi_S_(_sel_VxA_([0,0], full));
+}

@@ -1,0 +1,53 @@
+// Minimal reproducer for thread-count-dependent floating-point reductions
+// under -tmt_pth.
+//
+// Build:
+//   sac2c_p              repro.sac -o repro_seq.out
+//   sac2c_p -tmt_pth     repro.sac -o repro_mt.out
+//
+// Run:
+//   ./repro_seq.out
+//   SAC_PARALLEL=1 ./repro_mt.out
+//   SAC_PARALLEL=2 ./repro_mt.out
+//   SAC_PARALLEL=4 ./repro_mt.out
+//   SAC_PARALLEL=8 ./repro_mt.out
+//
+// Expected: all runs print bit-identical y[0].
+// Observed: y[0] differs across thread counts (last few ULPs).
+//
+// Why this matters: this is the same reduction pattern used in SAC-native
+// dgemv. When the result feeds an iterative method (e.g. GMRES with
+// modified Gram-Schmidt), the per-call ULP-level drift compounds and
+// changes convergence trajectory — sometimes an extra factor of 2x in
+// iteration count, sometimes failure to converge within the iteration
+// budget.
+
+use Array: all;
+use StdIO: all;
+use Math: all;
+
+double[n] gemv_native(double[n,n] A, double[n] x)
+{
+  return { iv -> sum(A[iv] * x) | iv < [n] };
+}
+
+int main()
+{
+  n = 4096;
+
+  // Deterministic, ill-conditioned-ish input so the reduction order
+  // matters. Mixing magnitudes amplifies non-associativity.
+  A = { [i,j] -> tod(i + 1) / tod(j + 1) - tod(j + 1) / tod(i + 1)
+              | [i,j] < [n, n] };
+  x = { [i]   -> 1.0 / tod(i + 1) | [i] < [n] };
+
+  y = gemv_native(A, x);
+
+  // Print enough digits to see ULP-level differences.
+  printf("y[0]    = %.17e\n", y[0]);
+  printf("y[n/2]  = %.17e\n", y[n/2]);
+  printf("y[n-1]  = %.17e\n", y[n-1]);
+  printf("sum(y)  = %.17e\n", sum(y));
+
+  return 0;
+}

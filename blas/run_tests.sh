@@ -1,7 +1,6 @@
 #!/bin/bash
 # SAC-BLAS Full Test Suite Runner
-# Workarounds:
-#   - Issue #1 (SAC ICE): Applied in Helper.sac using _sel_VxA_
+# Workaround:
 #   - Issue #2 (Netlib crash): sskewsymv entry corrupts Fortran test driver;
 #     only routines BEFORE sskewsymv (entries 1-5) can be tested via Netlib.
 #     All other routines tested via SAC native test suite.

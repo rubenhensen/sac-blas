@@ -1,8 +1,7 @@
 use StdIO: all;
 use Array: all;
 use BlasLevel1: all;
-// BlasLevel2 triggers SAC reverse() type bug — use OpenBlas::dgemv directly
-// use Helper: all;
+use BlasLevel2: all;
 use Math: all;
 use MTClock: {gettime};
 
@@ -38,7 +37,7 @@ double[n], int, double gmres(double[n,n] a, double[n] b, double[n] x0, int m, do
 
   for (outer = 0; outer < maxit && !converged; outer++) {
     /* r = b - A*x */
-    ax = OpenBlas::dgemv('n', nn, nn, 1.0, a, nn, x, 1, 0.0, genarray([nn], 0.0), 1);
+    ax = dgemv('n', nn, nn, 1.0, a, nn, x, 1, 0.0, genarray([nn], 0.0), 1);
     r = daxpy(nn, -1.0, ax, 1, b, 1);
     beta = dnrm2(nn, r, 1);
 
@@ -67,7 +66,7 @@ double[n], int, double gmres(double[n,n] a, double[n] b, double[n] x0, int m, do
       for (i = 0; i < m && !inner_converged; i++) {
         /* w = A * v[i] */
         vi = v[i];
-        w = OpenBlas::dgemv('n', nn, nn, 1.0, a, nn, vi, 1, 0.0, genarray([nn], 0.0), 1);
+        w = dgemv('n', nn, nn, 1.0, a, nn, vi, 1, 0.0, genarray([nn], 0.0), 1);
 
         /* Gram-Schmidt orthogonalization */
         for (j = 0; j <= i; j++) {
@@ -152,7 +151,7 @@ void run_bench(int nn) {
 
   /* Right-hand side: b = A * ones (so exact solution is x = ones) */
   ones = genarray([nn], 1.0);
-  b = OpenBlas::dgemv('n', nn, nn, 1.0, a, nn, ones, 1, 0.0, genarray([nn], 0.0), 1);
+  b = dgemv('n', nn, nn, 1.0, a, nn, ones, 1, 0.0, genarray([nn], 0.0), 1);
 
   /* Initial guess: zero */
   x0 = genarray([nn], 0.0);

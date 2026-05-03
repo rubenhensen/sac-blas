@@ -128,12 +128,6 @@ The adapter (`cblas_adapter.c`) bridges the standard CBLAS C API to SAC via sac4
 
 ## Known Issues
 
-### Issue #1: SAC Compiler ICE ([rubenhensen/sac-blas#1](https://github.com/rubenhensen/sac-blas/issues/1))
-
-**Bug**: `sac2c` crashes with `assertion "!FUNDEF_ISLACFUN" failed` when a module function's with-loop composes two functions (e.g., `pad(n, take([k], m[i]))`). Works fine when defined inline.
-
-**Workaround applied**: Use `_sel_VxA_` primitive (returns scalar, avoiding type mismatch) in `upperTriBandToFull`/`lowerTriBandToFull`. All affected routines (ssbmv, stbmv, stbsv + double) work correctly.
-
 ### Issue #2: Netlib Test Framework Crash ([rubenhensen/sac-blas#2](https://github.com/rubenhensen/sac-blas/issues/2))
 
 **Bug**: The Netlib Fortran test driver (`c_sblat2.f`) crashes with SIGABRT when processing the `sskewsymv` entry. All routines listed AFTER `sskewsymv` in the test input file cannot be tested via Netlib.
@@ -145,6 +139,29 @@ The adapter (`cblas_adapter.c`) bridges the standard CBLAS C API to SAC via sac4
 ### Not a bug: ssyrk/ssyr2k K=0
 
 The Netlib test reports "parameter changed incorrectly" for ssyrk/ssyr2k when K=0. Our adapter correctly computes beta\*C. The issue is that the Netlib test's parameter validation detects our early-return handler differently than the reference BLAS. The computation is correct (verified via SAC native tests). Disabled in sin3 test input.
+
+## Fixed sac2c compiler bugs
+
+Verified fixed in `sac2c 2.1.0-PuurGeluk-271-g40073` (April 2026). Reproductions retained in `filedBugs/` for posterity.
+
+| GH issue | Bug | filedBugs/ |
+|---|---|---|
+| [#1](https://github.com/rubenhensen/sac-blas/issues/1) | `FUNDEF_ISLACFUN` ICE on module function with `pad(n, take(...))` composition | `sac2c_ice_lac_function/` |
+| [#3](https://github.com/rubenhensen/sac-blas/issues/3) | `reverse` type inference failure when importing `BlasLevel2` | `reverse_type_inference/` |
+| [#4](https://github.com/rubenhensen/sac-blas/issues/4) | ICE when importing `Helper` alongside complex types | `helper_complex_ice/` |
+| [#5](https://github.com/rubenhensen/sac-blas/issues/5) | ICE when importing `Structures:{string}` with `BlasLevel2` | `structures_string_ice/` |
+| [#6](https://github.com/rubenhensen/sac-blas/issues/6) | ICE on ternary operator over string literals | `ternary_string_ice/` |
+| [#7](https://github.com/rubenhensen/sac-blas/issues/7) | Compilation failure with variable-size arrays in for-loops | `variable_size_forloop/` |
+| [#8](https://github.com/rubenhensen/sac-blas/issues/8) | `reverse` type inference failure when importing `Benchmarking` | `benchmarking_reverse/` |
+| [#11](https://github.com/rubenhensen/sac-blas/issues/11) | `band[i][j-i]` in a ternary infers as `float[*]` instead of `float` during caller specialization | `ternary_band_type_inference/` |
+
+**Still open** ([#9](https://github.com/rubenhensen/sac-blas/issues/9)): `Array` + `Complex` symbol conflict (32 conflicts on full import; lexer ICE in `lex.c:1241` on selective-import workaround).
+
+**Open: parallel-sum race in `-tmt_pth`**: `sum(...)` reductions on `double[n]` are non-deterministic across runs at most thread counts (≥3) and produce catastrophically wrong values (off by 20–80%) on a fraction of runs. Reproduces on both cleanroom and upstream sac2c with bit-identical wrong values. Reproduction in `filedBugs/parallel_sum_nondeterminism/`.
+
+Workaround removal:
+- `gmres.sac` and `gmres_benchmark/gmres_sac.sac` now import `BlasLevel2` and call `dgemv` directly (was using `OpenBlas::dgemv` to dodge issue #3).
+- `upperTriBandToFull`/`lowerTriBandToFull` in `Helper.sac` now use the natural `band[i][j-i]` form (was using `_sel_VxA_` to dodge issues #1 and #11).
 
 ## Build & Test
 
@@ -192,4 +209,4 @@ bash run_tests.sh
 | Adapter: L3 1D→2D | cblas_adapter.c | All L3 routines: `mk_fvec` → `mk_fmat_lda` (2D matrices) |
 | Adapter: L3 col-major | cblas_adapter.c | sgemm: A/B pointer swap; strmm/strsm: no trans flip; ssymm: M↔N swap |
 | Adapter: L3 K=0 | cblas_adapter.c | Direct beta\*C scaling with correct col-major indexing |
-| Helper: band-to-full | Helper.sac | New helpers using `_sel_VxA_` workaround for SAC ICE |
+| Helper: band-to-full | Helper.sac | New helpers `upperTriBandToFull`/`lowerTriBandToFull` for ssbmv/stbmv/stbsv |

@@ -137,30 +137,28 @@ double[m,lda] fullStorageToBand(double[m,n] storage, int kl, int ku, int m, int 
             [i] -> padVectorBack(w,take([min(w,w-(i-lim))],drop([i-kl], storage[i]))) | [i] < [m]};
 }
 
-// Triangular band storage to full matrix (row-major CBLAS convention)
-// Workaround for sac2c ICE (issue #1): use _sel_VxA_ to return scalars in
-// ternary expressions, avoiding float[*] vs float type mismatch.
+// Triangular band storage to full matrix (row-major CBLAS convention).
 //
 // Upper: band[i][j-i] = A(i,j) for 0 <= j-i <= k
 float[n,n] upperTriBandToFull(float[.,.] band, int k, int n)
 {
-  return { [i,j] -> (j >= i && j-i <= k) ? _sel_VxA_([j-i], band[i]) : 0.0f | [i,j] < [n,n] };
+  return { [i,j] -> (j >= i && j-i <= k) ? band[i][j-i] : 0.0f | [i,j] < [n,n] };
 }
 
 double[n,n] upperTriBandToFull(double[.,.] band, int k, int n)
 {
-  return { [i,j] -> (j >= i && j-i <= k) ? _sel_VxA_([j-i], band[i]) : 0.0d | [i,j] < [n,n] };
+  return { [i,j] -> (j >= i && j-i <= k) ? band[i][j-i] : 0.0d | [i,j] < [n,n] };
 }
 
 // Lower: band[i][k-(i-j)] = A(i,j) for max(0,i-k) <= j <= i
 float[n,n] lowerTriBandToFull(float[.,.] band, int k, int n)
 {
-  return { [i,j] -> (i-j >= 0 && i-j <= k) ? _sel_VxA_([k-i+j], band[i]) : 0.0f | [i,j] < [n,n] };
+  return { [i,j] -> (i-j >= 0 && i-j <= k) ? band[i][k-i+j] : 0.0f | [i,j] < [n,n] };
 }
 
 double[n,n] lowerTriBandToFull(double[.,.] band, int k, int n)
 {
-  return { [i,j] -> (i-j >= 0 && i-j <= k) ? _sel_VxA_([k-i+j], band[i]) : 0.0d | [i,j] < [n,n] };
+  return { [i,j] -> (i-j >= 0 && i-j <= k) ? band[i][k-i+j] : 0.0d | [i,j] < [n,n] };
 }
 
 // symBandToFull inlined into ssbmv/dsbmv directly to avoid SAC type inference issues
